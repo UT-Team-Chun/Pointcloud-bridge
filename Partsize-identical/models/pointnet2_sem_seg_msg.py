@@ -62,7 +62,7 @@ class get_loss(nn.Module):
         a = 200
 
         raw_xyz = points[: , : , : 3] # output.shape: [16, 4096, 3]
-        raw_xyzl = torch.cat([raw_xyz, target.view(24, -1, 1)], dim=-1) # output.shape: [16, 4096, 4]
+        raw_xyzl = torch.cat([raw_xyz, target.view(64, -1, 1)], dim=-1) # output.shape: [16, 4096, 4]
 
         pred_label = torch.argmax(pred, dim=-1, keepdim=True) # output.shape: [16, 4096, 1]
         pred_xyzl = torch.cat([raw_xyz, pred_label], dim=-1) # output.shape: [16, 4096, 4]
