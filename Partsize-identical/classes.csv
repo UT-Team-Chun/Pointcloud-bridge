@@ -1,7 +1,17 @@
+
 abutment, 0
 girder, 1
 deck, 2
 parapet, 3
 noise, 4
+curb, 5
+light, 6
+
+new
+noise, 0
+abutment, 1
+girder, 2
+deck, 3
+parapet, 4
 curb, 5
 light, 6
