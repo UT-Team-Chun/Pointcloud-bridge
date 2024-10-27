@@ -1,0 +1,2110 @@
+2024-10-27 16:16:55,382 - INFO - Training configuration:
+2024-10-27 16:16:55,382 - INFO - batch_size: 16
+2024-10-27 16:16:55,383 - INFO - num_points: 8192
+2024-10-27 16:16:55,383 - INFO - num_epochs: 100
+2024-10-27 16:16:55,383 - INFO - learning_rate: 0.001
+2024-10-27 16:16:55,383 - INFO - device: cpu
+2024-10-27 16:16:55,383 - INFO - Using device: cpu
+2024-10-27 16:16:55,384 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 256, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 115, in train
+    num_workers=config['num_workers'],
+KeyError: 'num_workers'
+2024-10-27 16:19:59,060 - INFO - Training configuration:
+2024-10-27 16:19:59,060 - INFO - num_points: 4096
+2024-10-27 16:19:59,060 - INFO - batch_size: 32
+2024-10-27 16:19:59,060 - INFO - num_workers: 4
+2024-10-27 16:19:59,061 - INFO - learning_rate: 0.001
+2024-10-27 16:19:59,061 - INFO - num_epochs: 100
+2024-10-27 16:19:59,061 - INFO - device: cpu
+2024-10-27 16:19:59,061 - INFO - Using device: cpu
+2024-10-27 16:19:59,062 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 105, in train
+    train_loader = DataLoader(
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\dataloader.py", line 344, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\sampler.py", line 107, in __init__
+    raise ValueError("num_samples should be a positive integer "
+ValueError: num_samples should be a positive integer value, but got num_samples=0
+2024-10-27 16:23:52,519 - INFO - Training configuration:
+2024-10-27 16:23:52,519 - INFO - num_points: 4096
+2024-10-27 16:23:52,519 - INFO - batch_size: 32
+2024-10-27 16:23:52,520 - INFO - num_workers: 4
+2024-10-27 16:23:52,520 - INFO - learning_rate: 0.001
+2024-10-27 16:23:52,520 - INFO - num_epochs: 100
+2024-10-27 16:23:52,521 - INFO - device: cpu
+2024-10-27 16:23:52,521 - INFO - Using device: cpu
+2024-10-27 16:23:52,522 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 16:23:52,523 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 16:23:52,524 - INFO - Train dataset size: 30
+2024-10-27 16:23:52,524 - INFO - Val dataset size: 5
+2024-10-27 16:23:55,741 - ERROR - 处理文件 data/train\No-2-sec-1.las 时出错: 'SubFieldView' object has no attribute 'astype'
+2024-10-27 16:23:55,754 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 144, in train
+    for batch in pbar:
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\tqdm\std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\dataloader.py", line 1333, in _next_data
+    return self._process_data(data)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\dataloader.py", line 1359, in _process_data
+    data.reraise()
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\_utils.py", line 543, in reraise
+    raise exception
+AttributeError: Caught AttributeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\_utils\worker.py", line 302, in _worker_loop
+    data = fetcher.fetch(index)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\_utils\fetch.py", line 58, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\utils\data\_utils\fetch.py", line 58, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\utils\data_utils.py", line 83, in __getitem__
+    labels = torch.from_numpy(labels.astype(np.int64))
+AttributeError: 'SubFieldView' object has no attribute 'astype'
+
+2024-10-27 16:25:24,187 - INFO - Training configuration:
+2024-10-27 16:25:24,187 - INFO - num_points: 4096
+2024-10-27 16:25:24,187 - INFO - batch_size: 32
+2024-10-27 16:25:24,187 - INFO - num_workers: 4
+2024-10-27 16:25:24,188 - INFO - learning_rate: 0.001
+2024-10-27 16:25:24,188 - INFO - num_epochs: 100
+2024-10-27 16:25:24,188 - INFO - device: cpu
+2024-10-27 16:25:24,188 - INFO - Using device: cpu
+2024-10-27 16:25:24,188 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 16:25:24,189 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 16:25:24,189 - INFO - Train dataset size: 30
+2024-10-27 16:25:24,189 - INFO - Val dataset size: 5
+2024-10-27 16:25:46,825 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 44, in forward
+    l1_xyz, l1_points = self.sa1(xyz, points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 109, in forward
+    new_xyz, new_points = sample_and_group(self.npoint, self.radius, self.nsample, xyz, points)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 40, in sample_and_group
+    grouped_points = index_points(points, idx)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 24, in index_points
+    new_points = points[batch_indices, idx, :]
+IndexError: index 67 is out of bounds for dimension 1 with size 67
+2024-10-27 16:36:03,901 - INFO - Training configuration:
+2024-10-27 16:36:03,903 - INFO - num_points: 4096
+2024-10-27 16:36:03,903 - INFO - batch_size: 32
+2024-10-27 16:36:03,903 - INFO - num_workers: 4
+2024-10-27 16:36:03,903 - INFO - learning_rate: 0.001
+2024-10-27 16:36:03,904 - INFO - num_epochs: 100
+2024-10-27 16:36:03,904 - INFO - device: cpu
+2024-10-27 16:36:03,904 - INFO - Using device: cpu
+2024-10-27 16:36:03,905 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 16:36:03,905 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 16:36:03,905 - INFO - Train dataset size: 30
+2024-10-27 16:36:03,906 - INFO - Val dataset size: 5
+2024-10-27 16:37:19,696 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 44, in forward
+    l1_xyz, l1_points = self.sa1(xyz, points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 127, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [64, 70, 1, 1], expected input[30, 4099, 32, 1024] to have 70 channels, but got 4099 channels instead
+2024-10-27 16:39:16,826 - INFO - Training configuration:
+2024-10-27 16:39:16,826 - INFO - num_points: 4096
+2024-10-27 16:39:16,826 - INFO - batch_size: 32
+2024-10-27 16:39:16,826 - INFO - num_workers: 4
+2024-10-27 16:39:16,827 - INFO - learning_rate: 0.001
+2024-10-27 16:39:16,827 - INFO - num_epochs: 100
+2024-10-27 16:39:16,827 - INFO - device: cpu
+2024-10-27 16:39:16,827 - INFO - Using device: cpu
+2024-10-27 16:39:16,829 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 16:39:16,829 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 16:39:16,830 - INFO - Train dataset size: 30
+2024-10-27 16:39:16,831 - INFO - Val dataset size: 5
+2024-10-27 16:40:23,673 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 44, in forward
+    l1_xyz, l1_points = self.sa1(xyz, points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 127, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [64, 70, 1, 1], expected input[30, 4099, 32, 1024] to have 70 channels, but got 4099 channels instead
+2024-10-27 16:43:49,687 - INFO - Training configuration:
+2024-10-27 16:43:49,688 - INFO - num_points: 4096
+2024-10-27 16:43:49,688 - INFO - batch_size: 32
+2024-10-27 16:43:49,689 - INFO - num_workers: 4
+2024-10-27 16:43:49,689 - INFO - learning_rate: 0.001
+2024-10-27 16:43:49,689 - INFO - num_epochs: 100
+2024-10-27 16:43:49,689 - INFO - device: cpu
+2024-10-27 16:43:49,689 - INFO - Using device: cpu
+2024-10-27 16:43:49,690 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 16:43:49,690 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 16:43:49,691 - INFO - Train dataset size: 30
+2024-10-27 16:43:49,691 - INFO - Val dataset size: 5
+2024-10-27 16:44:55,836 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 44, in forward
+    l1_xyz, l1_points = self.sa1(xyz, points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 129, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [64, 70, 1, 1], expected input[30, 4099, 1024, 32] to have 70 channels, but got 4099 channels instead
+2024-10-27 16:51:57,766 - INFO - Training configuration:
+2024-10-27 16:51:57,767 - INFO - num_points: 4096
+2024-10-27 16:51:57,767 - INFO - batch_size: 32
+2024-10-27 16:51:57,767 - INFO - num_workers: 4
+2024-10-27 16:51:57,767 - INFO - learning_rate: 0.001
+2024-10-27 16:51:57,767 - INFO - num_epochs: 100
+2024-10-27 16:51:57,768 - INFO - device: cpu
+2024-10-27 16:51:57,768 - INFO - Using device: cpu
+2024-10-27 16:51:57,769 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 16:51:57,770 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 16:51:57,770 - INFO - Train dataset size: 30
+2024-10-27 16:51:57,770 - INFO - Val dataset size: 5
+2024-10-27 16:52:21,806 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 47, in forward
+    l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 131, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [128, 128, 1, 1], expected input[30, 131, 256, 32] to have 128 channels, but got 131 channels instead
+2024-10-27 16:58:50,663 - INFO - Training configuration:
+2024-10-27 16:58:50,664 - INFO - num_points: 4096
+2024-10-27 16:58:50,664 - INFO - batch_size: 32
+2024-10-27 16:58:50,664 - INFO - num_workers: 4
+2024-10-27 16:58:50,664 - INFO - learning_rate: 0.001
+2024-10-27 16:58:50,664 - INFO - num_epochs: 100
+2024-10-27 16:58:50,664 - INFO - device: cpu
+2024-10-27 16:58:50,665 - INFO - Using device: cpu
+2024-10-27 16:58:50,665 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 16:58:50,666 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 16:58:50,667 - INFO - Train dataset size: 30
+2024-10-27 16:58:50,667 - INFO - Val dataset size: 5
+2024-10-27 16:59:08,051 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 45, in forward
+    points = torch.cat([points.transpose(1,2), pos_enc], dim=1)  # [B, 67, N]
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 67 but got size 4096 for tensor number 1 in the list.
+2024-10-27 17:02:58,927 - INFO - Training configuration:
+2024-10-27 17:02:58,927 - INFO - num_points: 4096
+2024-10-27 17:02:58,927 - INFO - batch_size: 32
+2024-10-27 17:02:58,928 - INFO - num_workers: 4
+2024-10-27 17:02:58,928 - INFO - learning_rate: 0.001
+2024-10-27 17:02:58,928 - INFO - num_epochs: 100
+2024-10-27 17:02:58,928 - INFO - device: cpu
+2024-10-27 17:02:58,929 - INFO - Using device: cpu
+2024-10-27 17:02:58,929 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:02:58,930 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:02:58,930 - INFO - Train dataset size: 30
+2024-10-27 17:02:58,930 - INFO - Val dataset size: 5
+2024-10-27 17:03:23,410 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 48, in forward
+    l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 131, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [128, 313, 1, 1], expected input[30, 131, 256, 32] to have 313 channels, but got 131 channels instead
+2024-10-27 17:04:10,714 - INFO - Training configuration:
+2024-10-27 17:04:10,715 - INFO - num_points: 4096
+2024-10-27 17:04:10,716 - INFO - batch_size: 32
+2024-10-27 17:04:10,716 - INFO - num_workers: 4
+2024-10-27 17:04:10,716 - INFO - learning_rate: 0.001
+2024-10-27 17:04:10,717 - INFO - num_epochs: 100
+2024-10-27 17:04:10,717 - INFO - device: cpu
+2024-10-27 17:04:10,717 - INFO - Using device: cpu
+2024-10-27 17:04:10,718 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:04:10,718 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:04:10,719 - INFO - Train dataset size: 30
+2024-10-27 17:04:10,719 - INFO - Val dataset size: 5
+2024-10-27 17:04:38,937 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 51, in forward
+    l3_xyz, l3_points = self.sa3(l2_xyz, l2_points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 131, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [256, 256, 1, 1], expected input[30, 259, 64, 32] to have 256 channels, but got 259 channels instead
+2024-10-27 17:05:55,708 - INFO - Training configuration:
+2024-10-27 17:05:55,709 - INFO - num_points: 4096
+2024-10-27 17:05:55,712 - INFO - batch_size: 32
+2024-10-27 17:05:55,713 - INFO - num_workers: 4
+2024-10-27 17:05:55,714 - INFO - learning_rate: 0.001
+2024-10-27 17:05:55,714 - INFO - num_epochs: 100
+2024-10-27 17:05:55,715 - INFO - device: cpu
+2024-10-27 17:05:55,716 - INFO - Using device: cpu
+2024-10-27 17:05:55,717 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:05:55,717 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:05:55,718 - INFO - Train dataset size: 30
+2024-10-27 17:05:55,718 - INFO - Val dataset size: 5
+2024-10-27 17:06:34,238 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 57, in forward
+    l0_points = self.fp1(xyz, l1_xyz, None, l1_points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 183, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 313, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 309, in _conv_forward
+    return F.conv1d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [128, 192, 1], expected input[30, 128, 4096] to have 192 channels, but got 128 channels instead
+2024-10-27 17:09:06,908 - INFO - Training configuration:
+2024-10-27 17:09:06,909 - INFO - num_points: 4096
+2024-10-27 17:09:06,909 - INFO - batch_size: 32
+2024-10-27 17:09:06,909 - INFO - num_workers: 4
+2024-10-27 17:09:06,909 - INFO - learning_rate: 0.001
+2024-10-27 17:09:06,909 - INFO - num_epochs: 100
+2024-10-27 17:09:06,909 - INFO - device: cpu
+2024-10-27 17:09:06,909 - INFO - Using device: cpu
+2024-10-27 17:09:06,910 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:09:06,910 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:09:06,910 - INFO - Train dataset size: 30
+2024-10-27 17:09:06,910 - INFO - Val dataset size: 5
+2024-10-27 17:09:55,515 - INFO - Training configuration:
+2024-10-27 17:09:55,516 - INFO - num_points: 4096
+2024-10-27 17:09:55,517 - INFO - batch_size: 32
+2024-10-27 17:09:55,517 - INFO - num_workers: 4
+2024-10-27 17:09:55,517 - INFO - learning_rate: 0.001
+2024-10-27 17:09:55,517 - INFO - num_epochs: 100
+2024-10-27 17:09:55,518 - INFO - device: cpu
+2024-10-27 17:09:55,518 - INFO - Using device: cpu
+2024-10-27 17:09:55,518 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:09:55,519 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:09:55,519 - INFO - Train dataset size: 30
+2024-10-27 17:09:55,519 - INFO - Val dataset size: 5
+2024-10-27 17:10:29,901 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 55, in forward
+    l2_points = self.fp3(l2_xyz, l3_xyz, l2_points, l3_points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 183, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 313, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 309, in _conv_forward
+    return F.conv1d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [256, 771, 1], expected input[30, 768, 256] to have 771 channels, but got 768 channels instead
+2024-10-27 17:12:58,680 - INFO - Training configuration:
+2024-10-27 17:12:58,680 - INFO - num_points: 4096
+2024-10-27 17:12:58,681 - INFO - batch_size: 32
+2024-10-27 17:12:58,681 - INFO - num_workers: 4
+2024-10-27 17:12:58,681 - INFO - learning_rate: 0.001
+2024-10-27 17:12:58,681 - INFO - num_epochs: 100
+2024-10-27 17:12:58,681 - INFO - device: cpu
+2024-10-27 17:12:58,682 - INFO - Using device: cpu
+2024-10-27 17:12:58,682 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:12:58,683 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:12:58,683 - INFO - Train dataset size: 30
+2024-10-27 17:12:58,683 - INFO - Val dataset size: 5
+2024-10-27 17:13:25,915 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 150, in train
+    outputs = model(points, colors)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\enhanced_pointnet2.py", line 57, in forward
+    l1_points = self.fp2(l1_xyz, l2_xyz, l1_points, l2_points)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\models\pointnet2_utils.py", line 183, in forward
+    new_points = F.relu(bn(conv(new_points)))
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 313, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\Administrator\anaconda3\envs\pytorch\lib\site-packages\torch\nn\modules\conv.py", line 309, in _conv_forward
+    return F.conv1d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [256, 387, 1], expected input[30, 384, 1024] to have 387 channels, but got 384 channels instead
+2024-10-27 17:15:01,626 - INFO - Training configuration:
+2024-10-27 17:15:01,627 - INFO - num_points: 4096
+2024-10-27 17:15:01,628 - INFO - batch_size: 32
+2024-10-27 17:15:01,628 - INFO - num_workers: 4
+2024-10-27 17:15:01,628 - INFO - learning_rate: 0.001
+2024-10-27 17:15:01,628 - INFO - num_epochs: 100
+2024-10-27 17:15:01,629 - INFO - device: cpu
+2024-10-27 17:15:01,629 - INFO - Using device: cpu
+2024-10-27 17:15:01,629 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:15:01,630 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:15:01,630 - INFO - Train dataset size: 30
+2024-10-27 17:15:01,630 - INFO - Val dataset size: 5
+2024-10-27 17:15:39,952 - INFO - 
+Epoch 1/100:
+2024-10-27 17:15:39,952 - INFO - Train Loss: nan, Train Acc: 7.48%
+2024-10-27 17:15:39,952 - INFO - Val Loss: nan, Val Acc: 5.47%
+2024-10-27 17:15:39,956 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 17:15:39,957 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 17:15:39,958 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 17:15:39,958 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 17:15:39,959 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 17:15:39,961 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 17:15:39,962 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 17:15:39,963 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 17:15:40,010 - INFO - Saved best model with accuracy: 5.47%
+2024-10-27 17:25:58,535 - INFO - Training configuration:
+2024-10-27 17:25:58,535 - INFO - num_points: 4096
+2024-10-27 17:25:58,535 - INFO - batch_size: 32
+2024-10-27 17:25:58,535 - INFO - num_workers: 4
+2024-10-27 17:25:58,536 - INFO - learning_rate: 0.001
+2024-10-27 17:25:58,536 - INFO - num_epochs: 100
+2024-10-27 17:25:58,536 - INFO - device: cpu
+2024-10-27 17:25:58,536 - INFO - Using device: cpu
+2024-10-27 17:25:58,536 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 17:25:58,536 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 17:25:58,537 - INFO - Train dataset size: 30
+2024-10-27 17:25:58,537 - INFO - Val dataset size: 5
+2024-10-27 19:08:16,041 - INFO - Training configuration:
+2024-10-27 19:08:16,043 - INFO - num_points: 4096
+2024-10-27 19:08:16,043 - INFO - batch_size: 32
+2024-10-27 19:08:16,043 - INFO - num_workers: 4
+2024-10-27 19:08:16,043 - INFO - learning_rate: 0.001
+2024-10-27 19:08:16,043 - INFO - num_epochs: 100
+2024-10-27 19:08:16,043 - INFO - device: cuda
+2024-10-27 19:08:16,044 - INFO - Using device: cuda
+2024-10-27 19:08:16,045 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 19:08:16,046 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 19:08:16,049 - INFO - Train dataset size: 30
+2024-10-27 19:08:16,051 - INFO - Val dataset size: 5
+2024-10-27 19:08:51,379 - INFO - 
+Epoch 1/100:
+2024-10-27 19:08:51,379 - INFO - Train Loss: 2.1935, Train Acc: 10.78%
+2024-10-27 19:08:51,380 - INFO - Val Loss: 2.0752, Val Acc: 5.59%
+2024-10-27 19:08:51,380 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:08:51,381 - INFO - Class 1 Accuracy: 100.00%
+2024-10-27 19:08:51,382 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:08:51,382 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:08:51,383 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:08:51,385 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:08:51,387 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:08:51,389 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:08:51,477 - INFO - Saved best model with accuracy: 5.59%
+2024-10-27 19:09:17,218 - INFO - 
+Epoch 2/100:
+2024-10-27 19:09:17,218 - INFO - Train Loss: 2.1137, Train Acc: 15.85%
+2024-10-27 19:09:17,219 - INFO - Val Loss: 2.0694, Val Acc: 28.17%
+2024-10-27 19:09:17,219 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:09:17,220 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:09:17,223 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:09:17,224 - INFO - Class 3 Accuracy: 100.00%
+2024-10-27 19:09:17,225 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:09:17,226 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:09:17,226 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:09:17,227 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:09:17,323 - INFO - Saved best model with accuracy: 28.17%
+2024-10-27 19:09:42,591 - INFO - 
+Epoch 3/100:
+2024-10-27 19:09:42,591 - INFO - Train Loss: 2.0788, Train Acc: 18.55%
+2024-10-27 19:09:42,591 - INFO - Val Loss: 2.0644, Val Acc: 27.74%
+2024-10-27 19:09:42,593 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:09:42,594 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:09:42,595 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:09:42,595 - INFO - Class 3 Accuracy: 100.00%
+2024-10-27 19:09:42,596 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:09:42,597 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:09:42,597 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:09:42,598 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:10:09,542 - INFO - 
+Epoch 4/100:
+2024-10-27 19:10:09,542 - INFO - Train Loss: 2.0034, Train Acc: 23.85%
+2024-10-27 19:10:09,543 - INFO - Val Loss: 2.0599, Val Acc: 28.01%
+2024-10-27 19:10:09,544 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:10:09,544 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:10:09,545 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:10:09,546 - INFO - Class 3 Accuracy: 100.00%
+2024-10-27 19:10:09,547 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:10:09,548 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:10:09,549 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:10:09,551 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:10:35,775 - INFO - 
+Epoch 5/100:
+2024-10-27 19:10:35,775 - INFO - Train Loss: 1.9812, Train Acc: 24.99%
+2024-10-27 19:10:35,775 - INFO - Val Loss: 2.0554, Val Acc: 27.87%
+2024-10-27 19:10:35,776 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:10:35,776 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:10:35,776 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:10:35,777 - INFO - Class 3 Accuracy: 100.00%
+2024-10-27 19:10:35,777 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:10:35,778 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:10:35,778 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:10:35,779 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:11:00,150 - INFO - 
+Epoch 6/100:
+2024-10-27 19:11:00,150 - INFO - Train Loss: nan, Train Acc: 7.56%
+2024-10-27 19:11:00,150 - INFO - Val Loss: nan, Val Acc: 5.15%
+2024-10-27 19:11:00,151 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:11:00,152 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:11:00,153 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:11:00,154 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:11:00,155 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:11:00,157 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:11:00,160 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:11:00,161 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:11:26,508 - INFO - 
+Epoch 7/100:
+2024-10-27 19:11:26,508 - INFO - Train Loss: nan, Train Acc: 7.58%
+2024-10-27 19:11:26,508 - INFO - Val Loss: nan, Val Acc: 5.26%
+2024-10-27 19:11:26,510 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:11:26,512 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:11:26,512 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:11:26,514 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:11:26,516 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:11:26,517 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:11:26,519 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:11:26,519 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:11:52,837 - INFO - 
+Epoch 8/100:
+2024-10-27 19:11:52,837 - INFO - Train Loss: nan, Train Acc: 7.59%
+2024-10-27 19:11:52,837 - INFO - Val Loss: nan, Val Acc: 5.49%
+2024-10-27 19:11:52,837 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:11:52,838 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:11:52,838 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:11:52,839 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:11:52,839 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:11:52,840 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:11:52,840 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:11:52,841 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:12:16,519 - INFO - 
+Epoch 9/100:
+2024-10-27 19:12:16,520 - INFO - Train Loss: nan, Train Acc: 7.51%
+2024-10-27 19:12:16,520 - INFO - Val Loss: nan, Val Acc: 5.28%
+2024-10-27 19:12:16,520 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:12:16,520 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:12:16,521 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:12:16,521 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:12:16,522 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:12:16,522 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:12:16,524 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:12:16,524 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:12:41,093 - INFO - 
+Epoch 10/100:
+2024-10-27 19:12:41,094 - INFO - Train Loss: nan, Train Acc: 7.65%
+2024-10-27 19:12:41,094 - INFO - Val Loss: nan, Val Acc: 4.95%
+2024-10-27 19:12:41,095 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:12:41,096 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:12:41,098 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:12:41,100 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:12:41,102 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:12:41,103 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:12:41,104 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:12:41,105 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:13:05,731 - INFO - 
+Epoch 11/100:
+2024-10-27 19:13:05,732 - INFO - Train Loss: nan, Train Acc: 7.59%
+2024-10-27 19:13:05,733 - INFO - Val Loss: nan, Val Acc: 5.04%
+2024-10-27 19:13:05,734 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:13:05,735 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:13:05,735 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:13:05,736 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:13:05,737 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:13:05,739 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:13:05,741 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:13:05,741 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:13:29,937 - INFO - 
+Epoch 12/100:
+2024-10-27 19:13:29,938 - INFO - Train Loss: nan, Train Acc: 7.59%
+2024-10-27 19:13:29,938 - INFO - Val Loss: nan, Val Acc: 5.44%
+2024-10-27 19:13:29,938 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:13:29,940 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:13:29,940 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:13:29,941 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:13:29,941 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:13:29,942 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:13:29,943 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:13:29,943 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:13:54,534 - INFO - 
+Epoch 13/100:
+2024-10-27 19:13:54,535 - INFO - Train Loss: nan, Train Acc: 7.64%
+2024-10-27 19:13:54,535 - INFO - Val Loss: nan, Val Acc: 5.24%
+2024-10-27 19:13:54,536 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:13:54,537 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:13:54,539 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:13:54,540 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:13:54,541 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:13:54,542 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:13:54,543 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:13:54,543 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:14:18,424 - INFO - 
+Epoch 14/100:
+2024-10-27 19:14:18,424 - INFO - Train Loss: nan, Train Acc: 7.58%
+2024-10-27 19:14:18,424 - INFO - Val Loss: nan, Val Acc: 4.70%
+2024-10-27 19:14:18,425 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:14:18,426 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:14:18,427 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:14:18,430 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:14:18,431 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:14:18,433 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:14:18,434 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:14:18,436 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:14:42,488 - INFO - 
+Epoch 15/100:
+2024-10-27 19:14:42,489 - INFO - Train Loss: nan, Train Acc: 7.63%
+2024-10-27 19:14:42,489 - INFO - Val Loss: nan, Val Acc: 5.21%
+2024-10-27 19:14:42,490 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:14:42,492 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:14:42,492 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:14:42,494 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:14:42,496 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:14:42,497 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:14:42,499 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:14:42,499 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:15:06,946 - INFO - 
+Epoch 16/100:
+2024-10-27 19:15:06,946 - INFO - Train Loss: nan, Train Acc: 7.57%
+2024-10-27 19:15:06,947 - INFO - Val Loss: nan, Val Acc: 5.06%
+2024-10-27 19:15:06,947 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:15:06,947 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:15:06,948 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:15:06,948 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:15:06,949 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:15:06,950 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:15:06,952 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:15:06,954 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:15:31,382 - INFO - 
+Epoch 17/100:
+2024-10-27 19:15:31,383 - INFO - Train Loss: nan, Train Acc: 7.42%
+2024-10-27 19:15:31,383 - INFO - Val Loss: nan, Val Acc: 5.27%
+2024-10-27 19:15:31,384 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:15:31,386 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:15:31,388 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:15:31,389 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:15:31,389 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:15:31,391 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:15:31,394 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:15:31,396 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:15:58,785 - INFO - 
+Epoch 18/100:
+2024-10-27 19:15:58,786 - INFO - Train Loss: nan, Train Acc: 7.51%
+2024-10-27 19:15:58,786 - INFO - Val Loss: nan, Val Acc: 5.53%
+2024-10-27 19:15:58,787 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:15:58,787 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:15:58,788 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:15:58,789 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:15:58,789 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:15:58,790 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:15:58,793 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:15:58,795 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:16:25,942 - INFO - 
+Epoch 19/100:
+2024-10-27 19:16:25,943 - INFO - Train Loss: nan, Train Acc: 7.58%
+2024-10-27 19:16:25,943 - INFO - Val Loss: nan, Val Acc: 5.09%
+2024-10-27 19:16:25,943 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:16:25,943 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:16:25,944 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:16:25,945 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:16:25,946 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:16:25,947 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:16:25,949 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:16:25,949 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:16:49,240 - INFO - 
+Epoch 20/100:
+2024-10-27 19:16:49,240 - INFO - Train Loss: nan, Train Acc: 7.51%
+2024-10-27 19:16:49,240 - INFO - Val Loss: nan, Val Acc: 5.32%
+2024-10-27 19:16:49,241 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:16:49,242 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:16:49,243 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:16:49,243 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:16:49,245 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:16:49,247 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:16:49,247 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:16:49,250 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:17:12,149 - INFO - 
+Epoch 21/100:
+2024-10-27 19:17:12,150 - INFO - Train Loss: nan, Train Acc: 7.61%
+2024-10-27 19:17:12,150 - INFO - Val Loss: nan, Val Acc: 5.10%
+2024-10-27 19:17:12,150 - INFO - Class 0 Accuracy: 100.00%
+2024-10-27 19:17:12,151 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:17:12,151 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:17:12,151 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:17:12,152 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:17:12,152 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:17:12,153 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:17:12,153 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:17:29,401 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 158, in train
+    acc = pred.eq(labels).float().mean()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2024-10-27 19:25:08,522 - INFO - Training configuration:
+2024-10-27 19:25:08,522 - INFO - num_points: 4096
+2024-10-27 19:25:08,523 - INFO - batch_size: 32
+2024-10-27 19:25:08,523 - INFO - num_workers: 4
+2024-10-27 19:25:08,523 - INFO - learning_rate: 0.001
+2024-10-27 19:25:08,523 - INFO - num_epochs: 100
+2024-10-27 19:25:08,523 - INFO - device: cuda
+2024-10-27 19:25:08,524 - INFO - Using device: cuda
+2024-10-27 19:25:08,524 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 94, in train
+    train_dataset = BridgePointCloudDataset(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BridgePointCloudDataset.__init__() got an unexpected keyword argument 'transform'
+2024-10-27 19:27:29,144 - INFO - Training configuration:
+2024-10-27 19:27:29,144 - INFO - num_points: 4096
+2024-10-27 19:27:29,144 - INFO - batch_size: 32
+2024-10-27 19:27:29,144 - INFO - num_workers: 4
+2024-10-27 19:27:29,144 - INFO - learning_rate: 0.001
+2024-10-27 19:27:29,144 - INFO - num_epochs: 100
+2024-10-27 19:27:29,144 - INFO - device: cuda
+2024-10-27 19:27:29,145 - INFO - Using device: cuda
+2024-10-27 19:27:29,145 - INFO - 开始验证数据集...
+2024-10-27 19:27:33,456 - INFO - 数据集验证完成
+2024-10-27 19:27:33,461 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 19:27:33,462 - INFO - 数据集中的有效标签: [0, 1, 2, 3, 4, 5, 6, 7, 12, 18]
+2024-10-27 19:27:33,464 - INFO - 开始验证数据集...
+2024-10-27 19:27:33,917 - INFO - 数据集验证完成
+2024-10-27 19:27:33,920 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 19:27:33,920 - INFO - 数据集中的有效标签: [0, 1, 2, 3, 4, 5, 6, 7]
+2024-10-27 19:27:33,921 - INFO - Train dataset size: 30
+2024-10-27 19:27:33,921 - INFO - Val dataset size: 5
+2024-10-27 19:27:59,012 - INFO - 
+Epoch 1/100:
+2024-10-27 19:27:59,012 - INFO - Train Loss: 2.4021, Train Acc: 6.18%
+2024-10-27 19:27:59,012 - INFO - Val Loss: 2.0778, Val Acc: 1.96%
+2024-10-27 19:27:59,013 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:27:59,013 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:27:59,014 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:27:59,015 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:27:59,016 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:27:59,016 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:27:59,017 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:27:59,018 - INFO - Class 7 Accuracy: 100.00%
+2024-10-27 19:27:59,098 - INFO - Saved best model with accuracy: 1.96%
+2024-10-27 19:28:23,151 - INFO - 
+Epoch 2/100:
+2024-10-27 19:28:23,152 - INFO - Train Loss: 2.2431, Train Acc: 10.77%
+2024-10-27 19:28:23,152 - INFO - Val Loss: 2.0643, Val Acc: 1.92%
+2024-10-27 19:28:23,152 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:28:23,153 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:28:23,154 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:28:23,154 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:28:23,155 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:28:23,156 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:28:23,157 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:28:23,158 - INFO - Class 7 Accuracy: 100.00%
+2024-10-27 19:28:45,567 - INFO - 
+Epoch 3/100:
+2024-10-27 19:28:45,567 - INFO - Train Loss: 2.1055, Train Acc: 17.53%
+2024-10-27 19:28:45,567 - INFO - Val Loss: 2.0561, Val Acc: 1.98%
+2024-10-27 19:28:45,568 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:28:45,568 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:28:45,568 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:28:45,569 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:28:45,570 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:28:45,571 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:28:45,572 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:28:45,572 - INFO - Class 7 Accuracy: 100.00%
+2024-10-27 19:28:45,650 - INFO - Saved best model with accuracy: 1.98%
+2024-10-27 19:29:07,483 - INFO - 
+Epoch 4/100:
+2024-10-27 19:29:07,483 - INFO - Train Loss: 2.0032, Train Acc: 23.79%
+2024-10-27 19:29:07,483 - INFO - Val Loss: 2.0487, Val Acc: 41.12%
+2024-10-27 19:29:07,484 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:29:07,484 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:29:07,484 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:29:07,487 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:29:07,487 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:29:07,489 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:29:07,490 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:29:07,490 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:29:07,574 - INFO - Saved best model with accuracy: 41.12%
+2024-10-27 19:29:29,018 - INFO - 
+Epoch 5/100:
+2024-10-27 19:29:29,019 - INFO - Train Loss: 1.8963, Train Acc: 32.24%
+2024-10-27 19:29:29,019 - INFO - Val Loss: 2.0403, Val Acc: 41.07%
+2024-10-27 19:29:29,019 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:29:29,020 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:29:29,021 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:29:29,021 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:29:29,022 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:29:29,023 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:29:29,024 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:29:29,025 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:29:45,611 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 250, in <module>
+    train()
+  File "g:\Dropbox\01-Research\00-点群研究\PointCloud-data\Labeled\train.py", line 161, in train
+    train_loss.update(loss.item())
+                      ^^^^^^^^^^^
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2024-10-27 19:35:36,362 - INFO - Training configuration:
+2024-10-27 19:35:36,362 - INFO - num_points: 4096
+2024-10-27 19:35:36,363 - INFO - batch_size: 32
+2024-10-27 19:35:36,363 - INFO - num_workers: 4
+2024-10-27 19:35:36,363 - INFO - learning_rate: 0.001
+2024-10-27 19:35:36,363 - INFO - num_epochs: 100
+2024-10-27 19:35:36,363 - INFO - device: cuda
+2024-10-27 19:35:36,363 - INFO - Using device: cuda
+2024-10-27 19:35:36,363 - INFO - 开始验证数据集...
+2024-10-27 19:35:40,946 - INFO - 数据集验证完成
+2024-10-27 19:35:40,952 - INFO - 在 data/train 中找到 30 个.las文件
+2024-10-27 19:35:40,952 - INFO - 数据集中的有效标签: [0, 1, 2, 3, 4, 5, 6, 7, 12, 18]
+2024-10-27 19:35:40,953 - INFO - 开始验证数据集...
+2024-10-27 19:35:41,409 - INFO - 数据集验证完成
+2024-10-27 19:35:41,412 - INFO - 在 data/val 中找到 5 个.las文件
+2024-10-27 19:35:41,413 - INFO - 数据集中的有效标签: [0, 1, 2, 3, 4, 5, 6, 7]
+2024-10-27 19:35:41,413 - INFO - Train dataset size: 30
+2024-10-27 19:35:41,413 - INFO - Val dataset size: 5
+2024-10-27 19:36:06,349 - INFO - 
+Epoch 1/100:
+2024-10-27 19:36:06,350 - INFO - Train Loss: 2.2832, Train Acc: 9.78%
+2024-10-27 19:36:06,350 - INFO - Val Loss: 2.0524, Val Acc: 12.67%
+2024-10-27 19:36:06,350 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:36:06,351 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:36:06,353 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:36:06,353 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:36:06,354 - INFO - Class 4 Accuracy: 100.00%
+2024-10-27 19:36:06,355 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:36:06,355 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:36:06,356 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:36:06,429 - INFO - Saved best model with accuracy: 12.67%
+2024-10-27 19:36:28,964 - INFO - 
+Epoch 2/100:
+2024-10-27 19:36:28,965 - INFO - Train Loss: 2.1273, Train Acc: 15.58%
+2024-10-27 19:36:28,965 - INFO - Val Loss: 2.0445, Val Acc: 12.51%
+2024-10-27 19:36:28,965 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:36:28,965 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:36:28,966 - INFO - Class 2 Accuracy: 0.00%
+2024-10-27 19:36:28,967 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:36:28,968 - INFO - Class 4 Accuracy: 100.00%
+2024-10-27 19:36:28,969 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:36:28,970 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:36:28,971 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:36:51,770 - INFO - 
+Epoch 3/100:
+2024-10-27 19:36:51,770 - INFO - Train Loss: 1.9864, Train Acc: 23.07%
+2024-10-27 19:36:51,770 - INFO - Val Loss: 2.0374, Val Acc: 2.21%
+2024-10-27 19:36:51,771 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:36:51,771 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:36:51,773 - INFO - Class 2 Accuracy: 0.01%
+2024-10-27 19:36:51,773 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:36:51,774 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:36:51,774 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:36:51,777 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:36:51,779 - INFO - Class 7 Accuracy: 99.78%
+2024-10-27 19:37:14,148 - INFO - 
+Epoch 4/100:
+2024-10-27 19:37:14,148 - INFO - Train Loss: 1.9110, Train Acc: 29.70%
+2024-10-27 19:37:14,149 - INFO - Val Loss: 2.0272, Val Acc: 40.96%
+2024-10-27 19:37:14,149 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:37:14,150 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:37:14,150 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:37:14,151 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:37:14,151 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:37:14,152 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:37:14,152 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:37:14,153 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:37:14,232 - INFO - Saved best model with accuracy: 40.96%
+2024-10-27 19:37:36,599 - INFO - 
+Epoch 5/100:
+2024-10-27 19:37:36,599 - INFO - Train Loss: 1.8213, Train Acc: 34.37%
+2024-10-27 19:37:36,599 - INFO - Val Loss: 2.0178, Val Acc: 40.89%
+2024-10-27 19:37:36,600 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:37:36,600 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:37:36,601 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:37:36,601 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:37:36,602 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:37:36,602 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:37:36,605 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:37:36,606 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:37:59,868 - INFO - 
+Epoch 6/100:
+2024-10-27 19:37:59,869 - INFO - Train Loss: 1.7199, Train Acc: 39.86%
+2024-10-27 19:37:59,869 - INFO - Val Loss: 2.0077, Val Acc: 40.52%
+2024-10-27 19:37:59,869 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:37:59,870 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:37:59,870 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:37:59,871 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:37:59,871 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:37:59,875 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:37:59,876 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:37:59,877 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:38:22,424 - INFO - 
+Epoch 7/100:
+2024-10-27 19:38:22,424 - INFO - Train Loss: 1.6832, Train Acc: 42.03%
+2024-10-27 19:38:22,424 - INFO - Val Loss: 1.9945, Val Acc: 40.91%
+2024-10-27 19:38:22,425 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:38:22,425 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:38:22,425 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:38:22,426 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:38:22,427 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:38:22,427 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:38:22,428 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:38:22,429 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:38:44,976 - INFO - 
+Epoch 8/100:
+2024-10-27 19:38:44,977 - INFO - Train Loss: 1.6398, Train Acc: 42.72%
+2024-10-27 19:38:44,977 - INFO - Val Loss: 1.9810, Val Acc: 40.91%
+2024-10-27 19:38:44,977 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:38:44,977 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:38:44,978 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:38:44,979 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:38:44,980 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:38:44,980 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:38:44,980 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:38:44,981 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:39:07,224 - INFO - 
+Epoch 9/100:
+2024-10-27 19:39:07,224 - INFO - Train Loss: 1.5967, Train Acc: 43.41%
+2024-10-27 19:39:07,224 - INFO - Val Loss: 1.9650, Val Acc: 40.68%
+2024-10-27 19:39:07,225 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:39:07,226 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:39:07,226 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:39:07,227 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:39:07,227 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:39:07,228 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:39:07,229 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:39:07,230 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:39:30,945 - INFO - 
+Epoch 10/100:
+2024-10-27 19:39:30,945 - INFO - Train Loss: 1.5427, Train Acc: 46.37%
+2024-10-27 19:39:30,946 - INFO - Val Loss: 1.9500, Val Acc: 40.40%
+2024-10-27 19:39:30,946 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:39:30,947 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:39:30,947 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:39:30,948 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:39:30,948 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:39:30,948 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:39:30,950 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:39:30,951 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:39:54,289 - INFO - 
+Epoch 11/100:
+2024-10-27 19:39:54,289 - INFO - Train Loss: 1.5172, Train Acc: 47.76%
+2024-10-27 19:39:54,289 - INFO - Val Loss: 1.9288, Val Acc: 40.92%
+2024-10-27 19:39:54,290 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:39:54,290 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:39:54,290 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:39:54,291 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:39:54,292 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:39:54,292 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:39:54,292 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:39:54,293 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:40:16,593 - INFO - 
+Epoch 12/100:
+2024-10-27 19:40:16,593 - INFO - Train Loss: 1.4726, Train Acc: 48.12%
+2024-10-27 19:40:16,593 - INFO - Val Loss: 1.9036, Val Acc: 41.71%
+2024-10-27 19:40:16,594 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:40:16,594 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:40:16,595 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:40:16,595 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:40:16,596 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:40:16,598 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:40:16,599 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:40:16,600 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:40:16,687 - INFO - Saved best model with accuracy: 41.71%
+2024-10-27 19:40:39,960 - INFO - 
+Epoch 13/100:
+2024-10-27 19:40:39,960 - INFO - Train Loss: 1.4401, Train Acc: 48.69%
+2024-10-27 19:40:39,960 - INFO - Val Loss: 1.8847, Val Acc: 40.57%
+2024-10-27 19:40:39,961 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:40:39,962 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:40:39,962 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:40:39,963 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:40:39,964 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:40:39,964 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:40:39,965 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:40:39,965 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:41:02,308 - INFO - 
+Epoch 14/100:
+2024-10-27 19:41:02,309 - INFO - Train Loss: 1.4411, Train Acc: 47.92%
+2024-10-27 19:41:02,309 - INFO - Val Loss: 1.8661, Val Acc: 40.95%
+2024-10-27 19:41:02,309 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:41:02,309 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:41:02,310 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:41:02,311 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:41:02,312 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:41:02,312 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:41:02,312 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:41:02,313 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:41:24,917 - INFO - 
+Epoch 15/100:
+2024-10-27 19:41:24,917 - INFO - Train Loss: 1.4264, Train Acc: 48.94%
+2024-10-27 19:41:24,917 - INFO - Val Loss: 1.8456, Val Acc: 40.92%
+2024-10-27 19:41:24,918 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:41:24,919 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:41:24,919 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:41:24,920 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:41:24,921 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:41:24,921 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:41:24,921 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:41:24,923 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:41:47,208 - INFO - 
+Epoch 16/100:
+2024-10-27 19:41:47,208 - INFO - Train Loss: 1.3286, Train Acc: 52.43%
+2024-10-27 19:41:47,208 - INFO - Val Loss: 1.8298, Val Acc: 40.74%
+2024-10-27 19:41:47,209 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:41:47,209 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:41:47,210 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:41:47,211 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:41:47,211 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:41:47,212 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:41:47,212 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:41:47,213 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:42:09,689 - INFO - 
+Epoch 17/100:
+2024-10-27 19:42:09,689 - INFO - Train Loss: 1.3157, Train Acc: 53.13%
+2024-10-27 19:42:09,689 - INFO - Val Loss: 1.8136, Val Acc: 41.08%
+2024-10-27 19:42:09,690 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:42:09,690 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:42:09,690 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:42:09,691 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:42:09,692 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:42:09,692 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:42:09,692 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:42:09,693 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:42:32,389 - INFO - 
+Epoch 18/100:
+2024-10-27 19:42:32,389 - INFO - Train Loss: 1.2820, Train Acc: 53.28%
+2024-10-27 19:42:32,390 - INFO - Val Loss: 1.8047, Val Acc: 41.17%
+2024-10-27 19:42:32,390 - INFO - Class 0 Accuracy: 0.00%
+2024-10-27 19:42:32,390 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:42:32,391 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:42:32,392 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:42:32,392 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:42:32,393 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:42:32,393 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:42:32,394 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:42:54,849 - INFO - 
+Epoch 19/100:
+2024-10-27 19:42:54,849 - INFO - Train Loss: 1.2638, Train Acc: 54.53%
+2024-10-27 19:42:54,849 - INFO - Val Loss: 1.8057, Val Acc: 41.57%
+2024-10-27 19:42:54,850 - INFO - Class 0 Accuracy: 16.67%
+2024-10-27 19:42:54,850 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:42:54,850 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:42:54,851 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:42:54,851 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:42:54,855 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:42:54,856 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:42:54,857 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:43:17,369 - INFO - 
+Epoch 20/100:
+2024-10-27 19:43:17,369 - INFO - Train Loss: 1.2449, Train Acc: 54.92%
+2024-10-27 19:43:17,369 - INFO - Val Loss: 1.8040, Val Acc: 42.59%
+2024-10-27 19:43:17,370 - INFO - Class 0 Accuracy: 27.78%
+2024-10-27 19:43:17,370 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:43:17,372 - INFO - Class 2 Accuracy: 100.00%
+2024-10-27 19:43:17,373 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:43:17,373 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:43:17,374 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:43:17,375 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:43:17,375 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:43:17,461 - INFO - Saved best model with accuracy: 42.59%
+2024-10-27 19:43:39,712 - INFO - 
+Epoch 21/100:
+2024-10-27 19:43:39,712 - INFO - Train Loss: 1.2588, Train Acc: 53.10%
+2024-10-27 19:43:39,712 - INFO - Val Loss: 1.8045, Val Acc: 44.50%
+2024-10-27 19:43:39,713 - INFO - Class 0 Accuracy: 57.10%
+2024-10-27 19:43:39,713 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:43:39,713 - INFO - Class 2 Accuracy: 99.88%
+2024-10-27 19:43:39,714 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:43:39,714 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:43:39,715 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:43:39,716 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:43:39,716 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:43:39,800 - INFO - Saved best model with accuracy: 44.50%
+2024-10-27 19:44:02,349 - INFO - 
+Epoch 22/100:
+2024-10-27 19:44:02,349 - INFO - Train Loss: 1.1978, Train Acc: 55.96%
+2024-10-27 19:44:02,350 - INFO - Val Loss: 1.7918, Val Acc: 44.60%
+2024-10-27 19:44:02,350 - INFO - Class 0 Accuracy: 70.86%
+2024-10-27 19:44:02,351 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:44:02,351 - INFO - Class 2 Accuracy: 99.01%
+2024-10-27 19:44:02,352 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:44:02,352 - INFO - Class 4 Accuracy: 0.00%
+2024-10-27 19:44:02,353 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:44:02,354 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:44:02,354 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:44:02,437 - INFO - Saved best model with accuracy: 44.60%
+2024-10-27 19:44:24,856 - INFO - 
+Epoch 23/100:
+2024-10-27 19:44:24,856 - INFO - Train Loss: 1.2231, Train Acc: 54.79%
+2024-10-27 19:44:24,856 - INFO - Val Loss: 1.7819, Val Acc: 46.75%
+2024-10-27 19:44:24,856 - INFO - Class 0 Accuracy: 85.73%
+2024-10-27 19:44:24,857 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:44:24,858 - INFO - Class 2 Accuracy: 95.75%
+2024-10-27 19:44:24,859 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:44:24,859 - INFO - Class 4 Accuracy: 19.44%
+2024-10-27 19:44:24,860 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:44:24,860 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:44:24,861 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:44:24,948 - INFO - Saved best model with accuracy: 46.75%
+2024-10-27 19:44:47,226 - INFO - 
+Epoch 24/100:
+2024-10-27 19:44:47,227 - INFO - Train Loss: 1.1823, Train Acc: 55.91%
+2024-10-27 19:44:47,227 - INFO - Val Loss: 1.7736, Val Acc: 44.70%
+2024-10-27 19:44:47,227 - INFO - Class 0 Accuracy: 92.00%
+2024-10-27 19:44:47,228 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:44:47,228 - INFO - Class 2 Accuracy: 79.88%
+2024-10-27 19:44:47,228 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:44:47,229 - INFO - Class 4 Accuracy: 57.65%
+2024-10-27 19:44:47,229 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:44:47,230 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:44:47,232 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:45:10,152 - INFO - 
+Epoch 25/100:
+2024-10-27 19:45:10,153 - INFO - Train Loss: 1.1616, Train Acc: 57.30%
+2024-10-27 19:45:10,154 - INFO - Val Loss: 1.7755, Val Acc: 31.25%
+2024-10-27 19:45:10,154 - INFO - Class 0 Accuracy: 91.09%
+2024-10-27 19:45:10,155 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:45:10,166 - INFO - Class 2 Accuracy: 37.17%
+2024-10-27 19:45:10,167 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:45:10,167 - INFO - Class 4 Accuracy: 89.35%
+2024-10-27 19:45:10,169 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:45:10,169 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:45:10,169 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:45:34,162 - INFO - 
+Epoch 26/100:
+2024-10-27 19:45:34,163 - INFO - Train Loss: 1.1622, Train Acc: 57.27%
+2024-10-27 19:45:34,163 - INFO - Val Loss: 1.7785, Val Acc: 22.03%
+2024-10-27 19:45:34,164 - INFO - Class 0 Accuracy: 91.92%
+2024-10-27 19:45:34,164 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:45:34,164 - INFO - Class 2 Accuracy: 12.14%
+2024-10-27 19:45:34,165 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:45:34,165 - INFO - Class 4 Accuracy: 95.19%
+2024-10-27 19:45:34,166 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:45:34,167 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:45:34,167 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:45:59,018 - INFO - 
+Epoch 27/100:
+2024-10-27 19:45:59,020 - INFO - Train Loss: 1.1159, Train Acc: 58.68%
+2024-10-27 19:45:59,020 - INFO - Val Loss: 1.7770, Val Acc: 19.61%
+2024-10-27 19:45:59,020 - INFO - Class 0 Accuracy: 94.43%
+2024-10-27 19:45:59,020 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:45:59,021 - INFO - Class 2 Accuracy: 6.48%
+2024-10-27 19:45:59,021 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:45:59,021 - INFO - Class 4 Accuracy: 95.07%
+2024-10-27 19:45:59,022 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:45:59,023 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:45:59,023 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:46:24,068 - INFO - 
+Epoch 28/100:
+2024-10-27 19:46:24,068 - INFO - Train Loss: 1.1143, Train Acc: 59.22%
+2024-10-27 19:46:24,068 - INFO - Val Loss: 1.7735, Val Acc: 18.78%
+2024-10-27 19:46:24,069 - INFO - Class 0 Accuracy: 93.89%
+2024-10-27 19:46:24,069 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:46:24,070 - INFO - Class 2 Accuracy: 4.37%
+2024-10-27 19:46:24,070 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:46:24,071 - INFO - Class 4 Accuracy: 95.62%
+2024-10-27 19:46:24,072 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:46:24,073 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:46:24,073 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:46:47,787 - INFO - 
+Epoch 29/100:
+2024-10-27 19:46:47,788 - INFO - Train Loss: 1.1301, Train Acc: 58.24%
+2024-10-27 19:46:47,788 - INFO - Val Loss: 1.7762, Val Acc: 18.37%
+2024-10-27 19:46:47,789 - INFO - Class 0 Accuracy: 92.90%
+2024-10-27 19:46:47,789 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:46:47,789 - INFO - Class 2 Accuracy: 4.36%
+2024-10-27 19:46:47,790 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:46:47,790 - INFO - Class 4 Accuracy: 92.93%
+2024-10-27 19:46:47,791 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:46:47,791 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:46:47,792 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:47:14,443 - INFO - 
+Epoch 30/100:
+2024-10-27 19:47:14,444 - INFO - Train Loss: 1.1479, Train Acc: 57.15%
+2024-10-27 19:47:14,444 - INFO - Val Loss: 1.7783, Val Acc: 17.63%
+2024-10-27 19:47:14,444 - INFO - Class 0 Accuracy: 97.17%
+2024-10-27 19:47:14,445 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:47:14,449 - INFO - Class 2 Accuracy: 1.59%
+2024-10-27 19:47:14,450 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:47:14,450 - INFO - Class 4 Accuracy: 95.94%
+2024-10-27 19:47:14,453 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:47:14,456 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:47:14,456 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:47:39,450 - INFO - 
+Epoch 31/100:
+2024-10-27 19:47:39,451 - INFO - Train Loss: 1.1115, Train Acc: 58.49%
+2024-10-27 19:47:39,451 - INFO - Val Loss: 1.7640, Val Acc: 17.93%
+2024-10-27 19:47:39,453 - INFO - Class 0 Accuracy: 93.48%
+2024-10-27 19:47:39,456 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:47:39,458 - INFO - Class 2 Accuracy: 1.11%
+2024-10-27 19:47:39,459 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:47:39,462 - INFO - Class 4 Accuracy: 97.63%
+2024-10-27 19:47:39,462 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:47:39,463 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:47:39,464 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:48:03,414 - INFO - 
+Epoch 32/100:
+2024-10-27 19:48:03,415 - INFO - Train Loss: 1.1343, Train Acc: 57.82%
+2024-10-27 19:48:03,415 - INFO - Val Loss: 1.7585, Val Acc: 18.98%
+2024-10-27 19:48:03,415 - INFO - Class 0 Accuracy: 93.66%
+2024-10-27 19:48:03,415 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:48:03,416 - INFO - Class 2 Accuracy: 4.79%
+2024-10-27 19:48:03,417 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:48:03,418 - INFO - Class 4 Accuracy: 92.82%
+2024-10-27 19:48:03,420 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:48:03,422 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:48:03,423 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:48:28,571 - INFO - 
+Epoch 33/100:
+2024-10-27 19:48:28,572 - INFO - Train Loss: 1.1217, Train Acc: 57.73%
+2024-10-27 19:48:28,572 - INFO - Val Loss: 1.7820, Val Acc: 19.63%
+2024-10-27 19:48:28,573 - INFO - Class 0 Accuracy: 94.81%
+2024-10-27 19:48:28,573 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:48:28,573 - INFO - Class 2 Accuracy: 7.39%
+2024-10-27 19:48:28,574 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:48:28,574 - INFO - Class 4 Accuracy: 90.65%
+2024-10-27 19:48:28,575 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:48:28,575 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:48:28,576 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:48:52,886 - INFO - 
+Epoch 34/100:
+2024-10-27 19:48:52,886 - INFO - Train Loss: 1.0984, Train Acc: 59.24%
+2024-10-27 19:48:52,886 - INFO - Val Loss: 1.7763, Val Acc: 22.16%
+2024-10-27 19:48:52,887 - INFO - Class 0 Accuracy: 94.04%
+2024-10-27 19:48:52,887 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:48:52,887 - INFO - Class 2 Accuracy: 16.00%
+2024-10-27 19:48:52,888 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:48:52,891 - INFO - Class 4 Accuracy: 86.32%
+2024-10-27 19:48:52,892 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:48:52,892 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:48:52,893 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:49:15,096 - INFO - 
+Epoch 35/100:
+2024-10-27 19:49:15,096 - INFO - Train Loss: 1.1082, Train Acc: 58.52%
+2024-10-27 19:49:15,096 - INFO - Val Loss: 1.7518, Val Acc: 25.80%
+2024-10-27 19:49:15,097 - INFO - Class 0 Accuracy: 94.46%
+2024-10-27 19:49:15,097 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:49:15,097 - INFO - Class 2 Accuracy: 22.95%
+2024-10-27 19:49:15,097 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:49:15,098 - INFO - Class 4 Accuracy: 90.24%
+2024-10-27 19:49:15,098 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:49:15,099 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:49:15,099 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:49:39,783 - INFO - 
+Epoch 36/100:
+2024-10-27 19:49:39,783 - INFO - Train Loss: 1.0644, Train Acc: 60.39%
+2024-10-27 19:49:39,783 - INFO - Val Loss: 1.7178, Val Acc: 26.75%
+2024-10-27 19:49:39,784 - INFO - Class 0 Accuracy: 95.55%
+2024-10-27 19:49:39,785 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:49:39,786 - INFO - Class 2 Accuracy: 24.61%
+2024-10-27 19:49:39,787 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:49:39,787 - INFO - Class 4 Accuracy: 91.58%
+2024-10-27 19:49:39,788 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:49:39,793 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:49:39,796 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:50:06,293 - INFO - 
+Epoch 37/100:
+2024-10-27 19:50:06,293 - INFO - Train Loss: 1.1203, Train Acc: 59.06%
+2024-10-27 19:50:06,293 - INFO - Val Loss: 1.7410, Val Acc: 24.62%
+2024-10-27 19:50:06,294 - INFO - Class 0 Accuracy: 94.51%
+2024-10-27 19:50:06,294 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:50:06,295 - INFO - Class 2 Accuracy: 18.26%
+2024-10-27 19:50:06,296 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:50:06,296 - INFO - Class 4 Accuracy: 94.31%
+2024-10-27 19:50:06,297 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:50:06,298 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:50:06,298 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:50:30,830 - INFO - 
+Epoch 38/100:
+2024-10-27 19:50:30,831 - INFO - Train Loss: 1.1365, Train Acc: 57.65%
+2024-10-27 19:50:30,831 - INFO - Val Loss: 1.7314, Val Acc: 24.85%
+2024-10-27 19:50:30,832 - INFO - Class 0 Accuracy: 93.04%
+2024-10-27 19:50:30,832 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:50:30,834 - INFO - Class 2 Accuracy: 17.78%
+2024-10-27 19:50:30,837 - INFO - Class 3 Accuracy: 0.00%
+2024-10-27 19:50:30,838 - INFO - Class 4 Accuracy: 98.14%
+2024-10-27 19:50:30,838 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:50:30,839 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:50:30,841 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:50:56,574 - INFO - 
+Epoch 39/100:
+2024-10-27 19:50:56,574 - INFO - Train Loss: 1.1187, Train Acc: 58.32%
+2024-10-27 19:50:56,574 - INFO - Val Loss: 1.7259, Val Acc: 25.93%
+2024-10-27 19:50:56,575 - INFO - Class 0 Accuracy: 92.84%
+2024-10-27 19:50:56,575 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:50:56,576 - INFO - Class 2 Accuracy: 20.23%
+2024-10-27 19:50:56,576 - INFO - Class 3 Accuracy: 0.07%
+2024-10-27 19:50:56,577 - INFO - Class 4 Accuracy: 99.74%
+2024-10-27 19:50:56,578 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:50:56,578 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:50:56,578 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:51:18,828 - INFO - 
+Epoch 40/100:
+2024-10-27 19:51:18,828 - INFO - Train Loss: 1.0939, Train Acc: 59.49%
+2024-10-27 19:51:18,829 - INFO - Val Loss: 1.6535, Val Acc: 30.24%
+2024-10-27 19:51:18,829 - INFO - Class 0 Accuracy: 90.12%
+2024-10-27 19:51:18,830 - INFO - Class 1 Accuracy: 0.00%
+2024-10-27 19:51:18,830 - INFO - Class 2 Accuracy: 30.36%
+2024-10-27 19:51:18,830 - INFO - Class 3 Accuracy: 0.75%
+2024-10-27 19:51:18,831 - INFO - Class 4 Accuracy: 100.00%
+2024-10-27 19:51:18,831 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:51:18,833 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:51:18,833 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:51:40,602 - INFO - 
+Epoch 41/100:
+2024-10-27 19:51:40,603 - INFO - Train Loss: 1.1075, Train Acc: 58.77%
+2024-10-27 19:51:40,603 - INFO - Val Loss: 1.4881, Val Acc: 38.25%
+2024-10-27 19:51:40,603 - INFO - Class 0 Accuracy: 89.08%
+2024-10-27 19:51:40,603 - INFO - Class 1 Accuracy: 0.43%
+2024-10-27 19:51:40,603 - INFO - Class 2 Accuracy: 47.60%
+2024-10-27 19:51:40,604 - INFO - Class 3 Accuracy: 3.03%
+2024-10-27 19:51:40,604 - INFO - Class 4 Accuracy: 99.63%
+2024-10-27 19:51:40,605 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:51:40,605 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:51:40,606 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:52:02,764 - INFO - 
+Epoch 42/100:
+2024-10-27 19:52:02,765 - INFO - Train Loss: 1.0676, Train Acc: 60.68%
+2024-10-27 19:52:02,765 - INFO - Val Loss: 1.3713, Val Acc: 43.87%
+2024-10-27 19:52:02,766 - INFO - Class 0 Accuracy: 86.53%
+2024-10-27 19:52:02,768 - INFO - Class 1 Accuracy: 2.16%
+2024-10-27 19:52:02,769 - INFO - Class 2 Accuracy: 59.67%
+2024-10-27 19:52:02,769 - INFO - Class 3 Accuracy: 9.33%
+2024-10-27 19:52:02,769 - INFO - Class 4 Accuracy: 97.17%
+2024-10-27 19:52:02,769 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:52:02,772 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:52:02,773 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:52:26,048 - INFO - 
+Epoch 43/100:
+2024-10-27 19:52:26,049 - INFO - Train Loss: 1.0783, Train Acc: 59.80%
+2024-10-27 19:52:26,049 - INFO - Val Loss: 1.3142, Val Acc: 48.11%
+2024-10-27 19:52:26,049 - INFO - Class 0 Accuracy: 85.69%
+2024-10-27 19:52:26,050 - INFO - Class 1 Accuracy: 6.46%
+2024-10-27 19:52:26,050 - INFO - Class 2 Accuracy: 66.06%
+2024-10-27 19:52:26,050 - INFO - Class 3 Accuracy: 14.14%
+2024-10-27 19:52:26,051 - INFO - Class 4 Accuracy: 95.01%
+2024-10-27 19:52:26,052 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:52:26,052 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:52:26,053 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:52:26,133 - INFO - Saved best model with accuracy: 48.11%
+2024-10-27 19:52:48,130 - INFO - 
+Epoch 44/100:
+2024-10-27 19:52:48,130 - INFO - Train Loss: 1.0530, Train Acc: 60.46%
+2024-10-27 19:52:48,130 - INFO - Val Loss: 1.3475, Val Acc: 45.96%
+2024-10-27 19:52:48,131 - INFO - Class 0 Accuracy: 83.10%
+2024-10-27 19:52:48,131 - INFO - Class 1 Accuracy: 17.00%
+2024-10-27 19:52:48,131 - INFO - Class 2 Accuracy: 64.47%
+2024-10-27 19:52:48,132 - INFO - Class 3 Accuracy: 10.53%
+2024-10-27 19:52:48,133 - INFO - Class 4 Accuracy: 89.83%
+2024-10-27 19:52:48,133 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:52:48,134 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:52:48,134 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:53:10,046 - INFO - 
+Epoch 45/100:
+2024-10-27 19:53:10,047 - INFO - Train Loss: 1.0419, Train Acc: 60.90%
+2024-10-27 19:53:10,047 - INFO - Val Loss: 1.2986, Val Acc: 49.11%
+2024-10-27 19:53:10,047 - INFO - Class 0 Accuracy: 75.34%
+2024-10-27 19:53:10,048 - INFO - Class 1 Accuracy: 25.23%
+2024-10-27 19:53:10,048 - INFO - Class 2 Accuracy: 66.82%
+2024-10-27 19:53:10,048 - INFO - Class 3 Accuracy: 17.22%
+2024-10-27 19:53:10,049 - INFO - Class 4 Accuracy: 88.19%
+2024-10-27 19:53:10,049 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:53:10,051 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:53:10,052 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:53:10,132 - INFO - Saved best model with accuracy: 49.11%
+2024-10-27 19:53:32,323 - INFO - 
+Epoch 46/100:
+2024-10-27 19:53:32,323 - INFO - Train Loss: 1.0837, Train Acc: 59.09%
+2024-10-27 19:53:32,323 - INFO - Val Loss: 1.2368, Val Acc: 51.11%
+2024-10-27 19:53:32,324 - INFO - Class 0 Accuracy: 76.52%
+2024-10-27 19:53:32,324 - INFO - Class 1 Accuracy: 29.93%
+2024-10-27 19:53:32,325 - INFO - Class 2 Accuracy: 69.16%
+2024-10-27 19:53:32,327 - INFO - Class 3 Accuracy: 19.95%
+2024-10-27 19:53:32,328 - INFO - Class 4 Accuracy: 89.36%
+2024-10-27 19:53:32,328 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:53:32,330 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:53:32,330 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:53:32,419 - INFO - Saved best model with accuracy: 51.11%
+2024-10-27 19:53:54,812 - INFO - 
+Epoch 47/100:
+2024-10-27 19:53:54,813 - INFO - Train Loss: 1.0619, Train Acc: 60.61%
+2024-10-27 19:53:54,813 - INFO - Val Loss: 1.1355, Val Acc: 54.04%
+2024-10-27 19:53:54,813 - INFO - Class 0 Accuracy: 79.35%
+2024-10-27 19:53:54,814 - INFO - Class 1 Accuracy: 30.61%
+2024-10-27 19:53:54,814 - INFO - Class 2 Accuracy: 70.86%
+2024-10-27 19:53:54,814 - INFO - Class 3 Accuracy: 27.36%
+2024-10-27 19:53:54,816 - INFO - Class 4 Accuracy: 90.46%
+2024-10-27 19:53:54,817 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:53:54,818 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:53:54,818 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:53:54,914 - INFO - Saved best model with accuracy: 54.04%
+2024-10-27 19:54:17,403 - INFO - 
+Epoch 48/100:
+2024-10-27 19:54:17,403 - INFO - Train Loss: 1.0329, Train Acc: 61.96%
+2024-10-27 19:54:17,404 - INFO - Val Loss: 1.0365, Val Acc: 57.14%
+2024-10-27 19:54:17,405 - INFO - Class 0 Accuracy: 73.95%
+2024-10-27 19:54:17,406 - INFO - Class 1 Accuracy: 28.89%
+2024-10-27 19:54:17,407 - INFO - Class 2 Accuracy: 75.57%
+2024-10-27 19:54:17,409 - INFO - Class 3 Accuracy: 32.15%
+2024-10-27 19:54:17,409 - INFO - Class 4 Accuracy: 89.30%
+2024-10-27 19:54:17,410 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:54:17,410 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:54:17,412 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:54:17,493 - INFO - Saved best model with accuracy: 57.14%
+2024-10-27 19:54:39,548 - INFO - 
+Epoch 49/100:
+2024-10-27 19:54:39,549 - INFO - Train Loss: 1.0880, Train Acc: 59.21%
+2024-10-27 19:54:39,549 - INFO - Val Loss: 1.0142, Val Acc: 56.46%
+2024-10-27 19:54:39,549 - INFO - Class 0 Accuracy: 78.22%
+2024-10-27 19:54:39,550 - INFO - Class 1 Accuracy: 33.28%
+2024-10-27 19:54:39,550 - INFO - Class 2 Accuracy: 79.26%
+2024-10-27 19:54:39,551 - INFO - Class 3 Accuracy: 28.20%
+2024-10-27 19:54:39,551 - INFO - Class 4 Accuracy: 82.87%
+2024-10-27 19:54:39,552 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:54:39,552 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:54:39,553 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:55:02,927 - INFO - 
+Epoch 50/100:
+2024-10-27 19:55:02,927 - INFO - Train Loss: 1.0271, Train Acc: 62.00%
+2024-10-27 19:55:02,927 - INFO - Val Loss: 1.0168, Val Acc: 57.59%
+2024-10-27 19:55:02,928 - INFO - Class 0 Accuracy: 82.35%
+2024-10-27 19:55:02,928 - INFO - Class 1 Accuracy: 34.96%
+2024-10-27 19:55:02,928 - INFO - Class 2 Accuracy: 86.45%
+2024-10-27 19:55:02,929 - INFO - Class 3 Accuracy: 20.33%
+2024-10-27 19:55:02,929 - INFO - Class 4 Accuracy: 79.64%
+2024-10-27 19:55:02,931 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:55:02,931 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:55:02,932 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:55:03,013 - INFO - Saved best model with accuracy: 57.59%
+2024-10-27 19:55:25,962 - INFO - 
+Epoch 51/100:
+2024-10-27 19:55:25,963 - INFO - Train Loss: 1.0107, Train Acc: 62.00%
+2024-10-27 19:55:25,963 - INFO - Val Loss: 1.0264, Val Acc: 58.41%
+2024-10-27 19:55:25,963 - INFO - Class 0 Accuracy: 84.04%
+2024-10-27 19:55:25,964 - INFO - Class 1 Accuracy: 39.58%
+2024-10-27 19:55:25,965 - INFO - Class 2 Accuracy: 88.46%
+2024-10-27 19:55:25,966 - INFO - Class 3 Accuracy: 21.41%
+2024-10-27 19:55:25,967 - INFO - Class 4 Accuracy: 75.74%
+2024-10-27 19:55:25,969 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:55:25,971 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:55:25,971 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:55:26,053 - INFO - Saved best model with accuracy: 58.41%
+2024-10-27 19:55:47,882 - INFO - 
+Epoch 52/100:
+2024-10-27 19:55:47,882 - INFO - Train Loss: 1.0369, Train Acc: 61.37%
+2024-10-27 19:55:47,882 - INFO - Val Loss: 0.9784, Val Acc: 58.92%
+2024-10-27 19:55:47,883 - INFO - Class 0 Accuracy: 83.80%
+2024-10-27 19:55:47,883 - INFO - Class 1 Accuracy: 44.77%
+2024-10-27 19:55:47,883 - INFO - Class 2 Accuracy: 89.10%
+2024-10-27 19:55:47,884 - INFO - Class 3 Accuracy: 21.84%
+2024-10-27 19:55:47,885 - INFO - Class 4 Accuracy: 74.24%
+2024-10-27 19:55:47,885 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:55:47,886 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:55:47,886 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:55:47,966 - INFO - Saved best model with accuracy: 58.92%
+2024-10-27 19:56:09,477 - INFO - 
+Epoch 53/100:
+2024-10-27 19:56:09,477 - INFO - Train Loss: 1.0151, Train Acc: 62.18%
+2024-10-27 19:56:09,477 - INFO - Val Loss: 0.9719, Val Acc: 60.72%
+2024-10-27 19:56:09,478 - INFO - Class 0 Accuracy: 82.17%
+2024-10-27 19:56:09,478 - INFO - Class 1 Accuracy: 51.39%
+2024-10-27 19:56:09,479 - INFO - Class 2 Accuracy: 87.68%
+2024-10-27 19:56:09,480 - INFO - Class 3 Accuracy: 26.79%
+2024-10-27 19:56:09,480 - INFO - Class 4 Accuracy: 78.70%
+2024-10-27 19:56:09,481 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:56:09,481 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:56:09,482 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:56:09,557 - INFO - Saved best model with accuracy: 60.72%
+2024-10-27 19:56:31,539 - INFO - 
+Epoch 54/100:
+2024-10-27 19:56:31,539 - INFO - Train Loss: 1.0086, Train Acc: 62.33%
+2024-10-27 19:56:31,539 - INFO - Val Loss: 0.9763, Val Acc: 61.08%
+2024-10-27 19:56:31,539 - INFO - Class 0 Accuracy: 82.80%
+2024-10-27 19:56:31,541 - INFO - Class 1 Accuracy: 50.43%
+2024-10-27 19:56:31,541 - INFO - Class 2 Accuracy: 82.25%
+2024-10-27 19:56:31,542 - INFO - Class 3 Accuracy: 32.99%
+2024-10-27 19:56:31,543 - INFO - Class 4 Accuracy: 82.94%
+2024-10-27 19:56:31,545 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:56:31,545 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:56:31,546 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:56:31,622 - INFO - Saved best model with accuracy: 61.08%
+2024-10-27 19:56:54,607 - INFO - 
+Epoch 55/100:
+2024-10-27 19:56:54,607 - INFO - Train Loss: 0.9997, Train Acc: 62.86%
+2024-10-27 19:56:54,607 - INFO - Val Loss: 0.9728, Val Acc: 61.21%
+2024-10-27 19:56:54,608 - INFO - Class 0 Accuracy: 79.06%
+2024-10-27 19:56:54,608 - INFO - Class 1 Accuracy: 58.88%
+2024-10-27 19:56:54,608 - INFO - Class 2 Accuracy: 80.61%
+2024-10-27 19:56:54,610 - INFO - Class 3 Accuracy: 35.43%
+2024-10-27 19:56:54,613 - INFO - Class 4 Accuracy: 84.39%
+2024-10-27 19:56:54,614 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:56:54,616 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:56:54,617 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:56:54,707 - INFO - Saved best model with accuracy: 61.21%
+2024-10-27 19:57:18,912 - INFO - 
+Epoch 56/100:
+2024-10-27 19:57:18,912 - INFO - Train Loss: 0.9733, Train Acc: 63.77%
+2024-10-27 19:57:18,913 - INFO - Val Loss: 0.9581, Val Acc: 63.25%
+2024-10-27 19:57:18,913 - INFO - Class 0 Accuracy: 70.04%
+2024-10-27 19:57:18,914 - INFO - Class 1 Accuracy: 63.25%
+2024-10-27 19:57:18,915 - INFO - Class 2 Accuracy: 77.44%
+2024-10-27 19:57:18,916 - INFO - Class 3 Accuracy: 46.60%
+2024-10-27 19:57:18,916 - INFO - Class 4 Accuracy: 88.26%
+2024-10-27 19:57:18,917 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:57:18,918 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:57:18,918 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:57:18,997 - INFO - Saved best model with accuracy: 63.25%
+2024-10-27 19:57:42,552 - INFO - 
+Epoch 57/100:
+2024-10-27 19:57:42,552 - INFO - Train Loss: 1.0126, Train Acc: 61.54%
+2024-10-27 19:57:42,553 - INFO - Val Loss: 0.9632, Val Acc: 61.61%
+2024-10-27 19:57:42,553 - INFO - Class 0 Accuracy: 72.48%
+2024-10-27 19:57:42,555 - INFO - Class 1 Accuracy: 63.31%
+2024-10-27 19:57:42,556 - INFO - Class 2 Accuracy: 74.04%
+2024-10-27 19:57:42,558 - INFO - Class 3 Accuracy: 46.08%
+2024-10-27 19:57:42,559 - INFO - Class 4 Accuracy: 86.71%
+2024-10-27 19:57:42,560 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:57:42,560 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:57:42,562 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:58:04,897 - INFO - 
+Epoch 58/100:
+2024-10-27 19:58:04,897 - INFO - Train Loss: 1.0272, Train Acc: 61.91%
+2024-10-27 19:58:04,897 - INFO - Val Loss: 0.9542, Val Acc: 61.25%
+2024-10-27 19:58:04,898 - INFO - Class 0 Accuracy: 57.41%
+2024-10-27 19:58:04,899 - INFO - Class 1 Accuracy: 64.55%
+2024-10-27 19:58:04,900 - INFO - Class 2 Accuracy: 77.73%
+2024-10-27 19:58:04,901 - INFO - Class 3 Accuracy: 42.11%
+2024-10-27 19:58:04,902 - INFO - Class 4 Accuracy: 86.48%
+2024-10-27 19:58:04,903 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:58:04,904 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:58:04,905 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:58:27,247 - INFO - 
+Epoch 59/100:
+2024-10-27 19:58:27,247 - INFO - Train Loss: 0.9560, Train Acc: 64.18%
+2024-10-27 19:58:27,247 - INFO - Val Loss: 0.9539, Val Acc: 61.42%
+2024-10-27 19:58:27,249 - INFO - Class 0 Accuracy: 63.24%
+2024-10-27 19:58:27,249 - INFO - Class 1 Accuracy: 66.47%
+2024-10-27 19:58:27,249 - INFO - Class 2 Accuracy: 80.05%
+2024-10-27 19:58:27,251 - INFO - Class 3 Accuracy: 38.11%
+2024-10-27 19:58:27,251 - INFO - Class 4 Accuracy: 83.28%
+2024-10-27 19:58:27,252 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:58:27,253 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:58:27,255 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:58:49,688 - INFO - 
+Epoch 60/100:
+2024-10-27 19:58:49,689 - INFO - Train Loss: 1.0303, Train Acc: 61.72%
+2024-10-27 19:58:49,689 - INFO - Val Loss: 0.9566, Val Acc: 60.42%
+2024-10-27 19:58:49,689 - INFO - Class 0 Accuracy: 61.30%
+2024-10-27 19:58:49,690 - INFO - Class 1 Accuracy: 64.57%
+2024-10-27 19:58:49,690 - INFO - Class 2 Accuracy: 83.26%
+2024-10-27 19:58:49,690 - INFO - Class 3 Accuracy: 32.10%
+2024-10-27 19:58:49,691 - INFO - Class 4 Accuracy: 81.73%
+2024-10-27 19:58:49,692 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:58:49,693 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:58:49,694 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:59:12,901 - INFO - 
+Epoch 61/100:
+2024-10-27 19:59:12,901 - INFO - Train Loss: 0.9679, Train Acc: 63.36%
+2024-10-27 19:59:12,901 - INFO - Val Loss: 0.9581, Val Acc: 60.75%
+2024-10-27 19:59:12,901 - INFO - Class 0 Accuracy: 52.64%
+2024-10-27 19:59:12,902 - INFO - Class 1 Accuracy: 67.84%
+2024-10-27 19:59:12,903 - INFO - Class 2 Accuracy: 84.51%
+2024-10-27 19:59:12,903 - INFO - Class 3 Accuracy: 33.67%
+2024-10-27 19:59:12,904 - INFO - Class 4 Accuracy: 78.75%
+2024-10-27 19:59:12,904 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:59:12,905 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:59:12,906 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:59:36,682 - INFO - 
+Epoch 62/100:
+2024-10-27 19:59:36,682 - INFO - Train Loss: 1.0111, Train Acc: 62.47%
+2024-10-27 19:59:36,682 - INFO - Val Loss: 0.9160, Val Acc: 61.93%
+2024-10-27 19:59:36,682 - INFO - Class 0 Accuracy: 54.89%
+2024-10-27 19:59:36,682 - INFO - Class 1 Accuracy: 69.62%
+2024-10-27 19:59:36,683 - INFO - Class 2 Accuracy: 82.13%
+2024-10-27 19:59:36,684 - INFO - Class 3 Accuracy: 40.14%
+2024-10-27 19:59:36,684 - INFO - Class 4 Accuracy: 81.23%
+2024-10-27 19:59:36,684 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:59:36,685 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:59:36,686 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 19:59:58,884 - INFO - 
+Epoch 63/100:
+2024-10-27 19:59:58,884 - INFO - Train Loss: 0.9480, Train Acc: 65.11%
+2024-10-27 19:59:58,884 - INFO - Val Loss: 0.9209, Val Acc: 61.19%
+2024-10-27 19:59:58,885 - INFO - Class 0 Accuracy: 56.57%
+2024-10-27 19:59:58,885 - INFO - Class 1 Accuracy: 69.99%
+2024-10-27 19:59:58,885 - INFO - Class 2 Accuracy: 84.34%
+2024-10-27 19:59:58,886 - INFO - Class 3 Accuracy: 34.28%
+2024-10-27 19:59:58,886 - INFO - Class 4 Accuracy: 79.53%
+2024-10-27 19:59:58,887 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 19:59:58,888 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 19:59:58,888 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:00:21,458 - INFO - 
+Epoch 64/100:
+2024-10-27 20:00:21,458 - INFO - Train Loss: 0.9592, Train Acc: 64.17%
+2024-10-27 20:00:21,459 - INFO - Val Loss: 0.8811, Val Acc: 63.31%
+2024-10-27 20:00:21,459 - INFO - Class 0 Accuracy: 60.79%
+2024-10-27 20:00:21,459 - INFO - Class 1 Accuracy: 71.53%
+2024-10-27 20:00:21,460 - INFO - Class 2 Accuracy: 83.27%
+2024-10-27 20:00:21,461 - INFO - Class 3 Accuracy: 41.06%
+2024-10-27 20:00:21,461 - INFO - Class 4 Accuracy: 81.12%
+2024-10-27 20:00:21,462 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:00:21,462 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:00:21,463 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:00:21,543 - INFO - Saved best model with accuracy: 63.31%
+2024-10-27 20:00:43,616 - INFO - 
+Epoch 65/100:
+2024-10-27 20:00:43,616 - INFO - Train Loss: 0.9472, Train Acc: 64.89%
+2024-10-27 20:00:43,616 - INFO - Val Loss: 0.8942, Val Acc: 62.49%
+2024-10-27 20:00:43,617 - INFO - Class 0 Accuracy: 59.64%
+2024-10-27 20:00:43,617 - INFO - Class 1 Accuracy: 72.16%
+2024-10-27 20:00:43,617 - INFO - Class 2 Accuracy: 77.83%
+2024-10-27 20:00:43,618 - INFO - Class 3 Accuracy: 46.18%
+2024-10-27 20:00:43,618 - INFO - Class 4 Accuracy: 83.26%
+2024-10-27 20:00:43,618 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:00:43,619 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:00:43,619 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:01:05,723 - INFO - 
+Epoch 66/100:
+2024-10-27 20:01:05,723 - INFO - Train Loss: 0.9753, Train Acc: 63.53%
+2024-10-27 20:01:05,724 - INFO - Val Loss: 0.9008, Val Acc: 62.90%
+2024-10-27 20:01:05,724 - INFO - Class 0 Accuracy: 58.85%
+2024-10-27 20:01:05,725 - INFO - Class 1 Accuracy: 71.06%
+2024-10-27 20:01:05,726 - INFO - Class 2 Accuracy: 77.96%
+2024-10-27 20:01:05,727 - INFO - Class 3 Accuracy: 48.38%
+2024-10-27 20:01:05,728 - INFO - Class 4 Accuracy: 83.57%
+2024-10-27 20:01:05,728 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:01:05,730 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:01:05,730 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:01:28,038 - INFO - 
+Epoch 67/100:
+2024-10-27 20:01:28,038 - INFO - Train Loss: 0.9418, Train Acc: 64.94%
+2024-10-27 20:01:28,038 - INFO - Val Loss: 0.8819, Val Acc: 63.12%
+2024-10-27 20:01:28,038 - INFO - Class 0 Accuracy: 66.60%
+2024-10-27 20:01:28,039 - INFO - Class 1 Accuracy: 73.91%
+2024-10-27 20:01:28,039 - INFO - Class 2 Accuracy: 73.95%
+2024-10-27 20:01:28,040 - INFO - Class 3 Accuracy: 51.27%
+2024-10-27 20:01:28,040 - INFO - Class 4 Accuracy: 85.42%
+2024-10-27 20:01:28,041 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:01:28,042 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:01:28,043 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:01:50,050 - INFO - 
+Epoch 68/100:
+2024-10-27 20:01:50,051 - INFO - Train Loss: 0.9611, Train Acc: 64.55%
+2024-10-27 20:01:50,051 - INFO - Val Loss: 0.8885, Val Acc: 63.96%
+2024-10-27 20:01:50,051 - INFO - Class 0 Accuracy: 70.39%
+2024-10-27 20:01:50,052 - INFO - Class 1 Accuracy: 73.09%
+2024-10-27 20:01:50,053 - INFO - Class 2 Accuracy: 76.16%
+2024-10-27 20:01:50,053 - INFO - Class 3 Accuracy: 51.72%
+2024-10-27 20:01:50,054 - INFO - Class 4 Accuracy: 82.09%
+2024-10-27 20:01:50,055 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:01:50,055 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:01:50,056 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:01:50,137 - INFO - Saved best model with accuracy: 63.96%
+2024-10-27 20:02:15,064 - INFO - 
+Epoch 69/100:
+2024-10-27 20:02:15,064 - INFO - Train Loss: 0.9454, Train Acc: 65.19%
+2024-10-27 20:02:15,065 - INFO - Val Loss: 0.8971, Val Acc: 63.28%
+2024-10-27 20:02:15,065 - INFO - Class 0 Accuracy: 66.54%
+2024-10-27 20:02:15,065 - INFO - Class 1 Accuracy: 76.69%
+2024-10-27 20:02:15,066 - INFO - Class 2 Accuracy: 73.32%
+2024-10-27 20:02:15,068 - INFO - Class 3 Accuracy: 52.50%
+2024-10-27 20:02:15,069 - INFO - Class 4 Accuracy: 84.90%
+2024-10-27 20:02:15,071 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:02:15,073 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:02:15,075 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:02:40,334 - INFO - 
+Epoch 70/100:
+2024-10-27 20:02:40,334 - INFO - Train Loss: 0.9582, Train Acc: 64.99%
+2024-10-27 20:02:40,334 - INFO - Val Loss: 0.8844, Val Acc: 64.25%
+2024-10-27 20:02:40,334 - INFO - Class 0 Accuracy: 67.87%
+2024-10-27 20:02:40,334 - INFO - Class 1 Accuracy: 78.18%
+2024-10-27 20:02:40,335 - INFO - Class 2 Accuracy: 75.52%
+2024-10-27 20:02:40,336 - INFO - Class 3 Accuracy: 53.29%
+2024-10-27 20:02:40,337 - INFO - Class 4 Accuracy: 81.51%
+2024-10-27 20:02:40,337 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:02:40,338 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:02:40,338 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:02:40,423 - INFO - Saved best model with accuracy: 64.25%
+2024-10-27 20:03:04,735 - INFO - 
+Epoch 71/100:
+2024-10-27 20:03:04,735 - INFO - Train Loss: 1.0040, Train Acc: 62.14%
+2024-10-27 20:03:04,735 - INFO - Val Loss: 0.8846, Val Acc: 64.91%
+2024-10-27 20:03:04,736 - INFO - Class 0 Accuracy: 74.98%
+2024-10-27 20:03:04,737 - INFO - Class 1 Accuracy: 73.26%
+2024-10-27 20:03:04,737 - INFO - Class 2 Accuracy: 75.85%
+2024-10-27 20:03:04,738 - INFO - Class 3 Accuracy: 54.64%
+2024-10-27 20:03:04,740 - INFO - Class 4 Accuracy: 82.82%
+2024-10-27 20:03:04,741 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:03:04,742 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:03:04,742 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:03:04,829 - INFO - Saved best model with accuracy: 64.91%
+2024-10-27 20:03:27,322 - INFO - 
+Epoch 72/100:
+2024-10-27 20:03:27,322 - INFO - Train Loss: 0.9085, Train Acc: 66.22%
+2024-10-27 20:03:27,322 - INFO - Val Loss: 0.8775, Val Acc: 65.40%
+2024-10-27 20:03:27,323 - INFO - Class 0 Accuracy: 74.03%
+2024-10-27 20:03:27,323 - INFO - Class 1 Accuracy: 79.73%
+2024-10-27 20:03:27,324 - INFO - Class 2 Accuracy: 76.32%
+2024-10-27 20:03:27,324 - INFO - Class 3 Accuracy: 53.96%
+2024-10-27 20:03:27,324 - INFO - Class 4 Accuracy: 83.50%
+2024-10-27 20:03:27,325 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:03:27,326 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:03:27,327 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:03:27,410 - INFO - Saved best model with accuracy: 65.40%
+2024-10-27 20:03:49,897 - INFO - 
+Epoch 73/100:
+2024-10-27 20:03:49,897 - INFO - Train Loss: 0.9641, Train Acc: 64.71%
+2024-10-27 20:03:49,898 - INFO - Val Loss: 0.8692, Val Acc: 65.29%
+2024-10-27 20:03:49,898 - INFO - Class 0 Accuracy: 73.21%
+2024-10-27 20:03:49,898 - INFO - Class 1 Accuracy: 71.04%
+2024-10-27 20:03:49,899 - INFO - Class 2 Accuracy: 75.11%
+2024-10-27 20:03:49,902 - INFO - Class 3 Accuracy: 54.80%
+2024-10-27 20:03:49,903 - INFO - Class 4 Accuracy: 87.12%
+2024-10-27 20:03:49,904 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:03:49,905 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:03:49,905 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:04:12,219 - INFO - 
+Epoch 74/100:
+2024-10-27 20:04:12,220 - INFO - Train Loss: 0.9199, Train Acc: 65.90%
+2024-10-27 20:04:12,220 - INFO - Val Loss: 0.8508, Val Acc: 65.69%
+2024-10-27 20:04:12,220 - INFO - Class 0 Accuracy: 72.33%
+2024-10-27 20:04:12,221 - INFO - Class 1 Accuracy: 73.24%
+2024-10-27 20:04:12,221 - INFO - Class 2 Accuracy: 78.53%
+2024-10-27 20:04:12,222 - INFO - Class 3 Accuracy: 50.55%
+2024-10-27 20:04:12,222 - INFO - Class 4 Accuracy: 86.92%
+2024-10-27 20:04:12,223 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:04:12,224 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:04:12,224 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:04:12,309 - INFO - Saved best model with accuracy: 65.69%
+2024-10-27 20:04:34,573 - INFO - 
+Epoch 75/100:
+2024-10-27 20:04:34,573 - INFO - Train Loss: 0.9647, Train Acc: 63.68%
+2024-10-27 20:04:34,573 - INFO - Val Loss: 0.8568, Val Acc: 65.39%
+2024-10-27 20:04:34,574 - INFO - Class 0 Accuracy: 65.06%
+2024-10-27 20:04:34,574 - INFO - Class 1 Accuracy: 75.71%
+2024-10-27 20:04:34,574 - INFO - Class 2 Accuracy: 80.18%
+2024-10-27 20:04:34,576 - INFO - Class 3 Accuracy: 49.84%
+2024-10-27 20:04:34,576 - INFO - Class 4 Accuracy: 84.58%
+2024-10-27 20:04:34,576 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:04:34,578 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:04:34,578 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:04:56,666 - INFO - 
+Epoch 76/100:
+2024-10-27 20:04:56,666 - INFO - Train Loss: 0.9027, Train Acc: 66.72%
+2024-10-27 20:04:56,666 - INFO - Val Loss: 0.8611, Val Acc: 64.93%
+2024-10-27 20:04:56,667 - INFO - Class 0 Accuracy: 64.43%
+2024-10-27 20:04:56,667 - INFO - Class 1 Accuracy: 80.32%
+2024-10-27 20:04:56,668 - INFO - Class 2 Accuracy: 78.62%
+2024-10-27 20:04:56,668 - INFO - Class 3 Accuracy: 50.27%
+2024-10-27 20:04:56,669 - INFO - Class 4 Accuracy: 85.33%
+2024-10-27 20:04:56,670 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:04:56,671 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:04:56,672 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:05:18,825 - INFO - 
+Epoch 77/100:
+2024-10-27 20:05:18,825 - INFO - Train Loss: 0.9325, Train Acc: 65.16%
+2024-10-27 20:05:18,825 - INFO - Val Loss: 0.8496, Val Acc: 65.71%
+2024-10-27 20:05:18,826 - INFO - Class 0 Accuracy: 63.92%
+2024-10-27 20:05:18,826 - INFO - Class 1 Accuracy: 77.70%
+2024-10-27 20:05:18,826 - INFO - Class 2 Accuracy: 80.81%
+2024-10-27 20:05:18,827 - INFO - Class 3 Accuracy: 48.65%
+2024-10-27 20:05:18,828 - INFO - Class 4 Accuracy: 87.12%
+2024-10-27 20:05:18,829 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:05:18,829 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:05:18,829 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:05:18,909 - INFO - Saved best model with accuracy: 65.71%
+2024-10-27 20:05:41,741 - INFO - 
+Epoch 78/100:
+2024-10-27 20:05:41,741 - INFO - Train Loss: 0.9599, Train Acc: 64.17%
+2024-10-27 20:05:41,741 - INFO - Val Loss: 0.8792, Val Acc: 62.40%
+2024-10-27 20:05:41,743 - INFO - Class 0 Accuracy: 63.41%
+2024-10-27 20:05:41,743 - INFO - Class 1 Accuracy: 79.28%
+2024-10-27 20:05:41,743 - INFO - Class 2 Accuracy: 79.85%
+2024-10-27 20:05:41,744 - INFO - Class 3 Accuracy: 40.03%
+2024-10-27 20:05:41,745 - INFO - Class 4 Accuracy: 84.40%
+2024-10-27 20:05:41,745 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:05:41,746 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:05:41,747 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:06:04,104 - INFO - 
+Epoch 79/100:
+2024-10-27 20:06:04,105 - INFO - Train Loss: 0.9765, Train Acc: 64.13%
+2024-10-27 20:06:04,105 - INFO - Val Loss: 0.8690, Val Acc: 64.50%
+2024-10-27 20:06:04,105 - INFO - Class 0 Accuracy: 64.71%
+2024-10-27 20:06:04,107 - INFO - Class 1 Accuracy: 77.85%
+2024-10-27 20:06:04,108 - INFO - Class 2 Accuracy: 80.45%
+2024-10-27 20:06:04,108 - INFO - Class 3 Accuracy: 48.50%
+2024-10-27 20:06:04,109 - INFO - Class 4 Accuracy: 80.11%
+2024-10-27 20:06:04,109 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:06:04,110 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:06:04,111 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:06:26,151 - INFO - 
+Epoch 80/100:
+2024-10-27 20:06:26,151 - INFO - Train Loss: 0.9079, Train Acc: 66.22%
+2024-10-27 20:06:26,151 - INFO - Val Loss: 0.8767, Val Acc: 64.37%
+2024-10-27 20:06:26,152 - INFO - Class 0 Accuracy: 60.84%
+2024-10-27 20:06:26,153 - INFO - Class 1 Accuracy: 79.12%
+2024-10-27 20:06:26,153 - INFO - Class 2 Accuracy: 82.26%
+2024-10-27 20:06:26,154 - INFO - Class 3 Accuracy: 44.49%
+2024-10-27 20:06:26,154 - INFO - Class 4 Accuracy: 81.95%
+2024-10-27 20:06:26,155 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:06:26,155 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:06:26,156 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:06:48,527 - INFO - 
+Epoch 81/100:
+2024-10-27 20:06:48,528 - INFO - Train Loss: 0.9278, Train Acc: 66.00%
+2024-10-27 20:06:48,528 - INFO - Val Loss: 0.8695, Val Acc: 62.89%
+2024-10-27 20:06:48,529 - INFO - Class 0 Accuracy: 66.08%
+2024-10-27 20:06:48,529 - INFO - Class 1 Accuracy: 79.10%
+2024-10-27 20:06:48,529 - INFO - Class 2 Accuracy: 82.32%
+2024-10-27 20:06:48,530 - INFO - Class 3 Accuracy: 36.09%
+2024-10-27 20:06:48,530 - INFO - Class 4 Accuracy: 84.71%
+2024-10-27 20:06:48,531 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:06:48,532 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:06:48,532 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:07:10,605 - INFO - 
+Epoch 82/100:
+2024-10-27 20:07:10,605 - INFO - Train Loss: 0.9190, Train Acc: 65.65%
+2024-10-27 20:07:10,605 - INFO - Val Loss: 0.8753, Val Acc: 65.74%
+2024-10-27 20:07:10,606 - INFO - Class 0 Accuracy: 58.14%
+2024-10-27 20:07:10,606 - INFO - Class 1 Accuracy: 77.54%
+2024-10-27 20:07:10,606 - INFO - Class 2 Accuracy: 82.41%
+2024-10-27 20:07:10,607 - INFO - Class 3 Accuracy: 50.86%
+2024-10-27 20:07:10,607 - INFO - Class 4 Accuracy: 80.94%
+2024-10-27 20:07:10,608 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:07:10,608 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:07:10,609 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:07:10,695 - INFO - Saved best model with accuracy: 65.74%
+2024-10-27 20:07:34,954 - INFO - 
+Epoch 83/100:
+2024-10-27 20:07:34,955 - INFO - Train Loss: 0.9310, Train Acc: 64.92%
+2024-10-27 20:07:34,955 - INFO - Val Loss: 0.8972, Val Acc: 63.65%
+2024-10-27 20:07:34,956 - INFO - Class 0 Accuracy: 56.30%
+2024-10-27 20:07:34,956 - INFO - Class 1 Accuracy: 77.49%
+2024-10-27 20:07:34,957 - INFO - Class 2 Accuracy: 84.40%
+2024-10-27 20:07:34,957 - INFO - Class 3 Accuracy: 42.76%
+2024-10-27 20:07:34,958 - INFO - Class 4 Accuracy: 78.05%
+2024-10-27 20:07:34,958 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:07:34,959 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:07:34,959 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:07:58,325 - INFO - 
+Epoch 84/100:
+2024-10-27 20:07:58,326 - INFO - Train Loss: 0.9262, Train Acc: 65.92%
+2024-10-27 20:07:58,326 - INFO - Val Loss: 0.8763, Val Acc: 64.12%
+2024-10-27 20:07:58,327 - INFO - Class 0 Accuracy: 55.67%
+2024-10-27 20:07:58,329 - INFO - Class 1 Accuracy: 75.06%
+2024-10-27 20:07:58,330 - INFO - Class 2 Accuracy: 83.55%
+2024-10-27 20:07:58,332 - INFO - Class 3 Accuracy: 43.36%
+2024-10-27 20:07:58,333 - INFO - Class 4 Accuracy: 81.38%
+2024-10-27 20:07:58,335 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:07:58,337 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:07:58,339 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:08:22,314 - INFO - 
+Epoch 85/100:
+2024-10-27 20:08:22,315 - INFO - Train Loss: 0.8997, Train Acc: 66.73%
+2024-10-27 20:08:22,315 - INFO - Val Loss: 0.8706, Val Acc: 64.83%
+2024-10-27 20:08:22,317 - INFO - Class 0 Accuracy: 54.16%
+2024-10-27 20:08:22,318 - INFO - Class 1 Accuracy: 78.54%
+2024-10-27 20:08:22,318 - INFO - Class 2 Accuracy: 81.51%
+2024-10-27 20:08:22,319 - INFO - Class 3 Accuracy: 49.29%
+2024-10-27 20:08:22,319 - INFO - Class 4 Accuracy: 79.98%
+2024-10-27 20:08:22,321 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:08:22,321 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:08:22,322 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:08:47,586 - INFO - 
+Epoch 86/100:
+2024-10-27 20:08:47,586 - INFO - Train Loss: 0.9590, Train Acc: 64.96%
+2024-10-27 20:08:47,586 - INFO - Val Loss: 0.8793, Val Acc: 63.51%
+2024-10-27 20:08:47,587 - INFO - Class 0 Accuracy: 45.07%
+2024-10-27 20:08:47,587 - INFO - Class 1 Accuracy: 74.33%
+2024-10-27 20:08:47,588 - INFO - Class 2 Accuracy: 82.97%
+2024-10-27 20:08:47,588 - INFO - Class 3 Accuracy: 44.88%
+2024-10-27 20:08:47,589 - INFO - Class 4 Accuracy: 81.40%
+2024-10-27 20:08:47,589 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:08:47,590 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:08:47,590 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:09:11,606 - INFO - 
+Epoch 87/100:
+2024-10-27 20:09:11,607 - INFO - Train Loss: 0.9149, Train Acc: 66.23%
+2024-10-27 20:09:11,607 - INFO - Val Loss: 0.8753, Val Acc: 65.00%
+2024-10-27 20:09:11,608 - INFO - Class 0 Accuracy: 44.88%
+2024-10-27 20:09:11,608 - INFO - Class 1 Accuracy: 79.80%
+2024-10-27 20:09:11,609 - INFO - Class 2 Accuracy: 82.20%
+2024-10-27 20:09:11,609 - INFO - Class 3 Accuracy: 51.11%
+2024-10-27 20:09:11,610 - INFO - Class 4 Accuracy: 82.43%
+2024-10-27 20:09:11,610 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:09:11,611 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:09:11,611 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:09:33,707 - INFO - 
+Epoch 88/100:
+2024-10-27 20:09:33,707 - INFO - Train Loss: 0.9311, Train Acc: 65.14%
+2024-10-27 20:09:33,708 - INFO - Val Loss: 0.8307, Val Acc: 66.40%
+2024-10-27 20:09:33,708 - INFO - Class 0 Accuracy: 63.11%
+2024-10-27 20:09:33,709 - INFO - Class 1 Accuracy: 81.72%
+2024-10-27 20:09:33,709 - INFO - Class 2 Accuracy: 79.77%
+2024-10-27 20:09:33,709 - INFO - Class 3 Accuracy: 52.53%
+2024-10-27 20:09:33,710 - INFO - Class 4 Accuracy: 85.33%
+2024-10-27 20:09:33,710 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:09:33,711 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:09:33,711 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:09:33,792 - INFO - Saved best model with accuracy: 66.40%
+2024-10-27 20:09:55,991 - INFO - 
+Epoch 89/100:
+2024-10-27 20:09:55,992 - INFO - Train Loss: 0.9214, Train Acc: 65.69%
+2024-10-27 20:09:55,992 - INFO - Val Loss: 0.8610, Val Acc: 64.85%
+2024-10-27 20:09:55,993 - INFO - Class 0 Accuracy: 61.67%
+2024-10-27 20:09:55,993 - INFO - Class 1 Accuracy: 79.67%
+2024-10-27 20:09:55,993 - INFO - Class 2 Accuracy: 79.21%
+2024-10-27 20:09:55,994 - INFO - Class 3 Accuracy: 50.56%
+2024-10-27 20:09:55,995 - INFO - Class 4 Accuracy: 83.83%
+2024-10-27 20:09:55,995 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:09:55,996 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:09:55,997 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:10:18,138 - INFO - 
+Epoch 90/100:
+2024-10-27 20:10:18,138 - INFO - Train Loss: 0.8883, Train Acc: 66.89%
+2024-10-27 20:10:18,139 - INFO - Val Loss: 0.8450, Val Acc: 66.45%
+2024-10-27 20:10:18,139 - INFO - Class 0 Accuracy: 63.39%
+2024-10-27 20:10:18,140 - INFO - Class 1 Accuracy: 76.43%
+2024-10-27 20:10:18,141 - INFO - Class 2 Accuracy: 81.39%
+2024-10-27 20:10:18,141 - INFO - Class 3 Accuracy: 53.18%
+2024-10-27 20:10:18,142 - INFO - Class 4 Accuracy: 83.31%
+2024-10-27 20:10:18,143 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:10:18,144 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:10:18,144 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:10:18,230 - INFO - Saved best model with accuracy: 66.45%
+2024-10-27 20:10:40,367 - INFO - 
+Epoch 91/100:
+2024-10-27 20:10:40,367 - INFO - Train Loss: 0.9330, Train Acc: 65.45%
+2024-10-27 20:10:40,367 - INFO - Val Loss: 0.8781, Val Acc: 63.43%
+2024-10-27 20:10:40,368 - INFO - Class 0 Accuracy: 63.78%
+2024-10-27 20:10:40,368 - INFO - Class 1 Accuracy: 77.00%
+2024-10-27 20:10:40,369 - INFO - Class 2 Accuracy: 80.39%
+2024-10-27 20:10:40,369 - INFO - Class 3 Accuracy: 45.35%
+2024-10-27 20:10:40,370 - INFO - Class 4 Accuracy: 82.29%
+2024-10-27 20:10:40,371 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:10:40,371 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:10:40,371 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:11:03,053 - INFO - 
+Epoch 92/100:
+2024-10-27 20:11:03,054 - INFO - Train Loss: 0.9105, Train Acc: 66.73%
+2024-10-27 20:11:03,054 - INFO - Val Loss: 0.8536, Val Acc: 64.68%
+2024-10-27 20:11:03,055 - INFO - Class 0 Accuracy: 64.06%
+2024-10-27 20:11:03,055 - INFO - Class 1 Accuracy: 80.96%
+2024-10-27 20:11:03,056 - INFO - Class 2 Accuracy: 78.46%
+2024-10-27 20:11:03,056 - INFO - Class 3 Accuracy: 50.23%
+2024-10-27 20:11:03,057 - INFO - Class 4 Accuracy: 82.68%
+2024-10-27 20:11:03,057 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:11:03,058 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:11:03,058 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:11:25,550 - INFO - 
+Epoch 93/100:
+2024-10-27 20:11:25,550 - INFO - Train Loss: 0.8978, Train Acc: 66.82%
+2024-10-27 20:11:25,551 - INFO - Val Loss: 0.8342, Val Acc: 67.05%
+2024-10-27 20:11:25,552 - INFO - Class 0 Accuracy: 59.31%
+2024-10-27 20:11:25,552 - INFO - Class 1 Accuracy: 80.59%
+2024-10-27 20:11:25,553 - INFO - Class 2 Accuracy: 80.26%
+2024-10-27 20:11:25,553 - INFO - Class 3 Accuracy: 55.49%
+2024-10-27 20:11:25,554 - INFO - Class 4 Accuracy: 85.03%
+2024-10-27 20:11:25,556 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:11:25,557 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:11:25,557 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:11:25,637 - INFO - Saved best model with accuracy: 67.05%
+2024-10-27 20:11:47,991 - INFO - 
+Epoch 94/100:
+2024-10-27 20:11:47,991 - INFO - Train Loss: 0.9264, Train Acc: 65.22%
+2024-10-27 20:11:47,991 - INFO - Val Loss: 0.8583, Val Acc: 65.54%
+2024-10-27 20:11:47,992 - INFO - Class 0 Accuracy: 63.93%
+2024-10-27 20:11:47,992 - INFO - Class 1 Accuracy: 76.29%
+2024-10-27 20:11:47,992 - INFO - Class 2 Accuracy: 81.19%
+2024-10-27 20:11:47,994 - INFO - Class 3 Accuracy: 50.68%
+2024-10-27 20:11:47,994 - INFO - Class 4 Accuracy: 83.31%
+2024-10-27 20:11:47,996 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:11:47,997 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:11:47,998 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:12:10,049 - INFO - 
+Epoch 95/100:
+2024-10-27 20:12:10,050 - INFO - Train Loss: 0.9026, Train Acc: 66.39%
+2024-10-27 20:12:10,050 - INFO - Val Loss: 0.8491, Val Acc: 65.26%
+2024-10-27 20:12:10,050 - INFO - Class 0 Accuracy: 67.16%
+2024-10-27 20:12:10,051 - INFO - Class 1 Accuracy: 75.04%
+2024-10-27 20:12:10,051 - INFO - Class 2 Accuracy: 79.74%
+2024-10-27 20:12:10,052 - INFO - Class 3 Accuracy: 50.72%
+2024-10-27 20:12:10,052 - INFO - Class 4 Accuracy: 84.71%
+2024-10-27 20:12:10,053 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:12:10,053 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:12:10,053 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:12:32,180 - INFO - 
+Epoch 96/100:
+2024-10-27 20:12:32,180 - INFO - Train Loss: 0.9300, Train Acc: 65.65%
+2024-10-27 20:12:32,180 - INFO - Val Loss: 0.8454, Val Acc: 65.39%
+2024-10-27 20:12:32,181 - INFO - Class 0 Accuracy: 60.20%
+2024-10-27 20:12:32,181 - INFO - Class 1 Accuracy: 73.50%
+2024-10-27 20:12:32,181 - INFO - Class 2 Accuracy: 80.64%
+2024-10-27 20:12:32,182 - INFO - Class 3 Accuracy: 50.42%
+2024-10-27 20:12:32,182 - INFO - Class 4 Accuracy: 85.59%
+2024-10-27 20:12:32,183 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:12:32,183 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:12:32,184 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:12:55,564 - INFO - 
+Epoch 97/100:
+2024-10-27 20:12:55,564 - INFO - Train Loss: 0.9136, Train Acc: 65.93%
+2024-10-27 20:12:55,564 - INFO - Val Loss: 0.8441, Val Acc: 65.79%
+2024-10-27 20:12:55,565 - INFO - Class 0 Accuracy: 63.86%
+2024-10-27 20:12:55,565 - INFO - Class 1 Accuracy: 76.68%
+2024-10-27 20:12:55,565 - INFO - Class 2 Accuracy: 79.71%
+2024-10-27 20:12:55,566 - INFO - Class 3 Accuracy: 51.26%
+2024-10-27 20:12:55,566 - INFO - Class 4 Accuracy: 84.39%
+2024-10-27 20:12:55,567 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:12:55,567 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:12:55,568 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:13:18,649 - INFO - 
+Epoch 98/100:
+2024-10-27 20:13:18,649 - INFO - Train Loss: 0.9200, Train Acc: 65.60%
+2024-10-27 20:13:18,649 - INFO - Val Loss: 0.8485, Val Acc: 66.24%
+2024-10-27 20:13:18,650 - INFO - Class 0 Accuracy: 70.06%
+2024-10-27 20:13:18,651 - INFO - Class 1 Accuracy: 75.71%
+2024-10-27 20:13:18,651 - INFO - Class 2 Accuracy: 79.70%
+2024-10-27 20:13:18,652 - INFO - Class 3 Accuracy: 53.77%
+2024-10-27 20:13:18,653 - INFO - Class 4 Accuracy: 83.52%
+2024-10-27 20:13:18,653 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:13:18,654 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:13:18,655 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:13:40,968 - INFO - 
+Epoch 99/100:
+2024-10-27 20:13:40,968 - INFO - Train Loss: 0.8876, Train Acc: 67.45%
+2024-10-27 20:13:40,968 - INFO - Val Loss: 0.8513, Val Acc: 65.64%
+2024-10-27 20:13:40,969 - INFO - Class 0 Accuracy: 63.83%
+2024-10-27 20:13:40,969 - INFO - Class 1 Accuracy: 78.73%
+2024-10-27 20:13:40,970 - INFO - Class 2 Accuracy: 77.80%
+2024-10-27 20:13:40,970 - INFO - Class 3 Accuracy: 54.99%
+2024-10-27 20:13:40,971 - INFO - Class 4 Accuracy: 85.14%
+2024-10-27 20:13:40,971 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:13:40,973 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:13:40,975 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:14:03,223 - INFO - 
+Epoch 100/100:
+2024-10-27 20:14:03,224 - INFO - Train Loss: 0.9154, Train Acc: 66.23%
+2024-10-27 20:14:03,224 - INFO - Val Loss: 0.8217, Val Acc: 65.61%
+2024-10-27 20:14:03,225 - INFO - Class 0 Accuracy: 68.19%
+2024-10-27 20:14:03,225 - INFO - Class 1 Accuracy: 79.98%
+2024-10-27 20:14:03,226 - INFO - Class 2 Accuracy: 76.34%
+2024-10-27 20:14:03,227 - INFO - Class 3 Accuracy: 52.42%
+2024-10-27 20:14:03,227 - INFO - Class 4 Accuracy: 87.47%
+2024-10-27 20:14:03,228 - INFO - Class 5 Accuracy: 0.00%
+2024-10-27 20:14:03,228 - INFO - Class 6 Accuracy: 0.00%
+2024-10-27 20:14:03,228 - INFO - Class 7 Accuracy: 0.00%
+2024-10-27 20:14:03,321 - INFO - Training completed!

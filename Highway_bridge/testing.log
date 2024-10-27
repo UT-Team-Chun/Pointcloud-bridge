@@ -1,0 +1,215 @@
+2024-10-27 20:20:41,414 - INFO - Using device: cuda
+2024-10-27 20:20:41,600 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 20:21:36,842 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 20:22:40,407 - ERROR - Error processing data\test\No-14-sec-24.las: could not broadcast input array from shape (4096,) into shape (2740,)
+2024-10-27 20:37:39,513 - ERROR - Error processing data\test\No-14-sec-3.las: could not broadcast input array from shape (3576,) into shape (1788,)
+2024-10-27 20:46:32,588 - ERROR - Error processing data\test\No-14-sec-8.las: could not broadcast input array from shape (4096,) into shape (3049,)
+2024-10-27 21:32:18,530 - ERROR - Error processing data\test\No-5-sec-11.las: could not broadcast input array from shape (4096,) into shape (3632,)
+2024-10-27 21:44:10,466 - ERROR - Error processing data\test\No-8-sec-6.las: could not broadcast input array from shape (4096,) into shape (3810,)
+2024-10-27 22:02:08,866 - INFO - Using device: cuda
+2024-10-27 22:02:09,069 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:03:06,388 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 22:04:13,420 - ERROR - Error processing data\test\No-14-sec-24.las: could not broadcast input array from shape (4096,) into shape (2740,)
+2024-10-27 22:07:17,955 - INFO - Using device: cuda
+2024-10-27 22:07:18,147 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:08:16,629 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 22:11:53,119 - INFO - Using device: cuda
+2024-10-27 22:11:53,321 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:12:49,482 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 22:13:56,458 - ERROR - Error processing data\test\No-14-sec-24.las: could not broadcast input array from shape (4096,) into shape (2740,)
+2024-10-27 22:14:38,009 - INFO - Using device: cuda
+2024-10-27 22:14:38,216 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:15:34,159 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 22:16:13,272 - INFO - Using device: cuda
+2024-10-27 22:16:13,467 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:17:07,932 - INFO - Using device: cuda
+2024-10-27 22:17:08,152 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:17:23,432 - INFO - Using device: cuda
+2024-10-27 22:17:23,645 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:17:23,663 - ERROR - Error processing data\test\No-14-sec-13.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:17:23,683 - ERROR - Error processing data\test\No-14-sec-24.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:17:23,907 - ERROR - Error processing data\test\No-14-sec-3.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:17:24,071 - ERROR - Error processing data\test\No-14-sec-8.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:17:24,841 - ERROR - Error processing data\test\No-5-sec-11.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:17:25,075 - ERROR - Error processing data\test\No-8-sec-6.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:17:51,979 - INFO - Using device: cuda
+2024-10-27 22:17:52,167 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:17:52,186 - ERROR - Error processing data\test\No-14-sec-13.las: name 'predictions' is not defined
+2024-10-27 22:17:52,205 - ERROR - Error processing data\test\No-14-sec-24.las: name 'predictions' is not defined
+2024-10-27 22:17:52,421 - ERROR - Error processing data\test\No-14-sec-3.las: name 'predictions' is not defined
+2024-10-27 22:17:52,571 - ERROR - Error processing data\test\No-14-sec-8.las: name 'predictions' is not defined
+2024-10-27 22:17:53,327 - ERROR - Error processing data\test\No-5-sec-11.las: name 'predictions' is not defined
+2024-10-27 22:17:53,618 - ERROR - Error processing data\test\No-8-sec-6.las: name 'predictions' is not defined
+2024-10-27 22:18:07,547 - INFO - Using device: cuda
+2024-10-27 22:18:07,764 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:18:07,847 - INFO - Successfully processed and saved: \predicted_No-14-sec-13.las
+2024-10-27 22:18:07,868 - INFO - Successfully processed and saved: \predicted_No-14-sec-24.las
+2024-10-27 22:18:08,149 - INFO - Successfully processed and saved: \predicted_No-14-sec-3.las
+2024-10-27 22:18:08,306 - INFO - Successfully processed and saved: \predicted_No-14-sec-8.las
+2024-10-27 22:18:08,970 - INFO - Successfully processed and saved: \predicted_No-5-sec-11.las
+2024-10-27 22:18:09,232 - INFO - Successfully processed and saved: \predicted_No-8-sec-6.las
+2024-10-27 22:18:34,210 - INFO - Using device: cuda
+2024-10-27 22:18:34,392 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:18:34,410 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-13.las
+2024-10-27 22:18:34,428 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-24.las
+2024-10-27 22:18:34,647 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-3.las
+2024-10-27 22:18:34,797 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-8.las
+2024-10-27 22:18:35,435 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-11.las
+2024-10-27 22:18:35,662 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-8-sec-6.las
+2024-10-27 22:20:16,532 - INFO - Using device: cuda
+2024-10-27 22:20:16,700 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:20:16,718 - ERROR - Error processing data\test\No-14-sec-13.las: name 'las' is not defined
+2024-10-27 22:20:16,736 - ERROR - Error processing data\test\No-14-sec-24.las: name 'las' is not defined
+2024-10-27 22:20:17,004 - ERROR - Error processing data\test\No-14-sec-3.las: name 'las' is not defined
+2024-10-27 22:20:17,158 - ERROR - Error processing data\test\No-14-sec-8.las: name 'las' is not defined
+2024-10-27 22:20:17,816 - ERROR - Error processing data\test\No-5-sec-11.las: name 'las' is not defined
+2024-10-27 22:20:18,056 - ERROR - Error processing data\test\No-8-sec-6.las: name 'las' is not defined
+2024-10-27 22:20:32,190 - INFO - Using device: cuda
+2024-10-27 22:20:32,377 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:20:32,409 - ERROR - Error processing data\test\No-14-sec-13.las: name 'x' is not defined
+2024-10-27 22:20:32,429 - ERROR - Error processing data\test\No-14-sec-24.las: name 'x' is not defined
+2024-10-27 22:20:32,665 - ERROR - Error processing data\test\No-14-sec-3.las: name 'x' is not defined
+2024-10-27 22:20:32,817 - ERROR - Error processing data\test\No-14-sec-8.las: name 'x' is not defined
+2024-10-27 22:20:33,491 - ERROR - Error processing data\test\No-5-sec-11.las: name 'x' is not defined
+2024-10-27 22:20:33,717 - ERROR - Error processing data\test\No-8-sec-6.las: name 'x' is not defined
+2024-10-27 22:23:05,933 - INFO - Using device: cuda
+2024-10-27 22:23:06,114 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:23:06,170 - ERROR - Error processing data\test\No-14-sec-13.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:23:06,230 - ERROR - Error processing data\test\No-14-sec-24.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:23:06,991 - ERROR - Error processing data\test\No-14-sec-3.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:23:07,483 - ERROR - Error processing data\test\No-14-sec-8.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:23:09,843 - ERROR - Error processing data\test\No-5-sec-11.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:23:10,532 - ERROR - Error processing data\test\No-8-sec-6.las: unsupported operand type(s) for +: 'WindowsPath' and 'str'
+2024-10-27 22:23:42,233 - INFO - Using device: cuda
+2024-10-27 22:23:42,419 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:23:42,487 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-13.las
+2024-10-27 22:23:42,573 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-24.las
+2024-10-27 22:23:43,709 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-3.las
+2024-10-27 22:23:44,410 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-8.las
+2024-10-27 22:23:47,651 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-11.las
+2024-10-27 22:23:48,524 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-8-sec-6.las
+2024-10-27 22:26:47,922 - INFO - Using device: cuda
+2024-10-27 22:26:48,133 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:26:48,208 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-13.las
+2024-10-27 22:26:48,293 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-24.las
+2024-10-27 22:26:49,603 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-3.las
+2024-10-27 22:26:50,381 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-8.las
+2024-10-27 22:26:54,258 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-11.las
+2024-10-27 22:26:55,541 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-8-sec-6.las
+2024-10-27 22:28:04,135 - INFO - Using device: cuda
+2024-10-27 22:28:04,325 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:28:04,391 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:04,469 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:05,546 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:06,241 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:09,786 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:10,766 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:15,957 - INFO - Using device: cuda
+2024-10-27 22:28:16,141 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:28:16,207 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:16,282 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:17,318 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:18,001 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:21,400 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:22,315 - INFO - Successfully processed and saved: results/predicted_las/predicted_Bridge4_1.las
+2024-10-27 22:28:55,737 - INFO - Using device: cuda
+2024-10-27 22:28:55,942 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:28:56,010 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-13.las
+2024-10-27 22:28:56,091 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-24.las
+2024-10-27 22:28:57,169 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-3.las
+2024-10-27 22:28:57,887 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-8.las
+2024-10-27 22:29:01,412 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-11.las
+2024-10-27 22:29:02,278 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-8-sec-6.las
+2024-10-27 22:30:19,955 - INFO - Using device: cuda
+2024-10-27 22:30:20,162 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:30:36,708 - INFO - Using device: cuda
+2024-10-27 22:30:36,900 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:31:30,691 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 22:32:28,403 - INFO - Using device: cuda
+2024-10-27 22:32:28,602 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 22:33:23,166 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 22:34:26,626 - ERROR - Error processing data\test\No-14-sec-24.las: could not broadcast input array from shape (4096,) into shape (2740,)
+2024-10-27 23:10:36,440 - INFO - Using device: cuda
+2024-10-27 23:10:36,653 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:11:30,011 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 23:12:31,943 - ERROR - Error processing data\test\No-14-sec-24.las: could not broadcast input array from shape (4096,) into shape (2740,)
+2024-10-27 23:13:43,244 - INFO - Using device: cuda
+2024-10-27 23:13:43,473 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:13:43,476 - INFO - Processing data\test\No-14-sec-13.las
+2024-10-27 23:14:36,251 - ERROR - Error processing data\test\No-14-sec-13.las: Prediction length 77 doesn't match points length 314738
+2024-10-27 23:14:36,252 - INFO - Processing data\test\No-14-sec-24.las
+2024-10-27 23:17:24,855 - INFO - Using device: cuda
+2024-10-27 23:17:25,064 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:17:25,068 - INFO - Processing data\test\No-14-sec-13.las
+2024-10-27 23:18:16,264 - ERROR - Error processing data\test\No-14-sec-13.las: could not broadcast input array from shape (4096,) into shape (3442,)
+2024-10-27 23:18:16,265 - INFO - Processing data\test\No-14-sec-24.las
+2024-10-27 23:19:07,804 - INFO - Using device: cuda
+2024-10-27 23:19:07,991 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:19:07,994 - INFO - Processing data\test\No-14-sec-13.las
+2024-10-27 23:20:00,743 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-13.las
+2024-10-27 23:20:00,744 - INFO - Processing data\test\No-14-sec-24.las
+2024-10-27 23:20:59,150 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-24.las
+2024-10-27 23:20:59,150 - INFO - Processing data\test\No-14-sec-3.las
+2024-10-27 23:21:56,575 - INFO - Using device: cuda
+2024-10-27 23:21:56,788 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:21:56,791 - INFO - Processing data\test\No-14-sec-13.las
+2024-10-27 23:21:56,839 - ERROR - Error processing data\test\No-14-sec-13.las: 'SubFieldView' object has no attribute 'astype'
+2024-10-27 23:21:56,839 - INFO - Processing data\test\No-14-sec-24.las
+2024-10-27 23:21:56,899 - ERROR - Error processing data\test\No-14-sec-24.las: 'SubFieldView' object has no attribute 'astype'
+2024-10-27 23:21:56,900 - INFO - Processing data\test\No-14-sec-3.las
+2024-10-27 23:21:57,685 - ERROR - Error processing data\test\No-14-sec-3.las: 'SubFieldView' object has no attribute 'astype'
+2024-10-27 23:21:57,691 - INFO - Processing data\test\No-14-sec-8.las
+2024-10-27 23:21:58,173 - ERROR - Error processing data\test\No-14-sec-8.las: 'SubFieldView' object has no attribute 'astype'
+2024-10-27 23:21:58,178 - INFO - Processing data\test\No-5-sec-11.las
+2024-10-27 23:22:00,467 - ERROR - Error processing data\test\No-5-sec-11.las: 'SubFieldView' object has no attribute 'astype'
+2024-10-27 23:22:00,489 - INFO - Processing data\test\No-8-sec-6.las
+2024-10-27 23:22:01,084 - ERROR - Error processing data\test\No-8-sec-6.las: 'SubFieldView' object has no attribute 'astype'
+2024-10-27 23:25:19,169 - INFO - Using device: cuda
+2024-10-27 23:25:19,383 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:25:19,390 - INFO - Processing data\test\No-14-sec-13.las
+2024-10-27 23:25:19,459 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-13.las
+2024-10-27 23:25:19,459 - INFO - Processing data\test\No-14-sec-24.las
+2024-10-27 23:25:19,539 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-24.las
+2024-10-27 23:25:19,540 - INFO - Processing data\test\No-14-sec-3.las
+2024-10-27 23:25:20,641 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-3.las
+2024-10-27 23:25:20,641 - INFO - Processing data\test\No-14-sec-8.las
+2024-10-27 23:25:21,307 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-8.las
+2024-10-27 23:25:21,309 - INFO - Processing data\test\No-5-sec-11.las
+2024-10-27 23:25:24,836 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-11.las
+2024-10-27 23:25:24,837 - INFO - Processing data\test\No-8-sec-6.las
+2024-10-27 23:25:25,830 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-8-sec-6.las
+2024-10-27 23:27:35,601 - INFO - Using device: cuda
+2024-10-27 23:27:35,810 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:27:35,813 - INFO - Processing data\test\No-14-sec-13.las
+2024-10-27 23:27:35,871 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-13.las
+2024-10-27 23:27:35,871 - INFO - Processing data\test\No-14-sec-24.las
+2024-10-27 23:27:35,937 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-24.las
+2024-10-27 23:27:35,937 - INFO - Processing data\test\No-14-sec-3.las
+2024-10-27 23:27:36,861 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-3.las
+2024-10-27 23:27:36,862 - INFO - Processing data\test\No-14-sec-8.las
+2024-10-27 23:27:37,437 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-8.las
+2024-10-27 23:27:37,439 - INFO - Processing data\test\No-5-sec-11.las
+2024-10-27 23:27:40,395 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-11.las
+2024-10-27 23:27:40,396 - INFO - Processing data\test\No-8-sec-6.las
+2024-10-27 23:27:41,147 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-8-sec-6.las
+2024-10-27 23:34:40,569 - INFO - Using device: cuda
+2024-10-27 23:34:40,795 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:34:40,798 - INFO - Processing data\test\No-1-sec-2.las
+2024-10-27 23:39:23,250 - INFO - Using device: cuda
+2024-10-27 23:39:23,481 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:39:23,484 - INFO - Processing data\test\No-1-sec-2.las
+2024-10-27 23:40:06,125 - ERROR - Error processing data\test\No-1-sec-2.las: all input arrays must have the same shape
+2024-10-27 23:40:06,212 - INFO - Processing data\test\No-14-sec-17.las
+2024-10-27 23:40:34,247 - ERROR - Error processing data\test\No-14-sec-17.las: all input arrays must have the same shape
+2024-10-27 23:40:34,306 - INFO - Processing data\test\No-2-sec-4.las
+2024-10-27 23:42:21,704 - INFO - Using device: cuda
+2024-10-27 23:42:21,891 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-27 23:42:21,895 - INFO - Processing data\test\No-1-sec-2.las
+2024-10-27 23:43:02,986 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-1-sec-2.las
+2024-10-27 23:43:02,987 - INFO - Processing data\test\No-14-sec-17.las
+2024-10-27 23:43:31,607 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-17.las
+2024-10-27 23:43:31,608 - INFO - Processing data\test\No-2-sec-4.las
+2024-10-27 23:44:17,970 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-2-sec-4.las
+2024-10-27 23:44:17,970 - INFO - Processing data\test\No-3-sec-7.las
+2024-10-27 23:45:01,702 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-3-sec-7.las
+2024-10-27 23:45:01,703 - INFO - Processing data\test\No-4-sec-4.las
