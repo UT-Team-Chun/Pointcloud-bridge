@@ -135,7 +135,7 @@ def main():
     
     # 加载模型
     model = EnhancedPointNet2(num_classes=8).to(device)
-    checkpoint_path = 'experiments/exp_20241027_193536/best_model.pth'
+    checkpoint_path = 'experiments/exp_20241028_002904/best_model.pth'
     
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, map_location=device)

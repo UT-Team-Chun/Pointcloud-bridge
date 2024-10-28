@@ -213,3 +213,100 @@
 2024-10-27 23:44:17,970 - INFO - Processing data\test\No-3-sec-7.las
 2024-10-27 23:45:01,702 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-3-sec-7.las
 2024-10-27 23:45:01,703 - INFO - Processing data\test\No-4-sec-4.las
+2024-10-28 09:07:19,595 - INFO - Using device: cuda
+2024-10-28 09:07:19,830 - INFO - Loaded model from experiments/exp_20241027_193536/best_model.pth
+2024-10-28 09:07:19,834 - INFO - Processing data\test\No-12-sec-2.las
+2024-10-28 09:07:29,008 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-12-sec-2.las
+2024-10-28 09:07:29,008 - INFO - Processing data\test\No-12-sec-5.las
+2024-10-28 09:07:36,372 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-12-sec-5.las
+2024-10-28 09:07:36,373 - INFO - Processing data\test\No-14-sec-1.las
+2024-10-28 09:07:58,048 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-1.las
+2024-10-28 09:07:58,049 - INFO - Processing data\test\No-14-sec-12.las
+2024-10-28 09:08:12,992 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-12.las
+2024-10-28 09:08:12,992 - INFO - Processing data\test\No-14-sec-15.las
+2024-10-28 09:08:23,565 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-15.las
+2024-10-28 09:08:23,566 - INFO - Processing data\test\No-14-sec-20.las
+2024-10-28 09:08:41,678 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-20.las
+2024-10-28 09:08:41,679 - INFO - Processing data\test\No-14-sec-23.las
+2024-10-28 09:08:52,382 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-23.las
+2024-10-28 09:08:52,383 - INFO - Processing data\test\No-14-sec-30.las
+2024-10-28 09:09:05,650 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-30.las
+2024-10-28 09:09:05,650 - INFO - Processing data\test\No-14-sec-5.las
+2024-10-28 09:09:43,507 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-5.las
+2024-10-28 09:09:43,507 - INFO - Processing data\test\No-14-sec-6.las
+2024-10-28 09:10:20,144 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-6.las
+2024-10-28 09:10:20,145 - INFO - Processing data\test\No-15-sec-7.las
+2024-10-28 09:12:22,184 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-15-sec-7.las
+2024-10-28 09:12:22,184 - INFO - Processing data\test\No-16-sec-1.las
+2024-10-28 09:12:44,820 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-16-sec-1.las
+2024-10-28 09:12:44,821 - INFO - Processing data\test\No-18-sec-8.las
+2024-10-28 09:13:21,422 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-18-sec-8.las
+2024-10-28 09:13:21,423 - INFO - Processing data\test\No-2-sec-4.las
+2024-10-28 09:13:48,686 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-2-sec-4.las
+2024-10-28 09:13:48,686 - INFO - Processing data\test\No-20-sec-3.las
+2024-10-28 09:14:07,950 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-20-sec-3.las
+2024-10-28 09:14:07,950 - INFO - Processing data\test\No-4-sec-33.las
+2024-10-28 09:15:21,159 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-4-sec-33.las
+2024-10-28 09:15:21,161 - INFO - Processing data\test\No-4-sec-9.las
+2024-10-28 09:16:47,185 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-4-sec-9.las
+2024-10-28 09:16:47,186 - INFO - Processing data\test\No-5-sec-18.las
+2024-10-28 09:17:37,745 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-18.las
+2024-10-28 09:17:37,745 - INFO - Processing data\test\No-5-sec-22.las
+2024-10-28 09:17:52,953 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-22.las
+2024-10-28 09:17:52,954 - INFO - Processing data\test\No-5-sec-30.las
+2024-10-28 09:18:14,222 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-30.las
+2024-10-28 09:18:14,222 - INFO - Processing data\test\No-5-sec-32.las
+2024-10-28 09:18:51,303 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-32.las
+2024-10-28 09:18:51,303 - INFO - Processing data\test\No-5-sec-33.las
+2024-10-28 09:19:38,580 - INFO - Using device: cuda
+2024-10-28 09:19:38,799 - INFO - Loaded model from experiments/exp_20241028_002904/best_model.pth
+2024-10-28 09:19:38,802 - INFO - Processing data\test\No-12-sec-2.las
+2024-10-28 09:19:49,726 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-12-sec-2.las
+2024-10-28 09:19:49,728 - INFO - Processing data\test\No-12-sec-5.las
+2024-10-28 09:19:57,520 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-12-sec-5.las
+2024-10-28 09:19:57,520 - INFO - Processing data\test\No-14-sec-1.las
+2024-10-28 09:20:20,976 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-1.las
+2024-10-28 09:20:20,976 - INFO - Processing data\test\No-14-sec-12.las
+2024-10-28 09:20:36,426 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-12.las
+2024-10-28 09:20:36,427 - INFO - Processing data\test\No-14-sec-15.las
+2024-10-28 09:20:47,015 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-15.las
+2024-10-28 09:20:47,016 - INFO - Processing data\test\No-14-sec-20.las
+2024-10-28 09:21:03,922 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-20.las
+2024-10-28 09:21:03,923 - INFO - Processing data\test\No-14-sec-23.las
+2024-10-28 09:21:15,154 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-23.las
+2024-10-28 09:21:15,154 - INFO - Processing data\test\No-14-sec-30.las
+2024-10-28 09:21:29,494 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-30.las
+2024-10-28 09:21:29,495 - INFO - Processing data\test\No-14-sec-5.las
+2024-10-28 09:22:08,291 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-5.las
+2024-10-28 09:22:08,292 - INFO - Processing data\test\No-14-sec-6.las
+2024-10-28 09:22:44,492 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-14-sec-6.las
+2024-10-28 09:22:44,492 - INFO - Processing data\test\No-15-sec-7.las
+2024-10-28 09:24:44,010 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-15-sec-7.las
+2024-10-28 09:24:44,010 - INFO - Processing data\test\No-16-sec-1.las
+2024-10-28 09:25:07,281 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-16-sec-1.las
+2024-10-28 09:25:07,282 - INFO - Processing data\test\No-18-sec-8.las
+2024-10-28 09:25:44,768 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-18-sec-8.las
+2024-10-28 09:25:44,769 - INFO - Processing data\test\No-2-sec-4.las
+2024-10-28 09:26:12,322 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-2-sec-4.las
+2024-10-28 09:26:12,323 - INFO - Processing data\test\No-20-sec-3.las
+2024-10-28 09:26:31,949 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-20-sec-3.las
+2024-10-28 09:26:31,950 - INFO - Processing data\test\No-4-sec-33.las
+2024-10-28 09:27:45,415 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-4-sec-33.las
+2024-10-28 09:27:45,415 - INFO - Processing data\test\No-4-sec-9.las
+2024-10-28 09:29:04,781 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-4-sec-9.las
+2024-10-28 09:29:04,782 - INFO - Processing data\test\No-5-sec-18.las
+2024-10-28 09:29:50,212 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-18.las
+2024-10-28 09:29:50,213 - INFO - Processing data\test\No-5-sec-22.las
+2024-10-28 09:30:03,258 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-22.las
+2024-10-28 09:30:03,258 - INFO - Processing data\test\No-5-sec-30.las
+2024-10-28 09:30:23,309 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-30.las
+2024-10-28 09:30:23,310 - INFO - Processing data\test\No-5-sec-32.las
+2024-10-28 09:30:57,516 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-32.las
+2024-10-28 09:30:57,518 - INFO - Processing data\test\No-5-sec-33.las
+2024-10-28 09:31:41,287 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-5-sec-33.las
+2024-10-28 09:31:41,287 - INFO - Processing data\test\No-6-sec-1.las
+2024-10-28 09:31:55,201 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-6-sec-1.las
+2024-10-28 09:31:55,202 - INFO - Processing data\test\No-6-sec-8.las
+2024-10-28 09:32:27,940 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-6-sec-8.las
+2024-10-28 09:32:27,940 - INFO - Processing data\test\No-8-sec-3.las
+2024-10-28 09:32:49,138 - INFO - Successfully processed and saved: results\predicted_las\predicted_No-8-sec-3.las

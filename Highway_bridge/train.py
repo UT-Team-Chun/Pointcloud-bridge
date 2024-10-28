@@ -67,7 +67,7 @@ config = {
     'batch_size': 32,
     'num_workers': 4,
     'learning_rate': 0.001,
-    'num_epochs': 100,
+    'num_epochs': 300,
     'device': 'cuda' if torch.cuda.is_available() else 'cpu'
 }
 
@@ -139,7 +139,8 @@ def train():
         train_acc = AverageMeter()
         
         # 创建进度条
-        pbar = tqdm(train_loader, desc=f'Epoch [{epoch+1}/{config["num_epochs"]}] Training')
+        total_samples = len(train_dataset)
+        pbar = tqdm(train_loader, desc=f'Epoch [{epoch+1}/{config["num_epochs"]}] Training',total=total_samples//config['batch_size'])
         
         for batch in pbar:
             points = batch['points'].to(device)
