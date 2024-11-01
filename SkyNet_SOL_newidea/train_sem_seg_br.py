@@ -29,7 +29,8 @@ for i, cat in enumerate(seg_classes.keys()):
 # pointnet_sem_seg, pointnet2_sem_seg, pointnet2_sem_seg_msg
 # log_dir = 'PointNet2_0.05_CEL_5m_95ol'
 
-log_dir = 'PointNet2_0.05_SOL_a=200_10m_95ol_norm'
+#log_dir = 'PointNet2_0.05_SOL_a=200_10m_95ol_norm'
+log_dir = 'test-cy'
 
 def parse_args():
     parser = argparse.ArgumentParser('Model')
