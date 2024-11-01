@@ -67,7 +67,7 @@ config = {
     'batch_size': 32,
     'num_workers': 4,
     'learning_rate': 0.001,
-    'num_epochs': 300,
+    'num_epochs': 600,
     'device': 'cuda' if torch.cuda.is_available() else 'cpu'
 }
 
@@ -97,7 +97,7 @@ def train():
         transform=True
     )
     val_dataset = BridgePointCloudDataset(
-        data_dir='data/val',
+        data_dir='data/test',
         num_points=config['num_points'],
         transform=False
     )
@@ -121,7 +121,8 @@ def train():
     logger.info(f"Val dataset size: {len(val_dataset)}")
     
     # 创建模型
-    model = EnhancedPointNet2(num_classes=8).to(device)
+    num_classes = 5
+    model = EnhancedPointNet2(num_classes).to(device)
     
     # 损失函数和优化器
     criterion = nn.CrossEntropyLoss()
@@ -172,8 +173,9 @@ def train():
         model.eval()
         val_loss = AverageMeter()
         val_acc = AverageMeter()
-        class_correct = torch.zeros(8).to(device)
-        class_total = torch.zeros(8).to(device)
+        confusion_matrix = torch.zeros(num_classes, num_classes).to(device)  # 8个类别的混淆矩阵
+        class_correct = torch.zeros(num_classes).to(device)
+        class_total = torch.zeros(num_classes).to(device)
         
         with torch.no_grad():
             for batch in tqdm(val_loader, desc='Validating'):
@@ -193,14 +195,37 @@ def train():
                 val_acc.update(acc.item())
                 
                 # 计算每个类别的准确率
-                for i in range(8):
+                for i in range(num_classes):
                     mask = labels == i
                     class_correct[i] += pred[mask].eq(labels[mask]).sum()
                     class_total[i] += mask.sum()
+                
+                # 更新混淆矩阵
+                for t, p in zip(labels.view(-1), pred.view(-1)):
+                    confusion_matrix[t.long(), p.long()] += 1
         
         # 计算每个类别的准确率
         class_acc = class_correct / (class_total + 1e-6)
         
+        # 在验证循环结束后，class_acc计算之后添加
+        #使用矩阵运算而不是循环来计算IoU
+        #保持在GPU上计算，减少CPU和GPU之间的数据传输
+        # 计算每个类别的IoU
+        intersection = torch.diag(confusion_matrix)  # 对角线上的值是正确预测的数量
+        union = confusion_matrix.sum(1) + confusion_matrix.sum(0) - torch.diag(confusion_matrix)  # 并集
+        iou = intersection / (union + 1e-6)  # 每个类别的IoU
+        miou = iou.mean()  # mIoU
+
+        # 记录到日志和tensorboard
+        logger.info(f"Mean IoU: {miou.item()*100:.2f}%")
+        writer.add_scalar('Metrics/mIoU', miou.item(), epoch)
+
+        # 记录每个类别的IoU
+        for i, class_iou in enumerate(iou):
+            writer.add_scalar(f'IoU/class_{i}', class_iou.item(), epoch)
+            logger.info(f"Class {i} IoU: {class_iou.item()*100:.2f}%")
+
+
         # 记录训练信息
         logger.info(f"\nEpoch {epoch+1}/{config['num_epochs']}:")
         logger.info(f"Train Loss: {train_loss.avg:.4f}, Train Acc: {train_acc.avg*100:.2f}%")

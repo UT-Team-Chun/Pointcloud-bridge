@@ -109,7 +109,7 @@ def main():
     
     # 加载模型
     model = EnhancedPointNet2(num_classes=8).to(device)
-    checkpoint_path = 'experiments/exp_20241027_193536/best_model.pth'  # 替换为你的模型路径
+    checkpoint_path = 'experiments/exp_lindata/best_model.pth'  # 替换为你的模型路径
     
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, weights_only=True)
@@ -122,7 +122,7 @@ def main():
     model.eval()
     
     # 创建输出目录
-    output_dir = Path('results/predicted_las')
+    output_dir = Path('data/predicted_las')
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # 处理测试文件夹中的所有.las文件

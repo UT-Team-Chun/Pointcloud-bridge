@@ -1,0 +1,18 @@
+2024-10-30 01:25:29,826 - INFO - Training configuration:
+2024-10-30 01:25:29,826 - INFO - num_points: 4096
+2024-10-30 01:25:29,827 - INFO - batch_size: 32
+2024-10-30 01:25:29,827 - INFO - num_workers: 4
+2024-10-30 01:25:29,827 - INFO - learning_rate: 0.001
+2024-10-30 01:25:29,827 - INFO - num_epochs: 300
+2024-10-30 01:25:29,827 - INFO - device: cuda
+2024-10-30 01:25:29,827 - INFO - Using device: cuda
+2024-10-30 01:25:29,827 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "d:\0-work\pointcloud\Pointcloud-bridge\Highway_bridge\train.py", line 275, in <module>
+    train()
+  File "d:\0-work\pointcloud\Pointcloud-bridge\Highway_bridge\train.py", line 94, in train
+    train_dataset = BridgePointCloudDataset(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\0-work\pointcloud\Pointcloud-bridge\Highway_bridge\utils\data_utils.py", line 24, in __init__
+    raise ValueError(f"数据目录不存在: {data_dir}")
+ValueError: 数据目录不存在: data/train
