@@ -29,7 +29,8 @@ for i, cat in enumerate(seg_classes.keys()):
 # pointnet_sem_seg, pointnet2_sem_seg, pointnet2_sem_seg_msg
 # log_dir = 'PointNet2_0.05_CEL_5m_95ol'
 
-log_dir = 'PointNet2_0.05_SOL_a=200_10m_95ol_norm'
+#log_dir = 'PointNet2_0.05_SOL_a=200_10m_95ol_norm'
+log_dir = 'test-cy'
 
 def parse_args():
     parser = argparse.ArgumentParser('Model')
@@ -75,7 +76,7 @@ def main(args):
     logger = logging.getLogger("Model")
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    file_handler = logging.FileHandler('%s/%s.txt' % (log_dir, args.model))
+    file_handler = logging.FileHandler('%s/%s.txt' % (log_dir, args.models))
     file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
@@ -103,8 +104,8 @@ def main(args):
     log_string("The number of test data is: %d" % len(TEST_DATASET))
 
     '''MODEL LOADING'''
-    MODEL = importlib.import_module(args.model)
-    shutil.copy(os.path.join(ROOT_DIR, 'models/%s.py' % args.model), str(experiment_dir))
+    MODEL = importlib.import_module(args.models)
+    shutil.copy(os.path.join(ROOT_DIR, 'models/%s.py' % args.models), str(experiment_dir))
     # shutil.copy('models/pointnet_util.py', str(experiment_dir))
 
     classifier = MODEL.get_model(NUM_CLASSES).cuda()

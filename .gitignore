@@ -8,3 +8,5 @@ data/
 Highway_bridge/data
 Highway_bridge/data/
 SkyNet_SOL_newidea/data/
+*.las
+/SkyNet_SOL_newidea/log/sem_seg/save-1/PointNet2_0.05_SOL_a=200_10m_95ol_norm/visual

@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from torch.utils.data import Dataset
-
+import laspy
 
 def read_las_file(las_path):
     """
@@ -178,7 +178,8 @@ class ScannetDatasetWholeScene():
         self.bridge_coord_min, self.bridge_coord_max = [], []
         for file in self.file_list:
             bridge_path = os.path.join(data_folder, file)
-            data = np.loadtxt(bridge_path)  # xyzrgbl, N * 7
+            #data = np.loadtxt(bridge_path)  # xyzrgbl, N * 7
+            data = read_las_file(bridge_path)
             points = data[: , : 3]
             self.scene_points_list.append(data[: , : 6]) # xyzrgb
             self.semantic_labels_list.append(data[: , 6]) # label
