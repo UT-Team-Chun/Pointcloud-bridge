@@ -183,3 +183,75 @@ class FeaturePropagation(nn.Module):
             new_points = F.relu(bn(conv(new_points)))
         
         return new_points
+
+
+# 在 pointnet2_utils.py 中添加
+class MultiScaleSetAbstraction(nn.Module):
+    def __init__(self, npoint, radius_list, nsample_list, in_channel, mlp):
+        super().__init__()
+        self.npoint = npoint
+        self.radius_list = radius_list
+        self.nsample_list = nsample_list
+
+        # 每个尺度的特征提取
+        self.conv_blocks = nn.ModuleList()
+        self.bn_blocks = nn.ModuleList()
+
+        for i in range(len(radius_list)):
+            convs = nn.ModuleList()
+            bns = nn.ModuleList()
+            last_channel = in_channel  # 移除+3，因为grouped_xyz_norm会在forward中单独处理
+
+            for out_channel in mlp:
+                convs.append(nn.Conv2d(last_channel, out_channel, 1))
+                bns.append(nn.BatchNorm2d(out_channel))
+                last_channel = out_channel
+
+            self.conv_blocks.append(convs)
+            self.bn_blocks.append(bns)
+
+    def forward(self, xyz, points):
+        """
+        Args:
+            xyz: (B, N, 3) 坐标
+            points: (B, C, N) 特征
+        """
+        B, N, _ = xyz.shape
+        S = self.npoint
+
+        # FPS采样中心点
+        fps_idx = farthest_point_sample(xyz, self.npoint)
+        new_xyz = index_points(xyz, fps_idx)
+
+        # 多尺度特征
+        multi_scale_features = []
+
+        for i, (radius, nsample) in enumerate(zip(self.radius_list, self.nsample_list)):
+            # 球查询
+            idx = query_ball_point(radius, nsample, xyz, new_xyz)
+            grouped_xyz = index_points(xyz, idx)  # (B, npoint, nsample, 3)
+            grouped_xyz_norm = grouped_xyz - new_xyz.view(B, S, 1, 3)
+
+            if points is not None:
+                grouped_points = index_points(points.transpose(1, 2), idx)  # [B, npoint, nsample, C]
+                grouped_points = torch.cat([grouped_xyz_norm, grouped_points], dim=-1)
+            else:
+                grouped_points = grouped_xyz_norm
+
+            # 特征提取
+            grouped_points = grouped_points.permute(0, 3, 1, 2)  # [B, C+3, npoint, nsample]
+
+            # 应用卷积
+            for j, conv in enumerate(self.conv_blocks[i]):
+                bn = self.bn_blocks[i][j]
+                grouped_points = F.relu(bn(conv(grouped_points)))
+
+            # 最大池化
+            grouped_points = torch.max(grouped_points, -1)[0]  # [B, C, npoint]
+            multi_scale_features.append(grouped_points)
+
+        # 合并多尺度特征
+        new_points = torch.cat(multi_scale_features, dim=1)
+
+        return new_xyz, new_points
+

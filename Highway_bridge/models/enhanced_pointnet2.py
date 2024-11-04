@@ -2,8 +2,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .pointnet2_utils import EnhancedSetAbstraction, FeaturePropagation
-from .attention_modules import PositionalEncoding, BoundaryAwareModule
+from .pointnet2_utils import EnhancedSetAbstraction, FeaturePropagation, MultiScaleSetAbstraction
+from .attention_modules import PositionalEncoding, BoundaryAwareModule, EnhancedAttentionModule, GeometricFeatureExtraction
 
 class EnhancedPointNet2(nn.Module):
     def __init__(self, num_classes=8):
@@ -14,52 +14,73 @@ class EnhancedPointNet2(nn.Module):
         self.sa1 = EnhancedSetAbstraction(1024, 0.1, 32, 6+64, [64, 64, 128])
         self.sa2 = EnhancedSetAbstraction(256, 0.2, 32, 131, [128, 128, 256])
         self.sa3 = EnhancedSetAbstraction(64, 0.4, 32, 259, [256, 256, 512])
-        
+
+        # 1st layer: input = 3(xyz) + 3(RGB) + 64(pos_encoding) = 70
+        self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2],[16, 32], 6+64, [64, 64, 128])
+        # 2nd layer: input = 128*2 (Multi-scale connection)
+        self.sa2 = MultiScaleSetAbstraction(256,[0.2, 0.4],[16, 32], 128*2+3,[128, 128, 256])
+        self.sa3 = MultiScaleSetAbstraction(64,[0.4, 0.8],[16, 32], 256*2+3,[256, 256, 512])
+        #  npoint=1024,radius_list=[0.1, 0.2], nsample_list=[16, 32], in_channel=6+64, mlp=[64, 64, 128]
+
+        # attention module
+        self.attention1 = EnhancedAttentionModule(256) #128 * 2
+        self.attention2 = EnhancedAttentionModule(256 * 2)
+        self.attention3 = EnhancedAttentionModule(512 * 2)
+
+        # Geometric feature extraction
+        self.geometric1 = GeometricFeatureExtraction(128 * 2)
+        self.geometric2 = GeometricFeatureExtraction(256 * 2)
+        self.geometric3 = GeometricFeatureExtraction(512 * 2)
+
         # Boundary aware modules
         self.boundary1 = BoundaryAwareModule(128)
         self.boundary2 = BoundaryAwareModule(256)
         self.boundary3 = BoundaryAwareModule(512)
-        
+
         # Decoder
-        # 解码器部分调整
-        self.fp3 = FeaturePropagation(768, [256, 256])  # 修改为768 (512 + 256)
-        self.fp2 = FeaturePropagation(384, [256, 128])  # 256 + 128 = 387
-        self.fp1 = FeaturePropagation(128, [128, 128, 128])  # 128 + 3 = 131
-        
+        self.fp3 = FeaturePropagation(1536, [256, 256])  # 512*2 + 256*2
+        self.fp2 = FeaturePropagation(512, [256, 128])  # 256 + 128*2
+        self.fp1 = FeaturePropagation(128, [128, 128, 128]) # 128 + 64
+
         # Final layers
         self.conv1 = nn.Conv1d(128, 128, 1)
         self.bn1 = nn.BatchNorm1d(128)
         self.drop1 = nn.Dropout(0.5)
         self.conv2 = nn.Conv1d(128, num_classes, 1)
-    
+
     def forward(self, xyz, points):
         """
         xyz: [B, N, 3]
         points: [B, N, 3] (RGB)
         """
+
         # Add positional encoding
-        pos_enc = self.pos_encoding(xyz)  # [B, 64, N]
-        points = torch.cat([points.transpose(1,2), pos_enc], dim=1)  # [B, 67, N]
-        
-        
-        # Encoder
+        pos_enc = self.pos_encoding(xyz) # [B, 64, N]
+        # Change the order of dimensions
+        points = points.transpose(1, 2)  # [B, 3, N]
+        points = torch.cat([points, pos_enc], dim=1)  # Merge Features: [B, 70, N]
+
+        # Encoder with multi-scale feature extraction
         l1_xyz, l1_points = self.sa1(xyz, points)
-        l1_points = self.boundary1(l1_points, l1_xyz)
-        
+        l1_points = self.attention1(l1_points)
+        l1_points = self.geometric1(l1_points, l1_xyz)
+
         l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
-        l2_points = self.boundary2(l2_points, l2_xyz)
-        
+        l2_points = self.attention2(l2_points)
+        l2_points = self.geometric2(l2_points, l2_xyz)
+
         l3_xyz, l3_points = self.sa3(l2_xyz, l2_points)
-        l3_points = self.boundary3(l3_points, l3_xyz)
-        
+        l3_points = self.attention3(l3_points)
+        l3_points = self.geometric3(l3_points, l3_xyz)
+
         # Decoder
         l2_points = self.fp3(l2_xyz, l3_xyz, l2_points, l3_points)
         l1_points = self.fp2(l1_xyz, l2_xyz, l1_points, l2_points)
         l0_points = self.fp1(xyz, l1_xyz, None, l1_points)
-        
+
         # FC layers
         feat = F.relu(self.bn1(self.conv1(l0_points)))
         feat = self.drop1(feat)
         out = self.conv2(feat)
-        
+
         return out

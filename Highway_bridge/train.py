@@ -4,16 +4,47 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
+#tensorboard --logdir ./logs
 import numpy as np
 from pathlib import Path
 from tqdm import tqdm
 import logging
 import datetime
 import os
-
-
+import torch.nn.functional as F
 from models.enhanced_pointnet2 import EnhancedPointNet2
 from utils.data_utils import BridgePointCloudDataset
+
+
+class WeightedCrossEntropyLoss(nn.Module): #new
+    def __init__(self, weight=None):
+        super().__init__()
+        self.weight = weight
+
+    def forward(self, pred, target):
+        # 计算每个类别的权重
+        if self.weight is None:
+            weight = torch.ones(pred.size(1)).to(pred.device)
+        else:
+            weight = self.weight
+
+        # 应用权重的交叉熵损失
+        loss = F.cross_entropy(pred, target, weight=weight)
+        return loss
+
+
+def compute_class_weights(dataset, num_classes=None): #new
+    """计算类别权重"""
+    class_counts = torch.zeros(num_classes)
+    for batch in dataset:
+        labels = batch['labels']
+        for i in range(num_classes):
+            class_counts[i] += (labels == i).sum()
+
+    # 计算权重
+    total = class_counts.sum()
+    weights = total / (class_counts * num_classes)
+    return weights
 
 class AverageMeter(object):
     """计算并存储平均值和当前值"""
@@ -93,37 +124,44 @@ def train():
     # 创建数据加载器
     train_dataset = BridgePointCloudDataset(
         data_dir='data/train',
-        num_points=config['num_points'],
-        transform=True
+        num_points=config['num_points'],  # 这个参数现在可以忽略
+        transform=True,
+        chunk_size=8192,  # 新参数：每个块的点数
+        overlap=2048  # 新参数：块之间的重叠点数
     )
+
     val_dataset = BridgePointCloudDataset(
-        data_dir='data/test',
+        data_dir='data/val',
         num_points=config['num_points'],
-        transform=False
+        transform=False,
+        chunk_size=8192,
+        overlap=2048
     )
-    
+
+    # DataLoader的使用方式完全不变
     train_loader = DataLoader(
-        train_dataset, 
-        batch_size=config['batch_size'], 
-        shuffle=True, 
+        train_dataset,
+        batch_size=config['batch_size'],
+        shuffle=True,
         num_workers=config['num_workers'],
         pin_memory=True
     )
+
     val_loader = DataLoader(
-        val_dataset, 
-        batch_size=config['batch_size'], 
-        shuffle=False, 
+        val_dataset,
+        batch_size=config['batch_size'],
+        shuffle=False,
         num_workers=config['num_workers'],
         pin_memory=True
     )
-    
+
     logger.info(f"Train dataset size: {len(train_dataset)}")
     logger.info(f"Val dataset size: {len(val_dataset)}")
     
     # 创建模型
     num_classes = 5
     model = EnhancedPointNet2(num_classes).to(device)
-    
+
     # 损失函数和优化器
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'])
@@ -132,6 +170,20 @@ def train():
     # 训练循环
     best_val_loss = float('inf')
     best_val_acc = 0.0
+
+    # 计算类别权重
+    #class_weights = compute_class_weights(train_dataset,num_classes)
+    #criterion = WeightedCrossEntropyLoss(weight=class_weights.to(device))
+
+    # 添加学习率调度器
+    optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=0.01)
+    scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(
+        optimizer,
+        T_0=50,
+        T_mult=2,
+        eta_min=1e-6
+    )
+
     
     for epoch in range(config['num_epochs']):
         # 训练阶段
@@ -141,13 +193,15 @@ def train():
         
         # 创建进度条
         total_samples = len(train_dataset)
-        pbar = tqdm(train_loader, desc=f'Epoch [{epoch+1}/{config["num_epochs"]}] Training',total=total_samples//config['batch_size'])
-        
+        logger.info(f'Total samples is: {train_loader}')
+        pbar = tqdm(train_loader, desc=f'Epoch [{epoch+1}/{config["num_epochs"]}] Training',
+                    total=total_samples//config['batch_size'], position=0, leave=True)
+
         for batch in pbar:
             points = batch['points'].to(device)
             colors = batch['colors'].to(device)
             labels = batch['labels'].to(device)
-            
+
             optimizer.zero_grad()
             outputs = model(points, colors)
             loss = criterion(outputs, labels)
@@ -168,7 +222,13 @@ def train():
                 'Loss': f'{train_loss.avg:.4f}',
                 'Acc': f'{train_acc.avg*100:.2f}%'
             })
-        
+
+        # 更新学习率
+        scheduler.step()
+        # 记录学习率
+        current_lr = optimizer.param_groups[0]['lr']
+        writer.add_scalar('Learning_rate', current_lr, epoch)
+
         # 验证阶段
         model.eval()
         val_loss = AverageMeter()

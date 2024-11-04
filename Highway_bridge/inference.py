@@ -6,6 +6,10 @@ from tqdm import tqdm
 import logging
 from models.enhanced_pointnet2 import EnhancedPointNet2
 import os
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
 
 def preprocess_for_inference(points, colors):
     """
@@ -128,15 +132,77 @@ def create_new_las_file(points, colors, labels, output_path):
     # 写入文件
     las.write(output_path)
 
+
+# 定义评价指标计算函数
+def calculate_metrics(y_true, y_pred, num_classes):
+    cm = confusion_matrix(y_true, y_pred)
+    iou_per_class = np.diag(cm) / (cm.sum(axis=1) + cm.sum(axis=0) - np.diag(cm))
+    miou = np.nanmean(iou_per_class)
+
+    accuracy = accuracy_score(y_true, y_pred)
+    precision = precision_score(y_true, y_pred, average='weighted')
+    recall = recall_score(y_true, y_pred, average='weighted')
+    f1 = f1_score(y_true, y_pred, average='weighted')
+
+    return {
+        'mIoU': miou,
+        'IoU_per_class': iou_per_class,
+        'Accuracy': accuracy,
+        'Precision': precision,
+        'Recall': recall,
+        'F1_score': f1
+    }
+
+
+# 评估和可视化
+def evaluate_and_visualize(true_labels, predictions, num_classes, output_dir):
+    # 计算指标
+    metrics = calculate_metrics(true_labels, predictions, num_classes)
+
+    # 保存指标为CSV
+    df_metrics = pd.DataFrame({
+        'Metric': ['mIoU', 'Accuracy', 'Precision', 'Recall', 'F1_score'],
+        'Value': [metrics['mIoU'], metrics['Accuracy'], metrics['Precision'], metrics['Recall'], metrics['F1_score']]
+    })
+    df_metrics.to_csv(output_dir / 'overall_metrics.csv', index=False)
+
+    # 保存每个类别的IoU
+    df_iou = pd.DataFrame({
+        'Class': range(num_classes),
+        'IoU': metrics['IoU_per_class']
+    })
+    df_iou.to_csv(output_dir / 'iou_per_class.csv', index=False)
+
+    # 可视化混淆矩阵
+    cm = confusion_matrix(true_labels, predictions)
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+    plt.title('Confusion Matrix')
+    plt.xlabel('Predicted')
+    plt.ylabel('True')
+    plt.savefig(output_dir / 'confusion_matrix.png')
+    plt.close()
+
+    # 可视化每个类别的IoU
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x='Class', y='IoU', data=df_iou)
+    plt.title('IoU per Class')
+    plt.xlabel('Class')
+    plt.ylabel('IoU')
+    plt.savefig(output_dir / 'iou_per_class.png')
+    plt.close()
+
 def main():
     num_classes = 5
+    all_true_labels = []
+    all_predictions = []
     logger = setup_logging()
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f'Using device: {device}')
     
     # 加载模型
     model = EnhancedPointNet2(num_classes).to(device)
-    checkpoint_path = 'experiments/exp_lindata/best_model.pth'
+    checkpoint_path = 'experiments/exp_20241103_miou-876/best_model.pth'
     
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, map_location=device,weights_only=True)
@@ -149,14 +215,14 @@ def main():
     model.eval()
     
     # 创建输出目录
-    output_dir = Path('data/predicted_las')
+    output_dir = Path('data/predicted_las/exp_20241103_miou-876/')
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # 处理测试文件夹中的所有.las文件
-    test_dir = Path('data/test')
+    test_dir = Path('data/val')
     test_files = list(test_dir.glob('*.las'))
     
-    for file_path in tqdm(test_files, desc='Processing files'):
+    for file_path in tqdm(test_files, desc='Processing files', position=0, leave=True):
         try:
             logger.info(f'Processing {file_path}')
             # 读取las文件
@@ -174,23 +240,29 @@ def main():
                 )).T
             else:
                 colors = np.ones((points.shape[0], 3)) * 0.5
+                
+            true_labels = las_in.classification
             
             # 获取预测结果
             predictions = process_point_cloud(points, colors, model, device)
-            #predictions = labels = np.array(las_in.classification)
 
             # 确保预测结果长度与点云数量一致
             assert len(predictions) == len(points), f"Prediction length {len(predictions)} doesn't match points length {len(points)}"
 
+            all_true_labels.extend(true_labels)
+            all_predictions.extend(predictions)
+
             # 保存为新的las文件
-            output_path = output_dir / f'predicted_{file_path.name}'
-            create_new_las_file(points, colors, predictions, str(output_path))
+            #output_path = output_dir / f'predicted_{file_path.name}'
+            #create_new_las_file(points, colors, predictions, str(output_path))
             
-            logger.info(f'Successfully processed and saved: {output_path}')
-            
+            #logger.info(f'Successfully processed and saved: {output_path}')
+
         except Exception as e:
             logger.error(f'Error processing {file_path}: {str(e)}')
             continue
+
+    evaluate_and_visualize(all_true_labels, all_predictions, num_classes, output_dir)
 
 if __name__ == '__main__':
     main()
