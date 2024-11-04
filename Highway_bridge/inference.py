@@ -129,16 +129,17 @@ def create_new_las_file(points, colors, labels, output_path):
     las.write(output_path)
 
 def main():
+    num_classes = 5
     logger = setup_logging()
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f'Using device: {device}')
     
     # 加载模型
-    model = EnhancedPointNet2(num_classes=8).to(device)
-    checkpoint_path = 'experiments/exp_20241028_002904/best_model.pth'
+    model = EnhancedPointNet2(num_classes).to(device)
+    checkpoint_path = 'experiments/exp_lindata/best_model.pth'
     
     if os.path.exists(checkpoint_path):
-        checkpoint = torch.load(checkpoint_path, map_location=device)
+        checkpoint = torch.load(checkpoint_path, map_location=device,weights_only=True)
         model.load_state_dict(checkpoint['model_state_dict'])
         logger.info(f'Loaded model from {checkpoint_path}')
     else:
@@ -148,7 +149,7 @@ def main():
     model.eval()
     
     # 创建输出目录
-    output_dir = Path('results/predicted_las')
+    output_dir = Path('data/predicted_las')
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # 处理测试文件夹中的所有.las文件
