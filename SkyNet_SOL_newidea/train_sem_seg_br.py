@@ -36,7 +36,7 @@ def parse_args():
     parser = argparse.ArgumentParser('Model')
     parser.add_argument('--models', type=str, default='pointnet2_sem_seg_msg', help='models name [default: pointnet_sem_seg]')
     parser.add_argument('--batch_size', type=int, default=16, help='Batch Size during training [default: 16]')
-    parser.add_argument('--epoch', default=128, type=int, help='Epoch to run [default: 128]')
+    parser.add_argument('--epoch', default=500, type=int, help='Epoch to run [default: 128]')
     parser.add_argument('--learning_rate', default=0.001, type=float, help='Initial learning rate [default: 0.001]')
     parser.add_argument('--gpu', type=str, default='0', help='GPU to use [default: GPU 0]')
     parser.add_argument('--optimizer', type=str, default='Adam', help='Adam or SGD [default: Adam]')
