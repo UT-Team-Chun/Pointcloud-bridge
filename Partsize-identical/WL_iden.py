@@ -180,7 +180,7 @@ def process_bridge_deck(points):
 
     with tqdm(total=10, desc="Processing pred data", leave=True) as pbar:
         #下采样
-        result = data_voxel(result, voxel_size=0.05)
+        result = data_voxel(result, voxel_size=0.02)
         pbar.update(1)
 
         # 1. analysis
@@ -352,12 +352,3 @@ if __name__ == "__main__":
                 plt.tight_layout()
 
                 plt.savefig(f'./fig/result_{name}-{l}.png', dpi=400, bbox_inches='tight', pad_inches=0.1)
-
-    # 读取CSV文件并进行统计学评价
-    df = pd.read_csv('evaluation_results.csv')
-    stats, correlation = statistical_evaluation(df)
-    print(stats)
-    print(correlation)
-
-    # 可视化评价结果
-    visualize_evaluation(df)
