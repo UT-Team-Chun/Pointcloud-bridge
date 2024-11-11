@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 from pathlib import Path
+from sklearn.metrics import (
+    mean_squared_error,  # MSE
+    mean_absolute_error,  # MAE
+    r2_score, # R2
+)
 
 # 获取当前文件的路径
 current_file = Path(__file__)
@@ -28,6 +33,32 @@ print(f"平均相对误差: {df['Relative Error'].mean():.4f}")
 print(f"相对误差标准差: {df['Relative Error'].std():.4f}")
 print(f"最大相对误差: {df['Relative Error'].max():.4f}")
 print(f"最小相对误差: {df['Relative Error'].min():.4f}")
+
+
+y_l = df['Original Length']
+y_lhat = df['Estimated Length']
+y_w = df['Original Width']
+y_what = df['Estimated Width']
+
+y_t = np.concatenate((df['Original Length'], df['Original Width']))
+y_that = np.concatenate((df['Estimated Length'], df['Estimated Width']))
+
+def model_evl(y,y_hat):
+    mse_skl = mean_squared_error(y, y_hat)
+    rmse_skl = np.sqrt(mse_skl)
+    mae_skl = mean_absolute_error(y, y_hat)
+    mape_skl = 100. * mean_absolute_error(np.ones_like(y), y_hat / y)
+    r2_skl = r2_score(y, y_hat)
+
+    print(f'MSE (sklearn): {mse_skl}.')
+    print(f'RMSE (sklearn): {rmse_skl}.')
+    print(f'MAE (sklearn): {mae_skl}.')
+    print(f'MAPE (sklearn): {mape_skl}.')
+    print(f'R2 (sklearn): {r2_skl}.')
+
+model_evl(y_l,y_lhat)
+model_evl(y_w,y_what)
+model_evl(y_t,y_that)
 
 # 2. 进行可视化分析
 plt.figure(figsize=(15, 10))
@@ -69,7 +100,7 @@ print("\n2. 不同Label的误差统计：")
 print(label_stats)
 
 # 4. 进行相关性分析
-correlation_matrix = df[['Original Length', 'Original Width', 'Estimated Length', 'Estimated Width']].corr()
+correlation_matrix = df[['Original Length', 'Estimated Width']].corr()
 plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
 plt.title('Correlation Matrix')
