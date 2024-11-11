@@ -303,7 +303,7 @@ def optimize_process_bridge_deck(deck_raw, deck_test, error_threshold=0.01, n_jo
     # 定义参数范围
     param_grid = {
         'voxel_size': [0.01],  #[0.005, 0.01, 0.02]  #0.01
-        'ransac_trial': [1000], #[1000, 2000, 3000] #2500
+        'ransac_trial': [1000], #[1000, 2000, 3000] #best:1000
         'ransac_threshold': [0.3], #[0.05, 0.1, 0.2] #0.3
         'iso_contamination': [0.3],  #0.3
         'lof_neighbor': [30], #30

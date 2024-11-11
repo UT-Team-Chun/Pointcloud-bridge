@@ -30,7 +30,7 @@ class2color = {
 }
 label2color = {classes.index(cls): class2color[cls] for cls in classes}
 
-trained_result = 'test-cy'
+trained_result = 'best-lin'
 
 def parse_args():
     parser = argparse.ArgumentParser('Model')
