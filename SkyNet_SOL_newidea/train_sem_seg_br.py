@@ -1,19 +1,18 @@
 import argparse
-import os
-from data_utils.BridgeDataLoader import LWBridgeDataset
-import torch
 import datetime
-import logging
-from pathlib import Path
-import sys
 import importlib
+import logging
+import os
 import shutil
-from tqdm import tqdm
-import provider
+import sys
+from pathlib import Path
+
 import numpy as np
-import time
+import torch
+from tqdm import tqdm
 
-
+import provider
+from data_utils.BridgeDataLoader import LWBridgeDataset
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = BASE_DIR
@@ -30,13 +29,13 @@ for i, cat in enumerate(seg_classes.keys()):
 # log_dir = 'PointNet2_0.05_CEL_5m_95ol'
 
 #log_dir = 'PointNet2_0.05_SOL_a=200_10m_95ol_norm'
-log_dir = 'test-cy'
+log_dir = 'test-cy-new'
 
 def parse_args():
     parser = argparse.ArgumentParser('Model')
     parser.add_argument('--models', type=str, default='pointnet2_sem_seg_msg', help='models name [default: pointnet_sem_seg]')
     parser.add_argument('--batch_size', type=int, default=16, help='Batch Size during training [default: 16]')
-    parser.add_argument('--epoch', default=500, type=int, help='Epoch to run [default: 128]')
+    parser.add_argument('--epoch', default=50, type=int, help='Epoch to run [default: 128]')
     parser.add_argument('--learning_rate', default=0.001, type=float, help='Initial learning rate [default: 0.001]')
     parser.add_argument('--gpu', type=str, default='0', help='GPU to use [default: GPU 0]')
     parser.add_argument('--optimizer', type=str, default='Adam', help='Adam or SGD [default: Adam]')
