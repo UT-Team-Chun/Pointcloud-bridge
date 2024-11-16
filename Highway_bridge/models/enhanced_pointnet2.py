@@ -9,11 +9,11 @@ class EnhancedPointNet2(nn.Module):
     def __init__(self, num_classes=8):
         super().__init__()
         self.pos_encoding = PositionalEncoding(64)
-        
+
         # Encoder
-        self.sa1 = EnhancedSetAbstraction(1024, 0.1, 32, 6+64, [64, 64, 128])
-        self.sa2 = EnhancedSetAbstraction(256, 0.2, 32, 131, [128, 128, 256])
-        self.sa3 = EnhancedSetAbstraction(64, 0.4, 32, 259, [256, 256, 512])
+        ##self.sa1 = EnhancedSetAbstraction(1024, 0.1, 32, 6+64, [64, 64, 128])
+        #self.sa2 = EnhancedSetAbstraction(256, 0.2, 32, 131, [128, 128, 256])
+        #self.sa3 = EnhancedSetAbstraction(64, 0.4, 32, 259, [256, 256, 512])
 
         # 1st layer: input = 3(xyz) + 3(RGB) + 64(pos_encoding) = 70
         self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2],[16, 32], 6+64, [64, 64, 128])
@@ -64,14 +64,17 @@ class EnhancedPointNet2(nn.Module):
         l1_xyz, l1_points = self.sa1(xyz, points)
         l1_points = self.attention1(l1_points)
         l1_points = self.geometric1(l1_points, l1_xyz)
+        l1_points = self.boundary1(l1_points, l1_xyz)
 
         l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
         l2_points = self.attention2(l2_points)
         l2_points = self.geometric2(l2_points, l2_xyz)
+        l2_points = self.boundary2(l2_points, l2_xyz)
 
         l3_xyz, l3_points = self.sa3(l2_xyz, l2_points)
         l3_points = self.attention3(l3_points)
         l3_points = self.geometric3(l3_points, l3_xyz)
+        l3_points = self.boundary3(l3_points, l3_xyz)
 
         # Decoder
         l2_points = self.fp3(l2_xyz, l3_xyz, l2_points, l3_points)
