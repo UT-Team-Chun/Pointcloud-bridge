@@ -1,0 +1,28 @@
+2024-11-14 13:03:02,292 - Model - INFO - PARAMETER ...
+2024-11-14 13:03:02,292 - Model - INFO - Namespace(batch_size=32, gpu='0', num_point=4096, log_dir='test-cy-new', visual=True, num_votes=5)
+2024-11-14 13:03:13,430 - Model - INFO - The number of test file is: 16
+2024-11-14 13:03:13,725 - Model - INFO - ---- EVALUATION WHOLE SCENE----
+2024-11-14 13:04:25,651 - Model - INFO - Mean IoU of b1-sec-1: 0.6778
+2024-11-14 13:06:44,399 - Model - INFO - Mean IoU of b1-sec-2: 0.8712
+2024-11-14 13:09:57,343 - Model - INFO - Mean IoU of b1-sec-3: 0.9226
+2024-11-14 13:11:13,678 - Model - INFO - Mean IoU of b1-sec-4: 0.5722
+2024-11-14 13:13:42,011 - Model - INFO - Mean IoU of b1-sec-5: 0.6747
+2024-11-14 13:21:35,439 - Model - INFO - Mean IoU of b1-sec-6: 0.6007
+2024-11-14 13:24:22,918 - Model - INFO - Mean IoU of b2-sec-1: 0.8026
+2024-11-14 13:27:59,607 - Model - INFO - Mean IoU of b2-sec-2: 0.9186
+2024-11-14 13:38:10,272 - Model - INFO - Mean IoU of b2-sec-3: 0.8963
+2024-11-14 13:43:13,050 - Model - INFO - Mean IoU of b2-sec-4: 0.9636
+2024-11-14 13:44:10,598 - Model - INFO - Mean IoU of b2-sec-5: 0.6113
+2024-11-14 13:46:39,915 - Model - INFO - Mean IoU of b2-sec-6: 0.6572
+2024-11-14 13:55:34,614 - Model - INFO - Mean IoU of b7-sec-1: 0.7660
+2024-11-14 14:07:50,683 - Model - INFO - Mean IoU of b7-sec-2: 0.7161
+2024-11-14 14:20:48,284 - Model - INFO - Mean IoU of b7-sec-3: 0.8136
+2024-11-14 14:28:10,510 - Model - INFO - Mean IoU of b7-sec-4: 0.7835
+2024-11-14 14:28:16,090 - Model - INFO - ------- IoU --------
+class abutment      , IoU: 0.632925
+class girder        , IoU: 0.824820
+class deck          , IoU: 0.873719
+class parapet       , IoU: 0.901911
+class noise         , IoU: 0.815071
+
+2024-11-14 14:28:16,090 - Model - INFO - Mean IoU: 0.809689
