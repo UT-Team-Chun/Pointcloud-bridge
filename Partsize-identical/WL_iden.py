@@ -1,27 +1,20 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import laspy
-import os
+import csv
+import logging
 import time
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from scipy.spatial import ConvexHull
 from sklearn.decomposition import PCA
 from sklearn.linear_model import RANSACRegressor
-from scipy.spatial import ConvexHull
-from pathlib import Path
-from tool_utils.load_las import read_las_file
-import logging
 from tqdm import tqdm
-import itertools
-from multiprocessing import Pool, cpu_count
-from sklearn.model_selection import ParameterGrid
-from tqdm.contrib.concurrent import process_map
-import subprocess
-import csv
-import pandas as pd
-import seaborn as sns
-import csv
 
-def load_data(name,label):
-    
+from tool_utils.load_las import read_las_file
+
+
+def load_data(name, label):
     # 获取当前文件的路径
     current_file = Path(__file__)
 
@@ -33,15 +26,8 @@ def load_data(name,label):
 
     # 读取数据
     pathraw = data_dir / 'raw' / f"{name}_test.las"
-    pathtest = data_dir / 'pred' /f"{name}_pred.las"
+    pathtest = data_dir / 'pred' / f"{name}_pred.las"
 
-    #pathraw=f"../data/bridge-5cls-fukushima/test/{name}.txt"
-    #pathtest=f'./log/sem_seg/2024-10-05_01-43/visual/{name}_pred.txt'
-
-    # 读取数据
-
-    #data_raw = np.loadtxt(str(pathraw), delimiter=' ')
-    #data_test = np.loadtxt(str(pathtest), delimiter=' ')
     data_raw = read_las_file(pathraw)
     data_test = read_las_file(pathtest)
 
@@ -50,16 +36,16 @@ def load_data(name,label):
     deck_raw = data_raw[data_raw[:, 6] == label]
     deck_test = data_test[data_test[:, 6] == label]
 
-
-    # 提取x, y坐标（忽略z坐标）
-    #deck_raw_coords = deck_raw[:, :2]
-    #deck_test_coords = deck_test[:, :2]
+    # 检查是否存在指定的label数据
+    if deck_raw.size == 0 or deck_test.size == 0:
+        return None, None
 
     print(f"Total points: {data_test.shape[0]}")
     print(f"Deck points_raw: {deck_raw.shape}")
     print(f"Deck points_test: {deck_test.shape}")
-    print(f"Rawdata is : {name}_test.las")
-    print(f"Testdata is : {name}_pred.las")
+    log_string(f"Rawdata is : {name}_test.las")
+    log_string(f"Testdata is : {name}_pred.las")
+
     return deck_raw, deck_test
 
 def ransac_plane_fit(points, max_trials=2000, residual_threshold=0.1):
@@ -157,7 +143,6 @@ def lof_outlier_removal(points, n_neighbors=20, contamination='auto'):
     return inliers
 
 def dbscan_outlier_removal(points, eps=0.5, min_samples=5):
-    import numpy as np
     from sklearn.cluster import DBSCAN
     from sklearn.preprocessing import StandardScaler
     # 标准化数据
@@ -174,31 +159,32 @@ def dbscan_outlier_removal(points, eps=0.5, min_samples=5):
 
     return inliers
 
-def process_bridge_deck(points):
+def process_bridge_deck(points, voxel_size=0.02, ransac_max_trials=1000, ransac_residual_threshold=0.3,
+                        isolation_forest_contamination=0.3, lof_n_neighbors=30, lof_contamination=0.4,
+                        dbscan_eps=1, dbscan_min_samples=5):
     # 只使用 x, y, z 坐标
     result = points[:, :3]
 
     with tqdm(total=10, desc="Processing pred data", leave=True) as pbar:
-        #下采样
-        result = data_voxel(result, voxel_size=0.02)
+        # 下采样
+        result = data_voxel(result, voxel_size=voxel_size)
         pbar.update(1)
 
         # 1. analysis
-        result = ransac_plane_fit(result,1000, 0.3)
+        result = ransac_plane_fit(result, max_trials=ransac_max_trials, residual_threshold=ransac_residual_threshold)
         pbar.update(1)
 
-        result = isolation_forest_outlier_removal(result, contamination=0.3)
+        result = isolation_forest_outlier_removal(result, contamination=isolation_forest_contamination)
         pbar.update(1)
 
-        result = lof_outlier_removal(result, n_neighbors=30, contamination=0.4)
+        result = lof_outlier_removal(result, n_neighbors=lof_n_neighbors, contamination=lof_contamination)
         pbar.update(1)
 
-        result = dbscan_outlier_removal(result,eps=1,min_samples=5)
+        result = dbscan_outlier_removal(result, eps=dbscan_eps, min_samples=dbscan_min_samples)
         pbar.update(1)
 
         result = project_to_plane(result)
         pbar.update(1)
-
 
         # 2. 主方向对齐
         result = align_to_principal_axes(result)
@@ -206,20 +192,18 @@ def process_bridge_deck(points):
 
         # 3. 边缘检测和修剪
         points_trimmed = detect_and_trim_edges(result)
-        result= detect_and_trim_edges(result)
+        result = detect_and_trim_edges(result)
         pbar.update(1)
 
         # 4. 矩形拟合
         rect = minimum_bounding_rectangle(result)
         pbar.update(1)
-        #rect = result
 
         # 计算长度和宽度
-        #length, width = calculate_bridge_dimensions(rect)
         width = np.linalg.norm(rect[1] - rect[0])
         length = np.linalg.norm(rect[2] - rect[1])
         pbar.update(1)
-    
+
     return max(width, length), min(width, length), points_trimmed, rect
 
 def process_raw(points):
@@ -292,23 +276,52 @@ if __name__ == "__main__":
     logger.addHandler(file_handler)
     log_string('PARAMETER ...')
 
-    test_names = ['b3','b5','b7']
+    test_names = ['b1','b2','b7']
     #{'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
     label = [1,2,3]
+    total_error = 0
+    total_time = 0
+
+    # 超参数
+    voxel_size = 0.01
+    ransac_max_trials = 1000 #best 1000
+    ransac_residual_threshold = 0.3 #best 0.3
+    isolation_forest_contamination = 0.3 #best 0.3
+    lof_n_neighbors = 30 #best 30
+    lof_contamination = 0.4 #'auto',best 0.4
+    dbscan_eps = 1  #best 1
+    dbscan_min_samples = 5 #best 5
 
     # 创建CSV文件并写入表头
-    with open('evaluation_results.csv', mode='w', newline='', encoding='utf-8') as file:
+    with open('evaluation_results.csv', mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        writer.writerow(['Case', 'Label', 'Original Length', 'Original Width', 'Estimated Length', 'Estimated Width', 'Relative Error'])
+        writer.writerow([])  # 空行
+        writer.writerow([])  # 空行
+        writer.writerow(
+            ['Voxel Size', 'RANSAC Max Trials', 'RANSAC Residual Threshold', 'Isolation Forest Contamination',
+             'LOF Neighbors', 'LOF Contamination', 'DBSCAN EPS', 'DBSCAN Min Samples'])
+        writer.writerow([voxel_size, ransac_max_trials, ransac_residual_threshold, isolation_forest_contamination,
+                         lof_n_neighbors, lof_contamination, dbscan_eps, dbscan_min_samples])
+        writer.writerow(['Case', 'Label', 'Original Length', 'Original Width', 'Estimated Length', 'Estimated Width',
+                         'Relative Error'])
 
         for l in label:
             for name in tqdm(test_names):
                 deck_raw, deck_test = load_data(name,l)
+                if deck_raw is None or deck_test is None:
+                    log_string(f"Case {name}-{l}: No data for label {l}, skipping...")
+                    continue
                 start_time = time.time()
-                result = deck_test
 
                 length_raw, width_raw, cleaned_points, bounding_rect = process_raw(deck_raw)
-                length, width, cleaned_points_test, bounding_rect_test = process_bridge_deck(deck_test)
+                length, width, cleaned_points_test, bounding_rect_test = process_bridge_deck(deck_test, voxel_size,
+                                                                                             ransac_max_trials,
+                                                                                             ransac_residual_threshold,
+                                                                                             isolation_forest_contamination,
+                                                                                             lof_n_neighbors,
+                                                                                             lof_contamination,
+                                                                                             dbscan_eps,
+                                                                                             dbscan_min_samples)
                 error = evaluate_result(length_raw, width_raw, length, width)
 
                 log_string(f"Case {name}-{l}: 原始的长度: {length_raw:.2f}")
@@ -317,10 +330,17 @@ if __name__ == "__main__":
                 log_string(f"Case {name}-{l}: 估计的宽度: {width:.2f}")
                 log_string(f"Case {name}-{l}: 相对误差: {error:.2f}")
 
+                total_error += error
+
                 # 写入CSV文件
                 writer.writerow([f"{name}-{l}", l, length_raw, width_raw, length, width, error])
 
                 end_time = time.time()
+                use_time = end_time - start_time
+
+                log_string(f"Case {name}-{l}: 用时: {use_time:.2f} 秒")
+
+                total_time += use_time
 
                 # 绘制结果
                 plt.rcParams.update({
@@ -352,3 +372,7 @@ if __name__ == "__main__":
                 plt.tight_layout()
 
                 plt.savefig(f'./fig/result_{name}-{l}.png', dpi=400, bbox_inches='tight', pad_inches=0.1)
+
+        MAError = total_error / (len(test_names) * len(label))
+        log_string(f"Mean Average Error: {MAError:.2f}")
+        writer.writerow(['Mean Average Error', MAError, 'Mean Time', total_time / (len(test_names) * len(label))])
