@@ -2,8 +2,11 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .pointnet2_utils import EnhancedSetAbstraction, FeaturePropagation, MultiScaleSetAbstraction
-from .attention_modules import PositionalEncoding, BoundaryAwareModule, EnhancedAttentionModule, GeometricFeatureExtraction
+
+from .attention_modules import PositionalEncoding, BoundaryAwareModule, EnhancedAttentionModule, \
+    GeometricFeatureExtraction
+from .pointnet2_utils import FeaturePropagation, MultiScaleSetAbstraction
+
 
 class EnhancedPointNet2(nn.Module):
     def __init__(self, num_classes=8):
@@ -33,9 +36,9 @@ class EnhancedPointNet2(nn.Module):
         self.geometric3 = GeometricFeatureExtraction(512 * 2)
 
         # Boundary aware modules
-        self.boundary1 = BoundaryAwareModule(128)
-        self.boundary2 = BoundaryAwareModule(256)
-        self.boundary3 = BoundaryAwareModule(512)
+        self.boundary1 = BoundaryAwareModule(128 * 2)  # 256 channels
+        self.boundary2 = BoundaryAwareModule(256 * 2)  # 512 channels
+        self.boundary3 = BoundaryAwareModule(512 * 2)  # 1024 channels
 
         # Decoder
         self.fp3 = FeaturePropagation(1536, [256, 256])  # 512*2 + 256*2
@@ -62,16 +65,19 @@ class EnhancedPointNet2(nn.Module):
 
         # Encoder with multi-scale feature extraction
         l1_xyz, l1_points = self.sa1(xyz, points)
+        # l1_points shape: [B, 256, N] (128*2 channels)
         l1_points = self.attention1(l1_points)
         l1_points = self.geometric1(l1_points, l1_xyz)
         l1_points = self.boundary1(l1_points, l1_xyz)
 
         l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
+        # l2_points shape: [B, 512, N] (256*2 channels)
         l2_points = self.attention2(l2_points)
         l2_points = self.geometric2(l2_points, l2_xyz)
         l2_points = self.boundary2(l2_points, l2_xyz)
 
         l3_xyz, l3_points = self.sa3(l2_xyz, l2_points)
+        # l3_points shape: [B, 1024, N] (512*2 channels)
         l3_points = self.attention3(l3_points)
         l3_points = self.geometric3(l3_points, l3_xyz)
         l3_points = self.boundary3(l3_points, l3_xyz)

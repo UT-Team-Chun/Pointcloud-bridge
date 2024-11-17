@@ -1,17 +1,18 @@
 # train.py
+import datetime
+import logging
+import sys
+# tensorboard --logdir ./logs
+from pathlib import Path
+
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-#tensorboard --logdir ./logs
-import numpy as np
-from pathlib import Path
 from tqdm import tqdm
-import logging
-import datetime
-import os
-import torch.nn.functional as F
+
 from models.enhanced_pointnet2 import EnhancedPointNet2
 from utils.data_utils import BridgePointCloudDataset
 
@@ -63,34 +64,33 @@ class AverageMeter(object):
         self.count += n
         self.avg = self.sum / self.count
 
+
 def setup_logging(log_dir):
-    """设置日志"""
+    """Setup logging with utf-8 encoding"""
     log_dir = Path(log_dir)
     log_dir.mkdir(exist_ok=True)
-    
-    # 设置日志格式
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(log_dir / 'training.log'),
-            logging.StreamHandler()
-        ]
-    )
-    return logging.getLogger(__name__)
 
+    # Create a file handler with utf-8 encoding
+    file_handler = logging.FileHandler(log_dir / 'training.log', encoding='utf-8')
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 
+    # Create a stream handler with utf-8 encoding
+    stream_handler = logging.StreamHandler(sys.stdout)
+    stream_handler.setLevel(logging.INFO)
+    stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+    # Setup the logger
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(file_handler)
+    logger.addHandler(stream_handler)
+
+    return logger
 
 # 设置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('training.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger()
+logger = setup_logging('log_directory')
+
 
 # 配置参数
 config = {
@@ -98,7 +98,7 @@ config = {
     'batch_size': 32,
     'num_workers': 4,
     'learning_rate': 0.001,
-    'num_epochs': 600,
+    'num_epochs': 500,
     'device': 'cuda' if torch.cuda.is_available() else 'cpu'
 }
 
