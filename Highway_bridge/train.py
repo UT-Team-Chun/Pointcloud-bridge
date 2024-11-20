@@ -1,7 +1,6 @@
 # train.py
 import datetime
 import logging
-import sys
 # tensorboard --logdir ./logs
 from pathlib import Path
 
@@ -13,105 +12,36 @@ from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-from models.enhanced_pointnet2 import EnhancedPointNet2
-from utils.data_utils import BridgePointCloudDataset
-
-
-class WeightedCrossEntropyLoss(nn.Module): #new
-    def __init__(self, weight=None):
-        super().__init__()
-        self.weight = weight
-
-    def forward(self, pred, target):
-        # 计算每个类别的权重
-        if self.weight is None:
-            weight = torch.ones(pred.size(1)).to(pred.device)
-        else:
-            weight = self.weight
-
-        # 应用权重的交叉熵损失
-        loss = F.cross_entropy(pred, target, weight=weight)
-        return loss
-
-
-def compute_class_weights(dataset, num_classes=None): #new
-    """计算类别权重"""
-    class_counts = torch.zeros(num_classes)
-    for batch in dataset:
-        labels = batch['labels']
-        for i in range(num_classes):
-            class_counts[i] += (labels == i).sum()
-
-    # 计算权重
-    total = class_counts.sum()
-    weights = total / (class_counts * num_classes)
-    return weights
-
-class AverageMeter(object):
-    """计算并存储平均值和当前值"""
-    def __init__(self):
-        self.reset()
-
-    def reset(self):
-        self.val = 0
-        self.avg = 0
-        self.sum = 0
-        self.count = 0
-
-    def update(self, val, n=1):
-        self.val = val
-        self.sum += val * n
-        self.count += n
-        self.avg = self.sum / self.count
-
-
-def setup_logging(log_dir):
-    """Setup logging with utf-8 encoding"""
-    log_dir = Path(log_dir)
-    log_dir.mkdir(exist_ok=True)
-
-    # Create a file handler with utf-8 encoding
-    file_handler = logging.FileHandler(log_dir / 'training.log', encoding='utf-8')
-    file_handler.setLevel(logging.INFO)
-    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-
-    # Create a stream handler with utf-8 encoding
-    stream_handler = logging.StreamHandler(sys.stdout)
-    stream_handler.setLevel(logging.INFO)
-    stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-
-    # Setup the logger
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    logger.addHandler(file_handler)
-    logger.addHandler(stream_handler)
-
-    return logger
-
-# 设置日志
-logger = setup_logging('log_directory')
-
+from models.model import PointNet2
+# from models.poinnet2_model import PointNet2
+from utils.data_utils import BridgePointCloudDataset, BridgeValidationDataset
+from utils.logger_config import initialize_logger
 
 # 配置参数
 config = {
     'num_points': 4096,
-    'batch_size': 32,
-    'num_workers': 4,
+    'chunk_size': 4096,
+    'overlap': 2048,
+    'batch_size': 64,
+    'num_workers': 12,
     'learning_rate': 0.001,
+    'num_classes': 5,
     'num_epochs': 500,
     'device': 'cuda' if torch.cuda.is_available() else 'cpu'
 }
 
+
 def train():
     # 创建实验目录
-    timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-    exp_dir = Path(f'experiments/exp_{timestamp}')
+    timestamp = datetime.datetime.now().strftime('%m%d_%H%M')
+    case = 'onepart-datalodaer-v0'
+    exp_dir = Path(f'experiments/exp_{case}_{timestamp}')
     exp_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # 设置tensorboard和日志
     writer = SummaryWriter(exp_dir / 'tensorboard')
-    logger = setup_logging(exp_dir)
-        
+    logger = initialize_logger(exp_dir)
+
     # 记录配置
     logger.info("Training configuration:")
     for k, v in config.items():
@@ -123,20 +53,22 @@ def train():
 
     # 创建数据加载器
     train_dataset = BridgePointCloudDataset(
-        data_dir='data/train',
+        data_dir='data/fukushima/onepart/train',
         num_points=config['num_points'],  # 这个参数现在可以忽略
         transform=True,
-        chunk_size=8192,  # 新参数：每个块的点数
-        overlap=2048  # 新参数：块之间的重叠点数
+        chunk_size=config['chunk_size'],  # 新参数：每个块的点数
+        overlap=config['overlap']  # 新参数：块之间的重叠点数
     )
+    logger.info('reading train data')
 
-    val_dataset = BridgePointCloudDataset(
-        data_dir='data/val',
+    val_dataset = BridgeValidationDataset(
+        data_dir='data/fukushima/onepart/val',
         num_points=config['num_points'],
-        transform=False,
-        chunk_size=8192,
-        overlap=2048
+        chunk_size=config['chunk_size'],
+        overlap=0,
+        validation_ratio=0.2
     )
+    logger.info('reading val data')
 
     # DataLoader的使用方式完全不变
     train_loader = DataLoader(
@@ -159,8 +91,9 @@ def train():
     logger.info(f"Val dataset size: {len(val_dataset)}")
     
     # 创建模型
-    num_classes = 5
-    model = EnhancedPointNet2(num_classes).to(device)
+    num_classes = config['num_classes']
+    #model = EnhancedPointNet2(num_classes).to(device)
+    model = PointNet2(num_classes).to(device)
 
     # 损失函数和优化器
     criterion = nn.CrossEntropyLoss()
@@ -172,7 +105,7 @@ def train():
     best_val_acc = 0.0
 
     # 计算类别权重
-    #class_weights = compute_class_weights(train_dataset,num_classes)
+    #class_weights = compute_class_weights(train_loader,num_classes)
     #criterion = WeightedCrossEntropyLoss(weight=class_weights.to(device))
 
     # 添加学习率调度器
@@ -223,25 +156,26 @@ def train():
                 'Acc': f'{train_acc.avg*100:.2f}%'
             })
 
+
         # 更新学习率
         scheduler.step()
         # 记录学习率
         current_lr = optimizer.param_groups[0]['lr']
         writer.add_scalar('Learning_rate', current_lr, epoch)
 
-        # 验证阶段
+        # Validation phase
         model.eval()
         val_loss = AverageMeter()
         val_acc = AverageMeter()
-        confusion_matrix = torch.zeros(num_classes, num_classes).to(device)  # 8个类别的混淆矩阵
+        confusion_matrix = torch.zeros(num_classes, num_classes).to(device) # 混淆矩阵
         class_correct = torch.zeros(num_classes).to(device)
         class_total = torch.zeros(num_classes).to(device)
-        
+
         with torch.no_grad():
             for batch in tqdm(val_loader, desc='Validating'):
-                points = batch['points'].to(device)
-                colors = batch['colors'].to(device)
-                labels = batch['labels'].to(device)
+                points = batch['points'].to(device, non_blocking=True)
+                colors = batch['colors'].to(device, non_blocking=True)
+                labels = batch['labels'].to(device, non_blocking=True)
                 
                 outputs = model(points, colors)
                 loss = criterion(outputs, labels)
@@ -263,6 +197,7 @@ def train():
                 # 更新混淆矩阵
                 for t, p in zip(labels.view(-1), pred.view(-1)):
                     confusion_matrix[t.long(), p.long()] += 1
+
         
         # 计算每个类别的准确率
         class_acc = class_correct / (class_total + 1e-6)
@@ -330,6 +265,55 @@ def train():
     
     writer.close()
     logger.info("Training completed!")
+
+
+class WeightedCrossEntropyLoss(nn.Module): #new
+    def __init__(self, weight=None):
+        super().__init__()
+        self.weight = weight
+
+    def forward(self, pred, target):
+        # 计算每个类别的权重
+        if self.weight is None:
+            weight = torch.ones(pred.size(1)).to(pred.device)
+        else:
+            weight = self.weight
+
+        # 应用权重的交叉熵损失
+        loss = F.cross_entropy(pred, target, weight=weight)
+        return loss
+
+
+def compute_class_weights(dataset, num_classes=None): #new
+    """计算类别权重"""
+    class_counts = torch.zeros(num_classes)
+    for batch in dataset:
+        labels = batch['labels']
+        for i in range(num_classes):
+            class_counts[i] += (labels == i).sum()
+
+    # 计算权重
+    total = class_counts.sum()
+    weights = total / (class_counts * num_classes)
+    return weights
+
+class AverageMeter(object):
+    """计算并存储平均值和当前值"""
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.val = 0
+        self.avg = 0
+        self.sum = 0
+        self.count = 0
+
+    def update(self, val, n=1):
+        self.val = val
+        self.sum += val * n
+        self.count += n
+        self.avg = self.sum / self.count
+
 
 if __name__ == '__main__':
     try:

@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 from .attention_modules import PositionalEncoding, BoundaryAwareModule, EnhancedAttentionModule, \
     GeometricFeatureExtraction
-from .pointnet2_utils import FeaturePropagation, MultiScaleSetAbstraction
+from .pointnet2_utils import FeaturePropagation, SetAbstraction
 
 
 class EnhancedPointNet2(nn.Module):
@@ -14,15 +14,15 @@ class EnhancedPointNet2(nn.Module):
         self.pos_encoding = PositionalEncoding(64)
 
         # Encoder
-        ##self.sa1 = EnhancedSetAbstraction(1024, 0.1, 32, 6+64, [64, 64, 128])
-        #self.sa2 = EnhancedSetAbstraction(256, 0.2, 32, 131, [128, 128, 256])
-        #self.sa3 = EnhancedSetAbstraction(64, 0.4, 32, 259, [256, 256, 512])
+        self.sa1 = SetAbstraction(1024, 0.1, 32, 70, [64, 64, 128]) #6+64
+        self.sa2 = SetAbstraction(256, 0.2, 32, 131, [128, 128, 256])
+        self.sa3 = SetAbstraction(64, 0.4, 32, 259, [256, 256, 512])
 
         # 1st layer: input = 3(xyz) + 3(RGB) + 64(pos_encoding) = 70
-        self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2],[16, 32], 6+64, [64, 64, 128])
+        #self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2],[16, 32], 6+64, [64, 64, 128])
         # 2nd layer: input = 128*2 (Multi-scale connection)
-        self.sa2 = MultiScaleSetAbstraction(256,[0.2, 0.4],[16, 32], 128*2+3,[128, 128, 256])
-        self.sa3 = MultiScaleSetAbstraction(64,[0.4, 0.8],[16, 32], 256*2+3,[256, 256, 512])
+        #self.sa2 = MultiScaleSetAbstraction(256,[0.2, 0.4],[16, 32], 128*2+3,[128, 128, 256])
+        #self.sa3 = MultiScaleSetAbstraction(64,[0.4, 0.8],[16, 32], 256*2+3,[256, 256, 512])
         #  npoint=1024,radius_list=[0.1, 0.2], nsample_list=[16, 32], in_channel=6+64, mlp=[64, 64, 128]
 
         # attention module
@@ -36,14 +36,14 @@ class EnhancedPointNet2(nn.Module):
         self.geometric3 = GeometricFeatureExtraction(512 * 2)
 
         # Boundary aware modules
-        self.boundary1 = BoundaryAwareModule(128 * 2)  # 256 channels
-        self.boundary2 = BoundaryAwareModule(256 * 2)  # 512 channels
-        self.boundary3 = BoundaryAwareModule(512 * 2)  # 1024 channels
+        self.boundary1 = BoundaryAwareModule(128)  # 256 channels * 2
+        self.boundary2 = BoundaryAwareModule(256)  # 512 channels * 2
+        self.boundary3 = BoundaryAwareModule(512)  # 1024 channels * 2
 
         # Decoder
-        self.fp3 = FeaturePropagation(1536, [256, 256])  # 512*2 + 256*2
-        self.fp2 = FeaturePropagation(512, [256, 128])  # 256 + 128*2
-        self.fp1 = FeaturePropagation(128, [128, 128, 128]) # 128 + 64
+        self.fp3 = FeaturePropagation(768, [256, 256])  # 512*2 + 256*2 1536
+        self.fp2 = FeaturePropagation(384, [256, 128])  # 256 + 128*2 512
+        self.fp1 = FeaturePropagation(128, [128, 128, 128]) # 128 + 64 128
 
         # Final layers
         self.conv1 = nn.Conv1d(128, 128, 1)
@@ -66,21 +66,21 @@ class EnhancedPointNet2(nn.Module):
         # Encoder with multi-scale feature extraction
         l1_xyz, l1_points = self.sa1(xyz, points)
         # l1_points shape: [B, 256, N] (128*2 channels)
-        l1_points = self.attention1(l1_points)
-        l1_points = self.geometric1(l1_points, l1_xyz)
-        l1_points = self.boundary1(l1_points, l1_xyz)
+        #l1_points = self.attention1(l1_points)
+        #l1_points = self.geometric1(l1_points, l1_xyz)
+        #l1_points = self.boundary1(l1_points, l1_xyz)
 
         l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
         # l2_points shape: [B, 512, N] (256*2 channels)
-        l2_points = self.attention2(l2_points)
-        l2_points = self.geometric2(l2_points, l2_xyz)
-        l2_points = self.boundary2(l2_points, l2_xyz)
+        #l2_points = self.attention2(l2_points)
+        #l2_points = self.geometric2(l2_points, l2_xyz)
+        #l2_points = self.boundary2(l2_points, l2_xyz)
 
         l3_xyz, l3_points = self.sa3(l2_xyz, l2_points)
         # l3_points shape: [B, 1024, N] (512*2 channels)
-        l3_points = self.attention3(l3_points)
-        l3_points = self.geometric3(l3_points, l3_xyz)
-        l3_points = self.boundary3(l3_points, l3_xyz)
+        #l3_points = self.attention3(l3_points)
+        #l3_points = self.geometric3(l3_points, l3_xyz)
+        #l3_points = self.boundary3(l3_points, l3_xyz)
 
         # Decoder
         l2_points = self.fp3(l2_xyz, l3_xyz, l2_points, l3_points)

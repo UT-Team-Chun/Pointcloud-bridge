@@ -1,15 +1,18 @@
-import torch
-import numpy as np
-import laspy
-from pathlib import Path
-from tqdm import tqdm
 import logging
-from models.enhanced_pointnet2 import EnhancedPointNet2
 import os
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+from pathlib import Path
+
+import laspy
 import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
 import pandas as pd
+import seaborn as sns
+import torch
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+from tqdm import tqdm
+
+from models.enhanced_pointnet2 import EnhancedPointNet2
+
 
 def preprocess_for_inference(points, colors):
     """
@@ -139,9 +142,9 @@ def calculate_metrics(y_true, y_pred, num_classes):
     iou_per_class = np.diag(cm) / (cm.sum(axis=1) + cm.sum(axis=0) - np.diag(cm))
     miou = np.nanmean(iou_per_class)
 
-    accuracy = accuracy_score(y_true, y_pred)
-    precision = precision_score(y_true, y_pred, average='weighted')
-    recall = recall_score(y_true, y_pred, average='weighted')
+    accuracy = accuracy_score(y_true, y_pred, zero_division=1)
+    precision = precision_score(y_true, y_pred, average='weighted', zero_division=1)
+    recall = recall_score(y_true, y_pred, average='weighted', zero_division=1)
     f1 = f1_score(y_true, y_pred, average='weighted')
 
     return {
@@ -202,7 +205,7 @@ def main():
     
     # 加载模型
     model = EnhancedPointNet2(num_classes).to(device)
-    checkpoint_path = 'experiments/exp_20241103_miou-876/best_model.pth'
+    checkpoint_path = 'experiments/exp_20241117_000159/latest_checkpoint.pth'
     
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, map_location=device,weights_only=True)
@@ -215,11 +218,11 @@ def main():
     model.eval()
     
     # 创建输出目录
-    output_dir = Path('data/predicted_las/exp_20241103_miou-876/')
+    output_dir = Path('data/predicted_las/exp_20241117_000159/')
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # 处理测试文件夹中的所有.las文件
-    test_dir = Path('data/val')
+    test_dir = Path('data/test')
     test_files = list(test_dir.glob('*.las'))
     
     for file_path in tqdm(test_files, desc='Processing files', position=0, leave=True):
@@ -253,10 +256,10 @@ def main():
             all_predictions.extend(predictions)
 
             # 保存为新的las文件
-            #output_path = output_dir / f'predicted_{file_path.name}'
-            #create_new_las_file(points, colors, predictions, str(output_path))
+            output_path = output_dir / f'predicted_{file_path.name}'
+            create_new_las_file(points, colors, predictions, str(output_path))
             
-            #logger.info(f'Successfully processed and saved: {output_path}')
+            logger.info(f'Successfully processed and saved: {output_path}')
 
         except Exception as e:
             logger.error(f'Error processing {file_path}: {str(e)}')

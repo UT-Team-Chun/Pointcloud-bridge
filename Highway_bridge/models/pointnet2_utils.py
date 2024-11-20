@@ -92,7 +92,7 @@ def query_ball_point(radius, nsample, xyz, new_xyz):
     
     return group_idx
 
-class EnhancedSetAbstraction(nn.Module):
+class SetAbstraction(nn.Module):
     def __init__(self, npoint, radius, nsample, in_channel, mlp):
         super().__init__()
         self.npoint = npoint

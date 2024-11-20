@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CloudCompare>
+    <ColorScale version="1">
+        <Properties>
+            <name>color-cy</name>
+            <uuid>{137f0663-b1fb-400b-ad17-25f438b9b27b}</uuid>
+            <absolute>0</absolute>
+        </Properties>
+        <Data>
+            <step r="170" g="170" b="255" pos="0"/>
+            <step r="255" g="170" b="127" pos="0.212446351931"/>
+            <step r="255" g="170" b="255" pos="0.476394849785"/>
+            <step r="170" g="255" b="255" pos="0.731759656652"/>
+            <step r="170" g="170" b="127" pos="1"/>
+        </Data>
+    </ColorScale>
+</CloudCompare>

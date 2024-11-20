@@ -1,60 +1,123 @@
 import os
-import numpy as np
+
 import laspy
+import numpy as np
 import torch
 from torch.utils.data import Dataset
-import logging
 
-logger = logging.getLogger(__name__)
+from .logger_config import get_logger
+
+logger = get_logger()
+
+#分块，重叠，采样点数，数据增强
 
 
 class BridgePointCloudDataset(Dataset):
     def __init__(self, data_dir, num_points=4096, transform=False, chunk_size=8192, overlap=1024):
-        """
-        Args:
-            data_dir (str): 包含.las文件的目录路径
-            num_points (int): 最终采样点数
-            transform (bool): 是否进行数据增强
-            chunk_size (int): 每个块的初始点数
-            overlap (int): 块之间的重叠点数
-        """
+        super().__init__()
         self.data_dir = data_dir
-        self.num_points = num_points  # 保持最终输出点数不变
+        self.num_points = num_points
         self.transform = transform
         self.chunk_size = chunk_size
         self.overlap = overlap
+        self.valid_labels = set()
 
-        # 检查目录是否存在
+        # 检查目录
         if not os.path.exists(data_dir):
             raise ValueError(f"数据目录不存在: {data_dir}")
 
-        # 获取所有.las文件路径
-        self.file_list = []
-        for file in os.listdir(data_dir):
-            if file.endswith('.las'):
-                self.file_list.append(os.path.join(data_dir, file))
+        # 获取文件列表
+        self.file_list = [
+            os.path.join(data_dir, f) for f in os.listdir(data_dir)
+            if f.endswith('.las')
+        ]
 
         if len(self.file_list) == 0:
             raise ValueError(f"在目录 {data_dir} 中没有找到.las文件")
 
-        # 添加标签验证
-        self.valid_labels = set()  # 将在validate_dataset中填充
-        self.validate_dataset()
+        # 预加载所有数据
+        logger.info("开始预加载数据到内存...")
+        self.cached_chunks = []
 
-        # 预计算每个文件的块数和映射关系
-        self.chunk_to_file_map = []
         for file_idx, las_path in enumerate(self.file_list):
             las = laspy.read(las_path)
             num_points = len(las.points)
-            # 计算当前文件需要多少个chunk
-            num_chunks = max(1, (num_points - overlap) // (chunk_size - overlap))
-            # 记录每个chunk对应的文件信息
-            for chunk_idx in range(num_chunks):
-                self.chunk_to_file_map.append((file_idx, chunk_idx))
 
-        logger.info(f"在 {data_dir} 中找到 {len(self.file_list)} 个.las文件")
-        logger.info(f"总块数: {len(self.chunk_to_file_map)}")
-        logger.info(f"数据集中的有效标签: {sorted(list(self.valid_labels))}")
+            # 提取所有点的数据
+            points = np.vstack((las.x, las.y, las.z)).T
+
+            # 提取颜色
+            if hasattr(las, 'red') and hasattr(las, 'green') and hasattr(las, 'blue'):
+                colors = np.vstack((
+                    np.array(las.red) / 65535.0,
+                    np.array(las.green) / 65535.0,
+                    np.array(las.blue) / 65535.0
+                )).T
+            else:
+                colors = np.zeros((points.shape[0], 3))
+
+            # 提取标签
+            if hasattr(las, 'classification'):
+                labels = np.array(las.classification)
+                labels = np.where((labels >= 0) & (labels <= 7), labels, 0)
+                self.valid_labels.update(np.unique(labels))
+            else:
+                labels = np.zeros(points.shape[0])
+
+            # 正规化点云
+            points = self.normalize_points(points)
+            colors = self.normalize_colors(colors)
+
+            # 分块并缓存
+            num_chunks = max(1, (num_points - overlap) // (chunk_size - overlap))
+            for chunk_idx in range(num_chunks):
+                start_idx = chunk_idx * (chunk_size - overlap)
+                end_idx = min(start_idx + chunk_size, num_points)
+
+                chunk_points = torch.from_numpy(points[start_idx:end_idx].astype(np.float32))
+                chunk_colors = torch.from_numpy(colors[start_idx:end_idx].astype(np.float32))
+                chunk_labels = torch.from_numpy(labels[start_idx:end_idx].astype(np.int64))
+
+                # 使用FPS进行采样
+                if len(chunk_points) > self.num_points:
+                    chunk_points = chunk_points.unsqueeze(0)
+                    chunk_colors = chunk_colors.unsqueeze(0)
+                    chunk_labels = chunk_labels.unsqueeze(0)
+
+                    sampled_indices = farthest_point_sample(chunk_points, self.num_points)
+                    chunk_points = index_points(chunk_points, sampled_indices).squeeze(0)
+                    chunk_colors = index_points(chunk_colors, sampled_indices).squeeze(0)
+                    chunk_labels = index_points(chunk_labels.unsqueeze(-1), sampled_indices).squeeze(0)
+
+                self.cached_chunks.append({
+                    'points': chunk_points,
+                    'colors': chunk_colors,
+                    'labels': chunk_labels
+                })
+
+        logger.info(f"数据预加载完成，共 {len(self.cached_chunks)} 个数据块")
+        logger.info(f"有效标签: {sorted(list(self.valid_labels))}")
+
+    def __len__(self):
+        return len(self.cached_chunks)
+
+    def __getitem__(self, idx):
+        data = self.cached_chunks[idx]
+        points = data['points']
+        colors = data['colors']
+        labels = data['labels']
+
+        if self.transform:
+            points, colors = self.apply_transform(points.numpy(), colors.numpy())
+            points = torch.from_numpy(points.astype(np.float32))
+            colors = torch.from_numpy(colors.astype(np.float32))
+
+        return {
+            'points': points,
+            'colors': colors,
+            'labels': labels
+        }
+
 
     def normalize_points(self, points):
         """正规化点云坐标"""
@@ -87,78 +150,6 @@ class BridgePointCloudDataset(Dataset):
                 raise
         logger.info("数据集验证完成")
 
-    def __len__(self):
-        return len(self.chunk_to_file_map)
-
-    def __getitem__(self, idx):
-        # 获取当前chunk对应的文件信息
-        file_idx, chunk_idx = self.chunk_to_file_map[idx]
-        las_path = self.file_list[file_idx]
-
-        try:
-            las = laspy.read(las_path)
-
-            # 计算当前chunk的起始和结束索引
-            start_idx = chunk_idx * (self.chunk_size - self.overlap)
-            end_idx = min(start_idx + self.chunk_size, len(las.points))
-
-            # 提取点云数据
-            points = np.vstack((
-                las.x[start_idx:end_idx],
-                las.y[start_idx:end_idx],
-                las.z[start_idx:end_idx]
-            )).T
-
-            # 提取颜色信息
-            if hasattr(las, 'red') and hasattr(las, 'green') and hasattr(las, 'blue'):
-                colors = np.vstack((
-                    np.array(las.red[start_idx:end_idx]) / 65535.0,
-                    np.array(las.green[start_idx:end_idx]) / 65535.0,
-                    np.array(las.blue[start_idx:end_idx]) / 65535.0
-                )).T
-            else:
-                colors = np.zeros((points.shape[0], 3))
-
-            # 提取分类标签
-            if hasattr(las, 'classification'):
-                labels = np.array(las.classification[start_idx:end_idx])
-                labels = np.where((labels >= 0) & (labels <= 7), labels, 0)
-            else:
-                labels = np.zeros(points.shape[0])
-
-            # 从chunk中随机采样到指定点数
-            if len(points) > self.num_points:
-                indices = np.random.choice(len(points), self.num_points, replace=False)
-            else:
-                indices = np.random.choice(len(points), self.num_points, replace=True)
-
-            points = points[indices]
-            colors = colors[indices]
-            labels = labels[indices]
-
-            # 应用正规化
-            points = self.normalize_points(points)
-            colors = self.normalize_colors(colors)
-
-            # 数据增强
-            if self.transform:
-                points, colors = self.apply_transform(points, colors)
-
-            # 转换为张量
-            points = torch.from_numpy(points.astype(np.float32))
-            colors = torch.from_numpy(colors.astype(np.float32))
-            labels = torch.from_numpy(labels.astype(np.int64))
-
-            return {
-                'points': points,
-                'colors': colors,
-                'labels': labels
-            }
-
-        except Exception as e:
-            logger.error(f"处理文件 {las_path} 时出错: {str(e)}")
-            raise
-
     def apply_transform(self, points, colors):
         """数据增强函数"""
         if not self.transform:
@@ -188,3 +179,91 @@ class BridgePointCloudDataset(Dataset):
 
         return points, colors
 
+class BridgeValidationDataset(BridgePointCloudDataset):
+    def __init__(self, data_dir, num_points=4096, chunk_size=8192, overlap=1024, validation_ratio=0.3, seed=42):
+        # 调用父类的__init__，但强制transform=False
+        super().__init__(data_dir, num_points, transform=False, chunk_size=chunk_size, overlap=overlap)
+
+        # 设置随机种子
+        np.random.seed(seed)
+
+        # 随机采样30%的数据块
+        total_chunks = len(self.cached_chunks)
+        num_val_chunks = int(total_chunks * validation_ratio)
+
+        # 随机选择索引
+        selected_indices = np.random.choice(total_chunks, num_val_chunks, replace=False)
+
+        # 只保留选中的数据块
+        self.cached_chunks = [self.cached_chunks[i] for i in selected_indices]
+
+        logger.info(
+            f"验证集创建完成，使用 {len(self.cached_chunks)} 个数据块 (总共 {total_chunks} 个的 {validation_ratio * 100:.1f}%)")
+        logger.info(f"有效标签: {sorted(list(self.valid_labels))}")
+
+    def __getitem__(self, idx):
+        # 简化的getitem，移除了数据增强
+        data = self.cached_chunks[idx]
+        return {
+            'points': data['points'],
+            'colors': data['colors'],
+            'labels': data['labels']
+        }
+
+
+def farthest_point_sample(xyz, npoint):
+    """最远点采样"""
+    device = xyz.device
+    B, N, C = xyz.shape
+    centroids = torch.zeros(B, npoint, dtype=torch.long).to(device)
+    distance = torch.ones(B, N).to(device) * 1e10
+    farthest = torch.randint(0, N, (B,), dtype=torch.long).to(device)
+    batch_indices = torch.arange(B, dtype=torch.long).to(device)
+
+    for i in range(npoint):
+        centroids[:, i] = farthest
+        centroid = xyz[batch_indices, farthest, :].view(B, 1, 3)
+        dist = torch.sum((xyz - centroid) ** 2, -1)
+        mask = dist < distance
+        distance[mask] = dist[mask]
+        farthest = torch.max(distance, -1)[1]
+
+    return centroids
+
+def query_ball_point(radius, nsample, xyz, new_xyz):
+    """球查询"""
+    device = xyz.device
+    B, N, C = xyz.shape
+    _, S, _ = new_xyz.shape
+
+    group_idx = torch.arange(N, dtype=torch.long).to(device).view(1, 1, N).repeat([B, S, 1])
+    sqrdists = square_distance(new_xyz, xyz)
+    group_idx[sqrdists > radius ** 2] = N
+    group_idx = group_idx.sort(dim=-1)[0][:, :, :nsample]
+
+    group_first = group_idx[:, :, 0].view(B, S, 1).repeat([1, 1, nsample])
+    mask = group_idx == N
+    group_idx[mask] = group_first[mask]
+
+    return group_idx
+
+def square_distance(src, dst):
+    """计算两组点之间的欧氏距离"""
+    B, N, _ = src.shape
+    _, M, _ = dst.shape
+    dist = -2 * torch.matmul(src, dst.permute(0, 2, 1))
+    dist += torch.sum(src ** 2, -1).view(B, N, 1)
+    dist += torch.sum(dst ** 2, -1).view(B, 1, M)
+    return dist
+
+def index_points(points, idx):
+    """根据索引从点云中获取对应的点"""
+    device = points.device
+    B = points.shape[0]
+    view_shape = list(idx.shape)
+    view_shape[1:] = [1] * (len(view_shape) - 1)
+    repeat_shape = list(idx.shape)
+    repeat_shape[0] = 1
+    batch_indices = torch.arange(B, dtype=torch.long).to(device).view(view_shape).repeat(repeat_shape)
+    new_points = points[batch_indices, idx, :]
+    return new_points

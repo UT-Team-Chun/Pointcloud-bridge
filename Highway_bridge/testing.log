@@ -99,3 +99,49 @@
 2024-11-05 01:38:37,332 - INFO - Processing data\val\b7-sec-4.las
 2024-11-05 01:40:35,288 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2024-11-05 01:40:35,292 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2024-11-17 22:00:31,970 - INFO - Using device: cuda
+2024-11-17 22:00:32,196 - INFO - Loaded model from experiments/exp_20241117_000159/latest_checkpoint.pth
+2024-11-17 22:00:32,198 - INFO - Processing data\val\b1-sec-5.las
+2024-11-17 22:00:42,047 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b1-sec-5.las
+2024-11-17 22:00:42,047 - INFO - Processing data\val\b2-sec-2.las
+2024-11-17 22:00:54,466 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b2-sec-2.las
+2024-11-17 22:00:54,467 - INFO - Processing data\val\b7-sec-4.las
+2024-11-17 22:01:18,098 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b7-sec-4.las
+2024-11-17 22:01:30,672 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2024-11-17 22:01:30,674 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2024-11-17 22:10:51,900 - INFO - Using device: cuda
+2024-11-17 22:10:52,139 - INFO - Loaded model from experiments/exp_20241117_000159/latest_checkpoint.pth
+2024-11-17 22:10:52,141 - INFO - Processing data\test\b1-sec-1.las
+2024-11-17 22:10:58,302 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b1-sec-1.las
+2024-11-17 22:10:58,303 - INFO - Processing data\test\b1-sec-2.las
+2024-11-17 22:11:09,065 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b1-sec-2.las
+2024-11-17 22:11:09,065 - INFO - Processing data\test\b1-sec-3.las
+2024-11-17 22:11:21,056 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b1-sec-3.las
+2024-11-17 22:11:21,057 - INFO - Processing data\test\b1-sec-4.las
+2024-11-17 22:11:27,533 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b1-sec-4.las
+2024-11-17 22:11:27,533 - INFO - Processing data\test\b1-sec-5.las
+2024-11-17 22:11:38,034 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b1-sec-5.las
+2024-11-17 22:11:38,035 - INFO - Processing data\test\b1-sec-6.las
+2024-11-17 22:12:16,137 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b1-sec-6.las
+2024-11-17 22:12:16,137 - INFO - Processing data\test\b2-sec-1.las
+2024-11-17 22:12:26,064 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b2-sec-1.las
+2024-11-17 22:12:26,064 - INFO - Processing data\test\b2-sec-2.las
+2024-11-17 22:12:39,174 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b2-sec-2.las
+2024-11-17 22:12:39,174 - INFO - Processing data\test\b2-sec-3.las
+2024-11-17 22:13:09,528 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b2-sec-3.las
+2024-11-17 22:13:09,528 - INFO - Processing data\test\b2-sec-4.las
+2024-11-17 22:13:25,954 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b2-sec-4.las
+2024-11-17 22:13:25,955 - INFO - Processing data\test\b2-sec-5.las
+2024-11-17 22:13:28,809 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b2-sec-5.las
+2024-11-17 22:13:28,809 - INFO - Processing data\test\b2-sec-6.las
+2024-11-17 22:13:38,188 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b2-sec-6.las
+2024-11-17 22:13:38,188 - INFO - Processing data\test\b7-sec-1.las
+2024-11-17 22:14:01,603 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b7-sec-1.las
+2024-11-17 22:14:01,604 - INFO - Processing data\test\b7-sec-2.las
+2024-11-17 22:14:34,294 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b7-sec-2.las
+2024-11-17 22:14:34,294 - INFO - Processing data\test\b7-sec-3.las
+2024-11-17 22:15:09,023 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b7-sec-3.las
+2024-11-17 22:15:09,023 - INFO - Processing data\test\b7-sec-4.las
+2024-11-17 22:15:33,205 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b7-sec-4.las
+2024-11-17 22:16:52,054 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2024-11-17 22:16:52,056 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
