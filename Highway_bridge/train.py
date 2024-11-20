@@ -22,8 +22,8 @@ config = {
     'num_points': 4096,
     'chunk_size': 4096,
     'overlap': 2048,
-    'batch_size': 64,
-    'num_workers': 12,
+    'batch_size': 48,
+    'num_workers': 0,
     'learning_rate': 0.001,
     'num_classes': 5,
     'num_epochs': 500,
@@ -34,7 +34,7 @@ config = {
 def train():
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d_%H%M')
-    case = 'onepart-datalodaer-v0'
+    case = 'pointnet2-v0-cypc'
     exp_dir = Path(f'experiments/exp_{case}_{timestamp}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -53,7 +53,7 @@ def train():
 
     # 创建数据加载器
     train_dataset = BridgePointCloudDataset(
-        data_dir='data/fukushima/onepart/train',
+        data_dir='data/train',
         num_points=config['num_points'],  # 这个参数现在可以忽略
         transform=True,
         chunk_size=config['chunk_size'],  # 新参数：每个块的点数
@@ -62,7 +62,7 @@ def train():
     logger.info('reading train data')
 
     val_dataset = BridgeValidationDataset(
-        data_dir='data/fukushima/onepart/val',
+        data_dir='data/val',
         num_points=config['num_points'],
         chunk_size=config['chunk_size'],
         overlap=0,

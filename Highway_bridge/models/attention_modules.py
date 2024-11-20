@@ -3,58 +3,58 @@ import torch
 import torch.nn as nn
 
 
-class PositionalEncoding(nn.Module):
-    def __init__(self, channels):
-        super().__init__()
-        self.channels = channels
-        self.pos_enc = nn.Sequential(
-            nn.Conv1d(3, channels, 1),
-            nn.BatchNorm1d(channels),
-            nn.ReLU()
-        )
-
-    def forward(self, xyz):
-        # xyz: [B, N, 3]
-        pos_enc = self.pos_enc(xyz.transpose(2, 1))  # [B, C, N]
-        return pos_enc
-
 # class PositionalEncoding(nn.Module):
-#     def __init__(self, channels=64, freq_bands=16):
+#     def __init__(self, channels):
 #         super().__init__()
 #         self.channels = channels
-#         self.freq_bands = freq_bands
-#
-#         # Generate sine waves of different frequencies
-#         freqs = 2.0 ** torch.linspace(0., freq_bands - 1, freq_bands)
-#         self.register_buffer('freqs', freqs)  # [freq_bands]
-#
-#         # Initialize the linear layer in __init__
-#         self.linear_proj = nn.Linear(6 * freq_bands, channels)
+#         self.pos_enc = nn.Sequential(
+#             nn.Conv1d(3, channels, 1),
+#             nn.BatchNorm1d(channels),
+#             nn.ReLU()
+#         )
 #
 #     def forward(self, xyz):
-#         """
-#         xyz: (B, N, 3) Input point cloud coordinates
-#         return: (B, N, channels) Position encoding
-#         """
-#         # 1. Expand coordinates
-#         B, N, _ = xyz.shape
-#
-#         # 2. Calculate sine and cosine encodings at different frequencies
-#         pos_enc = []
-#         for freq in self.freqs:
-#             for func in [torch.sin, torch.cos]:
-#                 pos_enc.append(func(xyz * freq))
-#
-#         # 3. Concatenate all encodings
-#         pos_enc = torch.cat(pos_enc, dim=-1)  # [B, N, 6*freq_bands]
-#
-#         # 4. Project through MLP to specified dimension
-#         pos_enc = self.linear_proj(pos_enc)  # [B, N, channels]
-#
-#         # 5. Transpose to match the expected shape
-#         pos_enc = pos_enc.transpose(1, 2)  # [B, channels, N]
-#
+#         # xyz: [B, N, 3]
+#         pos_enc = self.pos_enc(xyz.transpose(2, 1))  # [B, C, N]
 #         return pos_enc
+
+class PositionalEncoding(nn.Module):
+    def __init__(self, channels=64, freq_bands=16):
+        super().__init__()
+        self.channels = channels
+        self.freq_bands = freq_bands
+
+        # Generate sine waves of different frequencies
+        freqs = 2.0 ** torch.linspace(0., freq_bands - 1, freq_bands)
+        self.register_buffer('freqs', freqs)  # [freq_bands]
+
+        # Initialize the linear layer in __init__
+        self.linear_proj = nn.Linear(6 * freq_bands, channels)
+
+    def forward(self, xyz):
+        """
+        xyz: (B, N, 3) Input point cloud coordinates
+        return: (B, N, channels) Position encoding
+        """
+        # 1. Expand coordinates
+        B, N, _ = xyz.shape
+
+        # 2. Calculate sine and cosine encodings at different frequencies
+        pos_enc = []
+        for freq in self.freqs:
+            for func in [torch.sin, torch.cos]:
+                pos_enc.append(func(xyz * freq))
+
+        # 3. Concatenate all encodings
+        pos_enc = torch.cat(pos_enc, dim=-1)  # [B, N, 6*freq_bands]
+
+        # 4. Project through MLP to specified dimension
+        pos_enc = self.linear_proj(pos_enc)  # [B, N, channels]
+
+        # 5. Transpose to match the expected shape
+        pos_enc = pos_enc.transpose(1, 2)  # [B, channels, N]
+
+        return pos_enc
 
     def to(self, device):
         """
