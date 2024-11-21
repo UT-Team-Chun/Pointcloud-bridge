@@ -13,7 +13,6 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from models.model import PointNet2
-# from models.poinnet2_model import PointNet2
 from utils.data_utils import BridgePointCloudDataset
 from utils.logger_config import initialize_logger
 
@@ -21,13 +20,8 @@ from utils.logger_config import initialize_logger
 config = {
     'num_points': 4096,
     'chunk_size': 4096,
-<<<<<<< Updated upstream
-    'overlap': 2048,
-    'batch_size': 48,
-=======
     'overlap': 1024,
     'batch_size': 64,
->>>>>>> Stashed changes
     'num_workers': 0,
     'learning_rate': 0.001,
     'num_classes': 5,
@@ -39,11 +33,7 @@ config = {
 def train():
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d_%H%M')
-<<<<<<< Updated upstream
-    case = 'pointnet2-v0-cypc'
-=======
     case = 'pointnet2-iconpc-separate'
->>>>>>> Stashed changes
     exp_dir = Path(f'experiments/exp_{case}_{timestamp}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -62,11 +52,7 @@ def train():
 
     # 创建数据加载器
     train_dataset = BridgePointCloudDataset(
-<<<<<<< Updated upstream
-        data_dir='data/train',
-=======
         data_dir='data/fukushima/onepart/train/',
->>>>>>> Stashed changes
         num_points=config['num_points'],  # 这个参数现在可以忽略
         #transform=True,
         block_size=0.5,   # 新参数：每个块的点数
@@ -74,13 +60,9 @@ def train():
     )
     logger.info('reading train data')
 
-<<<<<<< Updated upstream
-    val_dataset = BridgeValidationDataset(
-        data_dir='data/val',
-=======
+
     val_dataset = BridgePointCloudDataset(
         data_dir='data/fukushima/onepart/val/',
->>>>>>> Stashed changes
         num_points=config['num_points'],
         block_size=0.5,
         overlap=0,
@@ -88,7 +70,7 @@ def train():
     logger.info('reading val data')
 
     # DataLoader的使用方式完全不变
-    train_loader = BridgePointCloudDataset(
+    train_loader = DataLoader(
         train_dataset,
         batch_size=config['batch_size'],
         shuffle=True,
