@@ -66,7 +66,6 @@ class BridgePointCloudDataset(Dataset):
 
             # 正规化点云
             points = self.normalize_points(points)
-            colors = self.normalize_colors(colors)
 
             # 分块并缓存
             num_chunks = max(1, (num_points - overlap) // (chunk_size - overlap))

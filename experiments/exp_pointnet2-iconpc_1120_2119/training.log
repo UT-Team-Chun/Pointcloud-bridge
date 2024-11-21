@@ -1,0 +1,21 @@
+2024-11-20 21:19:46,850 - INFO - Training configuration:
+2024-11-20 21:19:46,850 - INFO - num_points: 4096
+2024-11-20 21:19:46,850 - INFO - chunk_size: 4096
+2024-11-20 21:19:46,850 - INFO - overlap: 2048
+2024-11-20 21:19:46,850 - INFO - batch_size: 64
+2024-11-20 21:19:46,850 - INFO - num_workers: 12
+2024-11-20 21:19:46,850 - INFO - learning_rate: 0.001
+2024-11-20 21:19:46,850 - INFO - num_classes: 5
+2024-11-20 21:19:46,850 - INFO - num_epochs: 500
+2024-11-20 21:19:46,851 - INFO - device: cuda
+2024-11-20 21:19:46,851 - INFO - Using device: cuda
+2024-11-20 21:19:46,851 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train.py", line 320, in <module>
+    train()
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train.py", line 55, in train
+    train_dataset = BridgePointCloudDataset(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\utils\data_utils.py", line 27, in __init__
+    raise ValueError(f"数据目录不存在: {data_dir}")
+ValueError: 数据目录不存在: data/fukushima/train

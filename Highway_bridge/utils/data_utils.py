@@ -4,6 +4,7 @@ import laspy
 import numpy as np
 import torch
 from torch.utils.data import Dataset
+from tqdm import tqdm
 
 from .logger_config import get_logger
 
@@ -13,20 +14,18 @@ logger = get_logger()
 
 
 class BridgePointCloudDataset(Dataset):
-    def __init__(self, data_dir, num_points=4096, transform=False, chunk_size=8192, overlap=1024):
+    def __init__(self, data_dir, num_points=4096, block_size=1.0, overlap=0.3):
         super().__init__()
         self.data_dir = data_dir
         self.num_points = num_points
-        self.transform = transform
-        self.chunk_size = chunk_size
+        self.block_size = block_size
         self.overlap = overlap
         self.valid_labels = set()
+        self.cached_chunks = []
 
-        # 检查目录
         if not os.path.exists(data_dir):
             raise ValueError(f"数据目录不存在: {data_dir}")
 
-        # 获取文件列表
         self.file_list = [
             os.path.join(data_dir, f) for f in os.listdir(data_dir)
             if f.endswith('.las')
@@ -35,15 +34,11 @@ class BridgePointCloudDataset(Dataset):
         if len(self.file_list) == 0:
             raise ValueError(f"在目录 {data_dir} 中没有找到.las文件")
 
-        # 预加载所有数据
         logger.info("开始预加载数据到内存...")
-        self.cached_chunks = []
 
-        for file_idx, las_path in enumerate(self.file_list):
+        for file_idx, las_path in enumerate(tqdm(self.file_list, desc="loading data")):
+            # 读取点云数据
             las = laspy.read(las_path)
-            num_points = len(las.points)
-
-            # 提取所有点的数据
             points = np.vstack((las.x, las.y, las.z)).T
 
             # 提取颜色
@@ -64,60 +59,67 @@ class BridgePointCloudDataset(Dataset):
             else:
                 labels = np.zeros(points.shape[0])
 
-            # 正规化点云
-            points = self.normalize_points(points)
-            colors = self.normalize_colors(colors)
+            # 计算边界框
+            min_bound = np.min(points, axis=0)
+            max_bound = np.max(points, axis=0)
 
-            # 分块并缓存
-            num_chunks = max(1, (num_points - overlap) // (chunk_size - overlap))
-            for chunk_idx in range(num_chunks):
-                start_idx = chunk_idx * (chunk_size - overlap)
-                end_idx = min(start_idx + chunk_size, num_points)
+            # 计算网格步长（考虑重叠）
+            step = self.block_size * (1 - self.overlap)
 
-                chunk_points = torch.from_numpy(points[start_idx:end_idx].astype(np.float32))
-                chunk_colors = torch.from_numpy(colors[start_idx:end_idx].astype(np.float32))
-                chunk_labels = torch.from_numpy(labels[start_idx:end_idx].astype(np.int64))
+            # 使用网格划分方法
+            x_steps = int((max_bound[0] - min_bound[0]) / step) + 1
+            y_steps = int((max_bound[1] - min_bound[1]) / step) + 1
 
-                # 使用FPS进行采样
-                if len(chunk_points) > self.num_points:
-                    chunk_points = chunk_points.unsqueeze(0)
-                    chunk_colors = chunk_colors.unsqueeze(0)
-                    chunk_labels = chunk_labels.unsqueeze(0)
+            # 创建网格中心点
+            for i in range(x_steps):
+                for j in range(y_steps):
+                    center_x = min_bound[0] + i * step + self.block_size / 2
+                    center_y = min_bound[1] + j * step + self.block_size / 2
 
-                    sampled_indices = farthest_point_sample(chunk_points, self.num_points)
-                    chunk_points = index_points(chunk_points, sampled_indices).squeeze(0)
-                    chunk_colors = index_points(chunk_colors, sampled_indices).squeeze(0)
-                    chunk_labels = index_points(chunk_labels.unsqueeze(-1), sampled_indices).squeeze(0)
+                    # 找到block范围内的点
+                    mask = ((points[:, 0] >= center_x - self.block_size / 2) &
+                            (points[:, 0] < center_x + self.block_size / 2) &
+                            (points[:, 1] >= center_y - self.block_size / 2) &
+                            (points[:, 1] < center_y + self.block_size / 2))
 
-                self.cached_chunks.append({
-                    'points': chunk_points,
-                    'colors': chunk_colors,
-                    'labels': chunk_labels
-                })
+                    block_points = points[mask]
+                    block_colors = colors[mask]
+                    block_labels = labels[mask]
 
-        logger.info(f"数据预加载完成，共 {len(self.cached_chunks)} 个数据块")
-        logger.info(f"有效标签: {sorted(list(self.valid_labels))}")
+                    if len(block_points) < 100:  # 跳过点数太少的块
+                        continue
+
+                    # 采样或填充到指定点数
+                    if len(block_points) > self.num_points:
+                        # 随机采样
+                        indices = np.random.choice(len(block_points), self.num_points, replace=False)
+                    else:
+                        # 重复采样
+                        indices = np.random.choice(len(block_points), self.num_points, replace=True)
+
+                    block_points = block_points[indices]
+                    block_colors = block_colors[indices]
+                    block_labels = block_labels[indices]
+
+                    # 中心化
+                    block_points = block_points - np.array([center_x, center_y, np.mean(block_points[:, 2])])
+
+                    # 转换为tensor
+                    block_points = torch.from_numpy(block_points.astype(np.float32))
+                    block_colors = torch.from_numpy(block_colors.astype(np.float32))
+                    block_labels = torch.from_numpy(block_labels.astype(np.int64))
+
+                    self.cached_chunks.append({
+                        'points': block_points,
+                        'colors': block_colors,
+                        'labels': block_labels
+                    })
 
     def __len__(self):
         return len(self.cached_chunks)
 
     def __getitem__(self, idx):
-        data = self.cached_chunks[idx]
-        points = data['points']
-        colors = data['colors']
-        labels = data['labels']
-
-        if self.transform:
-            points, colors = self.apply_transform(points.numpy(), colors.numpy())
-            points = torch.from_numpy(points.astype(np.float32))
-            colors = torch.from_numpy(colors.astype(np.float32))
-
-        return {
-            'points': points,
-            'colors': colors,
-            'labels': labels
-        }
-
+        return self.cached_chunks[idx]
 
     def normalize_points(self, points):
         """正规化点云坐标"""

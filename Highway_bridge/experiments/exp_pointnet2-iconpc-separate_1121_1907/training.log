@@ -1,0 +1,18 @@
+2024-11-21 19:07:53,947 - INFO - Training configuration:
+2024-11-21 19:07:53,948 - INFO - num_points: 4096
+2024-11-21 19:07:53,948 - INFO - chunk_size: 4096
+2024-11-21 19:07:53,948 - INFO - overlap: 1024
+2024-11-21 19:07:53,948 - INFO - batch_size: 64
+2024-11-21 19:07:53,948 - INFO - num_workers: 0
+2024-11-21 19:07:53,948 - INFO - learning_rate: 0.001
+2024-11-21 19:07:53,948 - INFO - num_classes: 5
+2024-11-21 19:07:53,948 - INFO - num_epochs: 500
+2024-11-21 19:07:53,948 - INFO - device: cuda
+2024-11-21 19:07:53,948 - INFO - Using device: cuda
+2024-11-21 19:07:53,948 - INFO - Loading train data...
+2024-11-21 19:08:00,690 - INFO - reading train data
+2024-11-21 19:08:00,690 - INFO - Loading val data...
+2024-11-21 19:08:01,935 - INFO - reading val data
+2024-11-21 19:08:01,935 - INFO - Train dataset size: 6
+2024-11-21 19:08:01,935 - INFO - Val dataset size: 1
+2024-11-21 19:08:02,693 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000283A42F9220>

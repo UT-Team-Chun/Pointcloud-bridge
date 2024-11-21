@@ -1,0 +1,56 @@
+2024-11-21 19:01:47,723 - INFO - Training configuration:
+2024-11-21 19:01:47,723 - INFO - num_points: 4096
+2024-11-21 19:01:47,723 - INFO - chunk_size: 4096
+2024-11-21 19:01:47,723 - INFO - overlap: 1024
+2024-11-21 19:01:47,723 - INFO - batch_size: 64
+2024-11-21 19:01:47,723 - INFO - num_workers: 0
+2024-11-21 19:01:47,723 - INFO - learning_rate: 0.001
+2024-11-21 19:01:47,723 - INFO - num_classes: 5
+2024-11-21 19:01:47,723 - INFO - num_epochs: 500
+2024-11-21 19:01:47,723 - INFO - device: cuda
+2024-11-21 19:01:47,723 - INFO - Using device: cuda
+2024-11-21 19:01:47,723 - INFO - Loading train data...
+2024-11-21 19:01:54,071 - INFO - reading train data
+2024-11-21 19:01:54,071 - INFO - Loading val data...
+2024-11-21 19:01:55,167 - INFO - reading val data
+2024-11-21 19:01:55,167 - INFO - Train dataset size: 6
+2024-11-21 19:01:55,167 - INFO - Val dataset size: 1
+2024-11-21 19:01:55,960 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x0000022287EE0DA0>
+2024-11-21 19:01:56,842 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train.py", line 320, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train.py", line 139, in train
+    outputs = model(points, colors)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\models\model.py", line 38, in forward
+    l1_xyz, l1_points = self.sa1(xyz, points)
+                        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\models\pointnet2_utils.py", line 136, in forward
+    new_points = F.relu(bn(conv(new_points)))
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 554, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 549, in _conv_forward
+    return F.conv2d(
+           ^^^^^^^^^
+RuntimeError: Input type (double) and bias type (float) should be the same

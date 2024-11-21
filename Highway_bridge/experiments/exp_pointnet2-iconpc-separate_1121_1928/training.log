@@ -1,0 +1,19 @@
+2024-11-21 19:28:54,364 - INFO - Training configuration:
+2024-11-21 19:28:54,364 - INFO - num_points: 4096
+2024-11-21 19:28:54,364 - INFO - chunk_size: 4096
+2024-11-21 19:28:54,364 - INFO - overlap: 1024
+2024-11-21 19:28:54,364 - INFO - batch_size: 64
+2024-11-21 19:28:54,364 - INFO - num_workers: 0
+2024-11-21 19:28:54,364 - INFO - learning_rate: 0.001
+2024-11-21 19:28:54,364 - INFO - num_classes: 5
+2024-11-21 19:28:54,364 - INFO - num_epochs: 500
+2024-11-21 19:28:54,364 - INFO - device: cuda
+2024-11-21 19:28:54,365 - INFO - Using device: cuda
+2024-11-21 19:28:54,365 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train.py", line 319, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train.py", line 55, in train
+    train_dataset = BridgePointCloudDataset(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BridgePointCloudDataset.__init__() got an unexpected keyword argument 'transform'

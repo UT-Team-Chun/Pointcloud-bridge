@@ -145,3 +145,7 @@
 2024-11-17 22:15:33,205 - INFO - Successfully processed and saved: data\predicted_las\exp_20241117_000159\predicted_b7-sec-4.las
 2024-11-17 22:16:52,054 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2024-11-17 22:16:52,056 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2024-11-20 21:28:31,973 - INFO - Using device: cuda
+2024-11-20 21:28:32,080 - ERROR - No checkpoint found at experiments/exp_lindata/best_model.pth
+2024-11-20 21:29:19,145 - INFO - Using device: cuda
+2024-11-20 21:29:19,275 - ERROR - No checkpoint found at experiments/exp_lindata/best_model.pth
