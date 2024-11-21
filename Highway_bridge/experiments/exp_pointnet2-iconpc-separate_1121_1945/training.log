@@ -10,3 +10,26 @@
 2024-11-21 19:45:17,953 - INFO - device: cuda
 2024-11-21 19:45:17,953 - INFO - Using device: cuda
 2024-11-21 19:45:17,953 - INFO - 开始预加载数据到内存...
+2024-11-21 19:58:53,367 - INFO - reading train data
+2024-11-21 19:58:53,368 - INFO - 开始预加载数据到内存...
+2024-11-21 19:59:33,256 - INFO - reading val data
+2024-11-21 19:59:33,256 - INFO - Train dataset size: 13405
+2024-11-21 19:59:33,256 - INFO - Val dataset size: 708
+2024-11-21 19:59:34,586 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000002A0C5414680>
+2024-11-21 20:06:43,058 - INFO - Mean IoU: 57.16%
+2024-11-21 20:06:43,059 - INFO - Class 0 IoU: 33.12%
+2024-11-21 20:06:43,059 - INFO - Class 1 IoU: 54.96%
+2024-11-21 20:06:43,059 - INFO - Class 2 IoU: 59.24%
+2024-11-21 20:06:43,059 - INFO - Class 3 IoU: 53.38%
+2024-11-21 20:06:43,059 - INFO - Class 4 IoU: 85.13%
+2024-11-21 20:06:43,060 - INFO - 
+Epoch 1/500:
+2024-11-21 20:06:43,060 - INFO - Train Loss: 0.4939, Train Acc: 82.35%
+2024-11-21 20:06:43,060 - INFO - Val Loss: 0.4341, Val Acc: 84.79%
+2024-11-21 20:06:43,060 - INFO - Class 0 Accuracy: 67.24%
+2024-11-21 20:06:43,060 - INFO - Class 1 Accuracy: 56.85%
+2024-11-21 20:06:43,060 - INFO - Class 2 Accuracy: 76.74%
+2024-11-21 20:06:43,060 - INFO - Class 3 Accuracy: 54.30%
+2024-11-21 20:06:43,060 - INFO - Class 4 Accuracy: 95.34%
+2024-11-21 20:06:43,086 - INFO - Saved best model with accuracy: 84.79%
+2024-11-21 20:06:43,109 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000002A0C5414680>
