@@ -1,199 +1,304 @@
-import numpy as np
+import os
+
 import laspy
-import torch
+import numpy as np
 from torch.utils.data import Dataset
-from pathlib import Path
-from sklearn.cluster import DBSCAN
-from tqdm import tqdm
+
+from .logger_config import get_logger
+
+logger = get_logger()
 
 
 class BridgePointCloudDataset(Dataset):
     def __init__(self,
                  data_dir,
-                 horizontal_block_size=20.0,  # 水平方向块大小
-                 vertical_block_size=15.0,  # 垂直方向块大小
-                 horizontal_stride=16.0,  # 水平方向步长
-                 vertical_stride=10.0,  # 垂直方向步长
+                 file_list=None,  # 可以指定具体的文件列表
                  num_points=4096,
-                 min_points_in_block=100):  # 每个块的最小点数
+                 h_block_size=1.0,
+                 v_block_size=1.0,
+                 h_stride=0.5,
+                 v_stride=0.5,
+                 min_points=100,
+                 transform=None):
         """
-        针对桥梁结构的点云数据集
+        初始化桥梁点云数据集
         Args:
-            data_dir: 数据目录
-            horizontal_block_size: 水平方向块大小（米）
-            vertical_block_size: 垂直方向块大小（米）
-            horizontal_stride: 水平方向滑动步长（米）
-            vertical_stride: 垂直方向滑动步长（米）
-            num_points: 每个块采样的点数
-            min_points_in_block: 每个块的最小点数阈值
+            data_dir: 数据目录，包含las文件
+            file_list: 指定的las文件列表，如果为None则读取目录下所有las文件
+            h_block_size: 水平方向块大小
+            v_block_size: 垂直方向块大小
+            h_stride: 水平方向滑动步长
+            v_stride: 垂直方向滑动步长
+            min_points: 每个块最少需要包含的点数
+            transform: 数据增强转换
         """
-        self.data_dir = Path(data_dir)
-        self.h_block_size = horizontal_block_size
-        self.v_block_size = vertical_block_size
-        self.h_stride = horizontal_stride
-        self.v_stride = vertical_stride
+        self.data_dir = data_dir
         self.num_points = num_points
-        self.min_points = min_points_in_block
+        self.h_block_size = h_block_size
+        self.v_block_size = v_block_size
+        self.h_stride = h_stride
+        self.v_stride = v_stride
+        self.min_points = min_points
+        self.transform = transform
 
-        self.las_files = list(self.data_dir.glob('*.las'))
+        # 获取las文件列表
+        if file_list is None:
+            self.file_list = [f for f in os.listdir(data_dir) if f.endswith('.las')]
+        else:
+            self.file_list = [f for f in file_list if f.endswith('.las')]
+
+        if len(self.file_list) == 0:
+            raise ValueError(f"No .las files found in {data_dir}")
+
+        logger.info(f"Found {len(self.file_list)} las files:")
+
+        for f in self.file_list:
+            print(f"  - {f}")
+
+        # 预处理所有文件
         self.blocks = self._preprocess_files()
 
-    def _detect_bridge_direction(self, points):
-        """
-        检测桥梁的主方向
-        使用PCA分析点云的主方向
-        """
-        # 计算协方差矩阵
-        cov_matrix = np.cov(points[:, :2].T)
-        # 计算特征值和特征向量
-        eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
-        # 主方向是最大特征值对应的特征向量
-        main_direction = eigenvectors[:, np.argmax(eigenvalues)]
-        # 计算旋转角度
-        angle = np.arctan2(main_direction[1], main_direction[0])
-        return angle
+    def _load_las_file(self, filename):
+        """加载单个las文件"""
+        file_path = os.path.join(self.data_dir, filename)
+        print(f"Loading {file_path}")
+        logger.info(f"Loading {file_path}")
 
-    def _rotate_points(self, points, angle):
-        """
-        将点云旋转到桥梁的主方向
-        """
-        rotation_matrix = np.array([
-            [np.cos(angle), -np.sin(angle)],
-            [np.sin(angle), np.cos(angle)]
-        ])
-        rotated_xy = np.dot(points[:, :2], rotation_matrix.T)
-        rotated_points = np.column_stack((rotated_xy, points[:, 2]))
-        return rotated_points
+        try:
+            las = laspy.read(file_path)
 
-    def _detect_bridge_components(self, points, eps=0.5, min_samples=10):
-        """
-        使用DBSCAN检测桥梁组件
-        """
-        clustering = DBSCAN(eps=eps, min_samples=min_samples).fit(points)
-        return clustering.labels_
+            # 获取点坐标
+            points = np.vstack((las.x, las.y, las.z)).transpose()
 
-    def _preprocess_files(self):
-        blocks = []
-        for las_file in self.las_files:
-            # 读取las文件
-            las = laspy.read(las_file)
-            points = np.vstack((las.x, las.y, las.z)).T
-            colors = np.vstack((las.red, las.green, las.blue)).T / 65535.0
-            if hasattr(las, 'classification'):
-                labels = las.classification
+            # 获取颜色信息（如果存在）
+            if hasattr(las, 'red') and hasattr(las, 'green') and hasattr(las, 'blue'):
+                colors = np.vstack((las.red, las.green, las.blue)).transpose() / 65535.0  # 通常las文件的颜色范围是0-65535
             else:
-                labels = np.zeros(len(points))
+                colors = np.ones_like(points)  # 如果没有颜色信息，使用默认值
 
-            # 检测桥梁主方向并旋转点云
-            angle = self._detect_bridge_direction(points)
-            rotated_points = self._rotate_points(points, angle)
+            # 获取分类标签（如果存在）
+            if hasattr(las, 'classification'):
+                # 将SubFieldView转换为numpy数组
+                labels = np.array(las.classification)
+            else:
+                labels = np.zeros(len(points), dtype=np.int64)
 
-            # 获取旋转后的点云范围
-            min_bounds = rotated_points.min(axis=0)
-            max_bounds = rotated_points.max(axis=0)
+            print(f"Loaded {len(points)} points from {filename}")
+            logger.info(f"Loaded {len(points)} points from {filename}")
 
-            # 计算水平和垂直方向的网格数量
-            num_blocks_x = int((max_bounds[0] - min_bounds[0] - self.h_block_size) / self.h_stride) + 1
-            num_blocks_y = int((max_bounds[1] - min_bounds[1] - self.h_block_size) / self.h_stride) + 1
-            num_blocks_z = int((max_bounds[2] - min_bounds[2] - self.v_block_size) / self.v_stride) + 1
+            return points, colors, labels
 
-            # 分块处理
-            for i in tqdm(range(num_blocks_x), desc="Processing blocks"):
-                for j in range(num_blocks_y):
-                    for k in range(num_blocks_z):
-                        # 定义当前块的范围
-                        x_min = min_bounds[0] + i * self.h_stride
-                        y_min = min_bounds[1] + j * self.h_stride
-                        z_min = min_bounds[2] + k * self.v_stride
-                        x_max = x_min + self.h_block_size
-                        y_max = y_min + self.h_block_size
-                        z_max = z_min + self.v_block_size
+        except Exception as e:
+            print(f"Error loading {filename}: {str(e)}")
+            logger.error(f"Error loading {filename}: {str(e)}")
 
-                        # 选择在当前块内的点
-                        mask = (rotated_points[:, 0] >= x_min) & (rotated_points[:, 0] < x_max) & \
-                               (rotated_points[:, 1] >= y_min) & (rotated_points[:, 1] < y_max) & \
-                               (rotated_points[:, 2] >= z_min) & (rotated_points[:, 2] < z_max)
+            return None, None, None
 
-                        block_points = rotated_points[mask]
+    def _assign_points_to_blocks(self, points, colors, labels):
+        """将点分配到不同的块中"""
+        print(f"Processing data - Points: {points.shape}, Colors: {colors.shape}, Labels: {labels.shape}")
+        logger.info(f"Processing data - Points: {points.shape}, Colors: {colors.shape}, Labels: {labels.shape}")
 
-                        # 检查点数是否满足最小要求
-                        if len(block_points) >= self.min_points:
-                            # 检测组件
-                            component_labels = self._detect_bridge_components(block_points)
+        # 计算点云的边界
+        min_coords = np.min(points, axis=0)
+        max_coords = np.max(points, axis=0)
 
-                            blocks.append({
-                                'file': las_file,
-                                'bounds': (x_min, y_min, z_min, x_max, y_max, z_max),
-                                'points': points[mask],  # 原始坐标
-                                'rotated_points': block_points,  # 旋转后的坐标
-                                'colors': colors[mask],
-                                'labels': labels[mask],
-                                'component_labels': component_labels,
-                                'rotation_angle': angle
-                            })
+        # 计算每个点所属的网格索引
+        grid_indices = np.floor((points - min_coords) / [self.h_stride, self.h_stride, self.v_stride]).astype(int)
+
+        # 使用字典收集每个网格中的点
+        grid_dict = {}
+        for i, grid_idx in enumerate(grid_indices):
+            key = tuple(grid_idx)
+            if key not in grid_dict:
+                grid_dict[key] = []
+            grid_dict[key].append(i)
+
+        blocks = []
+        # 处理每个非空的网格
+        for grid_idx, indices in grid_dict.items():
+            indices = np.array(indices)
+            if len(indices) >= self.min_points:
+                # 计算块的中心点
+                center = min_coords + np.array(grid_idx) * [self.h_stride, self.h_stride, self.v_stride] + \
+                         [self.h_block_size / 2, self.h_block_size / 2, self.v_block_size / 2]
+
+                block_points = points[indices]
+                block_colors = colors[indices]
+                block_labels = labels[indices]
+
+                # 将点坐标归一化到块的中心
+                normalized_points = block_points - center
+
+                blocks.append({
+                    'points': normalized_points,
+                    'colors': block_colors,
+                    'labels': block_labels,
+                    'center': center,
+                    'indices': indices
+                })
+
+        print(f"Created {len(blocks)} blocks")
+        logger.info(f"Created {len(blocks)} blocks")
 
         return blocks
 
+    def _preprocess_files(self):
+        """预处理所有las文件"""
+        all_blocks = []
+
+        for filename in self.file_list:
+            points, colors, labels = self._load_las_file(filename)
+            if points is not None:
+                # 分配点到块中
+                blocks = self._assign_points_to_blocks(points, colors, labels)
+                all_blocks.extend(blocks)
+
+        print(f"Total blocks created: {len(all_blocks)}")
+        logger.info(f"Total blocks created: {len(all_blocks)}")
+
+        return all_blocks
+
     def __len__(self):
+        """返回数据集中块的数量"""
         return len(self.blocks)
 
     def __getitem__(self, idx):
+        """获取指定索引的数据块"""
         block = self.blocks[idx]
-        points = block['points']
-        rotated_points = block['rotated_points']
-        colors = block['colors']
-        labels = block['labels']
-        component_labels = block['component_labels']
 
-        # 采样处理
-        if len(points) > self.num_points:
-            choice = np.random.choice(len(points), self.num_points, replace=False)
-        else:
-            choice = np.random.choice(len(points), self.num_points, replace=True)
+        # 转换为所需的数据格式
+        points = block['points'].astype(np.float32)
+        colors = block['colors'].astype(np.float32)
+        labels = block['labels'].astype(np.int64)
+
+        # 统一点数
+        if self.num_points is not None:
+            if len(points) >= self.num_points:
+                # 随机采样到指定点数
+                choice = np.random.choice(len(points), self.num_points, replace=False)
+            else:
+                # 如果点数不足，则重复采样
+                choice = np.random.choice(len(points), self.num_points, replace=True)
 
         points = points[choice]
-        rotated_points = rotated_points[choice]
         colors = colors[choice]
         labels = labels[choice]
-        component_labels = component_labels[choice]
 
-        # 标准化
-        center = rotated_points.mean(axis=0)
-        normalized_points = rotated_points - center
+        # 应用数据增强
+        if self.transform:
+            points, colors, labels = self.transform(points, colors, labels)
 
-        # 分别对水平和垂直方向进行缩放
-        horizontal_scale = np.max(np.abs(normalized_points[:, :2]))
-        vertical_scale = np.max(np.abs(normalized_points[:, 2]))
-
-        normalized_points[:, :2] = normalized_points[:, :2] / horizontal_scale
-        normalized_points[:, 2] = normalized_points[:, 2] / vertical_scale
-
-        # 转换为tensor
         return {
-            'points': torch.FloatTensor(points),
-            'rotated_points': torch.FloatTensor(rotated_points),
-            'normalized_points': torch.FloatTensor(normalized_points),
-            'colors': torch.FloatTensor(colors),
-            'labels': torch.LongTensor(labels),
-            'component_labels': torch.LongTensor(component_labels),
-            'center': torch.FloatTensor(center),
-            'scales': torch.FloatTensor([horizontal_scale, vertical_scale]),
-            'rotation_angle': torch.FloatTensor([block['rotation_angle']])
+            'points': points,
+            'colors': colors,
+            'labels': labels,
+            'center': block['center']
         }
 
-
 if __name__ == '__main__':
+    import matplotlib.pyplot as plt
+    import time
+
+
+    # 测试数据集加载和可视化
+    def visualize_block(dataset, block_idx=0):
+        print(f"\n正在可视化第 {block_idx} 个数据块...")
+
+        # 获取一个数据块
+        start_time = time.time()
+        data = dataset[block_idx]
+        load_time = time.time() - start_time
+        print(f"数据加载时间: {load_time:.2f} 秒")
+
+        # 打印数据块信息
+        points = data['points']
+        colors = data['colors']
+        labels = data['labels']
+        center = data['center']
+
+        print("\n数据块统计信息:")
+        print(f"点数: {len(points)}")
+        print(f"中心点坐标: {center}")
+        print(f"点云范围:")
+        print(f"X: [{points[:, 0].min():.2f}, {points[:, 0].max():.2f}]")
+        print(f"Y: [{points[:, 1].min():.2f}, {points[:, 1].max():.2f}]")
+        print(f"Z: [{points[:, 2].min():.2f}, {points[:, 2].max():.2f}]")
+
+        # 创建3D可视化图
+        fig = plt.figure(figsize=(15, 5))
+
+        # 1. 使用坐标显示
+        ax1 = fig.add_subplot(131, projection='3d')
+        scatter1 = ax1.scatter(points[:, 0], points[:, 1], points[:, 2],
+                             c=labels,
+                             cmap='tab20', s=1)
+        ax1.set_title('PCD coordinate view')
+        ax1.set_xlabel('X')
+        ax1.set_ylabel('Y')
+        ax1.set_zlabel('Z')
+
+        # 2. 使用颜色显示
+        ax2 = fig.add_subplot(132, projection='3d')
+        scatter2 = ax2.scatter(points[:, 0], points[:, 1], points[:, 2],
+                             c=colors,  # RGB颜色
+                             s=1)
+        ax2.set_title('PCD color view')
+        ax2.set_xlabel('X')
+        ax2.set_ylabel('Y')
+        ax2.set_zlabel('Z')
+
+        # 3. 使用标签显示
+        ax3 = fig.add_subplot(133, projection='3d')
+        scatter3 = ax3.scatter(points[:, 0], points[:, 1], points[:, 2],
+                             c=labels,
+                             cmap='tab20', s=1)
+        ax3.set_title('PCD label view')
+        ax3.set_xlabel('X')
+        ax3.set_ylabel('Y')
+        ax3.set_zlabel('Z')
+
+        # 添加颜色条
+        plt.colorbar(scatter1, ax=ax1, label='Labels')
+        plt.colorbar(scatter3, ax=ax3, label='Labels')
+
+        plt.tight_layout()
+        plt.show()
+
+        # 打印数据形状
+        print("\n数据形状:")
+        print(f"Points shape: {points.shape}")
+        print(f"Colors shape: {colors.shape}")
+        print(f"Labels shape: {labels.shape}")
+
+        return data
+
+
+    specific_file = ['bridge-7.las']
+    # 创建数据集实例
     dataset = BridgePointCloudDataset(
-        data_dir='../data/val',
-        horizontal_block_size=1,  # 桥梁延伸方向使用较大的块
-        vertical_block_size=0.5,  # 垂直方向使用较小的块
-        horizontal_stride=0.5,  # 水平方向重叠4米
-        vertical_stride=0.2,  # 垂直方向重叠5米
-        num_points=4096,
-        min_points_in_block=100
+        data_dir='../data/fukushima/onepart/val',  # 替换为你的数据路径
+        file_list=specific_file,
+        num_points=8192,
+        h_block_size=0.5,
+        v_block_size=0.5,
+        h_stride=0.5,
+        v_stride=0.5,
+        min_points=100
     )
-    # 获取一个数据样本
-    sample = dataset[0]
-    print(f"Points shape: {sample['points'].shape}")
-    print(f"Colors shape: {sample['colors'].shape}")
-    print(f"Labels shape: {sample['labels'].shape}")
+
+    # 可视化第一个数据块
+    block_data = visualize_block(dataset, block_idx=100)
+    # 查看点数分布
+    point_counts = []
+    for i in range(len(dataset)):
+        data = dataset[i]
+        point_counts.append(len(data['points']))
+
+    print(f"最小点数: {min(point_counts)}")
+    print(f"最大点数: {max(point_counts)}")
+    print(f"平均点数: {sum(point_counts) / len(point_counts):.2f}")
+
+    # 打印数据集的总块数
+    print(f"\n数据集总块数: {len(dataset)}")
+    print(f"数据集总点数: {sum(point_counts)}")

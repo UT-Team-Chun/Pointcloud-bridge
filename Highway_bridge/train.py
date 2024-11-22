@@ -13,12 +13,13 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from models.model import PointNet2
-from utils.data_utils import BridgePointCloudDataset
+# from utils.data_utils import BridgePointCloudDataset
+from utils.BridgePCDataset import BridgePointCloudDataset
 from utils.logger_config import initialize_logger
 
 # 配置参数
 config = {
-    'num_points': 4096,
+    'num_points': 8192,
     'chunk_size': 4096,
     'overlap': 1024,
     'batch_size': 64,
@@ -53,10 +54,12 @@ def train():
     # 创建数据加载器
     train_dataset = BridgePointCloudDataset(
         data_dir='data/fukushima/onepart/train/',
-        num_points=config['num_points'],  # 这个参数现在可以忽略
-        #transform=True,
-        block_size=0.5,   # 新参数：每个块的点数
-        overlap=0.2  # 新参数：块之间的重叠点数
+        num_points=config['num_points'],
+        h_block_size=0.5,
+        v_block_size=0.5,
+        h_stride=0.3,
+        v_stride=0.3,
+        min_points=100
     )
     logger.info('reading train data')
 
@@ -64,9 +67,13 @@ def train():
     val_dataset = BridgePointCloudDataset(
         data_dir='data/fukushima/onepart/val/',
         num_points=config['num_points'],
-        block_size=0.5,
-        overlap=0,
+        h_block_size=0.5,
+        v_block_size=0.5,
+        h_stride=0.5,
+        v_stride=0.5,
+        min_points=100
     )
+
     logger.info('reading val data')
 
     # DataLoader的使用方式完全不变

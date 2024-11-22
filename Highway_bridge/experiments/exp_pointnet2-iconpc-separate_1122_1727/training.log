@@ -1,0 +1,65 @@
+2024-11-22 17:27:26,508 - INFO - Training configuration:
+2024-11-22 17:27:26,508 - INFO - num_points: 4096
+2024-11-22 17:27:26,508 - INFO - chunk_size: 4096
+2024-11-22 17:27:26,508 - INFO - overlap: 1024
+2024-11-22 17:27:26,508 - INFO - batch_size: 64
+2024-11-22 17:27:26,508 - INFO - num_workers: 0
+2024-11-22 17:27:26,508 - INFO - learning_rate: 0.001
+2024-11-22 17:27:26,508 - INFO - num_classes: 5
+2024-11-22 17:27:26,508 - INFO - num_epochs: 500
+2024-11-22 17:27:26,508 - INFO - device: cuda
+2024-11-22 17:27:26,508 - INFO - Using device: cuda
+2024-11-22 17:27:26,508 - INFO - Found 6 las files:
+2024-11-22 17:27:26,508 - INFO - Loading data/fukushima/onepart/train/bridge-3.las
+2024-11-22 17:27:26,951 - INFO - Loaded 16239683 points from bridge-3.las
+2024-11-22 17:27:26,967 - INFO - Processing data - Points: (16239683, 3), Colors: (16239683, 3), Labels: (16239683,)
+2024-11-22 17:27:37,199 - INFO - Created 4012 blocks
+2024-11-22 17:27:37,368 - INFO - Loading data/fukushima/onepart/train/bridge-4.las
+2024-11-22 17:27:37,701 - INFO - Loaded 12134787 points from bridge-4.las
+2024-11-22 17:27:37,743 - INFO - Processing data - Points: (12134787, 3), Colors: (12134787, 3), Labels: (12134787,)
+2024-11-22 17:27:45,508 - INFO - Created 2997 blocks
+2024-11-22 17:27:45,622 - INFO - Loading data/fukushima/onepart/train/bridge-5.las
+2024-11-22 17:27:45,854 - INFO - Loaded 8373599 points from bridge-5.las
+2024-11-22 17:27:45,880 - INFO - Processing data - Points: (8373599, 3), Colors: (8373599, 3), Labels: (8373599,)
+2024-11-22 17:27:51,421 - INFO - Created 6540 blocks
+2024-11-22 17:27:51,516 - INFO - Loading data/fukushima/onepart/train/bridge-6.las
+2024-11-22 17:27:51,870 - INFO - Loaded 12716121 points from bridge-6.las
+2024-11-22 17:27:51,897 - INFO - Processing data - Points: (12716121, 3), Colors: (12716121, 3), Labels: (12716121,)
+2024-11-22 17:28:00,136 - INFO - Created 3861 blocks
+2024-11-22 17:28:00,269 - INFO - Loading data/fukushima/onepart/train/bridge-8.las
+2024-11-22 17:28:00,823 - INFO - Loaded 20025746 points from bridge-8.las
+2024-11-22 17:28:00,866 - INFO - Processing data - Points: (20025746, 3), Colors: (20025746, 3), Labels: (20025746,)
+2024-11-22 17:28:13,729 - INFO - Created 3400 blocks
+2024-11-22 17:28:13,912 - INFO - Loading data/fukushima/onepart/train/bridge-9.las
+2024-11-22 17:28:14,644 - INFO - Loaded 26071676 points from bridge-9.las
+2024-11-22 17:28:14,705 - INFO - Processing data - Points: (26071676, 3), Colors: (26071676, 3), Labels: (26071676,)
+2024-11-22 17:28:32,307 - INFO - Created 5357 blocks
+2024-11-22 17:28:32,601 - INFO - Total blocks created: 26167
+2024-11-22 17:28:32,646 - INFO - reading train data
+2024-11-22 17:28:32,647 - INFO - Found 1 las files:
+2024-11-22 17:28:32,647 - INFO - Loading data/fukushima/onepart/val/bridge-7.las
+2024-11-22 17:28:33,061 - INFO - Loaded 15021376 points from bridge-7.las
+2024-11-22 17:28:33,075 - INFO - Processing data - Points: (15021376, 3), Colors: (15021376, 3), Labels: (15021376,)
+2024-11-22 17:28:43,031 - INFO - Created 1 blocks
+2024-11-22 17:28:43,120 - INFO - Total blocks created: 1
+2024-11-22 17:28:43,149 - INFO - reading val data
+2024-11-22 17:28:43,149 - INFO - Train dataset size: 26167
+2024-11-22 17:28:43,149 - INFO - Val dataset size: 1
+2024-11-22 17:28:43,995 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x0000020207DD45F0>
+2024-11-22 17:32:11,285 - INFO - Mean IoU: 8.07%
+2024-11-22 17:32:11,286 - INFO - Class 0 IoU: 0.00%
+2024-11-22 17:32:11,286 - INFO - Class 1 IoU: 0.00%
+2024-11-22 17:32:11,286 - INFO - Class 2 IoU: 0.00%
+2024-11-22 17:32:11,286 - INFO - Class 3 IoU: 0.00%
+2024-11-22 17:32:11,286 - INFO - Class 4 IoU: 40.33%
+2024-11-22 17:32:11,286 - INFO - 
+Epoch 1/500:
+2024-11-22 17:32:11,286 - INFO - Train Loss: 0.6231, Train Acc: 76.61%
+2024-11-22 17:32:11,286 - INFO - Val Loss: 2.8159, Val Acc: 40.33%
+2024-11-22 17:32:11,286 - INFO - Class 0 Accuracy: 0.00%
+2024-11-22 17:32:11,286 - INFO - Class 1 Accuracy: 0.00%
+2024-11-22 17:32:11,286 - INFO - Class 2 Accuracy: 0.00%
+2024-11-22 17:32:11,287 - INFO - Class 3 Accuracy: 0.00%
+2024-11-22 17:32:11,287 - INFO - Class 4 Accuracy: 100.00%
+2024-11-22 17:32:11,305 - INFO - Saved best model with accuracy: 40.33%
+2024-11-22 17:32:11,320 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x0000020207DD45F0>
