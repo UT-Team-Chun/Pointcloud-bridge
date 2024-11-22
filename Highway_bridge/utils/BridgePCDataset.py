@@ -4,10 +4,6 @@ import laspy
 import numpy as np
 from torch.utils.data import Dataset
 
-from .logger_config import get_logger
-
-logger = get_logger()
-
 
 class BridgePointCloudDataset(Dataset):
     def __init__(self,
@@ -19,7 +15,9 @@ class BridgePointCloudDataset(Dataset):
                  h_stride=0.5,
                  v_stride=0.5,
                  min_points=100,
-                 transform=None):
+                 transform=None,
+                 logger=None
+                 ):
         """
         初始化桥梁点云数据集
         Args:
@@ -40,7 +38,8 @@ class BridgePointCloudDataset(Dataset):
         self.v_stride = v_stride
         self.min_points = min_points
         self.transform = transform
-
+        self.logger = logger
+        
         # 获取las文件列表
         if file_list is None:
             self.file_list = [f for f in os.listdir(data_dir) if f.endswith('.las')]
@@ -50,7 +49,7 @@ class BridgePointCloudDataset(Dataset):
         if len(self.file_list) == 0:
             raise ValueError(f"No .las files found in {data_dir}")
 
-        logger.info(f"Found {len(self.file_list)} las files:")
+        self.logger.info(f"Found {len(self.file_list)} las files:")
 
         for f in self.file_list:
             print(f"  - {f}")
@@ -62,7 +61,7 @@ class BridgePointCloudDataset(Dataset):
         """加载单个las文件"""
         file_path = os.path.join(self.data_dir, filename)
         print(f"Loading {file_path}")
-        logger.info(f"Loading {file_path}")
+        self.logger.info(f"Loading {file_path}")
 
         try:
             las = laspy.read(file_path)
@@ -84,24 +83,28 @@ class BridgePointCloudDataset(Dataset):
                 labels = np.zeros(len(points), dtype=np.int64)
 
             print(f"Loaded {len(points)} points from {filename}")
-            logger.info(f"Loaded {len(points)} points from {filename}")
+            self.logger.info(f"Loaded {len(points)} points from {filename}")
 
             return points, colors, labels
 
         except Exception as e:
             print(f"Error loading {filename}: {str(e)}")
-            logger.error(f"Error loading {filename}: {str(e)}")
+            self.logger.error(f"Error loading {filename}: {str(e)}")
 
             return None, None, None
 
     def _assign_points_to_blocks(self, points, colors, labels):
         """将点分配到不同的块中"""
         print(f"Processing data - Points: {points.shape}, Colors: {colors.shape}, Labels: {labels.shape}")
-        logger.info(f"Processing data - Points: {points.shape}, Colors: {colors.shape}, Labels: {labels.shape}")
+        self.logger.info(f"Processing data - Points: {points.shape}, Colors: {colors.shape}, Labels: {labels.shape}")
 
         # 计算点云的边界
         min_coords = np.min(points, axis=0)
         max_coords = np.max(points, axis=0)
+
+        # 计算全局统计信息
+        global_mean = np.mean(points, axis=0)
+        global_scale = np.max(np.linalg.norm(points - global_mean, axis=1))
 
         # 计算每个点所属的网格索引
         grid_indices = np.floor((points - min_coords) / [self.h_stride, self.h_stride, self.v_stride]).astype(int)
@@ -129,19 +132,35 @@ class BridgePointCloudDataset(Dataset):
 
                 # 将点坐标归一化到块的中心
                 normalized_points = block_points - center
+                # 添加全局位置信息
+                #block_points = (center - global_mean) / global_scale
 
                 blocks.append({
-                    'points': normalized_points,
+                    'points': block_points,
                     'colors': block_colors,
                     'labels': block_labels,
                     'center': center,
-                    'indices': indices
+                    'indices': indices,
+                    'normalized_points': normalized_points
                 })
 
         print(f"Created {len(blocks)} blocks")
-        logger.info(f"Created {len(blocks)} blocks")
+        self.logger.info(f"Created {len(blocks)} blocks")
 
         return blocks
+
+    def normalize_points(self, points):
+        """正规化点云坐标"""
+        # 计算质心
+        centroid = np.mean(points, axis=0)
+        points = points - centroid
+
+        # 计算最大距离
+        max_dist = np.max(np.sqrt(np.sum(points ** 2, axis=1)))
+        if max_dist > 0:
+            points = points / max_dist
+
+        return points
 
     def _preprocess_files(self):
         """预处理所有las文件"""
@@ -149,13 +168,14 @@ class BridgePointCloudDataset(Dataset):
 
         for filename in self.file_list:
             points, colors, labels = self._load_las_file(filename)
+
             if points is not None:
                 # 分配点到块中
                 blocks = self._assign_points_to_blocks(points, colors, labels)
                 all_blocks.extend(blocks)
 
         print(f"Total blocks created: {len(all_blocks)}")
-        logger.info(f"Total blocks created: {len(all_blocks)}")
+        self.logger.info(f"Total blocks created: {len(all_blocks)}")
 
         return all_blocks
 
@@ -168,7 +188,7 @@ class BridgePointCloudDataset(Dataset):
         block = self.blocks[idx]
 
         # 转换为所需的数据格式
-        points = block['points'].astype(np.float32)
+        points = self.normalize_points(block['points']).astype(np.float32)
         colors = block['colors'].astype(np.float32)
         labels = block['labels'].astype(np.int64)
 
@@ -279,7 +299,7 @@ if __name__ == '__main__':
     dataset = BridgePointCloudDataset(
         data_dir='../data/fukushima/onepart/val',  # 替换为你的数据路径
         file_list=specific_file,
-        num_points=8192,
+        num_points=4096,
         h_block_size=0.5,
         v_block_size=0.5,
         h_stride=0.5,
@@ -288,7 +308,7 @@ if __name__ == '__main__':
     )
 
     # 可视化第一个数据块
-    block_data = visualize_block(dataset, block_idx=100)
+    block_data = visualize_block(dataset, block_idx=10)
     # 查看点数分布
     point_counts = []
     for i in range(len(dataset)):

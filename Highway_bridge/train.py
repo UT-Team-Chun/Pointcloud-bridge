@@ -15,11 +15,11 @@ from tqdm import tqdm
 from models.model import PointNet2
 # from utils.data_utils import BridgePointCloudDataset
 from utils.BridgePCDataset import BridgePointCloudDataset
-from utils.logger_config import initialize_logger
+from utils.logger_config import initialize_logger, get_logger
 
 # 配置参数
 config = {
-    'num_points': 8192,
+    'num_points': 4096,
     'chunk_size': 4096,
     'overlap': 1024,
     'batch_size': 64,
@@ -34,7 +34,7 @@ config = {
 def train():
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d_%H%M')
-    case = 'pointnet2-iconpc-separate'
+    case = 'pointnet2-iconpc-onepart'
     exp_dir = Path(f'experiments/exp_{case}_{timestamp}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -59,7 +59,8 @@ def train():
         v_block_size=0.5,
         h_stride=0.3,
         v_stride=0.3,
-        min_points=100
+        min_points=100,
+        logger=get_logger()
     )
     logger.info('reading train data')
 
@@ -71,7 +72,8 @@ def train():
         v_block_size=0.5,
         h_stride=0.5,
         v_stride=0.5,
-        min_points=100
+        min_points=100,
+        logger=get_logger()
     )
 
     logger.info('reading val data')

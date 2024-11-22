@@ -1,0 +1,48 @@
+2024-11-22 20:06:14,003 - INFO - Training configuration:
+2024-11-22 20:06:14,003 - INFO - num_points: 4096
+2024-11-22 20:06:14,003 - INFO - chunk_size: 4096
+2024-11-22 20:06:14,003 - INFO - overlap: 1024
+2024-11-22 20:06:14,003 - INFO - batch_size: 64
+2024-11-22 20:06:14,003 - INFO - num_workers: 0
+2024-11-22 20:06:14,003 - INFO - learning_rate: 0.001
+2024-11-22 20:06:14,003 - INFO - num_classes: 5
+2024-11-22 20:06:14,003 - INFO - num_epochs: 500
+2024-11-22 20:06:14,004 - INFO - device: cuda
+2024-11-22 20:06:14,004 - INFO - Using device: cuda
+2024-11-22 20:06:14,004 - INFO - Found 6 las files:
+2024-11-22 20:06:14,004 - INFO - Loading data/fukushima/onepart/train/bridge-3.las
+2024-11-22 20:06:14,446 - INFO - Loaded 16239683 points from bridge-3.las
+2024-11-22 20:06:14,456 - INFO - Processing data - Points: (16239683, 3), Colors: (16239683, 3), Labels: (16239683,)
+2024-11-22 20:06:25,459 - INFO - Created 10188 blocks
+2024-11-22 20:06:25,640 - INFO - Loading data/fukushima/onepart/train/bridge-4.las
+2024-11-22 20:06:25,964 - INFO - Loaded 12134787 points from bridge-4.las
+2024-11-22 20:06:25,988 - INFO - Processing data - Points: (12134787, 3), Colors: (12134787, 3), Labels: (12134787,)
+2024-11-22 20:06:34,232 - INFO - Created 8421 blocks
+2024-11-22 20:06:34,365 - INFO - Loading data/fukushima/onepart/train/bridge-5.las
+2024-11-22 20:06:34,590 - INFO - Loaded 8373599 points from bridge-5.las
+2024-11-22 20:06:34,607 - INFO - Processing data - Points: (8373599, 3), Colors: (8373599, 3), Labels: (8373599,)
+2024-11-22 20:06:40,664 - INFO - Created 13621 blocks
+2024-11-22 20:06:40,779 - INFO - Loading data/fukushima/onepart/train/bridge-6.las
+2024-11-22 20:06:41,123 - INFO - Loaded 12716121 points from bridge-6.las
+2024-11-22 20:06:41,139 - INFO - Processing data - Points: (12716121, 3), Colors: (12716121, 3), Labels: (12716121,)
+2024-11-22 20:06:49,948 - INFO - Created 9667 blocks
+2024-11-22 20:06:50,088 - INFO - Loading data/fukushima/onepart/train/bridge-8.las
+2024-11-22 20:06:50,632 - INFO - Loaded 20025746 points from bridge-8.las
+2024-11-22 20:06:50,656 - INFO - Processing data - Points: (20025746, 3), Colors: (20025746, 3), Labels: (20025746,)
+2024-11-22 20:07:04,035 - INFO - Created 8808 blocks
+2024-11-22 20:07:04,252 - INFO - Loading data/fukushima/onepart/train/bridge-9.las
+2024-11-22 20:07:04,947 - INFO - Loaded 26071676 points from bridge-9.las
+2024-11-22 20:07:04,983 - INFO - Processing data - Points: (26071676, 3), Colors: (26071676, 3), Labels: (26071676,)
+2024-11-22 20:07:23,643 - INFO - Created 13839 blocks
+2024-11-22 20:07:23,962 - INFO - Total blocks created: 64544
+2024-11-22 20:07:23,990 - INFO - reading train data
+2024-11-22 20:07:23,990 - INFO - Found 1 las files:
+2024-11-22 20:07:23,990 - INFO - Loading data/fukushima/onepart/val/bridge-7.las
+2024-11-22 20:07:24,443 - INFO - Loaded 15021376 points from bridge-7.las
+2024-11-22 20:07:24,452 - INFO - Processing data - Points: (15021376, 3), Colors: (15021376, 3), Labels: (15021376,)
+2024-11-22 20:07:34,395 - INFO - Created 2213 blocks
+2024-11-22 20:07:34,556 - INFO - Total blocks created: 2213
+2024-11-22 20:07:34,572 - INFO - reading val data
+2024-11-22 20:07:34,572 - INFO - Train dataset size: 64544
+2024-11-22 20:07:34,572 - INFO - Val dataset size: 2213
+2024-11-22 20:07:35,389 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000251C1E129C0>
