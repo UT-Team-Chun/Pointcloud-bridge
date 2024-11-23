@@ -1,0 +1,445 @@
+2024-11-23 13:38:49,692 - INFO - Training configuration:
+2024-11-23 13:38:49,692 - INFO - num_points: 4096
+2024-11-23 13:38:49,692 - INFO - chunk_size: 4096
+2024-11-23 13:38:49,692 - INFO - overlap: 1024
+2024-11-23 13:38:49,692 - INFO - batch_size: 64
+2024-11-23 13:38:49,692 - INFO - num_workers: 0
+2024-11-23 13:38:49,692 - INFO - learning_rate: 0.001
+2024-11-23 13:38:49,692 - INFO - num_classes: 5
+2024-11-23 13:38:49,692 - INFO - num_epochs: 500
+2024-11-23 13:38:49,692 - INFO - device: cuda
+2024-11-23 13:38:49,692 - INFO - Using device: cuda
+2024-11-23 13:38:49,692 - INFO - Found 53 las files:
+2024-11-23 13:38:49,692 - INFO - Loading data/fukushima/train/b1-sec-3.las
+2024-11-23 13:38:49,751 - INFO - Loaded 2089257 points from b1-sec-3.las
+2024-11-23 13:38:49,883 - INFO - Processing data - Points: (2089257, 3), Colors: (2089257, 3), Labels: (2089257,)
+2024-11-23 13:38:51,497 - INFO - Created 463 blocks
+2024-11-23 13:38:51,550 - INFO - Loading data/fukushima/train/b1-sec-5.las
+2024-11-23 13:38:51,595 - INFO - Loaded 1637720 points from b1-sec-5.las
+2024-11-23 13:38:51,598 - INFO - Processing data - Points: (1637720, 3), Colors: (1637720, 3), Labels: (1637720,)
+2024-11-23 13:38:52,657 - INFO - Created 140 blocks
+2024-11-23 13:38:52,672 - INFO - Loading data/fukushima/train/b2-sec-4.las
+2024-11-23 13:38:52,749 - INFO - Loaded 2747352 points from b2-sec-4.las
+2024-11-23 13:38:52,752 - INFO - Processing data - Points: (2747352, 3), Colors: (2747352, 3), Labels: (2747352,)
+2024-11-23 13:38:54,830 - INFO - Created 798 blocks
+2024-11-23 13:38:54,898 - INFO - Loading data/fukushima/train/b3-sec-1.las
+2024-11-23 13:38:54,996 - INFO - Loaded 3588690 points from b3-sec-1.las
+2024-11-23 13:38:55,000 - INFO - Processing data - Points: (3588690, 3), Colors: (3588690, 3), Labels: (3588690,)
+2024-11-23 13:38:57,797 - INFO - Created 1835 blocks
+2024-11-23 13:38:57,893 - INFO - Loading data/fukushima/train/b3-sec-2.las
+2024-11-23 13:38:58,078 - INFO - Loaded 6417920 points from b3-sec-2.las
+2024-11-23 13:38:58,086 - INFO - Processing data - Points: (6417920, 3), Colors: (6417920, 3), Labels: (6417920,)
+2024-11-23 13:39:03,119 - INFO - Created 2228 blocks
+2024-11-23 13:39:03,301 - INFO - Loading data/fukushima/train/b3-sec-3.las
+2024-11-23 13:39:03,479 - INFO - Loaded 6044219 points from b3-sec-3.las
+2024-11-23 13:39:03,489 - INFO - Processing data - Points: (6044219, 3), Colors: (6044219, 3), Labels: (6044219,)
+2024-11-23 13:39:08,233 - INFO - Created 2101 blocks
+2024-11-23 13:39:08,415 - INFO - Loading data/fukushima/train/b3-sec-4.las
+2024-11-23 13:39:08,601 - INFO - Loaded 6468557 points from b3-sec-4.las
+2024-11-23 13:39:08,612 - INFO - Processing data - Points: (6468557, 3), Colors: (6468557, 3), Labels: (6468557,)
+2024-11-23 13:39:13,859 - INFO - Created 2235 blocks
+2024-11-23 13:39:14,037 - INFO - Loading data/fukushima/train/b3-sec-5.las
+2024-11-23 13:39:14,199 - INFO - Loaded 5510570 points from b3-sec-5.las
+2024-11-23 13:39:14,210 - INFO - Processing data - Points: (5510570, 3), Colors: (5510570, 3), Labels: (5510570,)
+2024-11-23 13:39:18,500 - INFO - Created 2079 blocks
+2024-11-23 13:39:18,652 - INFO - Loading data/fukushima/train/b3-sec-6.las
+2024-11-23 13:39:18,678 - INFO - Loaded 782998 points from b3-sec-6.las
+2024-11-23 13:39:18,685 - INFO - Processing data - Points: (782998, 3), Colors: (782998, 3), Labels: (782998,)
+2024-11-23 13:39:19,283 - INFO - Created 417 blocks
+2024-11-23 13:39:19,303 - INFO - Loading data/fukushima/train/b3-sec-7.las
+2024-11-23 13:39:19,385 - INFO - Loaded 2977107 points from b3-sec-7.las
+2024-11-23 13:39:19,387 - INFO - Processing data - Points: (2977107, 3), Colors: (2977107, 3), Labels: (2977107,)
+2024-11-23 13:39:21,730 - INFO - Created 2201 blocks
+2024-11-23 13:39:21,810 - INFO - Loading data/fukushima/train/b4-sec-1.las
+2024-11-23 13:39:21,892 - INFO - Loaded 2940412 points from b4-sec-1.las
+2024-11-23 13:39:21,897 - INFO - Processing data - Points: (2940412, 3), Colors: (2940412, 3), Labels: (2940412,)
+2024-11-23 13:39:24,191 - INFO - Created 1452 blocks
+2024-11-23 13:39:24,268 - INFO - Loading data/fukushima/train/b4-sec-2.las
+2024-11-23 13:39:24,420 - INFO - Loaded 5488366 points from b4-sec-2.las
+2024-11-23 13:39:24,426 - INFO - Processing data - Points: (5488366, 3), Colors: (5488366, 3), Labels: (5488366,)
+2024-11-23 13:39:28,748 - INFO - Created 2216 blocks
+2024-11-23 13:39:28,899 - INFO - Loading data/fukushima/train/b4-sec-3.las
+2024-11-23 13:39:29,041 - INFO - Loaded 5007760 points from b4-sec-3.las
+2024-11-23 13:39:29,051 - INFO - Processing data - Points: (5007760, 3), Colors: (5007760, 3), Labels: (5007760,)
+2024-11-23 13:39:32,940 - INFO - Created 1644 blocks
+2024-11-23 13:39:33,075 - INFO - Loading data/fukushima/train/b4-sec-4.las
+2024-11-23 13:39:33,210 - INFO - Loaded 4768525 points from b4-sec-4.las
+2024-11-23 13:39:33,218 - INFO - Processing data - Points: (4768525, 3), Colors: (4768525, 3), Labels: (4768525,)
+2024-11-23 13:39:36,905 - INFO - Created 1833 blocks
+2024-11-23 13:39:37,041 - INFO - Loading data/fukushima/train/b4-sec-5.las
+2024-11-23 13:39:37,076 - INFO - Loaded 1236681 points from b4-sec-5.las
+2024-11-23 13:39:37,081 - INFO - Processing data - Points: (1236681, 3), Colors: (1236681, 3), Labels: (1236681,)
+2024-11-23 13:39:37,939 - INFO - Created 552 blocks
+2024-11-23 13:39:37,960 - INFO - Loading data/fukushima/train/b4-sec-6.las
+2024-11-23 13:39:37,992 - INFO - Loaded 1105262 points from b4-sec-6.las
+2024-11-23 13:39:37,994 - INFO - Processing data - Points: (1105262, 3), Colors: (1105262, 3), Labels: (1105262,)
+2024-11-23 13:39:38,792 - INFO - Created 573 blocks
+2024-11-23 13:39:38,812 - INFO - Loading data/fukushima/train/b4-sec-7.las
+2024-11-23 13:39:38,881 - INFO - Loaded 2450481 points from b4-sec-7.las
+2024-11-23 13:39:38,884 - INFO - Processing data - Points: (2450481, 3), Colors: (2450481, 3), Labels: (2450481,)
+2024-11-23 13:39:40,555 - INFO - Created 904 blocks
+2024-11-23 13:39:40,590 - INFO - Loading data/fukushima/train/b5-sec-1.las
+2024-11-23 13:39:40,675 - INFO - Loaded 2882767 points from b5-sec-1.las
+2024-11-23 13:39:40,680 - INFO - Processing data - Points: (2882767, 3), Colors: (2882767, 3), Labels: (2882767,)
+2024-11-23 13:39:42,994 - INFO - Created 3051 blocks
+2024-11-23 13:39:43,077 - INFO - Loading data/fukushima/train/b5-sec-2.las
+2024-11-23 13:39:43,130 - INFO - Loaded 1940238 points from b5-sec-2.las
+2024-11-23 13:39:43,135 - INFO - Processing data - Points: (1940238, 3), Colors: (1940238, 3), Labels: (1940238,)
+2024-11-23 13:39:44,709 - INFO - Created 2114 blocks
+2024-11-23 13:39:44,761 - INFO - Loading data/fukushima/train/b5-sec-3.las
+2024-11-23 13:39:44,849 - INFO - Loaded 3200932 points from b5-sec-3.las
+2024-11-23 13:39:44,853 - INFO - Processing data - Points: (3200932, 3), Colors: (3200932, 3), Labels: (3200932,)
+2024-11-23 13:39:47,455 - INFO - Created 3364 blocks
+2024-11-23 13:39:47,550 - INFO - Loading data/fukushima/train/b5-sec-4.las
+2024-11-23 13:39:47,636 - INFO - Loaded 3009024 points from b5-sec-4.las
+2024-11-23 13:39:47,641 - INFO - Processing data - Points: (3009024, 3), Colors: (3009024, 3), Labels: (3009024,)
+2024-11-23 13:39:50,149 - INFO - Created 4189 blocks
+2024-11-23 13:39:50,240 - INFO - Loading data/fukushima/train/b5-sec-5.las
+2024-11-23 13:39:50,317 - INFO - Loaded 2722650 points from b5-sec-5.las
+2024-11-23 13:39:50,323 - INFO - Processing data - Points: (2722650, 3), Colors: (2722650, 3), Labels: (2722650,)
+2024-11-23 13:39:52,652 - INFO - Created 4512 blocks
+2024-11-23 13:39:52,747 - INFO - Loading data/fukushima/train/b5-sec-6.las
+2024-11-23 13:39:52,844 - INFO - Loaded 3443527 points from b5-sec-6.las
+2024-11-23 13:39:52,849 - INFO - Processing data - Points: (3443527, 3), Colors: (3443527, 3), Labels: (3443527,)
+2024-11-23 13:39:55,706 - INFO - Created 3177 blocks
+2024-11-23 13:39:55,804 - INFO - Loading data/fukushima/train/b6-sec-1.las
+2024-11-23 13:39:55,949 - INFO - Loaded 5066592 points from b6-sec-1.las
+2024-11-23 13:39:55,956 - INFO - Processing data - Points: (5066592, 3), Colors: (5066592, 3), Labels: (5066592,)
+2024-11-23 13:40:00,047 - INFO - Created 2394 blocks
+2024-11-23 13:40:00,194 - INFO - Loading data/fukushima/train/b6-sec-10.las
+2024-11-23 13:40:00,237 - INFO - Loaded 1497501 points from b6-sec-10.las
+2024-11-23 13:40:00,244 - INFO - Processing data - Points: (1497501, 3), Colors: (1497501, 3), Labels: (1497501,)
+2024-11-23 13:40:01,321 - INFO - Created 669 blocks
+2024-11-23 13:40:01,347 - INFO - Loading data/fukushima/train/b6-sec-11.las
+2024-11-23 13:40:01,357 - INFO - Loaded 316558 points from b6-sec-11.las
+2024-11-23 13:40:01,359 - INFO - Processing data - Points: (316558, 3), Colors: (316558, 3), Labels: (316558,)
+2024-11-23 13:40:01,591 - INFO - Created 317 blocks
+2024-11-23 13:40:01,598 - INFO - Loading data/fukushima/train/b6-sec-2.las
+2024-11-23 13:40:01,811 - INFO - Loaded 7596534 points from b6-sec-2.las
+2024-11-23 13:40:01,816 - INFO - Processing data - Points: (7596534, 3), Colors: (7596534, 3), Labels: (7596534,)
+2024-11-23 13:40:08,054 - INFO - Created 3718 blocks
+2024-11-23 13:40:08,277 - INFO - Loading data/fukushima/train/b6-sec-3.las
+2024-11-23 13:40:08,392 - INFO - Loaded 4067268 points from b6-sec-3.las
+2024-11-23 13:40:08,402 - INFO - Processing data - Points: (4067268, 3), Colors: (4067268, 3), Labels: (4067268,)
+2024-11-23 13:40:11,765 - INFO - Created 2609 blocks
+2024-11-23 13:40:11,878 - INFO - Loading data/fukushima/train/b6-sec-4.las
+2024-11-23 13:40:11,950 - INFO - Loaded 2695891 points from b6-sec-4.las
+2024-11-23 13:40:11,957 - INFO - Processing data - Points: (2695891, 3), Colors: (2695891, 3), Labels: (2695891,)
+2024-11-23 13:40:14,121 - INFO - Created 1638 blocks
+2024-11-23 13:40:14,194 - INFO - Loading data/fukushima/train/b6-sec-5.las
+2024-11-23 13:40:14,378 - INFO - Loaded 6608209 points from b6-sec-5.las
+2024-11-23 13:40:14,384 - INFO - Processing data - Points: (6608209, 3), Colors: (6608209, 3), Labels: (6608209,)
+2024-11-23 13:40:19,634 - INFO - Created 2911 blocks
+2024-11-23 13:40:19,833 - INFO - Loading data/fukushima/train/b6-sec-6.las
+2024-11-23 13:40:19,864 - INFO - Loaded 976920 points from b6-sec-6.las
+2024-11-23 13:40:19,872 - INFO - Processing data - Points: (976920, 3), Colors: (976920, 3), Labels: (976920,)
+2024-11-23 13:40:20,580 - INFO - Created 571 blocks
+2024-11-23 13:40:20,598 - INFO - Loading data/fukushima/train/b6-sec-7.las
+2024-11-23 13:40:20,712 - INFO - Loaded 3458878 points from b6-sec-7.las
+2024-11-23 13:40:20,715 - INFO - Processing data - Points: (3458878, 3), Colors: (3458878, 3), Labels: (3458878,)
+2024-11-23 13:40:23,120 - INFO - Created 1649 blocks
+2024-11-23 13:40:23,170 - INFO - Loading data/fukushima/train/b6-sec-8.las
+2024-11-23 13:40:23,215 - INFO - Loaded 1537172 points from b6-sec-8.las
+2024-11-23 13:40:23,219 - INFO - Processing data - Points: (1537172, 3), Colors: (1537172, 3), Labels: (1537172,)
+2024-11-23 13:40:24,320 - INFO - Created 559 blocks
+2024-11-23 13:40:24,348 - INFO - Loading data/fukushima/train/b6-sec-9.las
+2024-11-23 13:40:24,474 - INFO - Loaded 4624499 points from b6-sec-9.las
+2024-11-23 13:40:24,479 - INFO - Processing data - Points: (4624499, 3), Colors: (4624499, 3), Labels: (4624499,)
+2024-11-23 13:40:27,587 - INFO - Created 1493 blocks
+2024-11-23 13:40:27,648 - INFO - Loading data/fukushima/train/b8-sec-1.las
+2024-11-23 13:40:27,688 - INFO - Loaded 1309571 points from b8-sec-1.las
+2024-11-23 13:40:27,694 - INFO - Processing data - Points: (1309571, 3), Colors: (1309571, 3), Labels: (1309571,)
+2024-11-23 13:40:28,744 - INFO - Created 880 blocks
+2024-11-23 13:40:28,781 - INFO - Loading data/fukushima/train/b8-sec-10.las
+2024-11-23 13:40:28,879 - INFO - Loaded 3527857 points from b8-sec-10.las
+2024-11-23 13:40:28,883 - INFO - Processing data - Points: (3527857, 3), Colors: (3527857, 3), Labels: (3527857,)
+2024-11-23 13:40:31,272 - INFO - Created 774 blocks
+2024-11-23 13:40:31,315 - INFO - Loading data/fukushima/train/b8-sec-2.las
+2024-11-23 13:40:31,418 - INFO - Loaded 3682779 points from b8-sec-2.las
+2024-11-23 13:40:31,424 - INFO - Processing data - Points: (3682779, 3), Colors: (3682779, 3), Labels: (3682779,)
+2024-11-23 13:40:34,401 - INFO - Created 2163 blocks
+2024-11-23 13:40:34,507 - INFO - Loading data/fukushima/train/b8-sec-3.las
+2024-11-23 13:40:34,701 - INFO - Loaded 6054963 points from b8-sec-3.las
+2024-11-23 13:40:34,709 - INFO - Processing data - Points: (6054963, 3), Colors: (6054963, 3), Labels: (6054963,)
+2024-11-23 13:40:39,508 - INFO - Created 2404 blocks
+2024-11-23 13:40:39,690 - INFO - Loading data/fukushima/train/b8-sec-4.las
+2024-11-23 13:40:39,773 - INFO - Loaded 2780263 points from b8-sec-4.las
+2024-11-23 13:40:39,781 - INFO - Processing data - Points: (2780263, 3), Colors: (2780263, 3), Labels: (2780263,)
+2024-11-23 13:40:41,995 - INFO - Created 1081 blocks
+2024-11-23 13:40:42,073 - INFO - Loading data/fukushima/train/b8-sec-5.las
+2024-11-23 13:40:42,136 - INFO - Loaded 2179716 points from b8-sec-5.las
+2024-11-23 13:40:42,140 - INFO - Processing data - Points: (2179716, 3), Colors: (2179716, 3), Labels: (2179716,)
+2024-11-23 13:40:43,896 - INFO - Created 1177 blocks
+2024-11-23 13:40:43,961 - INFO - Loading data/fukushima/train/b8-sec-6.las
+2024-11-23 13:40:44,003 - INFO - Loaded 1485631 points from b8-sec-6.las
+2024-11-23 13:40:44,006 - INFO - Processing data - Points: (1485631, 3), Colors: (1485631, 3), Labels: (1485631,)
+2024-11-23 13:40:45,241 - INFO - Created 809 blocks
+2024-11-23 13:40:45,287 - INFO - Loading data/fukushima/train/b8-sec-7.las
+2024-11-23 13:40:45,353 - INFO - Loaded 2361554 points from b8-sec-7.las
+2024-11-23 13:40:45,356 - INFO - Processing data - Points: (2361554, 3), Colors: (2361554, 3), Labels: (2361554,)
+2024-11-23 13:40:46,984 - INFO - Created 475 blocks
+2024-11-23 13:40:47,022 - INFO - Loading data/fukushima/train/b8-sec-8.las
+2024-11-23 13:40:47,123 - INFO - Loaded 3557242 points from b8-sec-8.las
+2024-11-23 13:40:47,127 - INFO - Processing data - Points: (3557242, 3), Colors: (3557242, 3), Labels: (3557242,)
+2024-11-23 13:40:49,567 - INFO - Created 879 blocks
+2024-11-23 13:40:49,617 - INFO - Loading data/fukushima/train/b8-sec-9.las
+2024-11-23 13:40:49,705 - INFO - Loaded 2377497 points from b8-sec-9.las
+2024-11-23 13:40:49,711 - INFO - Processing data - Points: (2377497, 3), Colors: (2377497, 3), Labels: (2377497,)
+2024-11-23 13:40:51,378 - INFO - Created 742 blocks
+2024-11-23 13:40:51,418 - INFO - Loading data/fukushima/train/b9-sec-1.las
+2024-11-23 13:40:51,483 - INFO - Loaded 2209816 points from b9-sec-1.las
+2024-11-23 13:40:51,488 - INFO - Processing data - Points: (2209816, 3), Colors: (2209816, 3), Labels: (2209816,)
+2024-11-23 13:40:53,291 - INFO - Created 1405 blocks
+2024-11-23 13:40:53,359 - INFO - Loading data/fukushima/train/b9-sec-10.las
+2024-11-23 13:40:53,500 - INFO - Loaded 4982371 points from b9-sec-10.las
+2024-11-23 13:40:53,506 - INFO - Processing data - Points: (4982371, 3), Colors: (4982371, 3), Labels: (4982371,)
+2024-11-23 13:40:56,994 - INFO - Created 1408 blocks
+2024-11-23 13:40:57,067 - INFO - Loading data/fukushima/train/b9-sec-2.las
+2024-11-23 13:40:57,390 - INFO - Loaded 11516294 points from b9-sec-2.las
+2024-11-23 13:40:57,402 - INFO - Processing data - Points: (11516294, 3), Colors: (11516294, 3), Labels: (11516294,)
+2024-11-23 13:41:06,787 - INFO - Created 3817 blocks
+2024-11-23 13:41:07,138 - INFO - Loading data/fukushima/train/b9-sec-3.las
+2024-11-23 13:41:07,566 - INFO - Loaded 15632265 points from b9-sec-3.las
+2024-11-23 13:41:07,587 - INFO - Processing data - Points: (15632265, 3), Colors: (15632265, 3), Labels: (15632265,)
+2024-11-23 13:41:20,165 - INFO - Created 4366 blocks
+2024-11-23 13:41:20,646 - INFO - Loading data/fukushima/train/b9-sec-4.las
+2024-11-23 13:41:20,893 - INFO - Loaded 8339903 points from b9-sec-4.las
+2024-11-23 13:41:20,916 - INFO - Processing data - Points: (8339903, 3), Colors: (8339903, 3), Labels: (8339903,)
+2024-11-23 13:41:27,811 - INFO - Created 3331 blocks
+2024-11-23 13:41:28,071 - INFO - Loading data/fukushima/train/b9-sec-5.las
+2024-11-23 13:41:28,108 - INFO - Loaded 1185858 points from b9-sec-5.las
+2024-11-23 13:41:28,118 - INFO - Processing data - Points: (1185858, 3), Colors: (1185858, 3), Labels: (1185858,)
+2024-11-23 13:41:29,090 - INFO - Created 1703 blocks
+2024-11-23 13:41:29,124 - INFO - Loading data/fukushima/train/b9-sec-6.las
+2024-11-23 13:41:29,307 - INFO - Loaded 6597349 points from b9-sec-6.las
+2024-11-23 13:41:29,313 - INFO - Processing data - Points: (6597349, 3), Colors: (6597349, 3), Labels: (6597349,)
+2024-11-23 13:41:33,862 - INFO - Created 1852 blocks
+2024-11-23 13:41:33,950 - INFO - Loading data/fukushima/train/b9-sec-7.las
+2024-11-23 13:41:34,105 - INFO - Loaded 5352815 points from b9-sec-7.las
+2024-11-23 13:41:34,116 - INFO - Processing data - Points: (5352815, 3), Colors: (5352815, 3), Labels: (5352815,)
+2024-11-23 13:41:37,819 - INFO - Created 1496 blocks
+2024-11-23 13:41:37,895 - INFO - Loading data/fukushima/train/b9-sec-8.las
+2024-11-23 13:41:37,915 - INFO - Loaded 647179 points from b9-sec-8.las
+2024-11-23 13:41:37,921 - INFO - Processing data - Points: (647179, 3), Colors: (647179, 3), Labels: (647179,)
+2024-11-23 13:41:38,393 - INFO - Created 571 blocks
+2024-11-23 13:41:38,402 - INFO - Total blocks created: 93939
+2024-11-23 13:41:38,403 - INFO - reading train data
+2024-11-23 13:41:38,403 - INFO - Found 4 las files:
+2024-11-23 13:41:38,404 - INFO - Loading data/fukushima/val/b7-sec-1.las
+2024-11-23 13:41:38,517 - INFO - Loaded 4053707 points from b7-sec-1.las
+2024-11-23 13:41:38,520 - INFO - Processing data - Points: (4053707, 3), Colors: (4053707, 3), Labels: (4053707,)
+2024-11-23 13:41:41,680 - INFO - Created 902 blocks
+2024-11-23 13:41:41,794 - INFO - Loading data/fukushima/val/b7-sec-2.las
+2024-11-23 13:41:41,950 - INFO - Loaded 5499544 points from b7-sec-2.las
+2024-11-23 13:41:41,958 - INFO - Processing data - Points: (5499544, 3), Colors: (5499544, 3), Labels: (5499544,)
+2024-11-23 13:41:46,294 - INFO - Created 1163 blocks
+2024-11-23 13:41:46,448 - INFO - Loading data/fukushima/val/b7-sec-3.las
+2024-11-23 13:41:46,618 - INFO - Loaded 5897809 points from b7-sec-3.las
+2024-11-23 13:41:46,627 - INFO - Processing data - Points: (5897809, 3), Colors: (5897809, 3), Labels: (5897809,)
+2024-11-23 13:41:51,286 - INFO - Created 1027 blocks
+2024-11-23 13:41:51,448 - INFO - Loading data/fukushima/val/b7-sec-4.las
+2024-11-23 13:41:51,563 - INFO - Loaded 3928801 points from b7-sec-4.las
+2024-11-23 13:41:51,572 - INFO - Processing data - Points: (3928801, 3), Colors: (3928801, 3), Labels: (3928801,)
+2024-11-23 13:41:54,658 - INFO - Created 753 blocks
+2024-11-23 13:41:54,770 - INFO - Total blocks created: 3845
+2024-11-23 13:41:54,774 - INFO - reading val data
+2024-11-23 13:41:54,774 - INFO - Train dataset size: 93939
+2024-11-23 13:41:54,774 - INFO - Val dataset size: 3845
+2024-11-23 13:41:55,627 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 14:23:11,134 - INFO - Mean IoU: 52.99%
+2024-11-23 14:23:11,135 - INFO - Class 0 IoU: 24.26%
+2024-11-23 14:23:11,135 - INFO - Class 1 IoU: 68.48%
+2024-11-23 14:23:11,135 - INFO - Class 2 IoU: 50.11%
+2024-11-23 14:23:11,135 - INFO - Class 3 IoU: 62.35%
+2024-11-23 14:23:11,135 - INFO - Class 4 IoU: 59.77%
+2024-11-23 14:23:11,135 - INFO - 
+Epoch 1/500:
+2024-11-23 14:23:11,135 - INFO - Train Loss: 0.6139, Train Acc: 77.09%
+2024-11-23 14:23:11,135 - INFO - Val Loss: 0.7354, Val Acc: 72.66%
+2024-11-23 14:23:11,135 - INFO - Class 0 Accuracy: 48.38%
+2024-11-23 14:23:11,136 - INFO - Class 1 Accuracy: 74.98%
+2024-11-23 14:23:11,136 - INFO - Class 2 Accuracy: 76.97%
+2024-11-23 14:23:11,136 - INFO - Class 3 Accuracy: 89.35%
+2024-11-23 14:23:11,136 - INFO - Class 4 Accuracy: 71.55%
+2024-11-23 14:23:11,154 - INFO - Saved best model with accuracy: 72.66%
+2024-11-23 14:23:11,173 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 15:04:22,382 - INFO - Mean IoU: 51.97%
+2024-11-23 15:04:22,382 - INFO - Class 0 IoU: 24.01%
+2024-11-23 15:04:22,382 - INFO - Class 1 IoU: 64.33%
+2024-11-23 15:04:22,382 - INFO - Class 2 IoU: 50.61%
+2024-11-23 15:04:22,382 - INFO - Class 3 IoU: 60.60%
+2024-11-23 15:04:22,384 - INFO - Class 4 IoU: 60.27%
+2024-11-23 15:04:22,384 - INFO - 
+Epoch 2/500:
+2024-11-23 15:04:22,384 - INFO - Train Loss: 0.4883, Train Acc: 82.07%
+2024-11-23 15:04:22,384 - INFO - Val Loss: 0.7626, Val Acc: 70.52%
+2024-11-23 15:04:22,384 - INFO - Class 0 Accuracy: 61.84%
+2024-11-23 15:04:22,384 - INFO - Class 1 Accuracy: 69.66%
+2024-11-23 15:04:22,384 - INFO - Class 2 Accuracy: 84.33%
+2024-11-23 15:04:22,384 - INFO - Class 3 Accuracy: 95.22%
+2024-11-23 15:04:22,384 - INFO - Class 4 Accuracy: 65.89%
+2024-11-23 15:04:22,403 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 15:46:28,769 - INFO - Mean IoU: 59.18%
+2024-11-23 15:46:28,770 - INFO - Class 0 IoU: 31.65%
+2024-11-23 15:46:28,770 - INFO - Class 1 IoU: 64.98%
+2024-11-23 15:46:28,770 - INFO - Class 2 IoU: 51.58%
+2024-11-23 15:46:28,770 - INFO - Class 3 IoU: 77.32%
+2024-11-23 15:46:28,771 - INFO - Class 4 IoU: 70.35%
+2024-11-23 15:46:28,771 - INFO - 
+Epoch 3/500:
+2024-11-23 15:46:28,771 - INFO - Train Loss: 0.4357, Train Acc: 84.22%
+2024-11-23 15:46:28,771 - INFO - Val Loss: 0.6737, Val Acc: 75.73%
+2024-11-23 15:46:28,771 - INFO - Class 0 Accuracy: 79.61%
+2024-11-23 15:46:28,771 - INFO - Class 1 Accuracy: 66.74%
+2024-11-23 15:46:28,771 - INFO - Class 2 Accuracy: 78.34%
+2024-11-23 15:46:28,771 - INFO - Class 3 Accuracy: 92.51%
+2024-11-23 15:46:28,772 - INFO - Class 4 Accuracy: 79.89%
+2024-11-23 15:46:28,791 - INFO - Saved best model with accuracy: 75.73%
+2024-11-23 15:46:28,808 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 16:32:15,319 - INFO - Mean IoU: 51.24%
+2024-11-23 16:32:15,320 - INFO - Class 0 IoU: 24.79%
+2024-11-23 16:32:15,320 - INFO - Class 1 IoU: 54.68%
+2024-11-23 16:32:15,320 - INFO - Class 2 IoU: 52.25%
+2024-11-23 16:32:15,320 - INFO - Class 3 IoU: 58.08%
+2024-11-23 16:32:15,320 - INFO - Class 4 IoU: 66.39%
+2024-11-23 16:32:15,320 - INFO - 
+Epoch 4/500:
+2024-11-23 16:32:15,320 - INFO - Train Loss: 0.4033, Train Acc: 85.49%
+2024-11-23 16:32:15,320 - INFO - Val Loss: 1.0495, Val Acc: 69.15%
+2024-11-23 16:32:15,320 - INFO - Class 0 Accuracy: 73.01%
+2024-11-23 16:32:15,320 - INFO - Class 1 Accuracy: 56.19%
+2024-11-23 16:32:15,320 - INFO - Class 2 Accuracy: 88.05%
+2024-11-23 16:32:15,322 - INFO - Class 3 Accuracy: 94.85%
+2024-11-23 16:32:15,322 - INFO - Class 4 Accuracy: 71.96%
+2024-11-23 16:32:15,341 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 17:16:43,836 - INFO - Mean IoU: 54.32%
+2024-11-23 17:16:43,836 - INFO - Class 0 IoU: 31.71%
+2024-11-23 17:16:43,836 - INFO - Class 1 IoU: 69.99%
+2024-11-23 17:16:43,837 - INFO - Class 2 IoU: 49.53%
+2024-11-23 17:16:43,837 - INFO - Class 3 IoU: 60.51%
+2024-11-23 17:16:43,837 - INFO - Class 4 IoU: 59.84%
+2024-11-23 17:16:43,837 - INFO - 
+Epoch 5/500:
+2024-11-23 17:16:43,837 - INFO - Train Loss: 0.3782, Train Acc: 86.45%
+2024-11-23 17:16:43,837 - INFO - Val Loss: 0.7269, Val Acc: 73.25%
+2024-11-23 17:16:43,837 - INFO - Class 0 Accuracy: 64.09%
+2024-11-23 17:16:43,837 - INFO - Class 1 Accuracy: 80.85%
+2024-11-23 17:16:43,837 - INFO - Class 2 Accuracy: 77.72%
+2024-11-23 17:16:43,837 - INFO - Class 3 Accuracy: 92.89%
+2024-11-23 17:16:43,839 - INFO - Class 4 Accuracy: 65.02%
+2024-11-23 17:16:43,865 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 18:01:30,670 - INFO - Mean IoU: 58.43%
+2024-11-23 18:01:30,670 - INFO - Class 0 IoU: 28.78%
+2024-11-23 18:01:30,671 - INFO - Class 1 IoU: 69.46%
+2024-11-23 18:01:30,671 - INFO - Class 2 IoU: 46.43%
+2024-11-23 18:01:30,671 - INFO - Class 3 IoU: 76.68%
+2024-11-23 18:01:30,671 - INFO - Class 4 IoU: 70.82%
+2024-11-23 18:01:30,671 - INFO - 
+Epoch 6/500:
+2024-11-23 18:01:30,671 - INFO - Train Loss: 0.3588, Train Acc: 87.24%
+2024-11-23 18:01:30,671 - INFO - Val Loss: 0.5962, Val Acc: 76.54%
+2024-11-23 18:01:30,671 - INFO - Class 0 Accuracy: 66.37%
+2024-11-23 18:01:30,671 - INFO - Class 1 Accuracy: 74.66%
+2024-11-23 18:01:30,671 - INFO - Class 2 Accuracy: 59.72%
+2024-11-23 18:01:30,672 - INFO - Class 3 Accuracy: 90.48%
+2024-11-23 18:01:30,672 - INFO - Class 4 Accuracy: 82.08%
+2024-11-23 18:01:30,691 - INFO - Saved best model with accuracy: 76.54%
+2024-11-23 18:01:30,708 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 18:46:51,499 - INFO - Mean IoU: 59.48%
+2024-11-23 18:46:51,500 - INFO - Class 0 IoU: 32.74%
+2024-11-23 18:46:51,500 - INFO - Class 1 IoU: 75.82%
+2024-11-23 18:46:51,500 - INFO - Class 2 IoU: 53.36%
+2024-11-23 18:46:51,500 - INFO - Class 3 IoU: 68.61%
+2024-11-23 18:46:51,500 - INFO - Class 4 IoU: 66.89%
+2024-11-23 18:46:51,501 - INFO - 
+Epoch 7/500:
+2024-11-23 18:46:51,501 - INFO - Train Loss: 0.3405, Train Acc: 87.87%
+2024-11-23 18:46:51,501 - INFO - Val Loss: 0.6168, Val Acc: 77.75%
+2024-11-23 18:46:51,501 - INFO - Class 0 Accuracy: 61.45%
+2024-11-23 18:46:51,501 - INFO - Class 1 Accuracy: 84.07%
+2024-11-23 18:46:51,501 - INFO - Class 2 Accuracy: 78.92%
+2024-11-23 18:46:51,501 - INFO - Class 3 Accuracy: 94.36%
+2024-11-23 18:46:51,501 - INFO - Class 4 Accuracy: 73.28%
+2024-11-23 18:46:51,524 - INFO - Saved best model with accuracy: 77.75%
+2024-11-23 18:46:51,546 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 19:32:31,431 - INFO - Mean IoU: 57.04%
+2024-11-23 19:32:31,431 - INFO - Class 0 IoU: 28.72%
+2024-11-23 19:32:31,431 - INFO - Class 1 IoU: 64.25%
+2024-11-23 19:32:31,432 - INFO - Class 2 IoU: 54.54%
+2024-11-23 19:32:31,432 - INFO - Class 3 IoU: 67.83%
+2024-11-23 19:32:31,432 - INFO - Class 4 IoU: 69.84%
+2024-11-23 19:32:31,432 - INFO - 
+Epoch 8/500:
+2024-11-23 19:32:31,432 - INFO - Train Loss: 0.3288, Train Acc: 88.33%
+2024-11-23 19:32:31,432 - INFO - Val Loss: 0.6529, Val Acc: 75.06%
+2024-11-23 19:32:31,432 - INFO - Class 0 Accuracy: 66.88%
+2024-11-23 19:32:31,433 - INFO - Class 1 Accuracy: 66.79%
+2024-11-23 19:32:31,433 - INFO - Class 2 Accuracy: 70.25%
+2024-11-23 19:32:31,433 - INFO - Class 3 Accuracy: 93.93%
+2024-11-23 19:32:31,433 - INFO - Class 4 Accuracy: 82.21%
+2024-11-23 19:32:31,458 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 20:17:46,545 - INFO - Mean IoU: 62.10%
+2024-11-23 20:17:46,546 - INFO - Class 0 IoU: 27.36%
+2024-11-23 20:17:46,546 - INFO - Class 1 IoU: 69.45%
+2024-11-23 20:17:46,546 - INFO - Class 2 IoU: 61.65%
+2024-11-23 20:17:46,546 - INFO - Class 3 IoU: 77.69%
+2024-11-23 20:17:46,546 - INFO - Class 4 IoU: 74.34%
+2024-11-23 20:17:46,546 - INFO - 
+Epoch 9/500:
+2024-11-23 20:17:46,546 - INFO - Train Loss: 0.3166, Train Acc: 88.81%
+2024-11-23 20:17:46,546 - INFO - Val Loss: 0.6279, Val Acc: 78.35%
+2024-11-23 20:17:46,546 - INFO - Class 0 Accuracy: 60.66%
+2024-11-23 20:17:46,547 - INFO - Class 1 Accuracy: 72.14%
+2024-11-23 20:17:46,547 - INFO - Class 2 Accuracy: 91.29%
+2024-11-23 20:17:46,547 - INFO - Class 3 Accuracy: 85.96%
+2024-11-23 20:17:46,547 - INFO - Class 4 Accuracy: 84.60%
+2024-11-23 20:17:46,565 - INFO - Saved best model with accuracy: 78.35%
+2024-11-23 20:17:46,582 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 20:58:47,741 - INFO - Mean IoU: 58.04%
+2024-11-23 20:58:47,742 - INFO - Class 0 IoU: 30.37%
+2024-11-23 20:58:47,742 - INFO - Class 1 IoU: 62.47%
+2024-11-23 20:58:47,742 - INFO - Class 2 IoU: 52.84%
+2024-11-23 20:58:47,742 - INFO - Class 3 IoU: 75.42%
+2024-11-23 20:58:47,743 - INFO - Class 4 IoU: 69.09%
+2024-11-23 20:58:47,743 - INFO - 
+Epoch 10/500:
+2024-11-23 20:58:47,743 - INFO - Train Loss: 0.3042, Train Acc: 89.30%
+2024-11-23 20:58:47,743 - INFO - Val Loss: 0.6731, Val Acc: 75.26%
+2024-11-23 20:58:47,743 - INFO - Class 0 Accuracy: 69.13%
+2024-11-23 20:58:47,743 - INFO - Class 1 Accuracy: 64.65%
+2024-11-23 20:58:47,743 - INFO - Class 2 Accuracy: 75.48%
+2024-11-23 20:58:47,743 - INFO - Class 3 Accuracy: 95.53%
+2024-11-23 20:58:47,743 - INFO - Class 4 Accuracy: 82.17%
+2024-11-23 20:58:47,763 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 21:39:44,769 - INFO - Mean IoU: 48.31%
+2024-11-23 21:39:44,770 - INFO - Class 0 IoU: 30.76%
+2024-11-23 21:39:44,770 - INFO - Class 1 IoU: 66.64%
+2024-11-23 21:39:44,770 - INFO - Class 2 IoU: 35.33%
+2024-11-23 21:39:44,770 - INFO - Class 3 IoU: 49.07%
+2024-11-23 21:39:44,771 - INFO - Class 4 IoU: 59.76%
+2024-11-23 21:39:44,771 - INFO - 
+Epoch 11/500:
+2024-11-23 21:39:44,771 - INFO - Train Loss: 0.2958, Train Acc: 89.58%
+2024-11-23 21:39:44,771 - INFO - Val Loss: 0.8010, Val Acc: 70.63%
+2024-11-23 21:39:44,771 - INFO - Class 0 Accuracy: 61.80%
+2024-11-23 21:39:44,771 - INFO - Class 1 Accuracy: 69.21%
+2024-11-23 21:39:44,771 - INFO - Class 2 Accuracy: 42.94%
+2024-11-23 21:39:44,771 - INFO - Class 3 Accuracy: 96.01%
+2024-11-23 21:39:44,771 - INFO - Class 4 Accuracy: 74.29%
+2024-11-23 21:39:44,795 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>
+2024-11-23 22:21:17,299 - INFO - Mean IoU: 58.68%
+2024-11-23 22:21:17,299 - INFO - Class 0 IoU: 30.38%
+2024-11-23 22:21:17,299 - INFO - Class 1 IoU: 62.51%
+2024-11-23 22:21:17,299 - INFO - Class 2 IoU: 57.00%
+2024-11-23 22:21:17,299 - INFO - Class 3 IoU: 70.14%
+2024-11-23 22:21:17,299 - INFO - Class 4 IoU: 73.38%
+2024-11-23 22:21:17,299 - INFO - 
+Epoch 12/500:
+2024-11-23 22:21:17,299 - INFO - Train Loss: 0.2895, Train Acc: 89.79%
+2024-11-23 22:21:17,299 - INFO - Val Loss: 0.7102, Val Acc: 76.42%
+2024-11-23 22:21:17,301 - INFO - Class 0 Accuracy: 65.74%
+2024-11-23 22:21:17,301 - INFO - Class 1 Accuracy: 64.54%
+2024-11-23 22:21:17,301 - INFO - Class 2 Accuracy: 79.64%
+2024-11-23 22:21:17,301 - INFO - Class 3 Accuracy: 96.32%
+2024-11-23 22:21:17,302 - INFO - Class 4 Accuracy: 85.24%
+2024-11-23 22:21:17,330 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F688684DA0>

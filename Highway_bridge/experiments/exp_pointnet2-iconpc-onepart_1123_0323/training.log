@@ -1,0 +1,147 @@
+2024-11-23 03:23:31,603 - INFO - Training configuration:
+2024-11-23 03:23:31,603 - INFO - num_points: 8192
+2024-11-23 03:23:31,603 - INFO - chunk_size: 4096
+2024-11-23 03:23:31,603 - INFO - overlap: 1024
+2024-11-23 03:23:31,603 - INFO - batch_size: 64
+2024-11-23 03:23:31,603 - INFO - num_workers: 0
+2024-11-23 03:23:31,603 - INFO - learning_rate: 0.001
+2024-11-23 03:23:31,603 - INFO - num_classes: 5
+2024-11-23 03:23:31,603 - INFO - num_epochs: 500
+2024-11-23 03:23:31,603 - INFO - device: cuda
+2024-11-23 03:23:31,603 - INFO - Using device: cuda
+2024-11-23 03:23:31,603 - INFO - Found 6 las files:
+2024-11-23 03:23:31,603 - INFO - Loading data/fukushima/onepart/train/bridge-3.las
+2024-11-23 03:23:32,050 - INFO - Loaded 16239683 points from bridge-3.las
+2024-11-23 03:23:32,059 - INFO - Processing data - Points: (16239683, 3), Colors: (16239683, 3), Labels: (16239683,)
+2024-11-23 03:23:42,680 - INFO - Created 6124 blocks
+2024-11-23 03:23:42,844 - INFO - Loading data/fukushima/onepart/train/bridge-4.las
+2024-11-23 03:23:43,183 - INFO - Loaded 12134787 points from bridge-4.las
+2024-11-23 03:23:43,207 - INFO - Processing data - Points: (12134787, 3), Colors: (12134787, 3), Labels: (12134787,)
+2024-11-23 03:23:51,138 - INFO - Created 4576 blocks
+2024-11-23 03:23:51,252 - INFO - Loading data/fukushima/onepart/train/bridge-5.las
+2024-11-23 03:23:51,473 - INFO - Loaded 8373599 points from bridge-5.las
+2024-11-23 03:23:51,490 - INFO - Processing data - Points: (8373599, 3), Colors: (8373599, 3), Labels: (8373599,)
+2024-11-23 03:23:57,242 - INFO - Created 9118 blocks
+2024-11-23 03:23:57,338 - INFO - Loading data/fukushima/onepart/train/bridge-6.las
+2024-11-23 03:23:57,675 - INFO - Loaded 12716121 points from bridge-6.las
+2024-11-23 03:23:57,690 - INFO - Processing data - Points: (12716121, 3), Colors: (12716121, 3), Labels: (12716121,)
+2024-11-23 03:24:06,342 - INFO - Created 5851 blocks
+2024-11-23 03:24:06,468 - INFO - Loading data/fukushima/onepart/train/bridge-8.las
+2024-11-23 03:24:07,045 - INFO - Loaded 20025746 points from bridge-8.las
+2024-11-23 03:24:07,069 - INFO - Processing data - Points: (20025746, 3), Colors: (20025746, 3), Labels: (20025746,)
+2024-11-23 03:24:20,240 - INFO - Created 4995 blocks
+2024-11-23 03:24:20,419 - INFO - Loading data/fukushima/onepart/train/bridge-9.las
+2024-11-23 03:24:21,154 - INFO - Loaded 26071676 points from bridge-9.las
+2024-11-23 03:24:21,189 - INFO - Processing data - Points: (26071676, 3), Colors: (26071676, 3), Labels: (26071676,)
+2024-11-23 03:24:39,490 - INFO - Created 7946 blocks
+2024-11-23 03:24:39,781 - INFO - Total blocks created: 38610
+2024-11-23 03:24:39,808 - INFO - reading train data
+2024-11-23 03:24:39,809 - INFO - Found 1 las files:
+2024-11-23 03:24:39,809 - INFO - Loading data/fukushima/onepart/val/bridge-7.las
+2024-11-23 03:24:40,265 - INFO - Loaded 15021376 points from bridge-7.las
+2024-11-23 03:24:40,273 - INFO - Processing data - Points: (15021376, 3), Colors: (15021376, 3), Labels: (15021376,)
+2024-11-23 03:24:50,046 - INFO - Created 2213 blocks
+2024-11-23 03:24:50,192 - INFO - Total blocks created: 2213
+2024-11-23 03:24:50,208 - INFO - reading val data
+2024-11-23 03:24:50,208 - INFO - Train dataset size: 38610
+2024-11-23 03:24:50,208 - INFO - Val dataset size: 2213
+2024-11-23 03:24:50,957 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000169096D5070>
+2024-11-23 04:50:52,642 - INFO - Mean IoU: 45.56%
+2024-11-23 04:50:52,644 - INFO - Class 0 IoU: 27.52%
+2024-11-23 04:50:52,644 - INFO - Class 1 IoU: 62.51%
+2024-11-23 04:50:52,644 - INFO - Class 2 IoU: 34.60%
+2024-11-23 04:50:52,645 - INFO - Class 3 IoU: 56.07%
+2024-11-23 04:50:52,645 - INFO - Class 4 IoU: 47.10%
+2024-11-23 04:50:52,645 - INFO - 
+Epoch 1/500:
+2024-11-23 04:50:52,645 - INFO - Train Loss: 0.6485, Train Acc: 75.76%
+2024-11-23 04:50:52,645 - INFO - Val Loss: 0.9315, Val Acc: 64.81%
+2024-11-23 04:50:52,645 - INFO - Class 0 Accuracy: 66.85%
+2024-11-23 04:50:52,645 - INFO - Class 1 Accuracy: 67.60%
+2024-11-23 04:50:52,645 - INFO - Class 2 Accuracy: 41.06%
+2024-11-23 04:50:52,645 - INFO - Class 3 Accuracy: 80.67%
+2024-11-23 04:50:52,646 - INFO - Class 4 Accuracy: 63.40%
+2024-11-23 04:50:52,669 - INFO - Saved best model with accuracy: 64.81%
+2024-11-23 04:50:52,690 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000169096D5070>
+2024-11-23 06:16:37,575 - INFO - Mean IoU: 44.69%
+2024-11-23 06:16:37,576 - INFO - Class 0 IoU: 22.99%
+2024-11-23 06:16:37,576 - INFO - Class 1 IoU: 65.78%
+2024-11-23 06:16:37,577 - INFO - Class 2 IoU: 47.41%
+2024-11-23 06:16:37,577 - INFO - Class 3 IoU: 35.55%
+2024-11-23 06:16:37,577 - INFO - Class 4 IoU: 51.73%
+2024-11-23 06:16:37,577 - INFO - 
+Epoch 2/500:
+2024-11-23 06:16:37,577 - INFO - Train Loss: 0.5195, Train Acc: 80.61%
+2024-11-23 06:16:37,577 - INFO - Val Loss: 0.9190, Val Acc: 63.91%
+2024-11-23 06:16:37,577 - INFO - Class 0 Accuracy: 77.02%
+2024-11-23 06:16:37,577 - INFO - Class 1 Accuracy: 69.52%
+2024-11-23 06:16:37,577 - INFO - Class 2 Accuracy: 70.73%
+2024-11-23 06:16:37,577 - INFO - Class 3 Accuracy: 37.72%
+2024-11-23 06:16:37,578 - INFO - Class 4 Accuracy: 61.52%
+2024-11-23 06:16:37,600 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000169096D5070>
+2024-11-23 07:50:38,053 - INFO - Mean IoU: 33.38%
+2024-11-23 07:50:38,054 - INFO - Class 0 IoU: 20.25%
+2024-11-23 07:50:38,054 - INFO - Class 1 IoU: 41.43%
+2024-11-23 07:50:38,054 - INFO - Class 2 IoU: 18.10%
+2024-11-23 07:50:38,055 - INFO - Class 3 IoU: 37.37%
+2024-11-23 07:50:38,055 - INFO - Class 4 IoU: 49.76%
+2024-11-23 07:50:38,055 - INFO - 
+Epoch 3/500:
+2024-11-23 07:50:38,055 - INFO - Train Loss: 0.4813, Train Acc: 82.20%
+2024-11-23 07:50:38,055 - INFO - Val Loss: 1.1861, Val Acc: 54.53%
+2024-11-23 07:50:38,055 - INFO - Class 0 Accuracy: 85.03%
+2024-11-23 07:50:38,055 - INFO - Class 1 Accuracy: 42.68%
+2024-11-23 07:50:38,056 - INFO - Class 2 Accuracy: 19.51%
+2024-11-23 07:50:38,056 - INFO - Class 3 Accuracy: 38.78%
+2024-11-23 07:50:38,056 - INFO - Class 4 Accuracy: 68.20%
+2024-11-23 07:50:38,080 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000169096D5070>
+2024-11-23 09:18:29,197 - INFO - Mean IoU: 48.78%
+2024-11-23 09:18:29,197 - INFO - Class 0 IoU: 26.58%
+2024-11-23 09:18:29,198 - INFO - Class 1 IoU: 61.11%
+2024-11-23 09:18:29,198 - INFO - Class 2 IoU: 35.13%
+2024-11-23 09:18:29,198 - INFO - Class 3 IoU: 71.82%
+2024-11-23 09:18:29,198 - INFO - Class 4 IoU: 49.24%
+2024-11-23 09:18:29,198 - INFO - 
+Epoch 4/500:
+2024-11-23 09:18:29,198 - INFO - Train Loss: 0.4438, Train Acc: 83.76%
+2024-11-23 09:18:29,198 - INFO - Val Loss: 0.9106, Val Acc: 65.32%
+2024-11-23 09:18:29,198 - INFO - Class 0 Accuracy: 81.97%
+2024-11-23 09:18:29,198 - INFO - Class 1 Accuracy: 64.63%
+2024-11-23 09:18:29,199 - INFO - Class 2 Accuracy: 43.48%
+2024-11-23 09:18:29,199 - INFO - Class 3 Accuracy: 94.48%
+2024-11-23 09:18:29,199 - INFO - Class 4 Accuracy: 59.97%
+2024-11-23 09:18:29,222 - INFO - Saved best model with accuracy: 65.32%
+2024-11-23 09:18:29,243 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000169096D5070>
+2024-11-23 10:51:44,291 - INFO - Mean IoU: 34.94%
+2024-11-23 10:51:44,292 - INFO - Class 0 IoU: 23.35%
+2024-11-23 10:51:44,292 - INFO - Class 1 IoU: 35.00%
+2024-11-23 10:51:44,292 - INFO - Class 2 IoU: 34.67%
+2024-11-23 10:51:44,292 - INFO - Class 3 IoU: 43.05%
+2024-11-23 10:51:44,292 - INFO - Class 4 IoU: 38.64%
+2024-11-23 10:51:44,292 - INFO - 
+Epoch 5/500:
+2024-11-23 10:51:44,292 - INFO - Train Loss: 0.4198, Train Acc: 84.88%
+2024-11-23 10:51:44,292 - INFO - Val Loss: 1.4155, Val Acc: 51.42%
+2024-11-23 10:51:44,293 - INFO - Class 0 Accuracy: 80.58%
+2024-11-23 10:51:44,293 - INFO - Class 1 Accuracy: 36.78%
+2024-11-23 10:51:44,293 - INFO - Class 2 Accuracy: 49.59%
+2024-11-23 10:51:44,293 - INFO - Class 3 Accuracy: 86.90%
+2024-11-23 10:51:44,293 - INFO - Class 4 Accuracy: 49.02%
+2024-11-23 10:51:44,316 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000169096D5070>
+2024-11-23 12:26:10,373 - INFO - Mean IoU: 56.41%
+2024-11-23 12:26:10,373 - INFO - Class 0 IoU: 27.03%
+2024-11-23 12:26:10,373 - INFO - Class 1 IoU: 65.88%
+2024-11-23 12:26:10,374 - INFO - Class 2 IoU: 54.74%
+2024-11-23 12:26:10,374 - INFO - Class 3 IoU: 68.24%
+2024-11-23 12:26:10,374 - INFO - Class 4 IoU: 66.15%
+2024-11-23 12:26:10,374 - INFO - 
+Epoch 6/500:
+2024-11-23 12:26:10,374 - INFO - Train Loss: 0.4031, Train Acc: 85.54%
+2024-11-23 12:26:10,374 - INFO - Val Loss: 0.6475, Val Acc: 74.77%
+2024-11-23 12:26:10,374 - INFO - Class 0 Accuracy: 45.30%
+2024-11-23 12:26:10,374 - INFO - Class 1 Accuracy: 68.44%
+2024-11-23 12:26:10,374 - INFO - Class 2 Accuracy: 83.50%
+2024-11-23 12:26:10,374 - INFO - Class 3 Accuracy: 93.28%
+2024-11-23 12:26:10,376 - INFO - Class 4 Accuracy: 81.26%
+2024-11-23 12:26:10,399 - INFO - Saved best model with accuracy: 74.77%
+2024-11-23 12:26:10,420 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000169096D5070>

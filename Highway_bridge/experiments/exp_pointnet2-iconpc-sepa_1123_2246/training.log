@@ -1,0 +1,22 @@
+2024-11-23 22:46:37,803 - INFO - Training configuration:
+2024-11-23 22:46:37,804 - INFO - num_points: 4096
+2024-11-23 22:46:37,804 - INFO - chunk_size: 4096
+2024-11-23 22:46:37,804 - INFO - overlap: 1024
+2024-11-23 22:46:37,804 - INFO - batch_size: 64
+2024-11-23 22:46:37,804 - INFO - num_workers: 0
+2024-11-23 22:46:37,804 - INFO - learning_rate: 0.001
+2024-11-23 22:46:37,804 - INFO - num_classes: 5
+2024-11-23 22:46:37,804 - INFO - num_epochs: 500
+2024-11-23 22:46:37,804 - INFO - device: cuda
+2024-11-23 22:46:37,804 - INFO - Using device: cuda
+2024-11-23 22:46:37,804 - INFO - 开始预加载数据到内存...
+2024-11-23 22:46:53,850 - INFO - 数据预加载完成，共 65935 个数据块
+2024-11-23 22:46:53,851 - INFO - 有效标签: [0, 1, 2, 3, 4]
+2024-11-23 22:46:53,853 - INFO - reading train data
+2024-11-23 22:46:53,853 - INFO - 开始预加载数据到内存...
+2024-11-23 22:46:55,295 - INFO - 数据预加载完成，共 6305 个数据块
+2024-11-23 22:46:55,295 - INFO - 有效标签: [0, 1, 2, 3, 4]
+2024-11-23 22:46:55,301 - INFO - reading val data
+2024-11-23 22:46:55,302 - INFO - Train dataset size: 65935
+2024-11-23 22:46:55,302 - INFO - Val dataset size: 6305
+2024-11-23 22:46:56,087 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x0000015507644AA0>

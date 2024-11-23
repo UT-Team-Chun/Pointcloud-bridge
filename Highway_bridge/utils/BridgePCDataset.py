@@ -179,6 +179,35 @@ class BridgePointCloudDataset(Dataset):
 
         return all_blocks
 
+    def apply_transform(self, points, colors):
+        """数据增强函数"""
+        if not self.transform:
+            return points, colors
+
+        # 随机旋转
+        theta = np.random.uniform(0, 2 * np.pi)
+        rotation_matrix = np.array([
+            [np.cos(theta), -np.sin(theta), 0],
+            [np.sin(theta), np.cos(theta), 0],
+            [0, 0, 1]
+        ])
+        points = np.dot(points, rotation_matrix)
+
+        # 随机平移
+        translation = np.random.uniform(-0.2, 0.2, size=(1, 3))
+        points += translation
+
+        # 随机缩放
+        scale = np.random.uniform(0.8, 1.2)
+        points *= scale
+
+        # 随机抖动颜色
+        if colors is not None:
+            color_noise = np.random.normal(0, 0.02, colors.shape)
+            colors = np.clip(colors + color_noise, 0, 1)
+
+        return points, colors
+
     def __len__(self):
         """返回数据集中块的数量"""
         return len(self.blocks)
@@ -196,6 +225,7 @@ class BridgePointCloudDataset(Dataset):
         if self.num_points is not None:
             if len(points) >= self.num_points:
                 # 随机采样到指定点数
+                #self.logger.info(f"Block {idx} has {len(points)} points, sampling {self.num_points} points")
                 choice = np.random.choice(len(points), self.num_points, replace=False)
             else:
                 # 如果点数不足，则重复采样
@@ -207,19 +237,19 @@ class BridgePointCloudDataset(Dataset):
 
         # 应用数据增强
         if self.transform:
-            points, colors, labels = self.transform(points, colors, labels)
+            points, colors = self.apply_transform(points, colors)
 
         return {
-            'points': points,
-            'colors': colors,
-            'labels': labels,
+            'points': points.astype(np.float32),
+            'colors': colors.astype(np.float32),
+            'labels': labels.astype(np.int64),
             'center': block['center']
         }
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
     import time
-
+    from logger_config import get_logger
 
     # 测试数据集加载和可视化
     def visualize_block(dataset, block_idx=0):
@@ -304,7 +334,8 @@ if __name__ == '__main__':
         v_block_size=0.5,
         h_stride=0.5,
         v_stride=0.5,
-        min_points=100
+        min_points=100,
+        logger = get_logger()
     )
 
     # 可视化第一个数据块

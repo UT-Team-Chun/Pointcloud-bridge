@@ -14,8 +14,9 @@ from tqdm import tqdm
 
 from models.model import PointNet2
 # from utils.data_utils import BridgePointCloudDataset
-from utils.BridgePCDataset import BridgePointCloudDataset
-from utils.logger_config import initialize_logger, get_logger
+# from utils.BridgePCDataset import BridgePointCloudDataset
+from utils.data_utils_ver2 import BridgePointCloudDataset
+from utils.logger_config import initialize_logger
 
 # 配置参数
 config = {
@@ -34,7 +35,7 @@ config = {
 def train():
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d_%H%M')
-    case = 'pointnet2-iconpc-onepart'
+    case = 'pointnet2-iconpc-sepa'
     exp_dir = Path(f'experiments/exp_{case}_{timestamp}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -53,27 +54,32 @@ def train():
 
     # 创建数据加载器
     train_dataset = BridgePointCloudDataset(
-        data_dir='data/fukushima/onepart/train/',
+        data_dir='data/fukushima/train/',
         num_points=config['num_points'],
-        h_block_size=0.5,
-        v_block_size=0.5,
-        h_stride=0.3,
-        v_stride=0.3,
-        min_points=100,
-        logger=get_logger()
+        chunk_size = 4096,
+        overlap=1024,
+        #h_block_size=0.5,
+        #v_block_size=0.5,
+        #h_stride=0.4,
+        #v_stride=0.4,
+        #min_points=100,
+        #logger=get_logger(),
+        transform=True
     )
     logger.info('reading train data')
 
 
     val_dataset = BridgePointCloudDataset(
-        data_dir='data/fukushima/onepart/val/',
+        data_dir='data/fukushima/val/',
         num_points=config['num_points'],
-        h_block_size=0.5,
-        v_block_size=0.5,
-        h_stride=0.5,
-        v_stride=0.5,
-        min_points=100,
-        logger=get_logger()
+        chunk_size=4096,
+        overlap = 1024,
+        #h_block_size=0.5,
+        #v_block_size=0.5,
+        #h_stride=0.5,
+        #v_stride=0.5,
+        #min_points=100,
+        #logger=get_logger()
     )
 
     logger.info('reading val data')
@@ -105,8 +111,9 @@ def train():
 
     # 损失函数和优化器
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'])
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config['num_epochs'])
+    optimizer = optim.Adam(model.parameters(), lr=config['learning_rate'],betas=(0.9, 0.999),
+                      weight_decay=1e-4)
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config['num_epochs'], eta_min=1e-6)
     
     # 训练循环
     best_val_loss = float('inf')
@@ -115,15 +122,6 @@ def train():
     # 计算类别权重
     #class_weights = compute_class_weights(train_loader,num_classes)
     #criterion = WeightedCrossEntropyLoss(weight=class_weights.to(device))
-
-    # 添加学习率调度器
-    #optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=0.01)
-    # scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(
-    #     optimizer,
-    #     T_0=50,
-    #     T_mult=2,
-    #     eta_min=1e-6
-    # )
 
     
     for epoch in range(config['num_epochs']):

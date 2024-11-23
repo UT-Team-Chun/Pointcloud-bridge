@@ -184,7 +184,7 @@ class BridgePointCloudDataset(Dataset):
 class BridgeValidationDataset(BridgePointCloudDataset):
     def __init__(self, data_dir, num_points=4096, chunk_size=8192, overlap=1024, validation_ratio=0.3, seed=42):
         # 调用父类的__init__，但强制transform=False
-        super().__init__(data_dir, num_points, transform=False, chunk_size=chunk_size, overlap=overlap)
+        super().__init__(data_dir, num_points, overlap=overlap)
 
         # 设置随机种子
         np.random.seed(seed)
