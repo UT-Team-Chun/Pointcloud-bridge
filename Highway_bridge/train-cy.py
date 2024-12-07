@@ -13,8 +13,9 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from models.model import PointNet2, EnhancedPointNet2
-from utils.data_utils_test import BridgePointCloudDataset, BridgeValidationDataset
-from utils.logger_config import initialize_logger
+#from utils.data_utils_test import BridgePointCloudDataset, BridgeValidationDataset
+from utils.BridgePCDataset import BridgePointCloudDataset
+from utils.logger_config import initialize_logger, get_logger
 
 # 配置参数
 config = {
@@ -56,18 +57,31 @@ def train():
         num_points=config['num_points'],  # 这个参数现在可以忽略
         #transform=True,
         #chunk_size=config['chunk_size'],  # 新参数：每个块的点数
-        block_size=1.0,  # 新参数：块的大小
-        overlap=0.2  # 新参数：块之间的重叠点数
+        #block_size=1.0,  # 新参数：块的大小
+        #overlap=0.2  # 新参数：块之间的重叠点数
+        h_block_size = 1.0,
+        v_block_size = 1.0,
+        h_stride = 0.6,
+        v_stride = 0.6,
+        min_points = 100,
+        transform = True,
+        logger = get_logger()
     )
     logger.info('reading train data')
 
-    val_dataset = BridgeValidationDataset(
+    val_dataset = BridgePointCloudDataset(
         data_dir='data/val',
         num_points=config['num_points'],
-        block_size=1.0,
+        #block_size=1.0,
         #chunk_size=config['chunk_size'],
-        overlap=0,
-        validation_ratio=0.2
+        #overlap=0,
+        #validation_ratio=0.2
+        h_block_size = 1.0,
+        v_block_size = 1.0,
+        h_stride = 0.6,
+        v_stride = 0.6,
+        min_points = 100,
+        logger = get_logger()
     )
     logger.info('reading val data')
 
