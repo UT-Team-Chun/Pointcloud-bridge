@@ -2,3 +2,14 @@
 2024-12-16 15:32:04,284 - INFO - Loading dataset from cache: ../data/CB/section/test/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc69ea15b.pt
 2024-12-16 15:35:11,681 - INFO - Successfully loaded 15932 blocks from cache
 2024-12-16 15:35:12,147 - INFO - Loaded model from experiments/exp_121513_brimulti_struposinet_CB_sec_5class\best_model.pth
+2024-12-16 17:48:25,425 - INFO - Mean IoU: 81.63%
+2024-12-16 17:48:25,426 - INFO - Overall Accuracy: 91.96%
+2024-12-16 17:48:25,426 - INFO - Mean Accuracy: 89.06%
+2024-12-16 17:48:25,426 - INFO - Precision: 92.04%
+2024-12-16 17:48:25,427 - INFO - Recall: 91.96%
+2024-12-16 17:48:25,427 - INFO - F1 Score: 92.00%
+2024-12-16 17:48:25,427 - INFO - Class 0 IoU: 87.42%
+2024-12-16 17:48:25,427 - INFO - Class 1 IoU: 85.12%
+2024-12-16 17:48:25,427 - INFO - Class 2 IoU: 87.70%
+2024-12-16 17:48:25,427 - INFO - Class 3 IoU: 74.59%
+2024-12-16 17:48:25,427 - INFO - Class 4 IoU: 73.31%

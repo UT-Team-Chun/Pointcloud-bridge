@@ -196,15 +196,65 @@ def data_voxel(data, voxel_size=None):
 
     return filtered_points
 
+
 def isolation_forest_outlier_removal(points, contamination=0.1):
+    """
+    改进的Isolation Forest异常检测，考虑方向性
+    """
     from sklearn.ensemble import IsolationForest
-    iso_forest = IsolationForest(contamination=contamination, random_state=42)
-    outlier_labels = iso_forest.fit_predict(points)
-    
-    inliers = points[outlier_labels == 1]
-    outliers = points[outlier_labels == -1]
-    
-    return inliers
+
+    # 桥长方向检测（更宽松）
+    points_transformed_length, length_idx, length_contamination, pca = directional_outlier_detection(
+        points, contamination, is_length_direction=True
+    )
+
+    # 桥宽方向检测（更严格）
+    points_transformed_width, width_idx, width_contamination, _ = directional_outlier_detection(
+        points, contamination, is_length_direction=False
+    )
+
+    #length_contamination=contamination
+    #width_contamination=contamination
+
+    # 分别对两个方向进行异常检测
+    iso_forest_length = IsolationForest(contamination=length_contamination, random_state=42)
+    iso_forest_width = IsolationForest(contamination=width_contamination, random_state=42)
+
+    # 获取预测结果
+    length_labels = iso_forest_length.fit_predict(points_transformed_length[:, [length_idx]])
+    width_labels = iso_forest_width.fit_predict(points_transformed_width[:, [width_idx]])
+
+    # 组合两个方向的结果（只有两个方向都认为是正常点才保留）
+    combined_mask = (length_labels == 1) & (width_labels == 1)
+
+    return points[combined_mask]
+
+
+def directional_outlier_detection(points, contamination=0.1, is_length_direction=True):
+    """
+    根据方向性进行异常点检测
+
+    参数:
+    points: 输入点云
+    contamination: 异常点比例
+    is_length_direction: 是否是桥长方向
+    """
+    # 使用PCA找到主方向
+    pca = PCA(n_components=points.shape[1])
+    points_transformed = pca.fit_transform(points)
+
+    # 根据方差比确定主方向
+    variance_ratio = pca.explained_variance_ratio_
+    main_direction_idx = 0 if variance_ratio[0] > variance_ratio[1] else 1
+
+    # 确定处理方向
+    direction_idx = main_direction_idx if is_length_direction else (1 - main_direction_idx)
+
+    # 调整contamination
+    adjusted_contamination = contamination * (0.5 if is_length_direction else 1)
+
+    return points_transformed, direction_idx, adjusted_contamination, pca
+
 
 
 def adaptive_lof_params(points, target_precision=0.03, min_neighbors=5, max_neighbors=50):
@@ -520,8 +570,8 @@ if __name__ == "__main__":
     logger.addHandler(file_handler)
     log_string('PARAMETER ...')
 
-    test_names = ['cb2-5c','cb6-5c','cb9-5c'] #b1,b2,b7
-    #test_names = ['b1','b2','b7'] #b1,b2,b7
+    test_names = ['cb2-5c'] #b1,b2,b7
+    #test_names = ['b1','b2','b7'] #b1,b2,b7 ,'cb6-5c','cb9-5c'
     #{'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
     #{'abutment': 1, 'girder': 2, 'deck': 3, 'parapet': 4, 'noise': 0}
     label = [2,3,4]
@@ -530,7 +580,7 @@ if __name__ == "__main__":
     total_time = 0
 
     # 超参数
-    voxel_size = None #best 0.3 for cb is 0.05, for b is 0.3
+    voxel_size = 0.05 #best 0.3 for cb is 0.05, for b is 0.3
     ransac_max_trials = 1000 #best 1000
     ransac_residual_threshold = 0.3 #best 0.3
     isolation_forest_contamination = 0.05 #best 0.05

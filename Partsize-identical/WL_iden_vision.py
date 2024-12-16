@@ -226,9 +226,9 @@ def visualize_step(points, step_name, rect=None, save_path=None, fig_size=(16, 4
     ax1 = fig.add_subplot(gs[0], projection='3d')
 
     # 设置统一的显示范围
-    ax1.set_xlim(-6, 6)
-    ax1.set_ylim(-10, 2)
-    ax1.set_zlim(0, 10)
+    #ax1.set_xlim(-6, 6)
+    #ax1.set_ylim(-10, 2)
+    #ax1.set_zlim(0, 10)
 
     # 绘制3D点云
     scatter = ax1.scatter(points[:, 0], points[:, 1],
@@ -274,8 +274,8 @@ def visualize_step(points, step_name, rect=None, save_path=None, fig_size=(16, 4
                    frameon=True, fancybox=True, framealpha=0.8)
 
     # 设置显示范围
-    ax2.set_xlim(-6, 6)
-    ax2.set_ylim(-6, 4)
+    #ax2.set_xlim(-6, 6)
+    #ax2.set_ylim(-6, 4)
 
 
     # 设置轴标签和字体大小
@@ -452,7 +452,7 @@ def statistical_evaluation(df):
 # # 主程序
 if __name__ == "__main__":
 
-    test_names = 'b2'#'b1','b2','b7', cb2-4c
+    test_names = 'cb2-5c'#'b1','b2','b7', cb2-4c
     l = 2
     #{'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
     label = [1,2,3]
@@ -460,13 +460,13 @@ if __name__ == "__main__":
     total_time = 0
 
     # 超参数
-    voxel_size = 0.3
+    voxel_size = 0.05
     ransac_max_trials = 1000 #best 1000
     ransac_residual_threshold = 0.3 #best 0.3
-    isolation_forest_contamination = 0.05 #best 0.3
-    lof_n_neighbors = 10 #best 30
+    isolation_forest_contamination = 0.02 #best 0.3
+    lof_n_neighbors = 30 #best 30
     lof_contamination = 'auto' #'auto',best 0.4
-    dbscan_eps = 0.3  #best 1
+    dbscan_eps = 1  #best 1
     dbscan_min_samples = 10 #best 5
 
     deck_raw, deck_test = load_data(test_names, l)
