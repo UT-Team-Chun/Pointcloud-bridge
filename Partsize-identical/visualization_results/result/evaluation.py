@@ -61,14 +61,18 @@ def plot_regression_analysis(df1, df2, dimension='length', save_path=None):
     
     # 第一组数据
     sns.regplot(data=df1, x=true_col, y=pred_col, ax=ax1,
-                scatter_kws={'alpha':0.5}, line_kws={'color': 'red'})
+                scatter_kws={'alpha':0.5,'label':'aaaaa'}, line_kws={'color': 'red','label':'Regression line'},ci=95,label='Data Points')
+    ax1.fill_between([], [], [], color='red', alpha=0.3, label='95% Confidence Interval')
     ax1.set_title('Group 1 Regression Analysis', fontsize=12)
-    
+    ax1.legend()
+
     # 第二组数据
     sns.regplot(data=df2, x=true_col, y=pred_col, ax=ax2,
-                scatter_kws={'alpha':0.5}, line_kws={'color': 'red'})
+                scatter_kws={'alpha':0.5}, line_kws={'color': 'red','label':'Regression line'},ci=95,label='Data Points')
+    ax2.fill_between([], [], [], color='red', alpha=0.3, label='95% Confidence Interval')
     ax2.set_title('Group 2 Regression Analysis', fontsize=12)
-    
+    ax2.legend()
+
     # 添加标签
     for ax in [ax1, ax2]:
         ax.set_xlabel(f'True {dimension.capitalize()} (mm)', fontsize=10)
@@ -86,6 +90,8 @@ def plot_regression_analysis(df1, df2, dimension='length', save_path=None):
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
     
+    plt.show()
+
     return fig
 
 def plot_bland_altman(df1, df2, dimension='length', save_path=None):

@@ -125,7 +125,7 @@ def main():
         'device': 'cuda' if torch.cuda.is_available() else 'cpu'
     }
 
-    exp_dir= 'experiments/exp_121400_brimulti_struposinet_CB_sec_5class_acc98'
+    exp_dir= 'experiments/exp_121513_brimulti_struposinet_CB_sec_5class'
     checkpoint_path = os.path.join(exp_dir, 'best_model.pth')
     all_true_labels = []
     all_predictions = []
@@ -133,8 +133,8 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f'Using device: {device}')
 
-    from experiments.exp_121400_brimulti_struposinet_CB_sec_5class_acc98.utils.BriPCDMulti import BriPCDMulti
-    from experiments.exp_121400_brimulti_struposinet_CB_sec_5class_acc98.models.model import EnhancedPointNet2
+    from experiments.exp_121513_brimulti_struposinet_CB_sec_5class.utils.BriPCDMulti import BriPCDMulti
+    from experiments.exp_121513_brimulti_struposinet_CB_sec_5class.models.model import EnhancedPointNet2
     from torch.utils.data import DataLoader
 
     test_dataset = BriPCDMulti(
@@ -268,35 +268,35 @@ def main():
             logger.info(f"Class {i} IoU: {class_iou * 100:.2f}%")
 
 
-        # 处理并保存预测结果
-        for fname, data in file_predictions.items():
-            # 将所有块的数据合并
-            all_points = np.concatenate(data['points'], axis=0)
-            all_colors = np.concatenate(data['colors'], axis=0)
-            all_predictions = np.concatenate(data['predictions'], axis=0)
-            all_indices = np.concatenate(data['indices'], axis=0)
-
-            # 创建新的las文件
-            new_las = laspy.create(point_format=3)  # 使用点格式3，包含坐标和颜色
-
-            # 设置点云数据
-            new_las.x = all_points[:, 0]
-            new_las.y = all_points[:, 1]
-            new_las.z = all_points[:, 2]
-
-            # 设置颜色数据（需要转换回0-65535范围）
-            new_las.red = (all_colors[:, 0] * 65535).astype(np.uint16)
-            new_las.green = (all_colors[:, 1] * 65535).astype(np.uint16)
-            new_las.blue = (all_colors[:, 2] * 65535).astype(np.uint16)
-
-            # 设置分类标签
-            new_las.classification = all_predictions
-
-            # 保存文件
-            output_path = output_dir / f'predicted_{fname}'
-            new_las.write(output_path)
-
-            logger.info(f'Saved predicted result to {output_path}')
+        # # 处理并保存预测结果
+        # for fname, data in file_predictions.items():
+        #     # 将所有块的数据合并
+        #     all_points = np.concatenate(data['points'], axis=0)
+        #     all_colors = np.concatenate(data['colors'], axis=0)
+        #     all_predictions = np.concatenate(data['predictions'], axis=0)
+        #     all_indices = np.concatenate(data['indices'], axis=0)
+        #
+        #     # 创建新的las文件
+        #     new_las = laspy.create(point_format=3)  # 使用点格式3，包含坐标和颜色
+        #
+        #     # 设置点云数据
+        #     new_las.x = all_points[:, 0]
+        #     new_las.y = all_points[:, 1]
+        #     new_las.z = all_points[:, 2]
+        #
+        #     # 设置颜色数据（需要转换回0-65535范围）
+        #     new_las.red = (all_colors[:, 0] * 65535).astype(np.uint16)
+        #     new_las.green = (all_colors[:, 1] * 65535).astype(np.uint16)
+        #     new_las.blue = (all_colors[:, 2] * 65535).astype(np.uint16)
+        #
+        #     # 设置分类标签
+        #     new_las.classification = all_predictions
+        #
+        #     # 保存文件
+        #     output_path = output_dir / f'predicted_{fname}'
+        #     new_las.write(output_path)
+        #
+        #     logger.info(f'Saved predicted result to {output_path}')
 
         # 在main函数中调用可视化
         fig = visualize_results(metrics, class_names=['Background', 'Abundant','Girder', 'Deck', 'parapet'])
@@ -320,7 +320,7 @@ def test():
 
     # from models.enhanced_pointnet2 import EnhancedPointNet2
     # 加载模型
-    from experiments.exp_120318_brimulti_struposinet_CB_sec_4class.models.enhanced_pointnet2 import EnhancedPointNet2
+    from experiments.exp_121513_brimulti_struposinet_CB_sec_5class.models.enhanced_pointnet2 import EnhancedPointNet2
     model = EnhancedPointNet2(num_classes)
     checkpoint_path = 'experiments/exp_120318_brimulti_struposinet_CB_sec_4class/latest_checkpoint.pth'
 

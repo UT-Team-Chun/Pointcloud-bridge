@@ -1,3 +1,0 @@
-2024-12-05 17:04:07,871 - INFO - Using device: cuda
-2024-12-05 17:04:07,877 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
-2024-12-05 17:04:30,348 - INFO - Successfully loaded 9359 blocks from cache

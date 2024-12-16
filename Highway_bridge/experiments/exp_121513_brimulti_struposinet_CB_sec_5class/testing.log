@@ -1,0 +1,4 @@
+2024-12-16 15:32:04,279 - INFO - Using device: cuda
+2024-12-16 15:32:04,284 - INFO - Loading dataset from cache: ../data/CB/section/test/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc69ea15b.pt
+2024-12-16 15:35:11,681 - INFO - Successfully loaded 15932 blocks from cache
+2024-12-16 15:35:12,147 - INFO - Loaded model from experiments/exp_121513_brimulti_struposinet_CB_sec_5class\best_model.pth

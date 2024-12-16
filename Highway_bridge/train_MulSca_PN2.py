@@ -61,7 +61,7 @@ def train():
 
     # 创建数据加载器
     train_dataset = BriPCDMulti(
-        data_dir='data/CB/section/train',
+        data_dir='../data/CB/section/train/',
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -71,10 +71,10 @@ def train():
     logger.info('reading train data')
 
     val_dataset = BriPCDMulti(
-        data_dir='data/CB/section/val',
+        data_dir='../data/CB/section/val/',
         num_points=config['num_points'],
         block_size=1.0,
-        sample_rate=0.2,
+        sample_rate=0.4,
         logger=get_logger()
     )
 
