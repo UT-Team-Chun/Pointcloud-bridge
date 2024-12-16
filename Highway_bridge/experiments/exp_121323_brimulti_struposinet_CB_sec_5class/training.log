@@ -1,0 +1,40 @@
+2024-12-13 23:08:29,587 - INFO - Training configuration:
+2024-12-13 23:08:29,588 - INFO - num_points: 4096
+2024-12-13 23:08:29,588 - INFO - chunk_size: 4096
+2024-12-13 23:08:29,588 - INFO - overlap: 1024
+2024-12-13 23:08:29,588 - INFO - batch_size: 16
+2024-12-13 23:08:29,588 - INFO - num_workers: 0
+2024-12-13 23:08:29,588 - INFO - learning_rate: 0.001
+2024-12-13 23:08:29,588 - INFO - num_classes: 5
+2024-12-13 23:08:29,588 - INFO - num_epochs: 500
+2024-12-13 23:08:29,588 - INFO - device: cuda
+2024-12-13 23:08:29,588 - INFO - Using device: cuda
+2024-12-13 23:08:29,591 - INFO - Loading dataset from cache: ../data/CB/section/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash7cfce2e7.pt
+2024-12-13 23:35:11,565 - INFO - Successfully loaded 49224 blocks from cache
+2024-12-13 23:35:11,567 - INFO - Loading dataset from cache: ../data/CB/section/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hash953a0685.pt
+2024-12-13 23:57:02,644 - INFO - Successfully loaded 8003 blocks from cache
+2024-12-13 23:57:02,645 - INFO - reading val data
+2024-12-13 23:57:02,645 - INFO - Train dataset size: 49224
+2024-12-13 23:57:02,645 - INFO - Val dataset size: 8003
+2024-12-13 23:57:06,779 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001883C475070>
+2024-12-13 23:57:07,438 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 368, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 145, in train
+    for batch in pbar:
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\tqdm\std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\utils\data\dataloader.py", line 701, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\utils\data\dataloader.py", line 757, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\utils\BriPCDMulti.py", line 286, in __getitem__
+    'file_name': block['file_nxame'],
+                 ~~~~~^^^^^^^^^^^^^^
+KeyError: 'file_nxame'

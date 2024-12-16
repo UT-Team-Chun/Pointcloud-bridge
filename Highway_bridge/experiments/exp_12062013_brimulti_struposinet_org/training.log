@@ -1,0 +1,12 @@
+2024-12-06 20:13:40,989 - INFO - Training configuration:
+2024-12-06 20:13:40,989 - INFO - num_points: 4096
+2024-12-06 20:13:40,989 - INFO - chunk_size: 4096
+2024-12-06 20:13:40,989 - INFO - overlap: 1024
+2024-12-06 20:13:40,989 - INFO - batch_size: 16
+2024-12-06 20:13:40,989 - INFO - num_workers: 0
+2024-12-06 20:13:40,989 - INFO - learning_rate: 0.001
+2024-12-06 20:13:40,989 - INFO - num_classes: 5
+2024-12-06 20:13:40,989 - INFO - num_epochs: 500
+2024-12-06 20:13:40,989 - INFO - device: cuda
+2024-12-06 20:13:40,989 - INFO - Using device: cuda
+2024-12-06 20:13:40,991 - INFO - Loading dataset from cache: data/fukushima/org/train//cache\dataset_cache_points4096_size1.0_rate0.2_transformTrue_hash9fcf1b57.pt

@@ -1,0 +1,161 @@
+2024-12-15 10:45:19,949 - INFO - Using device: cuda
+2024-12-15 10:45:20,988 - INFO - No cache found. Processing dataset...
+2024-12-15 10:45:20,988 - INFO - Found 15 las files:
+2024-12-15 10:45:20,988 - INFO -   - cb6-1.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-2.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-3.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-4.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-5.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-6.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-7.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-8.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-1.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-2.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-3.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-4.las
+2024-12-15 10:45:20,989 - INFO -   - cb9-5.las
+2024-12-15 10:45:20,989 - INFO -   - cb9-6.las
+2024-12-15 10:45:20,989 - INFO -   - cb9-7.las
+2024-12-15 10:45:20,990 - INFO - Processing cb6-1.las
+2024-12-15 10:45:20,990 - INFO - Loading ../data/CB/section/test\cb6-1.las
+2024-12-15 10:45:22,098 - INFO - Loaded 6935749 points from cb6-1.las
+2024-12-15 10:45:22,391 - INFO - Total points: 6935749, Iterations: 677
+2024-12-15 10:46:50,849 - INFO - Created 1338 blocks
+2024-12-15 10:46:50,849 - INFO - Processing cb6-2.las
+2024-12-15 10:46:50,849 - INFO - Loading ../data/CB/section/test\cb6-2.las
+2024-12-15 10:46:52,321 - INFO - Loaded 9005526 points from cb6-2.las
+2024-12-15 10:46:52,490 - INFO - Total points: 9005526, Iterations: 879
+2024-12-15 10:49:45,569 - INFO - Created 1730 blocks
+2024-12-15 10:49:45,569 - INFO - Processing cb6-3.las
+2024-12-15 10:49:45,569 - INFO - Loading ../data/CB/section/test\cb6-3.las
+2024-12-15 10:49:46,631 - INFO - Loaded 6296515 points from cb6-3.las
+2024-12-15 10:49:46,756 - INFO - Total points: 6296515, Iterations: 614
+2024-12-15 10:55:54,623 - INFO - Using device: cuda
+2024-12-15 10:55:54,635 - INFO - No cache found. Processing dataset...
+2024-12-15 10:55:54,636 - INFO - Found 15 las files:
+2024-12-15 10:55:54,636 - INFO -   - cb6-1.las
+2024-12-15 10:55:54,636 - INFO -   - cb6-2.las
+2024-12-15 10:55:54,636 - INFO -   - cb6-3.las
+2024-12-15 10:55:54,636 - INFO -   - cb6-4.las
+2024-12-15 10:55:54,636 - INFO -   - cb6-5.las
+2024-12-15 10:55:54,636 - INFO -   - cb6-6.las
+2024-12-15 10:55:54,636 - INFO -   - cb6-7.las
+2024-12-15 10:55:54,636 - INFO -   - cb6-8.las
+2024-12-15 10:55:54,636 - INFO -   - cb9-1.las
+2024-12-15 10:55:54,636 - INFO -   - cb9-2.las
+2024-12-15 10:55:54,636 - INFO -   - cb9-3.las
+2024-12-15 10:55:54,636 - INFO -   - cb9-4.las
+2024-12-15 10:55:54,636 - INFO -   - cb9-5.las
+2024-12-15 10:55:54,636 - INFO -   - cb9-6.las
+2024-12-15 10:55:54,636 - INFO -   - cb9-7.las
+2024-12-15 10:55:54,637 - INFO - Processing cb6-1.las
+2024-12-15 10:55:54,637 - INFO - Loading ../data/CB/section/test\cb6-1.las
+2024-12-15 10:55:54,820 - INFO - Loaded 6935749 points from cb6-1.las
+2024-12-15 10:55:55,099 - INFO - Total points: 6935749, Iterations: 677
+2024-12-15 10:57:26,020 - INFO - Created 1338 blocks
+2024-12-15 10:57:26,020 - INFO - Processing cb6-2.las
+2024-12-15 10:57:26,020 - INFO - Loading ../data/CB/section/test\cb6-2.las
+2024-12-15 10:57:26,258 - INFO - Loaded 9005526 points from cb6-2.las
+2024-12-15 10:57:26,427 - INFO - Total points: 9005526, Iterations: 879
+2024-12-15 11:00:22,977 - INFO - Created 1729 blocks
+2024-12-15 11:00:22,977 - INFO - Processing cb6-3.las
+2024-12-15 11:00:22,977 - INFO - Loading ../data/CB/section/test\cb6-3.las
+2024-12-15 11:00:23,144 - INFO - Loaded 6296515 points from cb6-3.las
+2024-12-15 11:00:23,265 - INFO - Total points: 6296515, Iterations: 614
+2024-12-15 11:02:00,686 - INFO - Created 1174 blocks
+2024-12-15 11:02:00,686 - INFO - Processing cb6-4.las
+2024-12-15 11:02:00,686 - INFO - Loading ../data/CB/section/test\cb6-4.las
+2024-12-15 11:02:01,025 - INFO - Loaded 1672538 points from cb6-4.las
+2024-12-15 11:02:01,063 - INFO - Total points: 1672538, Iterations: 163
+2024-12-15 11:02:05,467 - INFO - Created 227 blocks
+2024-12-15 11:02:05,467 - INFO - Processing cb6-5.las
+2024-12-15 11:02:05,467 - INFO - Loading ../data/CB/section/test\cb6-5.las
+2024-12-15 11:02:06,173 - INFO - Loaded 4306942 points from cb6-5.las
+2024-12-15 11:02:06,251 - INFO - Total points: 4306942, Iterations: 420
+2024-12-15 11:02:35,623 - INFO - Created 760 blocks
+2024-12-15 11:02:35,623 - INFO - Processing cb6-6.las
+2024-12-15 11:02:35,623 - INFO - Loading ../data/CB/section/test\cb6-6.las
+2024-12-15 11:02:36,618 - INFO - Loaded 6127453 points from cb6-6.las
+2024-12-15 11:02:36,748 - INFO - Total points: 6127453, Iterations: 598
+2024-12-15 11:03:42,649 - INFO - Created 1183 blocks
+2024-12-15 11:03:42,650 - INFO - Processing cb6-7.las
+2024-12-15 11:03:42,650 - INFO - Loading ../data/CB/section/test\cb6-7.las
+2024-12-15 11:03:43,567 - INFO - Loaded 5796537 points from cb6-7.las
+2024-12-15 11:03:43,678 - INFO - Total points: 5796537, Iterations: 566
+2024-12-15 11:04:40,508 - INFO - Created 1118 blocks
+2024-12-15 11:04:40,508 - INFO - Processing cb6-8.las
+2024-12-15 11:04:40,508 - INFO - Loading ../data/CB/section/test\cb6-8.las
+2024-12-15 11:04:41,787 - INFO - Loaded 7951887 points from cb6-8.las
+2024-12-15 11:04:41,941 - INFO - Total points: 7951887, Iterations: 776
+2024-12-15 11:06:38,246 - INFO - Created 1531 blocks
+2024-12-15 11:06:38,247 - INFO - Processing cb9-1.las
+2024-12-15 11:06:38,247 - INFO - Loading ../data/CB/section/test\cb9-1.las
+2024-12-15 11:06:39,182 - INFO - Loaded 5521785 points from cb9-1.las
+2024-12-15 11:06:39,287 - INFO - Total points: 5521785, Iterations: 539
+2024-12-15 11:07:31,067 - INFO - Created 1053 blocks
+2024-12-15 11:07:31,068 - INFO - Processing cb9-2.las
+2024-12-15 11:07:31,068 - INFO - Loading ../data/CB/section/test\cb9-2.las
+2024-12-15 11:07:31,982 - INFO - Loaded 5438146 points from cb9-2.las
+2024-12-15 11:07:32,086 - INFO - Total points: 5438146, Iterations: 531
+2024-12-15 11:08:22,136 - INFO - Created 1034 blocks
+2024-12-15 11:08:22,137 - INFO - Processing cb9-3.las
+2024-12-15 11:08:22,137 - INFO - Loading ../data/CB/section/test\cb9-3.las
+2024-12-15 11:08:22,905 - INFO - Loaded 4643903 points from cb9-3.las
+2024-12-15 11:08:23,012 - INFO - Total points: 4643903, Iterations: 453
+2024-12-15 11:08:57,483 - INFO - Created 860 blocks
+2024-12-15 11:08:57,484 - INFO - Processing cb9-4.las
+2024-12-15 11:08:57,484 - INFO - Loading ../data/CB/section/test\cb9-4.las
+2024-12-15 11:08:57,791 - INFO - Loaded 1771155 points from cb9-4.las
+2024-12-15 11:08:57,828 - INFO - Total points: 1771155, Iterations: 172
+2024-12-15 11:09:02,823 - INFO - Created 285 blocks
+2024-12-15 11:09:02,823 - INFO - Processing cb9-5.las
+2024-12-15 11:09:02,823 - INFO - Loading ../data/CB/section/test\cb9-5.las
+2024-12-15 11:09:04,175 - INFO - Loaded 7168176 points from cb9-5.las
+2024-12-15 11:09:04,309 - INFO - Total points: 7168176, Iterations: 700
+2024-12-15 11:10:35,368 - INFO - Created 1362 blocks
+2024-12-15 11:10:35,368 - INFO - Processing cb9-6.las
+2024-12-15 11:10:35,368 - INFO - Loading ../data/CB/section/test\cb9-6.las
+2024-12-15 11:10:36,420 - INFO - Loaded 6192744 points from cb9-6.las
+2024-12-15 11:10:36,542 - INFO - Total points: 6192744, Iterations: 604
+2024-12-15 11:11:43,411 - INFO - Created 1173 blocks
+2024-12-15 11:11:43,412 - INFO - Processing cb9-7.las
+2024-12-15 11:11:43,412 - INFO - Loading ../data/CB/section/test\cb9-7.las
+2024-12-15 11:11:44,393 - INFO - Loaded 5771728 points from cb9-7.las
+2024-12-15 11:11:44,507 - INFO - Total points: 5771728, Iterations: 563
+2024-12-15 11:12:41,408 - INFO - Created 1105 blocks
+2024-12-15 11:12:41,408 - INFO - Total blocks created: 15932
+2024-12-15 11:12:41,413 - INFO - Saving cache to: ../data/CB/section/test/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc69ea15b.pt
+2024-12-15 11:19:19,001 - INFO - Cache saved with 15932 blocks
+2024-12-15 11:31:53,744 - INFO - Using device: cuda
+2024-12-15 11:31:53,747 - INFO - Loading dataset from cache: ../data/CB/section/test/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc69ea15b.pt
+2024-12-15 11:34:03,448 - INFO - Successfully loaded 15932 blocks from cache
+2024-12-15 11:34:37,606 - INFO - Using device: cuda
+2024-12-15 11:34:37,611 - INFO - Loading dataset from cache: ../data/CB/section/test/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc69ea15b.pt
+2024-12-15 11:37:03,888 - INFO - Successfully loaded 15932 blocks from cache
+2024-12-15 11:37:04,424 - INFO - Loaded model from experiments/exp_121400_brimulti_struposinet_CB_sec_5class_acc98\best_model.pth
+2024-12-15 13:11:47,902 - INFO - Mean IoU: 85.68%
+2024-12-15 13:11:47,904 - INFO - Overall Accuracy: 94.11%
+2024-12-15 13:11:47,904 - INFO - Mean Accuracy: 91.06%
+2024-12-15 13:11:47,904 - INFO - Precision: 94.08%
+2024-12-15 13:11:47,904 - INFO - Recall: 94.11%
+2024-12-15 13:11:47,904 - INFO - F1 Score: 94.09%
+2024-12-15 13:11:47,904 - INFO - Class 0 IoU: 90.67%
+2024-12-15 13:11:47,904 - INFO - Class 1 IoU: 86.84%
+2024-12-15 13:11:47,904 - INFO - Class 2 IoU: 93.55%
+2024-12-15 13:11:47,904 - INFO - Class 3 IoU: 76.60%
+2024-12-15 13:11:47,904 - INFO - Class 4 IoU: 80.72%
+2024-12-15 13:11:50,275 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-1.las
+2024-12-15 13:11:53,425 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-2.las
+2024-12-15 13:11:55,749 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-3.las
+2024-12-15 13:11:56,034 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-4.las
+2024-12-15 13:11:57,177 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-5.las
+2024-12-15 13:11:59,770 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-6.las
+2024-12-15 13:12:01,881 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-7.las
+2024-12-15 13:12:04,999 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb6-8.las
+2024-12-15 13:12:06,753 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb9-1.las
+2024-12-15 13:12:08,639 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb9-2.las
+2024-12-15 13:12:10,588 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb9-3.las
+2024-12-15 13:12:10,851 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb9-4.las
+2024-12-15 13:12:13,662 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb9-5.las
+2024-12-15 13:12:16,340 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb9-6.las
+2024-12-15 13:12:18,395 - INFO - Saved predicted result to experiments\exp_121400_brimulti_struposinet_CB_sec_5class_acc98\predicted_las\predicted_cb9-7.las

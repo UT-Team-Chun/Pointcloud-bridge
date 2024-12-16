@@ -149,3 +149,72 @@
 2024-11-20 21:28:32,080 - ERROR - No checkpoint found at experiments/exp_lindata/best_model.pth
 2024-11-20 21:29:19,145 - INFO - Using device: cuda
 2024-11-20 21:29:19,275 - ERROR - No checkpoint found at experiments/exp_lindata/best_model.pth
+2024-12-05 12:15:13,327 - INFO - Using device: cuda
+2024-12-05 12:15:40,677 - INFO - Using device: cuda
+2024-12-05 12:17:52,318 - INFO - Using device: cuda
+2024-12-05 12:21:23,175 - INFO - Using device: cuda
+2024-12-05 12:22:06,813 - INFO - Using device: cuda
+2024-12-05 12:23:25,770 - INFO - Using device: cuda
+2024-12-05 12:24:03,020 - INFO - Using device: cuda
+2024-12-05 12:25:10,117 - INFO - Using device: cuda
+2024-12-05 12:43:59,575 - INFO - Using device: cuda
+2024-12-05 12:43:59,586 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 12:44:35,929 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 12:52:52,783 - INFO - Using device: cuda
+2024-12-05 12:52:52,785 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 12:53:15,515 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 13:00:26,461 - INFO - Using device: cuda
+2024-12-05 13:00:26,464 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 13:00:49,384 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 13:01:02,182 - INFO - Using device: cuda
+2024-12-05 13:01:02,184 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 13:01:24,932 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 13:08:34,090 - INFO - Using device: cuda
+2024-12-05 13:08:34,111 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 13:08:56,722 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 13:13:34,325 - INFO - Using device: cuda
+2024-12-05 13:13:35,303 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 13:13:58,931 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 13:51:29,373 - INFO - Using device: cuda
+2024-12-05 13:51:29,376 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 13:51:53,614 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:24:34,335 - INFO - Using device: cuda
+2024-12-05 15:24:34,338 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:24:56,725 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:34:34,658 - INFO - Using device: cuda
+2024-12-05 15:34:34,660 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:34:57,756 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:36:15,084 - INFO - Using device: cuda
+2024-12-05 15:36:15,086 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:36:37,273 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:38:03,120 - INFO - Using device: cuda
+2024-12-05 15:38:03,122 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:38:25,480 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:39:53,742 - INFO - Using device: cuda
+2024-12-05 15:39:53,744 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:40:15,767 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:40:50,214 - INFO - Using device: cuda
+2024-12-05 15:40:50,217 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:41:12,598 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:41:22,175 - INFO - Using device: cuda
+2024-12-05 15:41:22,177 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:41:44,552 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:42:16,593 - INFO - Using device: cuda
+2024-12-05 15:42:16,594 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:42:38,778 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 15:42:59,862 - INFO - Using device: cuda
+2024-12-05 15:42:59,864 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 15:43:22,120 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 16:00:32,904 - INFO - Using device: cuda
+2024-12-05 16:00:32,906 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 16:00:55,253 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 16:00:55,762 - INFO - Loaded model from experiments/exp_120318_brimulti_struposinet_CB_sec_4class/latest_checkpoint.pth
+2024-12-05 16:01:44,112 - INFO - Using device: cuda
+2024-12-05 16:01:44,116 - INFO - Loading dataset from cache: data/CB/4class/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashbe0a91ef.pt
+2024-12-05 16:02:07,101 - INFO - Successfully loaded 9359 blocks from cache
+2024-12-05 16:02:07,338 - INFO - Loaded model from experiments/exp_120318_brimulti_struposinet_CB_sec_4class/latest_checkpoint.pth
+2024-12-05 16:57:59,693 - INFO - Mean IoU: 85.51%
+2024-12-05 16:57:59,694 - INFO - Class 0 IoU: 93.63%
+2024-12-05 16:57:59,694 - INFO - Class 1 IoU: 79.56%
+2024-12-05 16:57:59,694 - INFO - Class 2 IoU: 91.67%
+2024-12-05 16:57:59,694 - INFO - Class 3 IoU: 77.16%

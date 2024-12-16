@@ -1,15 +1,16 @@
 import argparse
-import os
-from data_utils.BridgeDataLoader import ScannetDatasetWholeScene
-import torch
-import logging
-from pathlib import Path
-import sys
 import importlib
-from tqdm import tqdm
-import provider
-import numpy as np
+import logging
+import os
+import sys
+from pathlib import Path
+
 import laspy
+import numpy as np
+import torch
+from tqdm import tqdm
+
+from data_utils.BridgeDataLoader import ScannetDatasetWholeScene
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = BASE_DIR
@@ -30,11 +31,11 @@ class2color = {
 }
 label2color = {classes.index(cls): class2color[cls] for cls in classes}
 
-trained_result = 'test-cy-new'
+trained_result = 'test-cy-CB'
 
 def parse_args():
     parser = argparse.ArgumentParser('Model')
-    parser.add_argument('--batch_size', type=int, default=32, help='batch size in testing')
+    parser.add_argument('--batch_size', type=int, default=4, help='batch size in testing')
     parser.add_argument('--gpu', type=str, default='0', help='specify gpu device')
     parser.add_argument('--num_point', type=int, default=4096, help='Point Number')
     parser.add_argument('--log_dir', type=str, default=trained_result, help='Experiment root')
@@ -107,7 +108,7 @@ def main(args):
     NUM_POINT = args.num_point
 
     # Load dataset
-    root = 'data/bridges_5cls_0.05_partition_10m_95ol_norm'
+    root = 'data/CB'
     TEST_DATASET_WHOLE_SCENE = ScannetDatasetWholeScene(root, split='test', 
                                                        block_points=NUM_POINT, 
                                                        num_class=NUM_CLASSES)

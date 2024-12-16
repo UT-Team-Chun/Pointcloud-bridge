@@ -1,0 +1,70 @@
+2024-12-08 22:59:44,072 - INFO - Using device: cuda
+2024-12-08 22:59:44,094 - INFO - Loading dataset from cache: data/fukushima/org/val//cache\dataset_cache_points4096_size1.0_rate0.3_transformFalse_hash6525dc81.pt
+2024-12-08 23:00:03,773 - INFO - Successfully loaded 4062 blocks from cache
+2024-12-08 23:00:05,177 - INFO - Loaded model from experiments/exp_12080017_brimulti_MultiSA_org\best_model.pth
+2024-12-08 23:22:55,244 - INFO - Mean IoU: 84.69%
+2024-12-08 23:22:55,244 - INFO - Overall Accuracy: 92.16%
+2024-12-08 23:22:55,244 - INFO - Mean Accuracy: 91.11%
+2024-12-08 23:22:55,244 - INFO - Precision: 92.22%
+2024-12-08 23:22:55,244 - INFO - Recall: 92.16%
+2024-12-08 23:22:55,244 - INFO - F1 Score: 92.19%
+2024-12-08 23:22:55,244 - INFO - Class 0 IoU: 70.19%
+2024-12-08 23:22:55,245 - INFO - Class 1 IoU: 89.12%
+2024-12-08 23:22:55,245 - INFO - Class 2 IoU: 86.10%
+2024-12-08 23:22:55,245 - INFO - Class 3 IoU: 90.29%
+2024-12-08 23:22:55,245 - INFO - Class 4 IoU: 87.77%
+2024-12-08 23:22:55,319 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-1.las
+2024-12-08 23:32:45,672 - INFO - Using device: cuda
+2024-12-08 23:32:45,674 - INFO - Loading dataset from cache: data/fukushima/org/val//cache\dataset_cache_points4096_size1.0_rate0.3_transformFalse_hash6525dc81.pt
+2024-12-08 23:32:54,461 - INFO - Successfully loaded 4062 blocks from cache
+2024-12-08 23:32:55,227 - INFO - Loaded model from experiments/exp_12080017_brimulti_MultiSA_org\best_model.pth
+2024-12-08 23:59:25,207 - INFO - Mean IoU: 84.72%
+2024-12-08 23:59:25,207 - INFO - Overall Accuracy: 92.19%
+2024-12-08 23:59:25,207 - INFO - Mean Accuracy: 91.14%
+2024-12-08 23:59:25,207 - INFO - Precision: 92.24%
+2024-12-08 23:59:25,207 - INFO - Recall: 92.19%
+2024-12-08 23:59:25,207 - INFO - F1 Score: 92.22%
+2024-12-08 23:59:25,207 - INFO - Class 0 IoU: 70.39%
+2024-12-08 23:59:25,207 - INFO - Class 1 IoU: 89.09%
+2024-12-08 23:59:25,207 - INFO - Class 2 IoU: 86.11%
+2024-12-08 23:59:25,207 - INFO - Class 3 IoU: 90.17%
+2024-12-08 23:59:25,207 - INFO - Class 4 IoU: 87.85%
+2024-12-08 23:59:25,580 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-1.las
+2024-12-08 23:59:27,474 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-2.las
+2024-12-08 23:59:27,966 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-4.las
+2024-12-08 23:59:28,152 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-5.las
+2024-12-08 23:59:29,029 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-1.las
+2024-12-08 23:59:29,715 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-2.las
+2024-12-08 23:59:30,160 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-4.las
+2024-12-08 23:59:30,197 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-5.las
+2024-12-08 23:59:30,455 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-6.las
+2024-12-08 23:59:31,030 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b7-sec-1.las
+2024-12-08 23:59:32,501 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b7-sec-3.las
+2024-12-08 23:59:33,631 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b7-sec-4.las
+2024-12-09 00:11:58,781 - INFO - Using device: cuda
+2024-12-09 00:11:58,784 - INFO - Loading dataset from cache: data/fukushima/org/val//cache\dataset_cache_points4096_size1.0_rate0.3_transformFalse_hash6525dc81.pt
+2024-12-09 00:12:07,929 - INFO - Successfully loaded 4062 blocks from cache
+2024-12-09 00:12:08,371 - INFO - Loaded model from experiments/exp_12080017_brimulti_MultiSA_org\best_model.pth
+2024-12-09 00:40:25,589 - INFO - Mean IoU: 84.58%
+2024-12-09 00:40:25,589 - INFO - Overall Accuracy: 92.11%
+2024-12-09 00:40:25,589 - INFO - Mean Accuracy: 91.10%
+2024-12-09 00:40:25,589 - INFO - Precision: 92.18%
+2024-12-09 00:40:25,589 - INFO - Recall: 92.11%
+2024-12-09 00:40:25,589 - INFO - F1 Score: 92.15%
+2024-12-09 00:40:25,589 - INFO - Class 0 IoU: 70.09%
+2024-12-09 00:40:25,589 - INFO - Class 1 IoU: 89.09%
+2024-12-09 00:40:25,589 - INFO - Class 2 IoU: 86.04%
+2024-12-09 00:40:25,589 - INFO - Class 3 IoU: 89.97%
+2024-12-09 00:40:25,589 - INFO - Class 4 IoU: 87.69%
+2024-12-09 00:40:25,661 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-1.las
+2024-12-09 00:40:25,905 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-2.las
+2024-12-09 00:40:26,008 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-4.las
+2024-12-09 00:40:26,220 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b1-sec-5.las
+2024-12-09 00:40:26,480 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-1.las
+2024-12-09 00:40:26,971 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-2.las
+2024-12-09 00:40:27,446 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-4.las
+2024-12-09 00:40:27,490 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-5.las
+2024-12-09 00:40:27,714 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b2-sec-6.las
+2024-12-09 00:40:28,417 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b7-sec-1.las
+2024-12-09 00:40:29,485 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b7-sec-3.las
+2024-12-09 00:40:30,062 - INFO - Saved predicted result to experiments\exp_12080017_brimulti_MultiSA_org\predicted_las\predicted_b7-sec-4.las

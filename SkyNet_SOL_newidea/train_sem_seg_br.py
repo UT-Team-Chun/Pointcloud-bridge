@@ -19,17 +19,17 @@ ROOT_DIR = BASE_DIR
 sys.path.append(os.path.join(ROOT_DIR, 'models'))
 
 classes = ['abutment', 'girder', 'deck', 'parapet', 'noise']
-class2label = {cls: i for i, cls in enumerate(classes)} # {'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
+class2label = {cls: i for i, cls in enumerate(classes)}
+# {'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
 seg_classes = class2label
 seg_label_to_cat = {} # {0: 'abutment', 1: 'girder', 2: 'deck', 3: 'parapet', 4: 'noise'}
 for i, cat in enumerate(seg_classes.keys()):
     seg_label_to_cat[i] = cat
 
 # pointnet_sem_seg, pointnet2_sem_seg, pointnet2_sem_seg_msg
-# log_dir = 'PointNet2_0.05_CEL_5m_95ol'
 
 #log_dir = 'PointNet2_0.05_SOL_a=200_10m_95ol_norm'
-log_dir = 'test-cy-new'
+log_dir = 'test-cy-CB'
 
 def parse_args():
     parser = argparse.ArgumentParser('Model')
@@ -53,6 +53,7 @@ def main(args):
 
     '''HYPER PARAMETER'''
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
+    os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 
     '''CREATE DIR'''
     timestr = str(datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'))
@@ -82,18 +83,18 @@ def main(args):
     log_string('PARAMETER ...')
     log_string(args)
 
-    root = os.path.join(ROOT_DIR, 'data/bridges_5cls_0.05_partition_10m_95ol_norm')
+    root = os.path.join(ROOT_DIR, 'data/CB')
     NUM_CLASSES = len(classes)
     NUM_POINT = args.npoint
     BATCH_SIZE = args.batch_size
 
     print("start loading training data ...")
     TRAIN_DATASET = LWBridgeDataset(split='train', data_root=root, num_point=NUM_POINT, block_size=1.0, sample_rate=1.0, num_class=NUM_CLASSES, transform=None)
-    print("start loading test data ...")
-    TEST_DATASET = LWBridgeDataset(split='test', data_root=root, num_point=NUM_POINT, block_size=1.0, sample_rate=1.0, num_class=NUM_CLASSES, transform=None)
+    print("start loading val data ...")
+    TEST_DATASET = LWBridgeDataset(split='val', data_root=root, num_point=NUM_POINT, block_size=1.0, sample_rate=1.0, num_class=NUM_CLASSES, transform=None)
 
-    trainDataLoader = torch.utils.data.DataLoader(TRAIN_DATASET, batch_size=BATCH_SIZE, shuffle=True, num_workers=2, pin_memory=True, drop_last=True)
-    testDataLoader = torch.utils.data.DataLoader(TEST_DATASET, batch_size=BATCH_SIZE, shuffle=False, num_workers=2, pin_memory=True, drop_last=True)
+    trainDataLoader = torch.utils.data.DataLoader(TRAIN_DATASET, batch_size=BATCH_SIZE, shuffle=True, num_workers=0, pin_memory=True, drop_last=True)
+    testDataLoader = torch.utils.data.DataLoader(TEST_DATASET, batch_size=BATCH_SIZE, shuffle=False, num_workers=0, pin_memory=True, drop_last=True)
     weights = torch.Tensor(TRAIN_DATASET.labelweights).cuda()
 
     # WCEL needs the amount vector to calculate the weights
@@ -167,7 +168,10 @@ def main(args):
         total_seen = 0
         loss_sum = 0
         for i, data in tqdm(enumerate(trainDataLoader), total=len(trainDataLoader), smoothing=0.9):
+
             points, target = data # target.shape: [16, 4096]
+
+            #print(f"points: {points.shape}, target: {target.shape}")
 
             # for my loss function, strcture-oriented loss (SOL)
             points_raw = points.float().cuda() # output.shape: [16, 4096, 9]

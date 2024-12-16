@@ -1,0 +1,67 @@
+2024-11-23 23:59:16,801 - INFO - Training configuration:
+2024-11-23 23:59:16,802 - INFO - num_points: 4096
+2024-11-23 23:59:16,802 - INFO - chunk_size: 4096
+2024-11-23 23:59:16,802 - INFO - overlap: 2048
+2024-11-23 23:59:16,802 - INFO - batch_size: 48
+2024-11-23 23:59:16,802 - INFO - num_workers: 0
+2024-11-23 23:59:16,802 - INFO - learning_rate: 0.001
+2024-11-23 23:59:16,802 - INFO - num_classes: 5
+2024-11-23 23:59:16,802 - INFO - num_epochs: 500
+2024-11-23 23:59:16,802 - INFO - device: cuda
+2024-11-23 23:59:16,802 - INFO - Using device: cuda
+2024-11-23 23:59:16,803 - INFO - Found 49 las files:
+2024-11-23 23:59:16,803 - INFO - Loading data/train\b1-sec-1.las
+2024-11-23 23:59:17,014 - INFO - Loaded 985322 points from b1-sec-1.las
+2024-11-23 23:59:17,016 - INFO - Processing data - Points: (985322, 3), Colors: (985322, 3), Labels: (985322,)
+2024-11-23 23:59:19,149 - INFO - Created 113 blocks
+2024-11-23 23:59:19,188 - INFO - Loading data/train\b1-sec-2.las
+2024-11-23 23:59:19,664 - INFO - Loaded 1809764 points from b1-sec-2.las
+2024-11-23 23:59:19,669 - INFO - Processing data - Points: (1809764, 3), Colors: (1809764, 3), Labels: (1809764,)
+2024-11-23 23:59:23,380 - INFO - Created 127 blocks
+2024-11-23 23:59:23,426 - INFO - Loading data/train\b1-sec-3.las
+2024-11-23 23:59:23,910 - INFO - Loaded 2089257 points from b1-sec-3.las
+2024-11-23 23:59:23,916 - INFO - Processing data - Points: (2089257, 3), Colors: (2089257, 3), Labels: (2089257,)
+2024-11-23 23:59:27,209 - INFO - Created 193 blocks
+2024-11-23 23:59:27,266 - INFO - Loading data/train\b1-sec-4.las
+2024-11-23 23:59:27,516 - INFO - Loaded 1060372 points from b1-sec-4.las
+2024-11-23 23:59:27,522 - INFO - Processing data - Points: (1060372, 3), Colors: (1060372, 3), Labels: (1060372,)
+2024-11-23 23:59:29,245 - INFO - Created 33 blocks
+2024-11-23 23:59:29,263 - INFO - Loading data/train\b1-sec-5.las
+2024-11-23 23:59:29,684 - INFO - Loaded 1637720 points from b1-sec-5.las
+2024-11-23 23:59:29,688 - INFO - Processing data - Points: (1637720, 3), Colors: (1637720, 3), Labels: (1637720,)
+2024-11-23 23:59:32,165 - INFO - Created 44 blocks
+2024-11-23 23:59:32,190 - INFO - Loading data/train\b1-sec-6.las
+2024-11-23 23:59:33,581 - INFO - Loaded 6468171 points from b1-sec-6.las
+2024-11-23 23:59:33,595 - INFO - Processing data - Points: (6468171, 3), Colors: (6468171, 3), Labels: (6468171,)
+2024-11-23 23:59:43,118 - INFO - Created 24 blocks
+2024-11-23 23:59:43,188 - INFO - Loading data/train\b2-sec-1.las
+2024-11-23 23:59:43,511 - INFO - Loaded 1624940 points from b2-sec-1.las
+2024-11-23 23:59:43,524 - INFO - Processing data - Points: (1624940, 3), Colors: (1624940, 3), Labels: (1624940,)
+2024-11-23 23:59:45,953 - INFO - Created 381 blocks
+2024-11-23 23:59:45,997 - INFO - Loading data/train\b2-sec-2.las
+2024-11-23 23:59:46,491 - INFO - Loaded 2170234 points from b2-sec-2.las
+2024-11-23 23:59:46,507 - INFO - Processing data - Points: (2170234, 3), Colors: (2170234, 3), Labels: (2170234,)
+2024-11-23 23:59:51,212 - INFO - Created 275 blocks
+2024-11-23 23:59:51,283 - INFO - Loading data/train\b2-sec-3.las
+2024-11-23 23:59:52,502 - INFO - Loaded 5017618 points from b2-sec-3.las
+2024-11-23 23:59:52,513 - INFO - Processing data - Points: (5017618, 3), Colors: (5017618, 3), Labels: (5017618,)
+2024-11-24 00:00:01,523 - INFO - Created 1418 blocks
+2024-11-24 00:00:01,718 - INFO - Loading data/train\b2-sec-4.las
+2024-11-24 00:00:02,312 - INFO - Loaded 2747352 points from b2-sec-4.las
+2024-11-24 00:00:02,324 - INFO - Processing data - Points: (2747352, 3), Colors: (2747352, 3), Labels: (2747352,)
+2024-11-24 00:00:06,224 - INFO - Created 346 blocks
+2024-11-24 00:00:06,289 - INFO - Loading data/train\b2-sec-5.las
+2024-11-24 00:00:06,410 - INFO - Loaded 469428 points from b2-sec-5.las
+2024-11-24 00:00:06,416 - INFO - Processing data - Points: (469428, 3), Colors: (469428, 3), Labels: (469428,)
+2024-11-24 00:00:07,105 - INFO - Created 144 blocks
+2024-11-24 00:00:07,117 - INFO - Loading data/train\b2-sec-6.las
+2024-11-24 00:00:07,434 - INFO - Loaded 1463705 points from b2-sec-6.las
+2024-11-24 00:00:07,436 - INFO - Processing data - Points: (1463705, 3), Colors: (1463705, 3), Labels: (1463705,)
+2024-11-24 00:00:09,626 - INFO - Created 128 blocks
+2024-11-24 00:00:09,657 - INFO - Loading data/train\b4-sec-1.las
+2024-11-24 00:00:10,356 - INFO - Loaded 2940412 points from b4-sec-1.las
+2024-11-24 00:00:10,363 - INFO - Processing data - Points: (2940412, 3), Colors: (2940412, 3), Labels: (2940412,)
+2024-11-24 00:00:15,738 - INFO - Created 714 blocks
+2024-11-24 00:00:15,823 - INFO - Loading data/train\b4-sec-2.las
+2024-11-24 00:00:17,051 - INFO - Loaded 5488366 points from b4-sec-2.las
+2024-11-24 00:00:17,064 - INFO - Processing data - Points: (5488366, 3), Colors: (5488366, 3), Labels: (5488366,)

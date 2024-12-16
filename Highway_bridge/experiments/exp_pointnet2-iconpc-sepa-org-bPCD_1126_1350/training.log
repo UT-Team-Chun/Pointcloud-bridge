@@ -1,0 +1,41 @@
+2024-11-26 13:50:46,855 - INFO - Training configuration:
+2024-11-26 13:50:46,855 - INFO - num_points: 4096
+2024-11-26 13:50:46,855 - INFO - chunk_size: 4096
+2024-11-26 13:50:46,855 - INFO - overlap: 1024
+2024-11-26 13:50:46,855 - INFO - batch_size: 32
+2024-11-26 13:50:46,855 - INFO - num_workers: 0
+2024-11-26 13:50:46,855 - INFO - learning_rate: 0.001
+2024-11-26 13:50:46,855 - INFO - num_classes: 5
+2024-11-26 13:50:46,855 - INFO - num_epochs: 500
+2024-11-26 13:50:46,855 - INFO - device: cuda
+2024-11-26 13:50:46,855 - INFO - Using device: cuda
+2024-11-26 13:50:46,855 - INFO - Found 60 las files:
+2024-11-26 13:50:46,856 - INFO - Processing b1-sec-3.las
+2024-11-26 13:50:46,856 - INFO - Loading data/fukushima/org/train/b1-sec-3.las
+2024-11-26 13:50:46,913 - INFO - Loaded 2089257 points from b1-sec-3.las
+2024-11-26 13:50:47,050 - INFO - Total points: 2089257, Iterations: 102
+2024-11-26 13:50:52,677 - INFO - Created 204 blocks
+2024-11-26 13:50:52,677 - INFO - Processing b2-sec-4.las
+2024-11-26 13:50:52,677 - INFO - Loading data/fukushima/org/train/b2-sec-4.las
+2024-11-26 13:50:52,750 - INFO - Loaded 2747352 points from b2-sec-4.las
+2024-11-26 13:50:52,754 - INFO - Total points: 2747352, Iterations: 134
+2024-11-26 13:51:02,837 - INFO - Created 268 blocks
+2024-11-26 13:51:02,837 - INFO - Processing b3-sec-1.las
+2024-11-26 13:51:02,837 - INFO - Loading data/fukushima/org/train/b3-sec-1.las
+2024-11-26 13:51:02,932 - INFO - Loaded 3588690 points from b3-sec-1.las
+2024-11-26 13:51:02,937 - INFO - Total points: 3588690, Iterations: 175
+2024-11-26 13:51:20,897 - INFO - Created 350 blocks
+2024-11-26 13:51:20,898 - INFO - Processing b3-sec-2.las
+2024-11-26 13:51:20,898 - INFO - Loading data/fukushima/org/train/b3-sec-2.las
+2024-11-26 13:51:21,128 - INFO - Loaded 6417920 points from b3-sec-2.las
+2024-11-26 13:51:21,136 - INFO - Total points: 6417920, Iterations: 313
+2024-11-26 13:52:33,963 - INFO - Created 626 blocks
+2024-11-26 13:52:33,963 - INFO - Processing b3-sec-3.las
+2024-11-26 13:52:33,963 - INFO - Loading data/fukushima/org/train/b3-sec-3.las
+2024-11-26 13:52:34,123 - INFO - Loaded 6044219 points from b3-sec-3.las
+2024-11-26 13:52:34,132 - INFO - Total points: 6044219, Iterations: 295
+2024-11-26 13:53:35,519 - INFO - Created 295 blocks
+2024-11-26 13:53:35,519 - INFO - Processing b3-sec-4.las
+2024-11-26 13:53:35,519 - INFO - Loading data/fukushima/org/train/b3-sec-4.las
+2024-11-26 13:53:35,701 - INFO - Loaded 6468557 points from b3-sec-4.las
+2024-11-26 13:53:35,711 - INFO - Total points: 6468557, Iterations: 315

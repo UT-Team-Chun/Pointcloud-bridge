@@ -14,16 +14,16 @@ from tqdm import tqdm
 
 from models.model import PointNet2
 # from utils.data_utils import BridgePointCloudDataset
-# from utils.BridgePCDataset import BridgePointCloudDataset
-from utils.data_utils_ver2 import BridgePointCloudDataset
-from utils.logger_config import initialize_logger
+from utils.BridgePCDataset import BridgePointCloudDataset
+# from utils.data_utils_ver2 import BridgePointCloudDataset, BridgeValidationDataset
+from utils.logger_config import initialize_logger, get_logger
 
 # 配置参数
 config = {
     'num_points': 4096,
     'chunk_size': 4096,
     'overlap': 1024,
-    'batch_size': 64,
+    'batch_size': 16,
     'num_workers': 0,
     'learning_rate': 0.001,
     'num_classes': 5,
@@ -35,7 +35,7 @@ config = {
 def train():
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d_%H%M')
-    case = 'pointnet2-iconpc-sepa'
+    case = 'pointnet2-iconpc-sepa-org-bPCD'
     exp_dir = Path(f'experiments/exp_{case}_{timestamp}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -54,32 +54,28 @@ def train():
 
     # 创建数据加载器
     train_dataset = BridgePointCloudDataset(
-        data_dir='data/fukushima/train/',
+        data_dir='data/fukushima/org/train/',
         num_points=config['num_points'],
-        chunk_size = 4096,
-        overlap=1024,
-        #h_block_size=0.5,
-        #v_block_size=0.5,
-        #h_stride=0.4,
-        #v_stride=0.4,
-        #min_points=100,
-        #logger=get_logger(),
+        h_block_size=4,
+        v_block_size=3,
+        h_stride=2,
+        v_stride=1,
+        min_points=100,
+        logger=get_logger(),
         transform=True
     )
     logger.info('reading train data')
 
 
     val_dataset = BridgePointCloudDataset(
-        data_dir='data/fukushima/val/',
+        data_dir='data/fukushima/org/val/',
         num_points=config['num_points'],
-        chunk_size=4096,
-        overlap = 1024,
-        #h_block_size=0.5,
-        #v_block_size=0.5,
-        #h_stride=0.5,
-        #v_stride=0.5,
-        #min_points=100,
-        #logger=get_logger()
+        h_block_size=4,
+        v_block_size=3,
+        h_stride=2,
+        v_stride=2,
+        min_points=100,
+        logger=get_logger()
     )
 
     logger.info('reading val data')

@@ -1,7 +1,9 @@
 import os
+
+import laspy
 import numpy as np
 from torch.utils.data import Dataset
-import laspy
+
 
 def read_las_file(las_path):
     """
@@ -29,6 +31,17 @@ def read_las_file(las_path):
     # 获取分类标签 (如果存在)
     if hasattr(las, 'classification'):
         labels = las.classification
+
+        labels[labels == 0] = 5
+        labels[labels == 1] = 0
+        labels[labels == 2] = 1
+        labels[labels == 3] = 2
+        labels[labels == 4] = 3
+        labels[labels == 5] = 4
+
+        # 将大于4的标签设为0
+        labels[labels > 4] = 4
+
     else:
         # 如果没有标签，设置默认值0
         labels = np.zeros_like(x)
@@ -47,7 +60,7 @@ class LWBridgeDataset(Dataset):
         self.block_size = block_size
         self.transform = transform
 
-        assert split in ['train', 'test']
+        assert split in ['train', 'test','val']
         data_folder = os.path.join(data_root, split)
         bridges = sorted(os.listdir(data_folder))
 
@@ -149,10 +162,11 @@ class LWBridgeDataset(Dataset):
         # current_points.size: num_point * 9, [x (centered), y (centered), z, r~, g~, b~, x~, y~, z~] (~ means normalized)
 
         current_labels = labels[selected_point_idxs]
+        # current_labels.size: num_point
 
         if self.transform is not None:
             current_points, current_labels = self.transform(current_points, current_labels)
-            
+
         return current_points, current_labels
 
     def __len__(self):
@@ -170,7 +184,7 @@ class ScannetDatasetWholeScene():
         self.stride = stride
         self.scene_points_num = []
 
-        assert split in ['train', 'test']
+        assert split in ['train', 'test', 'val']
         data_folder = os.path.join(root, split)
         self.file_list = [d for d in os.listdir(data_folder)]
         self.scene_points_list = []

@@ -1,8 +1,9 @@
+from time import time
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from time import time
-import numpy as np
 
 
 def timeit(tag, t):
@@ -54,13 +55,32 @@ def index_points(points, idx):
     """
     device = points.device
     B = points.shape[0]
-    view_shape = list(idx.shape) # [B, S] (or [B, M, S])
-    view_shape[1: ] = [1] * (len(view_shape) - 1) # [B, 1] (or [B, 1, 1])
-    repeat_shape = list(idx.shape) # [B, S] (or [B, M, S])
-    repeat_shape[0] = 1 # [1, S] (or [1, M, S])
-    batch_indices = torch.arange(B, dtype=torch.long).to(device).view(view_shape).repeat(repeat_shape) # [B, S] (or [B, M, S])
-    new_points = points[batch_indices, idx, : ]
-    return new_points
+
+    # 添加输入检查
+    if not torch.is_tensor(points) or not torch.is_tensor(idx):
+        raise TypeError("Both points and idx must be torch tensors")
+
+
+    # 检查索引是否在有效范围内
+    if idx.max() >= points.shape[1]:
+        #print(f"Warning: Invalid index detected! Clamping indices from {idx.max().item()} to {points.shape[1] - 1}")
+        idx = torch.clamp(idx, 0, points.shape[1] - 1)
+
+    view_shape = list(idx.shape)
+    view_shape[1:] = [1] * (len(view_shape) - 1)
+    repeat_shape = list(idx.shape)
+    repeat_shape[0] = 1
+
+    try:
+        batch_indices = torch.arange(B, dtype=torch.long).to(device).view(view_shape).repeat(repeat_shape)
+        new_points = points[batch_indices, idx, :]
+        return new_points
+    except Exception as e:
+        print("Error during indexing operation:")
+        print(f"batch_indices shape: {batch_indices.shape}")
+        print(f"points shape: {points.shape}")
+        print(f"idx shape: {idx.shape}")
+        raise e
 
 
 def farthest_point_sample(xyz, npoint):

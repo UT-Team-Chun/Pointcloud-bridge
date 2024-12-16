@@ -1,0 +1,12 @@
+2024-12-08 00:14:07,014 - INFO - Training configuration:
+2024-12-08 00:14:07,014 - INFO - num_points: 4096
+2024-12-08 00:14:07,014 - INFO - chunk_size: 4096
+2024-12-08 00:14:07,014 - INFO - overlap: 1024
+2024-12-08 00:14:07,014 - INFO - batch_size: 8
+2024-12-08 00:14:07,014 - INFO - num_workers: 0
+2024-12-08 00:14:07,014 - INFO - learning_rate: 0.001
+2024-12-08 00:14:07,014 - INFO - num_classes: 4
+2024-12-08 00:14:07,014 - INFO - num_epochs: 500
+2024-12-08 00:14:07,014 - INFO - device: cuda
+2024-12-08 00:14:07,014 - INFO - Using device: cuda
+2024-12-08 00:14:07,017 - INFO - Loading dataset from cache: data/CB/4class/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hashf3911720.pt

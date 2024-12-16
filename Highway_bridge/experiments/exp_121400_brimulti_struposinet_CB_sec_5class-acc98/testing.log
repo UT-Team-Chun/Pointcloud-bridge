@@ -1,0 +1,32 @@
+2024-12-15 10:45:19,949 - INFO - Using device: cuda
+2024-12-15 10:45:20,988 - INFO - No cache found. Processing dataset...
+2024-12-15 10:45:20,988 - INFO - Found 15 las files:
+2024-12-15 10:45:20,988 - INFO -   - cb6-1.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-2.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-3.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-4.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-5.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-6.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-7.las
+2024-12-15 10:45:20,988 - INFO -   - cb6-8.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-1.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-2.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-3.las
+2024-12-15 10:45:20,988 - INFO -   - cb9-4.las
+2024-12-15 10:45:20,989 - INFO -   - cb9-5.las
+2024-12-15 10:45:20,989 - INFO -   - cb9-6.las
+2024-12-15 10:45:20,989 - INFO -   - cb9-7.las
+2024-12-15 10:45:20,990 - INFO - Processing cb6-1.las
+2024-12-15 10:45:20,990 - INFO - Loading ../data/CB/section/test\cb6-1.las
+2024-12-15 10:45:22,098 - INFO - Loaded 6935749 points from cb6-1.las
+2024-12-15 10:45:22,391 - INFO - Total points: 6935749, Iterations: 677
+2024-12-15 10:46:50,849 - INFO - Created 1338 blocks
+2024-12-15 10:46:50,849 - INFO - Processing cb6-2.las
+2024-12-15 10:46:50,849 - INFO - Loading ../data/CB/section/test\cb6-2.las
+2024-12-15 10:46:52,321 - INFO - Loaded 9005526 points from cb6-2.las
+2024-12-15 10:46:52,490 - INFO - Total points: 9005526, Iterations: 879
+2024-12-15 10:49:45,569 - INFO - Created 1730 blocks
+2024-12-15 10:49:45,569 - INFO - Processing cb6-3.las
+2024-12-15 10:49:45,569 - INFO - Loading ../data/CB/section/test\cb6-3.las
+2024-12-15 10:49:46,631 - INFO - Loaded 6296515 points from cb6-3.las
+2024-12-15 10:49:46,756 - INFO - Total points: 6296515, Iterations: 614
