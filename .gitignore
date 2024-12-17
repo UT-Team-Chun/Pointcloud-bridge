@@ -3,10 +3,8 @@
 *.wandb
 *.las
 data
-Partsize-identical/log/
-!/Partsize-identical/log/
 data/
-Partsize-identical/log
+Partsize-identical/log/sem_seg/
 data/bridge-5cls-fukushima/
 Highway_bridge/data
 Highway_bridge/data/
