@@ -144,14 +144,62 @@ def data_voxel(data, voxel_size=0.1):
     return filtered_points
 
 def isolation_forest_outlier_removal(points, contamination=0.1):
+    """
+    改进的Isolation Forest异常检测，考虑方向性
+    """
     from sklearn.ensemble import IsolationForest
-    iso_forest = IsolationForest(contamination=contamination, random_state=42)
-    outlier_labels = iso_forest.fit_predict(points)
-    
-    inliers = points[outlier_labels == 1]
-    outliers = points[outlier_labels == -1]
-    
-    return inliers
+
+    # 桥长方向检测（更宽松）
+    points_transformed_length, length_idx, length_contamination, pca = directional_outlier_detection(
+        points, contamination, is_length_direction=True
+    )
+
+    # 桥宽方向检测（更严格）
+    points_transformed_width, width_idx, width_contamination, _ = directional_outlier_detection(
+        points, contamination, is_length_direction=False
+    )
+
+    #length_contamination=contamination
+    #width_contamination=contamination
+
+    # 分别对两个方向进行异常检测
+    iso_forest_length = IsolationForest(contamination=length_contamination, random_state=42)
+    iso_forest_width = IsolationForest(contamination=width_contamination, random_state=42)
+
+    # 获取预测结果
+    length_labels = iso_forest_length.fit_predict(points_transformed_length[:, [length_idx]])
+    width_labels = iso_forest_width.fit_predict(points_transformed_width[:, [width_idx]])
+
+    # 组合两个方向的结果（只有两个方向都认为是正常点才保留）
+    combined_mask = (length_labels == 1) & (width_labels == 1)
+
+    return points[combined_mask]
+
+
+def directional_outlier_detection(points, contamination=0.1, is_length_direction=True):
+    """
+    根据方向性进行异常点检测
+
+    参数:
+    points: 输入点云
+    contamination: 异常点比例
+    is_length_direction: 是否是桥长方向
+    """
+    # 使用PCA找到主方向
+    pca = PCA(n_components=points.shape[1])
+    points_transformed = pca.fit_transform(points)
+
+    # 根据方差比确定主方向
+    variance_ratio = pca.explained_variance_ratio_
+    main_direction_idx = 0 if variance_ratio[0] > variance_ratio[1] else 1
+
+    # 确定处理方向
+    direction_idx = main_direction_idx if is_length_direction else (1 - main_direction_idx)
+
+    # 调整contamination
+    adjusted_contamination = contamination * (0.5 if is_length_direction else 1)
+
+    return points_transformed, direction_idx, adjusted_contamination, pca
 
 def lof_outlier_removal(points, n_neighbors=20, contamination='auto'):
     from sklearn.neighbors import LocalOutlierFactor
@@ -193,8 +241,8 @@ def visualize_step(points, step_name, rect=None, save_path=None, fig_size=(16, 4
         dpi: int, 图像分辨率
     """
     # 设置字体
-    from mplfonts import use_font
-    use_font('Noto Serif CJK SC')
+    #from mplfonts import use_font
+    #use_font('Noto Serif CJK SC')
 
     import matplotlib.gridspec as gridspec
 
@@ -452,7 +500,7 @@ def statistical_evaluation(df):
 # # 主程序
 if __name__ == "__main__":
 
-    test_names = 'cb2-5c'#'b1','b2','b7', cb2-4c
+    test_names = 'cb6-5c'#'b1','b2','b7', cb2-4c
     l = 2
     #{'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
     label = [1,2,3]
@@ -463,7 +511,7 @@ if __name__ == "__main__":
     voxel_size = 0.05
     ransac_max_trials = 1000 #best 1000
     ransac_residual_threshold = 0.3 #best 0.3
-    isolation_forest_contamination = 0.02 #best 0.3
+    isolation_forest_contamination = 0.03 #best 0.3
     lof_n_neighbors = 30 #best 30
     lof_contamination = 'auto' #'auto',best 0.4
     dbscan_eps = 1  #best 1

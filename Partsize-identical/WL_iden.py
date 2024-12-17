@@ -570,8 +570,8 @@ if __name__ == "__main__":
     logger.addHandler(file_handler)
     log_string('PARAMETER ...')
 
-    test_names = ['cb2-5c'] #b1,b2,b7
-    #test_names = ['b1','b2','b7'] #b1,b2,b7 ,'cb6-5c','cb9-5c'
+    test_names = ['cb2-5c', 'cb6-5c','cb9-5c'] #b1,b2,b7
+    #test_names = ['b1','b2','b7'] #b1,b2,b7 ,'cb2-5c', 'cb6-5c','cb9-5c'
     #{'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
     #{'abutment': 1, 'girder': 2, 'deck': 3, 'parapet': 4, 'noise': 0}
     label = [2,3,4]
@@ -583,7 +583,7 @@ if __name__ == "__main__":
     voxel_size = 0.05 #best 0.3 for cb is 0.05, for b is 0.3
     ransac_max_trials = 1000 #best 1000
     ransac_residual_threshold = 0.3 #best 0.3
-    isolation_forest_contamination = 0.05 #best 0.05
+    isolation_forest_contamination = 0.03 #best 0.05
     lof_n_neighbors = 30 #10 #best 30 for cb is 30, for b is 10
     lof_contamination = 'auto' #'auto',best 0.4
     dbscan_eps = 1  #best 1
