@@ -35,7 +35,7 @@ config = {
 def train():
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d%H')
-    case = 'brimulti_struposinet_CB_sec_5class'
+    case = 'brimulti_brienc_CB_sec_5class'
     exp_dir = Path(f'experiments/exp_{timestamp}_{case}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 

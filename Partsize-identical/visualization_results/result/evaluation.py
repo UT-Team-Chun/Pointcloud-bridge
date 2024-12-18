@@ -1,20 +1,67 @@
-import pandas as pd
-import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import seaborn as sns
 from scipy import stats
 from sklearn.metrics import mean_squared_error, r2_score
-import matplotlib
 
-matplotlib.rcParams.update({
-    'font.size': 11,
-    'axes.titlesize': 11,
-    'axes.labelsize': 11,
-    'xtick.labelsize': 11,
-    'ytick.labelsize': 11,
-    'legend.fontsize': 11,
-    'figure.dpi': 300
-})
+
+def set_scientific_style():
+    plt.style.use('default')  # 首先重置为默认样式
+
+    matplotlib.rcParams.update({
+        # 字体设置
+        'font.family': 'Arial',  # 使用 Arial 字体
+        'font.size': 16,
+        'axes.titlesize': 18,
+        'axes.labelsize': 18,
+        'xtick.labelsize': 18,
+        'ytick.labelsize': 18,
+        'legend.fontsize': 18,
+
+        # 线条设置
+        'axes.linewidth': 1.25,  # 坐标轴线宽
+        'grid.linewidth': 0.5,  # 网格线宽
+        'lines.linewidth': 1.5,  # 曲线线宽
+        'patch.linewidth': 0.75,  # 填充区域边界线宽
+
+        # 刻度设置
+        'xtick.major.width': 1.25,
+        'ytick.major.width': 1.25,
+        'xtick.minor.width': 1.0,
+        'ytick.minor.width': 1.0,
+        'xtick.major.size': 6,
+        'ytick.major.size': 6,
+        'xtick.minor.size': 4,
+        'ytick.minor.size': 4,
+
+        # 图例设置
+        'legend.frameon': True,
+        'legend.framealpha': 1.0,
+        'legend.edgecolor': 'black',
+        'legend.fancybox': False,
+
+        # 其他设置
+        'figure.dpi': 300,
+        'savefig.dpi': 300,
+        'savefig.bbox': 'tight',
+        'savefig.pad_inches': 0.05,
+
+        # 颜色设置
+        'axes.prop_cycle': plt.cycler(color=['#2f5c85', '#c44e52',
+                                             '#8dd3c7', '#bebada',
+                                             '#5bb3a7', '#9281c9'])
+    })
+# matplotlib.rcParams.update({
+#     'font.size': 11,
+#     'axes.titlesize': 11,
+#     'axes.labelsize': 11,
+#     'xtick.labelsize': 11,
+#     'ytick.labelsize': 11,
+#     'legend.fontsize': 11,
+#     'figure.dpi': 300
+# })
 
 
 def load_and_process_data(file1, file2):
@@ -106,6 +153,7 @@ def plot_bland_altman(df1, df2, dimension='length', save_path=None):
         ax.set_xlim(mean.min() - x_margin, mean.max() + x_margin)
         xticks = np.linspace(mean.min(), mean.max(), 11)  # 同样设置11个刻度点
         ax.set_xticks(xticks)
+        ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
 
         # 设置刻度格式
         ax.yaxis.set_major_formatter(plt.FormatStrFormatter('%.2f'))  # 保持两位小数
@@ -178,12 +226,10 @@ def plot_bland_altman(df1, df2, dimension='length', save_path=None):
                           pad=0.5))
 
         # 设置标签和标题
-        ax.set_xlabel(f'Mean of True and Predicted {dimension.capitalize()} (mm)',
-                      fontsize=10)
-        ax.set_ylabel('Difference (Predicted - True) (mm)',
-                      fontsize=10)
+        ax.set_xlabel(f'Mean of True and Predicted {dimension.capitalize()} (mm)')
+        ax.set_ylabel('Difference (Predicted - True) (mm)')
         ax.set_title(f'{title} Bland-Altman Plot',
-                     pad=15, fontsize=12)
+                     pad=15)
 
         # 美化坐标轴
         ax.tick_params(width=1.25, length=6)
@@ -204,7 +250,7 @@ def plot_bland_altman(df1, df2, dimension='length', save_path=None):
                   framealpha=0.9,
                   fancybox=False,
                   borderaxespad=0.5,
-                  fontsize=9)
+                  fontsize=14)
 
         # 设置适当的y轴范围
         y_range = max(abs(diff.max()), abs(diff.min()))
@@ -377,7 +423,7 @@ def plot_component_relative_errors(df1, df2, dimension='length', save_path=None)
             ax.text(rect.get_x() + rect.get_width() / 2., height,
                     f'{val:.1f}%',
                     ha='center', va='bottom',
-                    fontsize=9, fontweight='bold')
+                    fontsize=14, fontweight='bold')
 
     autolabel(rects1, errors_df1)
     autolabel(rects2, errors_df2)
@@ -385,15 +431,15 @@ def plot_component_relative_errors(df1, df2, dimension='length', save_path=None)
     # 添加平均值标注
     ax.text(ax.get_xlim()[1], mean1, f'Mean: {mean1:.1f}%',
             ha='right', va='bottom', color='#5bb3a7',
-            fontsize=9, fontweight='bold')
+            fontsize=14, fontweight='bold')
     ax.text(ax.get_xlim()[1], mean2, f'Mean: {mean2:.1f}%',
             ha='right', va='bottom', color='#9281c9',
-            fontsize=9, fontweight='bold')
+            fontsize=14, fontweight='bold')
 
-    ax.set_ylabel('Relative Error (%)', fontsize=10)
-    ax.set_title(f'Relative Errors by Component ({dimension})', fontsize=11, pad=10)
+    ax.set_ylabel('Relative Error (%)')
+    ax.set_title(f'Relative Errors by Component ({dimension})', pad=10)
     ax.set_xticks(x)
-    ax.set_xticklabels(components, fontsize=10)
+    ax.set_xticklabels(components)
 
     # 设置刻度线样式
     ax.tick_params(width=1.25, length=6)
@@ -617,4 +663,5 @@ def main():
 
 
 if __name__ == '__main__':
+    set_scientific_style()
     main()

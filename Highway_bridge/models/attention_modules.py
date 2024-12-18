@@ -398,6 +398,7 @@ class EnhancedPositionalEncoding(nn.Module):
         rel_features = rel_features.permute(0, 3, 1, 2)  # (B, N, k, channels//2) → (B, channels//2, N, k)
         encoded = self.relative_mlp(rel_features)  # [B, C//2, N, K]
         encoded = encoded.permute(0, 2, 3, 1)  # [B, N, K, channels//2]
+
         return encoded.mean(dim=2)  # (B, N, channels//2)
 
     def get_structure_encoding(self, rel_pos):
@@ -517,14 +518,156 @@ class EnhancedPositionalEncoding(nn.Module):
         return final_encoding.transpose(1, 2)  # (B, channels, N)
 
 
+class BridgeStructureEncoding(nn.Module):
+    def __init__(self, channels=32, k_neighbors=16, freq_bands=4):
+        super().__init__()
+        self.channels = channels
+        self.k = k_neighbors
+        self.freq_bands = freq_bands
+
+        # 生成频率
+        freqs = 2.0 ** torch.linspace(0., freq_bands - 1, freq_bands)
+        self.register_buffer('freqs', freqs)
+
+        # 计算输入特征维度
+        self.pos_dim = 3  # 相对位置维度
+        self.freq_dim = 6 * freq_bands  # 频率编码维度
+        self.struct_dim = 13  # 结构特征维度
+        self.total_dim = self.pos_dim + self.freq_dim + self.struct_dim
+
+        # 局部结构编码的MLP
+        self.structure_mlp = nn.Sequential(
+            nn.Conv2d(self.total_dim, channels, 1),
+            nn.BatchNorm2d(channels),
+            nn.ReLU(),
+            nn.Conv2d(channels, channels, 1)
+        )
+
+    def forward(self, xyz):
+        B, N, _ = xyz.shape
+        device = xyz.device
+
+        # 1. K近邻搜索
+        dist = torch.cdist(xyz, xyz)
+        k = min(self.k, N)
+        _, idx = dist.topk(k, dim=-1, largest=False)
+
+        idx_base = torch.arange(0, B, device=device).view(-1, 1, 1) * N
+        idx = idx + idx_base
+        idx = idx.view(-1)
+
+        neighbors = xyz.view(B * N, -1)[idx].view(B, N, k, -1)
+        center = xyz.unsqueeze(2).expand(-1, -1, k, -1)
+
+        # 2. 计算相对位置 (3维)
+        rel_pos = neighbors - center  # [B, N, k, 3]
+
+        # 3. 频率编码 (6*freq_bands维)
+        pos_enc = []
+        for freq in self.freqs:
+            for func in [torch.sin, torch.cos]:
+                pos_enc.append(func(rel_pos * freq))
+        pos_enc = torch.cat(pos_enc, dim=-1)  # [B, N, k, 6*freq_bands]
+
+        # 4. 获取结构特征 (13维)
+        structure_features = self.get_structure_features(rel_pos)  # [B, N, 13]
+        structure_features = structure_features.unsqueeze(2).expand(-1, -1, k, -1)  # [B, N, k, 13]
+
+        # 5. 组合所有特征
+        combined_features = torch.cat([
+            rel_pos,  # 3维
+            pos_enc,  # 24维 (6*freq_bands)
+            structure_features  # 13维
+        ], dim=-1)  # 总共40维
+
+        # 6. 通过MLP处理
+        combined_features = combined_features.permute(0, 3, 1, 2)  # [B, C, N, k]
+        encoded = self.structure_mlp(combined_features)
+        encoded = torch.max(encoded, dim=-1)[0]  # [B, channels, N]
+
+        return encoded
+
+    def get_structure_features(self, rel_pos):
+        """
+        输入:
+            rel_pos: [2, 4096, 16, 3]
+        输出:
+            features: [2, 4096, 13]
+        """
+        B, N, k, _ = rel_pos.shape
+
+        # 1. 局部主方向特征
+        rel_pos_2d = rel_pos.view(B * N, k, 3)
+        cov_matrix = torch.bmm(rel_pos_2d.transpose(1, 2), rel_pos_2d) / (k - 1)
+
+        try:
+            eigenvalues, _ = torch.linalg.eigh(cov_matrix)
+            eigenvalues = eigenvalues.view(B, N, 3)
+
+            linearity = (eigenvalues[..., 0] - eigenvalues[..., 1]) / (eigenvalues[..., 0] + 1e-8)
+            planarity = (eigenvalues[..., 1] - eigenvalues[..., 2]) / (eigenvalues[..., 0] + 1e-8)
+            sphericity = eigenvalues[..., 2] / (eigenvalues[..., 0] + 1e-8)
+
+            structure_features = torch.stack([linearity, planarity, sphericity], dim=-1)
+        except:
+            structure_features = torch.zeros((B, N, 3), device=rel_pos.device)
+
+        # 2. 局部统计特征
+        center = rel_pos.mean(dim=2, keepdim=True)
+        distances = torch.norm(rel_pos - center, dim=-1)
+
+        local_stats = torch.stack([
+            distances.max(dim=-1)[0],  # local_radius
+            distances.mean(dim=-1),  # mean_dist
+            distances.std(dim=-1)  # std_dist
+        ], dim=-1)  # [B, N, 3]
+
+        # 3. 方向特征
+        normalized_pos = rel_pos / (torch.norm(rel_pos, dim=-1, keepdim=True) + 1e-8)
+        direction_sim = torch.bmm(
+            normalized_pos.view(B * N, k, 3),
+            normalized_pos.view(B * N, k, 3).transpose(1, 2)
+        ).view(B, N, k, k)
+        direction_consistency = direction_sim.mean(dim=(-1, -2))
+
+        # 4. Z轴特征
+        z_stats = torch.stack([
+            rel_pos[..., 2].std(dim=-1),  # z_variation
+            rel_pos[..., 2].max(dim=-1)[0] - rel_pos[..., 2].min(dim=-1)[0]  # z_range
+        ], dim=-1)  # [B, N, 2]
+
+        # 5. 平均相对位置
+        mean_rel_pos = rel_pos.mean(dim=2)  # [B, N, 3]
+
+        # 组合所有特征 (确保总共13维)
+        features = torch.cat([
+            structure_features,  # 3维
+            local_stats,  # 3维
+            direction_consistency.unsqueeze(-1),  # 1维
+            z_stats,  # 2维
+            mean_rel_pos,  # 3维
+            torch.norm(rel_pos.std(dim=2), dim=-1, keepdim=True)  # 1维
+        ], dim=-1)  # 总共13维
+
+        # 验证维度
+        assert features.shape[-1] == 13, f"Features should have 13 dimensions, but got {features.shape[-1]}"
+
+        return features
+
+
 if __name__ == '__main__':
     # 测试PositionalEncoding
     xyz = torch.randn(2, 4096, 3) #B, N, C
     # 实例化 EnhancedPositionalEncoding 类
     pos_enc = EnhancedPositionalEncoding(channels=32, freq_bands=16, k_neighbors=3)
 
+    pos_enc_2 = BridgeStructureEncoding(channels=32, k_neighbors=16, freq_bands=4)
+
     # 调用 forward 方法
     output = pos_enc(xyz)
 
+    output_2 = pos_enc_2(xyz)
+
     # 打印输出形状
     print(f"Output shape: {output.shape}")
+    print(f"Output shape: {output_2.shape}")

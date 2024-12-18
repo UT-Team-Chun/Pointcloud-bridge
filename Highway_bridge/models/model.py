@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from .attention_modules import BoundaryAwareModule, EnhancedAttentionModule, \
-    GeometricFeatureExtraction, EnhancedPositionalEncoding
+    GeometricFeatureExtraction, EnhancedPositionalEncoding, BridgeStructureEncoding
 from .pointnet2_utils import FeaturePropagation, SetAbstraction, MultiScaleSetAbstraction
 
 
@@ -57,8 +57,9 @@ class PointNet2(nn.Module):
 class EnhancedPointNet2(nn.Module):
     def __init__(self, num_classes=8):
         super().__init__()
-        input_ch=6
+        input_ch=32
         self.pos_encoding = EnhancedPositionalEncoding(input_ch,4,64,)
+        self.bri_enc = BridgeStructureEncoding(input_ch, 16, 4)
 
         in_chanel = input_ch + 6 # 3(xyz) + 3(RGB)
         # Encoder
@@ -108,7 +109,7 @@ class EnhancedPointNet2(nn.Module):
         """
 
         # Add positional encoding
-        pos_enc = self.pos_encoding(xyz) # [B, 64, N]
+        pos_enc = self.bri_enc(xyz) # [B, 64, N]
         # Change the order of dimensions
         colors = colors.transpose(1, 2)  # [B, 3, N]
         features = torch.cat([pos_enc, colors], dim=1)  # Merge Features: [B, 67, N]
