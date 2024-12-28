@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\Highway_bridge\data\predicted_las\exp_20241117_000159\iou_per_class.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Partsize-identical\classes.csv">
           <value>
             <Attribute>
@@ -17,6 +24,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Partsize-identical\visualization_results\result\In-paper\results\length_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Partsize-identical\visualization_results\result\In-paper\results\width_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Partsize-identical\visualization_results\result\bridge-set-1.csv">
           <value>
             <Attribute>
@@ -25,6 +46,27 @@
           </value>
         </entry>
         <entry key="\Partsize-identical\visualization_results\result\bridge-set-2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Partsize-identical\visualization_results\result\results\length_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Partsize-identical\visualization_results\result\results\width_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\example.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

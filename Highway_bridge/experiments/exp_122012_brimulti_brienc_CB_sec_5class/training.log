@@ -1,0 +1,31 @@
+2024-12-20 12:34:14,471 - INFO - Training configuration:
+2024-12-20 12:34:14,471 - INFO - num_points: 4096
+2024-12-20 12:34:14,471 - INFO - chunk_size: 4096
+2024-12-20 12:34:14,471 - INFO - overlap: 1024
+2024-12-20 12:34:14,471 - INFO - batch_size: 16
+2024-12-20 12:34:14,471 - INFO - num_workers: 0
+2024-12-20 12:34:14,471 - INFO - learning_rate: 0.001
+2024-12-20 12:34:14,471 - INFO - num_classes: 5
+2024-12-20 12:34:14,472 - INFO - num_epochs: 500
+2024-12-20 12:34:14,472 - INFO - device: cuda
+2024-12-20 12:34:14,472 - INFO - Using device: cuda
+2024-12-20 12:34:14,474 - INFO - Loading dataset from cache: ../data/CB/section/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash7cfce2e7.pt
+2024-12-20 12:56:26,991 - INFO - Training configuration:
+2024-12-20 12:56:26,992 - INFO - num_points: 4096
+2024-12-20 12:56:26,992 - INFO - chunk_size: 4096
+2024-12-20 12:56:26,992 - INFO - overlap: 1024
+2024-12-20 12:56:26,992 - INFO - batch_size: 16
+2024-12-20 12:56:26,992 - INFO - num_workers: 0
+2024-12-20 12:56:26,992 - INFO - learning_rate: 0.001
+2024-12-20 12:56:26,992 - INFO - num_classes: 5
+2024-12-20 12:56:26,992 - INFO - num_epochs: 500
+2024-12-20 12:56:26,992 - INFO - device: cuda
+2024-12-20 12:56:26,992 - INFO - Using device: cuda
+2024-12-20 12:56:26,995 - INFO - Loading dataset from cache: ../data/CB/section/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash7cfce2e7.pt
+2024-12-20 13:39:21,491 - INFO - Successfully loaded 49224 blocks from cache
+2024-12-20 13:39:21,494 - INFO - Loading dataset from cache: ../data/CB/section/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hash953a0685.pt
+2024-12-20 14:50:54,434 - INFO - Successfully loaded 8003 blocks from cache
+2024-12-20 14:50:54,435 - INFO - reading val data
+2024-12-20 14:50:54,435 - INFO - Train dataset size: 49224
+2024-12-20 14:50:54,436 - INFO - Val dataset size: 8003
+2024-12-20 14:50:59,937 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001DD18ECDDF0>

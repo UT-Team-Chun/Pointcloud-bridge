@@ -1,0 +1,75 @@
+2024-12-24 04:36:13,780 - INFO - Using device: cuda
+2024-12-24 04:36:13,798 - INFO - No cache found. Processing dataset...
+2024-12-24 04:36:13,799 - INFO - Found 2 las files:
+2024-12-24 04:36:13,799 - INFO -   - cb10.las
+2024-12-24 04:36:13,799 - INFO -   - cb2.las
+2024-12-24 04:36:13,802 - INFO - Processing cb10.las
+2024-12-24 04:36:13,802 - INFO - Loading ../data/CB/all/test\cb10.las
+2024-12-24 04:36:14,795 - INFO - Loaded 27767293 points from cb10.las
+2024-12-24 04:36:15,574 - INFO - Total points: 27767293, Iterations: 2711
+2024-12-24 05:37:51,038 - INFO - Created 5180 blocks
+2024-12-24 05:37:51,039 - INFO - Processing cb2.las
+2024-12-24 05:37:51,039 - INFO - Loading ../data/CB/all/test\cb2.las
+2024-12-24 05:37:51,390 - INFO - Loaded 11852062 points from cb2.las
+2024-12-24 05:37:51,731 - INFO - Total points: 11852062, Iterations: 1157
+2024-12-24 05:45:56,671 - INFO - Created 1689 blocks
+2024-12-24 05:45:56,671 - INFO - Total blocks created: 6869
+2024-12-24 05:45:56,684 - INFO - Saving cache to: ../data/CB/all/test/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashda135eb5.pt
+2024-12-24 05:47:57,692 - INFO - Cache saved with 6869 blocks
+2024-12-24 05:47:58,246 - INFO - Loaded model from experiments/exp_122402_brimulti_brienc_CB_all_5class\best_model.pth
+2024-12-24 06:52:12,052 - INFO - Mean IoU: 39.17%
+2024-12-24 06:52:12,053 - INFO - Overall Accuracy: 68.23%
+2024-12-24 06:52:12,053 - INFO - Mean Accuracy: 49.40%
+2024-12-24 06:52:12,053 - INFO - Precision: 72.91%
+2024-12-24 06:52:12,053 - INFO - Recall: 68.23%
+2024-12-24 06:52:12,053 - INFO - F1 Score: 70.50%
+2024-12-24 06:52:12,053 - INFO - Class 0 IoU: 64.27%
+2024-12-24 06:52:12,053 - INFO - Class 1 IoU: 36.83%
+2024-12-24 06:52:12,053 - INFO - Class 2 IoU: 36.25%
+2024-12-24 06:52:12,053 - INFO - Class 3 IoU: 33.34%
+2024-12-24 06:52:12,053 - INFO - Class 4 IoU: 25.19%
+2024-12-24 13:46:29,607 - INFO - Using device: cuda
+2024-12-24 13:46:29,612 - INFO - Loading dataset from cache: ../data/CB/all/test/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashda135eb5.pt
+2024-12-24 13:46:55,615 - INFO - Successfully loaded 6869 blocks from cache
+2024-12-24 13:46:56,180 - INFO - Loaded model from experiments/exp_122402_brimulti_brienc_CB_all_5class\best_model.pth
+2024-12-24 14:54:20,931 - INFO - Mean IoU: 41.82%
+2024-12-24 14:54:20,932 - INFO - Overall Accuracy: 69.34%
+2024-12-24 14:54:20,932 - INFO - Mean Accuracy: 52.39%
+2024-12-24 14:54:20,932 - INFO - Precision: 73.43%
+2024-12-24 14:54:20,932 - INFO - Recall: 69.34%
+2024-12-24 14:54:20,932 - INFO - F1 Score: 71.32%
+2024-12-24 14:54:20,932 - INFO - Class 0 IoU: 65.09%
+2024-12-24 14:54:20,932 - INFO - Class 1 IoU: 40.94%
+2024-12-24 14:54:20,932 - INFO - Class 2 IoU: 38.26%
+2024-12-24 14:54:20,932 - INFO - Class 3 IoU: 35.28%
+2024-12-24 14:54:20,932 - INFO - Class 4 IoU: 29.54%
+2024-12-24 17:02:45,724 - INFO - Using device: cuda
+2024-12-24 17:02:45,729 - INFO - Loading dataset from cache: ../data/CB/all/val/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2024-12-24 17:03:13,815 - INFO - Successfully loaded 6563 blocks from cache
+2024-12-24 17:03:14,451 - INFO - Loaded model from experiments/exp_122402_brimulti_brienc_CB_all_5class\best_model.pth
+2024-12-24 18:07:01,937 - INFO - Mean IoU: 83.08%
+2024-12-24 18:07:01,937 - INFO - Overall Accuracy: 94.74%
+2024-12-24 18:07:01,937 - INFO - Mean Accuracy: 90.21%
+2024-12-24 18:07:01,937 - INFO - Precision: 94.76%
+2024-12-24 18:07:01,937 - INFO - Recall: 94.74%
+2024-12-24 18:07:01,937 - INFO - F1 Score: 94.75%
+2024-12-24 18:07:01,938 - INFO - Class 0 IoU: 96.31%
+2024-12-24 18:07:01,938 - INFO - Class 1 IoU: 90.42%
+2024-12-24 18:07:01,938 - INFO - Class 2 IoU: 86.89%
+2024-12-24 18:07:01,938 - INFO - Class 3 IoU: 79.92%
+2024-12-24 18:07:01,938 - INFO - Class 4 IoU: 61.87%
+2024-12-25 01:42:45,880 - INFO - Using device: cuda
+2024-12-25 01:42:45,884 - INFO - Loading dataset from cache: ../data/CB/all/val/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2024-12-25 01:43:12,601 - INFO - Successfully loaded 6563 blocks from cache
+2024-12-25 01:43:13,130 - INFO - Loaded model from experiments/exp_122402_brimulti_brienc_CB_all_5class\best_model.pth
+2024-12-25 02:47:16,549 - INFO - Mean IoU: 83.08%
+2024-12-25 02:47:16,549 - INFO - Overall Accuracy: 94.73%
+2024-12-25 02:47:16,549 - INFO - Mean Accuracy: 90.21%
+2024-12-25 02:47:16,549 - INFO - Precision: 94.76%
+2024-12-25 02:47:16,549 - INFO - Recall: 94.73%
+2024-12-25 02:47:16,549 - INFO - F1 Score: 94.75%
+2024-12-25 02:47:16,549 - INFO - Class 0 IoU: 96.31%
+2024-12-25 02:47:16,549 - INFO - Class 1 IoU: 90.41%
+2024-12-25 02:47:16,549 - INFO - Class 2 IoU: 86.88%
+2024-12-25 02:47:16,549 - INFO - Class 3 IoU: 79.91%
+2024-12-25 02:47:16,549 - INFO - Class 4 IoU: 61.87%

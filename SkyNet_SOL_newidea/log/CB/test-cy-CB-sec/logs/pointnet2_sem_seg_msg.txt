@@ -1,0 +1,57 @@
+2024-12-26 20:50:33,932 - Model - INFO - PARAMETER ...
+2024-12-26 20:50:33,932 - Model - INFO - Namespace(models='pointnet2_sem_seg_msg', batch_size=16, epoch=50, learning_rate=0.001, gpu='0', optimizer='Adam', log_dir='test-cy-CB-sec', decay_rate=0.0001, npoint=4096, step_size=10, lr_decay=0.7)
+2024-12-26 20:51:09,314 - Model - INFO - The number of training data is: 67921
+2024-12-26 20:51:09,314 - Model - INFO - The number of test data is: 11386
+2024-12-26 20:51:09,369 - Model - INFO - No existing models, start training from scratch...
+2024-12-26 20:51:10,193 - Model - INFO - **** Epoch 1 (1/50) ****
+2024-12-26 20:51:10,194 - Model - INFO - Learning rate: 0.001000
+2024-12-27 03:20:46,960 - Model - INFO - Training mean loss: 18.281649
+2024-12-27 03:20:46,962 - Model - INFO - Training accuracy: 0.082191
+2024-12-27 03:20:46,963 - Model - INFO - Save models...
+2024-12-27 03:20:46,963 - Model - INFO - Saving at D:\Work\Pointcloud-WL\Pointcloud-bridge\SkyNet_SOL_newidea\log\CB\test-cy-CB-sec\checkpoints/models.pth
+2024-12-27 03:20:47,036 - Model - INFO - Saving models....
+2024-12-27 03:20:47,753 - Model - INFO - ---- EPOCH 001 EVALUATION ----
+2024-12-27 04:20:49,078 - Model - INFO - eval mean loss: 25.600470
+2024-12-27 04:20:49,079 - Model - INFO - eval point avg class IoU: 0.009034
+2024-12-27 04:20:49,080 - Model - INFO - eval point accuracy: 0.045172
+2024-12-27 04:20:49,080 - Model - INFO - eval point avg class acc: 0.200000
+2024-12-27 04:20:49,080 - Model - INFO - ------- IoU --------
+class abutment       weight: 0.045, IoU: 0.045 
+class girder         weight: 0.284, IoU: 0.000 
+class deck           weight: 0.108, IoU: 0.000 
+class parapet        weight: 0.037, IoU: 0.000 
+class noise          weight: 0.526, IoU: 0.000 
+
+2024-12-27 04:20:49,082 - Model - INFO - Eval mean loss: 25.600470
+2024-12-27 04:20:49,082 - Model - INFO - Eval accuracy: 0.045172
+2024-12-27 04:20:49,082 - Model - INFO - Save models...
+2024-12-27 04:20:49,082 - Model - INFO - Saving at D:\Work\Pointcloud-WL\Pointcloud-bridge\SkyNet_SOL_newidea\log\CB\test-cy-CB-sec\checkpoints/best_model.pth
+2024-12-27 04:20:49,140 - Model - INFO - Saving models....
+2024-12-27 04:20:49,140 - Model - INFO - Best mIoU: 0.009034
+2024-12-27 04:20:49,140 - Model - INFO - **** Epoch 2 (2/50) ****
+2024-12-27 04:20:49,140 - Model - INFO - Learning rate: 0.001000
+2024-12-27 10:42:30,794 - Model - INFO - Training mean loss: 16.398008
+2024-12-27 10:42:30,794 - Model - INFO - Training accuracy: 0.110876
+2024-12-27 10:42:30,794 - Model - INFO - Save models...
+2024-12-27 10:42:30,794 - Model - INFO - Saving at D:\Work\Pointcloud-WL\Pointcloud-bridge\SkyNet_SOL_newidea\log\CB\test-cy-CB-sec\checkpoints/models.pth
+2024-12-27 10:42:30,835 - Model - INFO - Saving models....
+2024-12-27 10:42:31,533 - Model - INFO - ---- EPOCH 002 EVALUATION ----
+2024-12-27 11:42:29,163 - Model - INFO - eval mean loss: 26.940634
+2024-12-27 11:42:29,163 - Model - INFO - eval point avg class IoU: 0.009082
+2024-12-27 11:42:29,163 - Model - INFO - eval point accuracy: 0.045410
+2024-12-27 11:42:29,163 - Model - INFO - eval point avg class acc: 0.200000
+2024-12-27 11:42:29,163 - Model - INFO - ------- IoU --------
+class abutment       weight: 0.045, IoU: 0.045 
+class girder         weight: 0.285, IoU: 0.000 
+class deck           weight: 0.110, IoU: 0.000 
+class parapet        weight: 0.037, IoU: 0.000 
+class noise          weight: 0.524, IoU: 0.000 
+
+2024-12-27 11:42:29,163 - Model - INFO - Eval mean loss: 26.940634
+2024-12-27 11:42:29,163 - Model - INFO - Eval accuracy: 0.045410
+2024-12-27 11:42:29,163 - Model - INFO - Save models...
+2024-12-27 11:42:29,163 - Model - INFO - Saving at D:\Work\Pointcloud-WL\Pointcloud-bridge\SkyNet_SOL_newidea\log\CB\test-cy-CB-sec\checkpoints/best_model.pth
+2024-12-27 11:42:29,198 - Model - INFO - Saving models....
+2024-12-27 11:42:29,199 - Model - INFO - Best mIoU: 0.009082
+2024-12-27 11:42:29,199 - Model - INFO - **** Epoch 3 (3/50) ****
+2024-12-27 11:42:29,199 - Model - INFO - Learning rate: 0.001000

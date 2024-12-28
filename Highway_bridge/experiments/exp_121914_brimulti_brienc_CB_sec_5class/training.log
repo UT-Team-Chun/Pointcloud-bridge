@@ -1,0 +1,48 @@
+2024-12-19 14:11:52,717 - INFO - Training configuration:
+2024-12-19 14:11:52,717 - INFO - num_points: 4096
+2024-12-19 14:11:52,718 - INFO - chunk_size: 4096
+2024-12-19 14:11:52,718 - INFO - overlap: 1024
+2024-12-19 14:11:52,718 - INFO - batch_size: 32
+2024-12-19 14:11:52,718 - INFO - num_workers: 0
+2024-12-19 14:11:52,718 - INFO - learning_rate: 0.001
+2024-12-19 14:11:52,718 - INFO - num_classes: 5
+2024-12-19 14:11:52,718 - INFO - num_epochs: 500
+2024-12-19 14:11:52,718 - INFO - device: cuda
+2024-12-19 14:11:52,718 - INFO - Using device: cuda
+2024-12-19 14:11:52,721 - INFO - Loading dataset from cache: ../data/CB/section/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash7cfce2e7.pt
+2024-12-19 14:38:43,812 - INFO - Successfully loaded 49224 blocks from cache
+2024-12-19 14:38:43,816 - INFO - Loading dataset from cache: ../data/CB/section/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hash953a0685.pt
+2024-12-19 14:57:02,931 - INFO - Successfully loaded 8003 blocks from cache
+2024-12-19 14:57:02,932 - INFO - reading val data
+2024-12-19 14:57:02,933 - INFO - Train dataset size: 49224
+2024-12-19 14:57:02,933 - INFO - Val dataset size: 8003
+2024-12-19 14:57:07,589 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001D2425B1A30>
+2024-12-19 14:57:52,717 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 368, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 151, in train
+    outputs = model(points, colors)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\models\model.py", line 112, in forward
+    pos_enc = self.bri_enc(xyz) # [B, 64, N]
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\models\attention_modules.py", line 573, in forward
+    structure_features = self.get_structure_features(rel_pos)  # [B, N, 13]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\models\attention_modules.py", line 627, in get_structure_features
+    direction_sim = torch.bmm(
+                    ^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 128.00 GiB. GPU 0 has a total capacity of 23.99 GiB of which 10.70 GiB is free. Of the allocated memory 11.35 GiB is allocated by PyTorch, and 314.39 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

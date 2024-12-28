@@ -1,0 +1,15 @@
+2024-12-25 14:33:43,628 - INFO - Using device: cuda
+2024-12-25 14:33:43,632 - INFO - Loading dataset from cache: ../data/CB/all/val/cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2024-12-25 14:34:20,052 - INFO - Successfully loaded 6563 blocks from cache
+2024-12-25 14:34:20,596 - INFO - Loaded model from experiments/exp_122503_brimulti_brienc_CB_all_5class\best_model.pth
+2024-12-25 15:38:02,150 - INFO - Mean IoU: 80.65%
+2024-12-25 15:38:02,153 - INFO - Overall Accuracy: 93.79%
+2024-12-25 15:38:02,153 - INFO - Mean Accuracy: 87.68%
+2024-12-25 15:38:02,153 - INFO - Precision: 93.71%
+2024-12-25 15:38:02,153 - INFO - Recall: 93.79%
+2024-12-25 15:38:02,153 - INFO - F1 Score: 93.75%
+2024-12-25 15:38:02,153 - INFO - Class 0 IoU: 94.49%
+2024-12-25 15:38:02,154 - INFO - Class 1 IoU: 90.37%
+2024-12-25 15:38:02,154 - INFO - Class 2 IoU: 85.76%
+2024-12-25 15:38:02,154 - INFO - Class 3 IoU: 77.93%
+2024-12-25 15:38:02,154 - INFO - Class 4 IoU: 54.68%

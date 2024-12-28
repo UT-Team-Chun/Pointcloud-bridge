@@ -456,15 +456,15 @@ def process_raw(points,output_dir):
         pbar.update(1)
 
         #3. 边缘检测和修剪
-        points_trimmed = detect_and_trim_edges(result)
+        points_trimmed = detect_and_trim_edges(result_pca)
         points_trimmed_3d = np.column_stack((points_trimmed,
                                             np.zeros(len(points_trimmed))))
 
         pbar.update(1)
 
         # 4. 矩形拟合
-        rect = minimum_bounding_rectangle(result_pca)
-        visualize_step(result_pca_3d, "raw",rect=rect,
+        rect = minimum_bounding_rectangle(points_trimmed)
+        visualize_step(points_trimmed_3d, "raw",rect=rect,
                        save_path=output_dir / "bridge_raw.tiff")
         pbar.update(1)
 
@@ -500,8 +500,8 @@ def statistical_evaluation(df):
 # # 主程序
 if __name__ == "__main__":
 
-    test_names = 'cb6-5c'#'b1','b2','b7', cb2-4c
-    l = 2
+    test_names = 'cb2-5c'#'b1','b2','b7', cb2-4c
+    l = 3
     #{'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
     label = [1,2,3]
     total_error = 0
@@ -520,7 +520,7 @@ if __name__ == "__main__":
     deck_raw, deck_test = load_data(test_names, l)
 
     # 创建输出目录
-    output_dir = "visualization_results/"+test_names
+    output_dir = "visualization_results/"+test_names+"-"+str(l)
 
     length, width, cleaned_points_test, bounding_rect_test = process_bridge_deck(
         deck_test,
@@ -535,3 +535,5 @@ if __name__ == "__main__":
         dbscan_min_samples
     )
     length_raw, width_raw, cleaned_points, bounding_rect = process_raw(deck_raw,output_dir)
+    print(f"Length: {length:.2f} m, Width: {width:.2f} m")
+    print(f"Length_raw: {length_raw:.2f} m, Width_raw: {width_raw:.2f} m")

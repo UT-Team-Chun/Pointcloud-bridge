@@ -3,9 +3,13 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .attention_modules import BoundaryAwareModule, EnhancedAttentionModule, \
-    GeometricFeatureExtraction, EnhancedPositionalEncoding, BridgeStructureEncoding
-from .pointnet2_utils import FeaturePropagation, SetAbstraction, MultiScaleSetAbstraction
+from attention_modules import BoundaryAwareModule, EnhancedAttentionModule, \
+    GeometricFeatureExtraction, EnhancedPositionalEncoding, BridgeStructureEncoding, ColorFeatureExtraction, \
+    CompositeFeatureFusion
+from pointnet2_utils import FeaturePropagation, SetAbstraction, MultiScaleSetAbstraction
+
+
+# from knn_cuda import KNN
 
 
 class PointNet2(nn.Module):
@@ -57,22 +61,27 @@ class PointNet2(nn.Module):
 class EnhancedPointNet2(nn.Module):
     def __init__(self, num_classes=8):
         super().__init__()
-        input_ch=32
+        input_ch=29
         self.pos_encoding = EnhancedPositionalEncoding(input_ch,4,64,)
-        self.bri_enc = BridgeStructureEncoding(input_ch, 16, 4)
+        self.bri_enc = BridgeStructureEncoding(input_ch, 32, 4)
 
-        in_chanel = input_ch + 6 # 3(xyz) + 3(RGB)
+        # 颜色特征处理模块
+        self.color_encoder = ColorFeatureExtraction(3, 32)
+        self.feature_fusion = CompositeFeatureFusion(input_ch, 32)
+
+        in_chanel = input_ch + 3 # 3(xyz) + 3(RGB)
+
         # Encoder
         #self.sa1 = SetAbstraction(1024, 0.1, 32, in_chanel, [64, 64, 128]) #6+64
         #self.sa2 = SetAbstraction(256, 0.2, 32, 131, [128, 128, 256]) #128*2
         #self.sa3 = SetAbstraction(64, 0.4, 32, 259, [256, 256, 512]) #256*2
 
         # 1st layer: input = 3(xyz) + 3(RGB) + 64(pos_encoding) = 70
-        self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2],[16, 32], in_chanel, [64, 64, 128])
+        self.sa1 = MultiScaleSetAbstraction(2048, [0.1, 0.2],[16, 32], in_chanel, [64, 64, 128])
         # 2nd layer: input = 128*2 (Multi-scale connection)
-        self.sa2 = MultiScaleSetAbstraction(256,[0.2, 0.4],[16, 32], 259,[128, 128, 256])
-        self.sa3 = MultiScaleSetAbstraction(64,[0.4, 0.8],[16, 32], 515,[256, 256, 512])
-        self.sa4 = MultiScaleSetAbstraction(16,[0.8, 1.6],[16, 32], 1027,[512, 512, 1024])
+        self.sa2 = MultiScaleSetAbstraction(1024,[0.2, 0.4],[16, 32], 259,[128, 128, 256])
+        self.sa3 = MultiScaleSetAbstraction(512,[0.4, 0.8],[16, 32], 515,[256, 256, 512])
+        self.sa4 = MultiScaleSetAbstraction(128,[0.8, 1.6],[16, 32], 1027,[512, 512, 1024])
 
         # attention module
         self.attention1 = EnhancedAttentionModule(128*2) #128 * 2
@@ -90,15 +99,15 @@ class EnhancedPointNet2(nn.Module):
         self.boundary3 = BoundaryAwareModule(512*2)  # 1024 channels * 2
 
         # Decoder
-        self.fp4 = FeaturePropagation(3072, [1024, 512])
-        self.fp3 = FeaturePropagation(1024, [512, 256])  # multi: 512*2 + 256*2 ,1536 ; 256 + 256*2 ,768
-        self.fp2 = FeaturePropagation(512, [256, 128])  # multi:  256 + 128*2 ,768; 128 + 128*2 ,384
-        self.fp1 = FeaturePropagation(128, [128, 128, 128]) # multi:  128 + 64 128, 384; 128 + 64 128
+        #self.fp4 = FeaturePropagation(3072, [1024, 512]) # multi: 1024*2 + 512*2 ,3072; 512 + 512*2 ,1536
+        self.fp3 = FeaturePropagation(1536, [1024, 256])  # multi: 512*2 + 256*2 ,1536 ; 256 + 256*2 ,768
+        self.fp2 = FeaturePropagation(512, [256, 256])  # multi:  256 + 128*2 ,768; 128 + 128*2 ,384
+        self.fp1 = FeaturePropagation(256, [256, 128]) # multi:  128 + 64 128, 384; 128 + 64 128
 
         # Final layers
         self.conv1 = nn.Conv1d(128, 128, 1)
         self.bn1 = nn.BatchNorm1d(128)
-        self.drop1 = nn.Dropout(0.6)
+        self.drop1 = nn.Dropout(0.5)
         self.conv2 = nn.Conv1d(128, num_classes, 1)
 
     def forward(self, xyz, colors):
@@ -112,41 +121,45 @@ class EnhancedPointNet2(nn.Module):
         pos_enc = self.bri_enc(xyz) # [B, 64, N]
         # Change the order of dimensions
         colors = colors.transpose(1, 2)  # [B, 3, N]
-        features = torch.cat([pos_enc, colors], dim=1)  # Merge Features: [B, 67, N]
+        color_features = self.color_encoder(colors, xyz)  # [B, 12, N]
+        fused_features = self.feature_fusion(pos_enc, color_features)  # [B, input_ch, N]
+        #features = torch.cat([pos_enc, colors], dim=1)  # Merge Features: [B, 67, N]
 
         # Encoder with multi-scale feature extraction
-        l1_xyz, l1_points = self.sa1(xyz, features)   #[B,70,N] -> [B, 128, N]
+        l1_xyz, l1_features= self.sa1(xyz, fused_features)   #[B,70,N] -> [B, 128, N]
         # l1_points shape: [B, 256, N] (128*2 channels)
-        l1_points = self.attention1(l1_points)
+        #l1_points = self.attention1(l1_points)
         #l1_points = self.geometric1(l1_points, l1_xyz)
         #l1_points = self.boundary1(l1_points, l1_xyz)
 
-        l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
+        l2_xyz, l2_features = self.sa2(l1_xyz, l1_features)
         # l2_points shape: [B, 512, N] (256*2 channels)
-        l2_points = self.attention2(l2_points)
+        #l2_points = self.attention2(l2_points)
         #l2_points = self.geometric2(l2_points, l2_xyz)
         #l2_points = self.boundary2(l2_points, l2_xyz)
 
-        l3_xyz, l3_points = self.sa3(l2_xyz, l2_points)
+        l3_xyz, l3_features = self.sa3(l2_xyz, l2_features)
         # l3_points shape: [B, 1024, N] (512*2 channels)
-        l3_points = self.attention3(l3_points)
+        #l3_points = self.attention3(l3_points)
         #l3_points = self.geometric3(l3_points, l3_xyz)
         #l3_points = self.boundary3(l3_points, l3_xyz)
 
-        l4_xyz, l4_points = self.sa4(l3_xyz, l3_points)
+        #l4_xyz, l4_points = self.sa4(l3_xyz, l3_points)
 
         # Decoder
-        l3_points = self.fp4(l3_xyz, l4_xyz, l3_points, l4_points)
-        l2_points = self.fp3(l2_xyz, l3_xyz, l2_points, l3_points)
-        l1_points = self.fp2(l1_xyz, l2_xyz, l1_points, l2_points)
-        l0_points = self.fp1(xyz, l1_xyz, None, l1_points)
+        #l3_points = self.fp4(l3_xyz, l4_xyz, l3_points, l4_points)
+        l2_features = self.fp3(l2_xyz, l3_xyz, l2_features, l3_features)
+        l1_features = self.fp2(l1_xyz, l2_xyz, l1_features, l2_features)
+        l0_features = self.fp1(xyz, l1_xyz, None, l1_features)
 
         # FC layers
-        feat = F.relu(self.bn1(self.conv1(l0_points)))
+        feat = F.relu(self.bn1(self.conv1(l0_features)))
         feat = self.drop1(feat)
-        out = self.conv2(feat)
+        x = self.conv2(feat)
 
-        return out
+
+        return x
+
 
 
 if __name__ == "__main__":
@@ -225,7 +238,7 @@ if __name__ == "__main__":
     print("\n" + "=" * 50)
     print("内存占用测试")
 
-    batch_sizes = [4, 16, 32, 64]
+    batch_sizes = [4, 16]
     for bs in batch_sizes:
         torch.cuda.empty_cache()  # 清空GPU缓存
         xyz_test = torch.randn(bs, num_points, 3)

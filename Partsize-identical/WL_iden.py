@@ -570,11 +570,11 @@ if __name__ == "__main__":
     logger.addHandler(file_handler)
     log_string('PARAMETER ...')
 
-    test_names = ['cb2-5c', 'cb6-5c','cb9-5c'] #b1,b2,b7
+    test_names = ['cb2-5c'] #b1,b2,b7
     #test_names = ['b1','b2','b7'] #b1,b2,b7 ,'cb2-5c', 'cb6-5c','cb9-5c'
     #{'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
     #{'abutment': 1, 'girder': 2, 'deck': 3, 'parapet': 4, 'noise': 0}
-    label = [2,3,4]
+    label = [3]
     #label = [1,2,3]
     total_error = 0
     total_time = 0

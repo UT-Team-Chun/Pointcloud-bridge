@@ -1,0 +1,10 @@
+case,component,true_length,pred_length,true_width,pred_width
+cb2,Deck,53.75 ,48.56 ,12.65 ,11.68 
+cb6,Deck,58.80 ,53.84 ,15.30 ,13.38 
+cb9,Deck,51.82 ,46.05 ,13.54 ,12.72 
+cb2,Girder,50.20 ,49.24 ,12.03 ,12.51 
+cb6,Girder,73.26 ,72.39 ,14.15 ,14.74 
+cb9,Girder,59.37 ,56.60 ,12.54 ,13.44 
+cb2,Parapet,61.51 ,58.57 ,14.25 ,13.70 
+cb6,Parapet,73.26 ,66.77 ,15.05 ,15.04 
+cb9,Parapet,60.09 ,53.10 ,15.76 ,16.32

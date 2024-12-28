@@ -1,0 +1,19 @@
+2024-12-29 01:52:23,819 - INFO - Using device: cuda
+2024-12-29 01:52:23,866 - INFO - Loading dataset from cache: ../data/CB/all/val/cache\dataset_cache_points4096_size2.0_rate0.4_transformFalse_hashc8b72f08.pt
+2024-12-29 01:54:20,912 - INFO - Successfully loaded 13098 blocks from cache
+2024-12-29 01:54:21,824 - INFO - Loaded model from experiments/exp_122720_brimulti_brienc_CB_all_weightedloss\best_model.pth
+2024-12-29 02:00:26,937 - INFO - Using device: cuda
+2024-12-29 02:00:26,942 - INFO - Loading dataset from cache: ../data/CB/all/val/cache\dataset_cache_points4096_size2.0_rate0.4_transformFalse_hashc8b72f08.pt
+2024-12-29 02:02:15,847 - INFO - Successfully loaded 13098 blocks from cache
+2024-12-29 02:02:16,389 - INFO - Loaded model from experiments/exp_122720_brimulti_brienc_CB_all_weightedloss\best_model.pth
+2024-12-29 04:01:10,959 - INFO - Mean IoU: 86.21%
+2024-12-29 04:01:10,959 - INFO - Overall Accuracy: 94.86%
+2024-12-29 04:01:10,959 - INFO - Mean Accuracy: 94.10%
+2024-12-29 04:01:10,959 - INFO - Precision: 95.10%
+2024-12-29 04:01:10,959 - INFO - Recall: 94.86%
+2024-12-29 04:01:10,959 - INFO - F1 Score: 94.98%
+2024-12-29 04:01:10,959 - INFO - Class 0 IoU: 95.36%
+2024-12-29 04:01:10,959 - INFO - Class 1 IoU: 89.23%
+2024-12-29 04:01:10,959 - INFO - Class 2 IoU: 88.51%
+2024-12-29 04:01:10,959 - INFO - Class 3 IoU: 84.22%
+2024-12-29 04:01:10,959 - INFO - Class 4 IoU: 73.71%

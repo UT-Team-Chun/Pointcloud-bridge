@@ -1,0 +1,117 @@
+2024-12-25 20:13:43,867 - INFO - Training configuration:
+2024-12-25 20:13:43,868 - INFO - num_points: 4096
+2024-12-25 20:13:43,868 - INFO - chunk_size: 4096
+2024-12-25 20:13:43,869 - INFO - overlap: 1024
+2024-12-25 20:13:43,869 - INFO - batch_size: 16
+2024-12-25 20:13:43,869 - INFO - num_workers: 0
+2024-12-25 20:13:43,869 - INFO - learning_rate: 0.001
+2024-12-25 20:13:43,869 - INFO - num_classes: 5
+2024-12-25 20:13:43,869 - INFO - num_epochs: 500
+2024-12-25 20:13:43,869 - INFO - device: cuda
+2024-12-25 20:13:43,869 - INFO - Using device: cuda
+2024-12-25 20:13:43,870 - INFO - No cache found. Processing dataset...
+2024-12-25 20:13:43,870 - INFO - Found 7 las files:
+2024-12-25 20:13:43,870 - INFO -   - cb1.las
+2024-12-25 20:13:43,871 - INFO -   - cb2.las
+2024-12-25 20:13:43,871 - INFO -   - cb3.las
+2024-12-25 20:13:43,871 - INFO -   - cb4.las
+2024-12-25 20:13:43,871 - INFO -   - cb5.las
+2024-12-25 20:13:43,871 - INFO -   - cb7.las
+2024-12-25 20:13:43,871 - INFO -   - cb8.las
+2024-12-25 20:13:43,876 - INFO - Processing cb1.las
+2024-12-25 20:13:43,876 - INFO - Loading ../data/CB/all/train/cb1.las
+2024-12-25 20:13:45,188 - INFO - Loaded 26235309 points from cb1.las
+2024-12-25 20:13:46,045 - INFO - Total points: 26235309, Iterations: 2562
+2024-12-25 22:13:28,281 - INFO - Created 5089 blocks
+2024-12-25 22:13:28,282 - INFO - Processing cb2.las
+2024-12-25 22:13:28,282 - INFO - Loading ../data/CB/all/train/cb2.las
+2024-12-25 22:13:28,800 - INFO - Loaded 11852062 points from cb2.las
+2024-12-25 22:13:29,275 - INFO - Total points: 11852062, Iterations: 1157
+2024-12-25 22:35:18,067 - INFO - Created 2234 blocks
+2024-12-25 22:35:18,068 - INFO - Processing cb3.las
+2024-12-25 22:35:18,069 - INFO - Loading ../data/CB/all/train/cb3.las
+2024-12-25 22:35:18,546 - INFO - Loaded 12284105 points from cb3.las
+2024-12-25 22:35:18,926 - INFO - Total points: 12284105, Iterations: 1199
+2024-12-25 22:54:22,050 - INFO - Created 2377 blocks
+2024-12-25 22:54:22,051 - INFO - Processing cb4.las
+2024-12-25 22:54:22,051 - INFO - Loading ../data/CB/all/train/cb4.las
+2024-12-25 22:54:22,402 - INFO - Loaded 12655082 points from cb4.las
+2024-12-25 22:54:22,639 - INFO - Total points: 12655082, Iterations: 1235
+2024-12-25 23:15:18,130 - INFO - Created 2428 blocks
+2024-12-25 23:15:18,131 - INFO - Processing cb5.las
+2024-12-25 23:15:18,131 - INFO - Loading ../data/CB/all/train/cb5.las
+2024-12-25 23:15:18,412 - INFO - Loaded 10157137 points from cb5.las
+2024-12-25 23:15:18,611 - INFO - Total points: 10157137, Iterations: 991
+2024-12-25 23:27:11,181 - INFO - Created 1901 blocks
+2024-12-25 23:27:11,182 - INFO - Processing cb7.las
+2024-12-25 23:27:11,182 - INFO - Loading ../data/CB/all/train/cb7.las
+2024-12-25 23:27:12,254 - INFO - Loaded 29931265 points from cb7.las
+2024-12-25 23:27:12,971 - INFO - Total points: 29931265, Iterations: 2922
+2024-12-26 01:55:33,583 - INFO - Created 5826 blocks
+2024-12-26 01:55:33,588 - INFO - Processing cb8.las
+2024-12-26 01:55:33,588 - INFO - Loading ../data/CB/all/train/cb8.las
+2024-12-26 01:55:34,641 - INFO - Loaded 31531037 points from cb8.las
+2024-12-26 01:55:35,522 - INFO - Total points: 31531037, Iterations: 3079
+2024-12-26 04:41:11,199 - INFO - Created 6134 blocks
+2024-12-26 04:41:11,201 - INFO - Total blocks created: 25989
+2024-12-26 04:41:11,235 - INFO - Saving cache to: ../data/CB/all/train//cache\dataset_cache_points4096_size2.0_rate0.4_transformTrue_hash85cd6113.pt
+2024-12-26 05:26:31,665 - INFO - Cache saved with 25989 blocks
+2024-12-26 05:26:31,670 - INFO - No cache found. Processing dataset...
+2024-12-26 05:26:31,671 - INFO - Found 2 las files:
+2024-12-26 05:26:31,671 - INFO -   - cb6.las
+2024-12-26 05:26:31,671 - INFO -   - cb9.las
+2024-12-26 05:26:31,672 - INFO - Processing cb6.las
+2024-12-26 05:26:31,672 - INFO - Loading ../data/CB/all/val/cb6.las
+2024-12-26 05:26:37,360 - INFO - Loaded 34222416 points from cb6.las
+2024-12-26 05:26:38,278 - INFO - Total points: 34222416, Iterations: 3342
+2024-12-26 08:48:45,054 - INFO - Created 6670 blocks
+2024-12-26 08:48:45,061 - INFO - Processing cb9.las
+2024-12-26 08:48:45,062 - INFO - Loading ../data/CB/all/val/cb9.las
+2024-12-26 08:48:46,470 - INFO - Loaded 32984626 points from cb9.las
+2024-12-26 08:48:47,483 - INFO - Total points: 32984626, Iterations: 3221
+2024-12-26 11:51:35,150 - INFO - Created 6428 blocks
+2024-12-26 11:51:35,153 - INFO - Total blocks created: 13098
+2024-12-26 11:51:35,200 - INFO - Saving cache to: ../data/CB/all/val//cache\dataset_cache_points4096_size2.0_rate0.4_transformFalse_hashc8b72f08.pt
+2024-12-26 12:02:11,285 - INFO - Cache saved with 13098 blocks
+2024-12-26 12:02:11,290 - INFO - reading val data
+2024-12-26 12:02:11,292 - INFO - Train dataset size: 25989
+2024-12-26 12:02:11,292 - INFO - Val dataset size: 13098
+2024-12-26 12:06:23,656 - INFO - Class weights: tensor([0.5000, 2.6076, 1.0042, 1.4686, 3.0000])
+2024-12-26 12:06:23,659 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000195032A25D0>
+2024-12-26 12:47:20,597 - INFO - Validation parameter calculation time: 0:00:00.030840
+2024-12-26 12:47:20,599 - INFO - 
+Epoch 1/500:
+2024-12-26 12:47:20,599 - INFO - Train Loss: 0.6719, Train Acc: 76.41%
+2024-12-26 12:47:20,599 - INFO - Val Loss: 0.4087, Val Acc: 88.19%
+2024-12-26 12:47:20,600 - INFO - Class 0 Accuracy: 94.32%
+2024-12-26 12:47:20,601 - INFO - Class 1 Accuracy: 78.07%
+2024-12-26 12:47:20,601 - INFO - Class 2 Accuracy: 84.06%
+2024-12-26 12:47:20,602 - INFO - Class 3 Accuracy: 81.60%
+2024-12-26 12:47:20,603 - INFO - Class 4 Accuracy: 84.86%
+2024-12-26 12:47:20,730 - INFO - Saved best model with accuracy: 88.19%
+2024-12-26 12:47:20,959 - INFO - Saved checkpoint at epoch 1
+2024-12-26 12:47:20,960 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000195032A25D0>
+2024-12-26 13:28:35,683 - INFO - Validation parameter calculation time: 0:00:00.037255
+2024-12-26 13:28:35,683 - INFO - 
+Epoch 2/500:
+2024-12-26 13:28:35,683 - INFO - Train Loss: 0.3669, Train Acc: 87.31%
+2024-12-26 13:28:35,683 - INFO - Val Loss: 0.4649, Val Acc: 87.57%
+2024-12-26 13:28:35,685 - INFO - Class 0 Accuracy: 95.54%
+2024-12-26 13:28:35,685 - INFO - Class 1 Accuracy: 86.88%
+2024-12-26 13:28:35,686 - INFO - Class 2 Accuracy: 87.68%
+2024-12-26 13:28:35,687 - INFO - Class 3 Accuracy: 68.48%
+2024-12-26 13:28:35,687 - INFO - Class 4 Accuracy: 68.50%
+2024-12-26 13:28:35,788 - INFO - Saved checkpoint at epoch 2
+2024-12-26 13:28:35,789 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000195032A25D0>
+2024-12-26 14:10:29,886 - INFO - Validation parameter calculation time: 0:00:00.036757
+2024-12-26 14:10:29,887 - INFO - 
+Epoch 3/500:
+2024-12-26 14:10:29,887 - INFO - Train Loss: 0.3141, Train Acc: 89.32%
+2024-12-26 14:10:29,887 - INFO - Val Loss: 0.4137, Val Acc: 87.23%
+2024-12-26 14:10:29,889 - INFO - Class 0 Accuracy: 94.76%
+2024-12-26 14:10:29,889 - INFO - Class 1 Accuracy: 89.30%
+2024-12-26 14:10:29,889 - INFO - Class 2 Accuracy: 77.16%
+2024-12-26 14:10:29,890 - INFO - Class 3 Accuracy: 74.62%
+2024-12-26 14:10:29,890 - INFO - Class 4 Accuracy: 94.64%
+2024-12-26 14:10:29,997 - INFO - Saved checkpoint at epoch 3
+2024-12-26 14:10:29,999 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000195032A25D0>

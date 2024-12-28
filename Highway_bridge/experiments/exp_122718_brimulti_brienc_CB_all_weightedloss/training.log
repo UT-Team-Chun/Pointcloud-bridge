@@ -1,0 +1,29 @@
+2024-12-27 18:05:24,012 - INFO - Training configuration:
+2024-12-27 18:05:24,012 - INFO - num_points: 4096
+2024-12-27 18:05:24,013 - INFO - chunk_size: 4096
+2024-12-27 18:05:24,013 - INFO - overlap: 1024
+2024-12-27 18:05:24,013 - INFO - batch_size: 16
+2024-12-27 18:05:24,013 - INFO - num_workers: 0
+2024-12-27 18:05:24,013 - INFO - learning_rate: 0.001
+2024-12-27 18:05:24,013 - INFO - num_classes: 5
+2024-12-27 18:05:24,014 - INFO - num_epochs: 500
+2024-12-27 18:05:24,014 - INFO - device: cuda
+2024-12-27 18:05:24,014 - INFO - Using device: cuda
+2024-12-27 18:05:24,014 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size2.0_rate0.4_transformTrue_hash85cd6113.pt
+2024-12-27 18:21:10,570 - INFO - Successfully loaded 25989 blocks from cache
+2024-12-27 18:21:10,572 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size2.0_rate0.4_transformFalse_hashc8b72f08.pt
+2024-12-27 18:57:04,226 - INFO - Successfully loaded 13098 blocks from cache
+2024-12-27 18:57:04,227 - INFO - reading val data
+2024-12-27 18:57:04,228 - INFO - Train dataset size: 25989
+2024-12-27 18:57:04,229 - INFO - Val dataset size: 13098
+2024-12-27 18:57:04,231 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 442, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 115, in train
+    model = EnhancedPointMAENet(transformer_config, num_classes=5).to(device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\models\model.py", line 384, in __init__
+    self.group_divider = Group(num_group=config.num_group, group_size=config.group_size)
+                                         ^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'num_group'

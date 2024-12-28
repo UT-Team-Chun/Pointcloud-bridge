@@ -1,0 +1,15 @@
+2024-12-27 19:09:39,313 - INFO - Training configuration:
+2024-12-27 19:09:39,313 - INFO - transformer_config: {'trans_dim': 384, 'depth': 12, 'drop_path_rate': 0.1, 'num_heads': 6, 'encoder_dims': 384}
+2024-12-27 19:09:39,313 - INFO - num_group: 64
+2024-12-27 19:09:39,313 - INFO - group_size: 32
+2024-12-27 19:09:39,313 - INFO - num_points: 4096
+2024-12-27 19:09:39,313 - INFO - chunk_size: 4096
+2024-12-27 19:09:39,313 - INFO - overlap: 1024
+2024-12-27 19:09:39,314 - INFO - batch_size: 16
+2024-12-27 19:09:39,314 - INFO - num_workers: 0
+2024-12-27 19:09:39,314 - INFO - learning_rate: 0.001
+2024-12-27 19:09:39,314 - INFO - num_classes: 5
+2024-12-27 19:09:39,314 - INFO - num_epochs: 500
+2024-12-27 19:09:39,314 - INFO - device: cuda
+2024-12-27 19:09:39,314 - INFO - Using device: cuda
+2024-12-27 19:09:39,315 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size2.0_rate0.4_transformTrue_hash85cd6113.pt

@@ -125,7 +125,7 @@ def main():
         'device': 'cuda' if torch.cuda.is_available() else 'cpu'
     }
 
-    exp_dir= 'experiments/exp_121513_brimulti_struposinet_CB_sec_5class'
+    exp_dir= 'experiments/exp_122720_brimulti_brienc_CB_all_weightedloss'
     checkpoint_path = os.path.join(exp_dir, 'best_model.pth')
     all_true_labels = []
     all_predictions = []
@@ -133,14 +133,14 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f'Using device: {device}')
 
-    from experiments.exp_121513_brimulti_struposinet_CB_sec_5class.utils.BriPCDMulti import BriPCDMulti
-    from experiments.exp_121513_brimulti_struposinet_CB_sec_5class.models.model import EnhancedPointNet2
+    from experiments.exp_122720_brimulti_brienc_CB_all_weightedloss.utils.BriPCDMulti import BriPCDMulti
+    from experiments.exp_122720_brimulti_brienc_CB_all_weightedloss.models.model import EnhancedPointNet2
     from torch.utils.data import DataLoader
 
     test_dataset = BriPCDMulti(
-        data_dir='../data/CB/section/test',
+        data_dir='../data/CB/all/val',
         num_points=config['num_points'],
-        block_size=1.0,
+        block_size=2.0,
         sample_rate=0.4,
         logger=logger
     )
@@ -320,9 +320,9 @@ def test():
 
     # from models.enhanced_pointnet2 import EnhancedPointNet2
     # 加载模型
-    from experiments.exp_121513_brimulti_struposinet_CB_sec_5class.models.enhanced_pointnet2 import EnhancedPointNet2
+    from experiments.exp_122720_brimulti_brienc_CB_all_weightedloss.models.enhanced_pointnet2 import EnhancedPointNet2
     model = EnhancedPointNet2(num_classes)
-    checkpoint_path = 'experiments/exp_120318_brimulti_struposinet_CB_sec_4class/latest_checkpoint.pth'
+    checkpoint_path = 'experiments/exp_122720_brimulti_brienc_CB_all_weightedloss/latest_checkpoint.pth'
 
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, weights_only=True)

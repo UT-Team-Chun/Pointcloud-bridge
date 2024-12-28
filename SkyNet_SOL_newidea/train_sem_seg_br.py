@@ -19,6 +19,7 @@ ROOT_DIR = BASE_DIR
 sys.path.append(os.path.join(ROOT_DIR, 'models'))
 
 classes = ['abutment', 'girder', 'deck', 'parapet', 'noise']
+#classes = [ 'noise', 'abutment', 'girder', 'deck', 'parapet'] #for CB
 class2label = {cls: i for i, cls in enumerate(classes)}
 # {'abutment': 0, 'girder': 1, 'deck': 2, 'parapet': 3, 'noise': 4}
 seg_classes = class2label
@@ -29,7 +30,7 @@ for i, cat in enumerate(seg_classes.keys()):
 # pointnet_sem_seg, pointnet2_sem_seg, pointnet2_sem_seg_msg
 
 #log_dir = 'PointNet2_0.05_SOL_a=200_10m_95ol_norm'
-log_dir = 'test-cy-CB'
+log_dir = 'test-cy-CB-sec'
 
 def parse_args():
     parser = argparse.ArgumentParser('Model')
@@ -59,7 +60,7 @@ def main(args):
     timestr = str(datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'))
     experiment_dir = Path(os.path.join(ROOT_DIR, 'log'))
     experiment_dir.mkdir(exist_ok=True)
-    experiment_dir = experiment_dir.joinpath('sem_seg')
+    experiment_dir = experiment_dir.joinpath('CB')
     experiment_dir.mkdir(exist_ok=True)
     if args.log_dir is None:
         experiment_dir = experiment_dir.joinpath(timestr)
@@ -88,10 +89,12 @@ def main(args):
     NUM_POINT = args.npoint
     BATCH_SIZE = args.batch_size
 
+    deta_path='../data/CB/section'
+
     print("start loading training data ...")
-    TRAIN_DATASET = LWBridgeDataset(split='train', data_root=root, num_point=NUM_POINT, block_size=1.0, sample_rate=1.0, num_class=NUM_CLASSES, transform=None)
+    TRAIN_DATASET = LWBridgeDataset(split='train', data_root=deta_path, num_point=NUM_POINT, block_size=2.0, sample_rate=1.0, num_class=NUM_CLASSES, transform=None)
     print("start loading val data ...")
-    TEST_DATASET = LWBridgeDataset(split='val', data_root=root, num_point=NUM_POINT, block_size=1.0, sample_rate=1.0, num_class=NUM_CLASSES, transform=None)
+    TEST_DATASET = LWBridgeDataset(split='val', data_root=deta_path, num_point=NUM_POINT, block_size=2.0, sample_rate=1.0, num_class=NUM_CLASSES, transform=None)
 
     trainDataLoader = torch.utils.data.DataLoader(TRAIN_DATASET, batch_size=BATCH_SIZE, shuffle=True, num_workers=0, pin_memory=True, drop_last=True)
     testDataLoader = torch.utils.data.DataLoader(TEST_DATASET, batch_size=BATCH_SIZE, shuffle=False, num_workers=0, pin_memory=True, drop_last=True)
@@ -167,7 +170,12 @@ def main(args):
         total_correct = 0
         total_seen = 0
         loss_sum = 0
-        for i, data in tqdm(enumerate(trainDataLoader), total=len(trainDataLoader), smoothing=0.9):
+
+        train_loss = AverageMeter()
+        train_acc = AverageMeter()
+
+        pbar = tqdm(enumerate(trainDataLoader), total=len(trainDataLoader), smoothing=0.9)
+        for i, data in pbar:
 
             points, target = data # target.shape: [16, 4096]
 
@@ -210,6 +218,15 @@ def main(args):
             total_correct += correct
             total_seen += (BATCH_SIZE * NUM_POINT)
             loss_sum += loss
+            # 更新统计
+            train_loss.update(total_correct.item())
+            train_acc.update(loss_sum.item())
+
+            # 更新进度条
+            pbar.set_postfix({
+                'Val_Loss': f'{train_acc.avg:.4f}',
+                'Val_Acc': f'{train_acc.avg * 100:.2f}%'
+            })
         log_string('Training mean loss: %f' % (loss_sum / num_batches))
         log_string('Training accuracy: %f' % (total_correct / float(total_seen)))
 
@@ -299,6 +316,23 @@ def main(args):
             log_string('Best mIoU: %f' % best_iou)
         global_epoch += 1
 
+class AverageMeter(object):
+    """计算并存储平均值和当前值"""
+
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.val = 0
+        self.avg = 0
+        self.sum = 0
+        self.count = 0
+
+    def update(self, val, n=1):
+        self.val = val
+        self.sum += val * n
+        self.count += n
+        self.avg = self.sum / self.count
 
 if __name__ == '__main__':
     args = parse_args()

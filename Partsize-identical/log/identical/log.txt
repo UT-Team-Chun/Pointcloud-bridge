@@ -5498,3 +5498,23 @@
 2024-12-17 18:19:16,386 - Model - INFO - Case cb9-5c-4: 相对误差: 0.08
 2024-12-17 18:19:16,386 - Model - INFO - Case cb9-5c-4: 用时: 2.33 秒
 2024-12-17 18:19:18,891 - Model - INFO - Mean Average Error: 0.06
+2024-12-18 20:04:48,957 - Model - INFO - PARAMETER ...
+2024-12-18 20:04:50,760 - Model - INFO - Rawdata is : cb2-5c_test.las
+2024-12-18 20:04:50,760 - Model - INFO - Testdata is : cb2-5c_pred.las
+2024-12-18 20:04:55,152 - Model - INFO - Case cb2-5c-2: 原始的长度: 53.75
+2024-12-18 20:04:55,152 - Model - INFO - Case cb2-5c-2: 原始的宽度: 12.65
+2024-12-18 20:04:55,152 - Model - INFO - Case cb2-5c-2: 估计的长度: 48.56
+2024-12-18 20:04:55,152 - Model - INFO - Case cb2-5c-2: 估计的宽度: 11.68
+2024-12-18 20:04:55,152 - Model - INFO - Case cb2-5c-2: 相对误差: 0.09
+2024-12-18 20:04:55,152 - Model - INFO - Case cb2-5c-2: 用时: 4.33 秒
+2024-12-18 20:04:57,770 - Model - INFO - Mean Average Error: 0.09
+2024-12-18 20:05:21,966 - Model - INFO - PARAMETER ...
+2024-12-18 20:05:23,482 - Model - INFO - Rawdata is : cb2-5c_test.las
+2024-12-18 20:05:23,483 - Model - INFO - Testdata is : cb2-5c_pred.las
+2024-12-18 20:05:26,782 - Model - INFO - Case cb2-5c-3: 原始的长度: 50.20
+2024-12-18 20:05:26,782 - Model - INFO - Case cb2-5c-3: 原始的宽度: 12.03
+2024-12-18 20:05:26,782 - Model - INFO - Case cb2-5c-3: 估计的长度: 49.24
+2024-12-18 20:05:26,782 - Model - INFO - Case cb2-5c-3: 估计的宽度: 12.51
+2024-12-18 20:05:26,782 - Model - INFO - Case cb2-5c-3: 相对误差: 0.03
+2024-12-18 20:05:26,782 - Model - INFO - Case cb2-5c-3: 用时: 3.24 秒
+2024-12-18 20:05:28,506 - Model - INFO - Mean Average Error: 0.03
