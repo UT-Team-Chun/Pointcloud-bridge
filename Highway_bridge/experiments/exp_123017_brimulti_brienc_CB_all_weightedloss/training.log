@@ -1,0 +1,42 @@
+2024-12-30 17:44:20,727 - INFO - Training configuration:
+2024-12-30 17:44:20,728 - INFO - transformer_config: {'trans_dim': 384, 'depth': 12, 'drop_path_rate': 0.1, 'num_heads': 6, 'encoder_dims': 384}
+2024-12-30 17:44:20,728 - INFO - num_group: 64
+2024-12-30 17:44:20,728 - INFO - group_size: 32
+2024-12-30 17:44:20,728 - INFO - num_points: 4096
+2024-12-30 17:44:20,728 - INFO - chunk_size: 4096
+2024-12-30 17:44:20,728 - INFO - overlap: 1024
+2024-12-30 17:44:20,728 - INFO - batch_size: 16
+2024-12-30 17:44:20,728 - INFO - num_workers: 0
+2024-12-30 17:44:20,728 - INFO - learning_rate: 0.001
+2024-12-30 17:44:20,728 - INFO - num_classes: 5
+2024-12-30 17:44:20,728 - INFO - num_epochs: 500
+2024-12-30 17:44:20,728 - INFO - device: cuda
+2024-12-30 17:44:20,729 - INFO - Using device: cuda
+2024-12-30 17:44:20,729 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size2.0_rate0.4_transformTrue_hash85cd6113.pt
+2024-12-30 17:45:25,956 - INFO - Training configuration:
+2024-12-30 17:45:25,958 - INFO - transformer_config: {'trans_dim': 384, 'depth': 12, 'drop_path_rate': 0.1, 'num_heads': 6, 'encoder_dims': 384}
+2024-12-30 17:45:25,958 - INFO - num_group: 64
+2024-12-30 17:45:25,958 - INFO - group_size: 32
+2024-12-30 17:45:25,958 - INFO - num_points: 4096
+2024-12-30 17:45:25,958 - INFO - chunk_size: 4096
+2024-12-30 17:45:25,958 - INFO - overlap: 1024
+2024-12-30 17:45:25,958 - INFO - batch_size: 16
+2024-12-30 17:45:25,958 - INFO - num_workers: 0
+2024-12-30 17:45:25,958 - INFO - learning_rate: 0.001
+2024-12-30 17:45:25,958 - INFO - num_classes: 5
+2024-12-30 17:45:25,958 - INFO - num_epochs: 500
+2024-12-30 17:45:25,958 - INFO - device: cuda
+2024-12-30 17:45:25,958 - INFO - Using device: cuda
+2024-12-30 17:45:25,959 - INFO - No cache found. Processing dataset...
+2024-12-30 17:45:25,959 - INFO - Found 7 las files:
+2024-12-30 17:45:25,959 - INFO -   - cb10.las
+2024-12-30 17:45:25,959 - INFO -   - cb2.las
+2024-12-30 17:45:25,959 - INFO -   - cb3.las
+2024-12-30 17:45:25,959 - INFO -   - cb4.las
+2024-12-30 17:45:25,959 - INFO -   - cb6.las
+2024-12-30 17:45:25,959 - INFO -   - cb7.las
+2024-12-30 17:45:25,960 - INFO -   - cb8.las
+2024-12-30 17:45:25,962 - INFO - Processing cb10.las
+2024-12-30 17:45:25,962 - INFO - Loading ../data/CB/all-2/train/cb10.las
+2024-12-30 17:45:26,889 - INFO - Loaded 23671868 points from cb10.las
+2024-12-30 17:45:27,733 - INFO - Total points: 23671868, Iterations: 2311

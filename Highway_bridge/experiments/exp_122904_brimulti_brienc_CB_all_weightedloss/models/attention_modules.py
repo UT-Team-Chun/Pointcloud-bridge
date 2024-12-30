@@ -238,17 +238,16 @@ class EnhancedAttentionModule(nn.Module):
 
         return x+x_sa
 
+
 class GeometricFeatureExtraction(nn.Module):
     def __init__(self, in_channels):
         super().__init__()
         self.mlp = nn.Sequential(
-            nn.Conv1d(in_channels + 16, in_channels, 1),  # 修改输入通道数为 in_channels + 3
+            nn.Conv1d(in_channels + 3, in_channels, 1),  # 修改输入通道数为 in_channels + 3
             nn.BatchNorm1d(in_channels),
             nn.ReLU(),
             nn.Conv1d(in_channels, in_channels, 1)
         )
-
-        self.br_pos=BridgeStructureEncoding(channels=16)
 
     def forward(self, x, xyz):
         """
@@ -257,14 +256,13 @@ class GeometricFeatureExtraction(nn.Module):
         xyz: [B, N, 3] 坐标
         """
         # 计算法向量
-        #normals = compute_normals(xyz)  # [B, N, 3]
-        pos_enc=self.br_pos(xyz) #[B,C,N]
+        normals = compute_normals(xyz)  # [B, N, 3]
 
         # 合并特征
         geometric_features = torch.cat([
             x,
-            pos_enc #.transpose(1, 2)  # [B, 3, N]
-        ], dim=1)  # [B, C+16, N]
+            normals.transpose(1, 2)  # [B, 3, N]
+        ], dim=1)  # [B, C+3, N]
 
         return self.mlp(geometric_features)
 

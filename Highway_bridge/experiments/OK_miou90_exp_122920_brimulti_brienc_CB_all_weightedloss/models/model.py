@@ -1,12 +1,10 @@
 # models/enhanced_pointnet2.py
-import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
 from .attention_modules import GeometricFeatureExtraction, EnhancedPositionalEncoding, BridgeStructureEncoding, \
-    ColorFeatureExtraction, \
-    CompositeFeatureFusion
+    ColorFeatureExtraction, CompositeFeatureFusion
 from .pointnet2_utils import FeaturePropagation, SetAbstraction, MultiScaleSetAbstraction, EnhancedFeaturePropagation
 
 
@@ -181,6 +179,276 @@ class EnhancedPointNet2(nn.Module):
         return x
 
 
+class PointCloudPretraining(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # 复制原始模型的编码器部分
+        input_ch = 29
+        self.pos_encoding = EnhancedPositionalEncoding(input_ch, 4, 64)
+        self.bri_enc = BridgeStructureEncoding(input_ch, 32, 4)
+        self.color_encoder = ColorFeatureExtraction(3, 32)
+        self.feature_fusion = CompositeFeatureFusion(input_ch, 32)
+
+        in_channel = input_ch + 3  # 3(xyz) + 3(RGB)
+
+        # Encoder layers
+        self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2], [16, 32], in_channel, [64, 64, 128])
+        self.sa2 = MultiScaleSetAbstraction(512, [0.2, 0.4], [16, 32], 259, [128, 128, 256])
+        self.sa3 = MultiScaleSetAbstraction(128, [0.4, 0.8], [16, 32], 515, [256, 256, 512])
+
+        # Geometric feature extraction
+        self.geometric1 = GeometricFeatureExtraction(128 * 2)
+        self.geometric2 = GeometricFeatureExtraction(256 * 2)
+        self.geometric3 = GeometricFeatureExtraction(512 * 2)
+
+        # 预训练任务的头部
+        # 1. 点云重建头
+        self.reconstruction_head = nn.Sequential(
+            nn.Conv1d(1024, 512, 1),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            nn.Conv1d(512, 256, 1),
+            nn.BatchNorm1d(256),
+            nn.ReLU(),
+            nn.Conv1d(256, 3, 1)  # 输出xyz坐标
+        )
+
+        # 2. 旋转预测头
+        self.rotation_head = nn.Sequential(
+            nn.Linear(1024, 512),
+            nn.ReLU(),
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            nn.Linear(256, 4)  # 输出四元数
+        )
+
+    def encode(self, xyz, colors):
+        """编码器前向传播"""
+        # 特征处理
+        pos_enc = self.bri_enc(xyz)
+        colors = colors.transpose(1, 2)
+        color_features = self.color_encoder(colors, xyz)
+        fused_features = self.feature_fusion(pos_enc, color_features)
+
+        # 编码器前向传播
+        l1_xyz, l1_features = self.sa1(xyz, fused_features)
+        l1_features = self.geometric1(l1_features, l1_xyz)
+
+        l2_xyz, l2_features = self.sa2(l1_xyz, l1_features)
+        l2_features = self.geometric2(l2_features, l2_xyz)
+
+        l3_xyz, l3_features = self.sa3(l2_xyz, l2_features)
+        l3_features = self.geometric3(l3_features, l3_xyz)
+
+        return l3_xyz, l3_features
+
+    def forward(self, xyz, colors, rotated_xyz=None):
+        """
+        xyz: [B, N, 3] 原始点云
+        colors: [B, N, 3] RGB颜色
+        rotated_xyz: [B, N, 3] 旋转后的点云(用于旋转预测任务)
+        """
+        # 对原始点云进行编码
+        _, features = self.encode(xyz, colors) #B, D, N]
+
+        # 重建任务
+        reconstruction = self.reconstruction_head(features)
+
+        # 如果提供了旋转点云，进行旋转预测
+        rotation_pred = None
+        if rotated_xyz is not None:
+            _, rotated_features = self.encode(rotated_xyz, colors)
+            # 使用全局最大池化得到全局特征
+            global_features = torch.max(rotated_features, dim=2)[0]  # [B, 1024]
+            rotation_pred = self.rotation_head(global_features)
+
+        return reconstruction, rotation_pred
+
+
+def pretrain(model, train_loader, epochs=10, device='cuda'):
+    """
+    预训练函数
+    """
+    model.train()
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+    for epoch in range(epochs):
+        total_loss = 0
+        for batch in train_loader:
+            # 获取批次数据
+            xyz = batch['xyz'].to(device)  # [B, N, 3]
+            features = batch['colors'].to(device)  # [B, N, 3]
+
+            batch_size = xyz.shape[0]
+
+            # 生成随机旋转矩阵
+            rotation_matrix = random_rotation_matrix(batch_size).to(device)  # [B, 3, 3]
+
+            # 需要调整xyz的形状以进行批量矩阵乘法
+            # 将点云数据reshape为[B, N, 3]
+            xyz_reshaped = xyz.view(batch_size, -1, 3)  # 确保形状是[B, N, 3]
+
+            # 应用旋转
+            rotated_xyz = torch.bmm(xyz_reshaped, rotation_matrix)  # [B, N, 3]
+
+            # 获取四元数表示
+            quaternion_gt = rotation_matrix_to_quaternion(rotation_matrix)  # [B, 4]
+
+            # 前向传播
+            optimizer.zero_grad()
+
+            # 获取模型预测
+            reconstructed_xyz, predicted_quaternion = model(rotated_xyz, features)
+            # 调整重建输出的维度以匹配输入
+            reconstructed_xyz = reconstructed_xyz.transpose(1, 2)  # 从 [B, 3, N] 变为 [B, N, 3]
+            # 计算重建损失
+            reconstruction_loss = F.mse_loss(reconstructed_xyz, xyz)
+
+            # 计算旋转预测损失
+            rotation_loss = F.mse_loss(predicted_quaternion, quaternion_gt)
+
+            # 总损失
+            loss = reconstruction_loss + rotation_loss
+
+            # 反向传播
+            loss.backward()
+            optimizer.step()
+
+            total_loss += loss.item()
+
+        # 打印每个epoch的平均损失
+        avg_loss = total_loss / len(train_loader)
+        print(f'Epoch [{epoch + 1}/{epochs}], Average Loss: {avg_loss:.4f}')
+
+    return model
+
+
+import torch
+import math
+
+
+def random_rotation_matrix(batch_size=1):
+    """
+    生成随机旋转矩阵
+    返回: [batch_size, 3, 3] 的旋转矩阵
+    """
+    # 随机生成欧拉角
+    theta = torch.rand(batch_size, 3) * 2 * math.pi  # 随机角度 [0, 2π]
+
+    # 分别计算三个轴的旋转矩阵
+    cos_x, sin_x = torch.cos(theta[:, 0]), torch.sin(theta[:, 0])
+    cos_y, sin_y = torch.cos(theta[:, 1]), torch.sin(theta[:, 1])
+    cos_z, sin_z = torch.cos(theta[:, 2]), torch.sin(theta[:, 2])
+
+    # 创建绕x轴的旋转矩阵
+    R_x = torch.zeros(batch_size, 3, 3)
+    R_x[:, 0, 0] = 1
+    R_x[:, 1, 1] = cos_x
+    R_x[:, 1, 2] = -sin_x
+    R_x[:, 2, 1] = sin_x
+    R_x[:, 2, 2] = cos_x
+
+    # 创建绕y轴的旋转矩阵
+    R_y = torch.zeros(batch_size, 3, 3)
+    R_y[:, 0, 0] = cos_y
+    R_y[:, 0, 2] = sin_y
+    R_y[:, 1, 1] = 1
+    R_y[:, 2, 0] = -sin_y
+    R_y[:, 2, 2] = cos_y
+
+    # 创建绕z轴的旋转矩阵
+    R_z = torch.zeros(batch_size, 3, 3)
+    R_z[:, 0, 0] = cos_z
+    R_z[:, 0, 1] = -sin_z
+    R_z[:, 1, 0] = sin_z
+    R_z[:, 1, 1] = cos_z
+    R_z[:, 2, 2] = 1
+
+    # 组合旋转矩阵 R = R_z @ R_y @ R_x
+    R = torch.bmm(torch.bmm(R_z, R_y), R_x)
+
+    return R
+
+
+def rotation_matrix_to_quaternion(R):
+    """
+    将3x3旋转矩阵转换为四元数
+    输入: R [batch_size, 3, 3] 旋转矩阵
+    返回: q [batch_size, 4] 四元数 [w, x, y, z]
+    """
+    batch_size = R.shape[0]
+    q = torch.zeros(batch_size, 4)
+
+    # 计算四元数的w分量
+    w = torch.sqrt(1 + R[:, 0, 0] + R[:, 1, 1] + R[:, 2, 2]) / 2
+    w4 = 4 * w
+
+    # 计算四元数的x, y, z分量
+    x = (R[:, 2, 1] - R[:, 1, 2]) / w4
+    y = (R[:, 0, 2] - R[:, 2, 0]) / w4
+    z = (R[:, 1, 0] - R[:, 0, 1]) / w4
+
+    # 组合四元数
+    q[:, 0] = w  # w
+    q[:, 1] = x  # x
+    q[:, 2] = y  # y
+    q[:, 3] = z  # z
+
+    return q
+
+
+def quaternion_to_rotation_matrix(q):
+    """
+    将四元数转换为旋转矩阵
+    输入: q [batch_size, 4] 四元数 [w, x, y, z]
+    返回: R [batch_size, 3, 3] 旋转矩阵
+    """
+    batch_size = q.shape[0]
+
+    # 归一化四元数
+    q = F.normalize(q, p=2, dim=1)
+
+    w, x, y, z = q[:, 0], q[:, 1], q[:, 2], q[:, 3]
+
+    # 计算旋转矩阵的元素
+    R = torch.zeros(batch_size, 3, 3)
+
+    R[:, 0, 0] = 1 - 2 * y * y - 2 * z * z
+    R[:, 0, 1] = 2 * x * y - 2 * w * z
+    R[:, 0, 2] = 2 * x * z + 2 * w * y
+
+    R[:, 1, 0] = 2 * x * y + 2 * w * z
+    R[:, 1, 1] = 1 - 2 * x * x - 2 * z * z
+    R[:, 1, 2] = 2 * y * z - 2 * w * x
+
+    R[:, 2, 0] = 2 * x * z - 2 * w * y
+    R[:, 2, 1] = 2 * y * z + 2 * w * x
+    R[:, 2, 2] = 1 - 2 * x * x - 2 * y * y
+
+    return R
+
+
+# 辅助函数：Chamfer Distance 损失
+
+class ChamferDistance(nn.Module):
+    def forward(self, x, y):
+        """
+        x: [B, N, 3]
+        y: [B, N, 3]
+        """
+        x = x.unsqueeze(2)  # [B, N, 1, 3]
+        y = y.unsqueeze(1)  # [B, 1, N, 3]
+
+        dist = torch.sum((x - y) ** 2, dim=-1)  # [B, N, N]
+
+        min_dist_x = torch.min(dist, dim=2)[0]  # [B, N]
+        min_dist_y = torch.min(dist, dim=1)[0]  # [B, N]
+
+        chamfer_dist = torch.mean(min_dist_x) + torch.mean(min_dist_y)
+
+        return chamfer_dist
+
+
 # 创建一个简单的数据集类
 class RandomPointCloudDataset(Dataset):
     def __init__(self, num_samples=1000, num_points=1024):
@@ -229,9 +497,30 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Using device: {device}")
 
+    # 1. 创建预训练模型
+    pretrain_model = PointCloudPretraining()
+    pretrain_model = pretrain_model.to(device)
+
+    # 2. 进行预训练 (设置较小的epoch数用于测试)
+    pretrain_model = pretrain(pretrain_model, train_loader, epochs=2, device=device)
+
+    # 3. 将预训练权重迁移到主模型
     main_model = EnhancedPointNet2() #EnhancedPointNet2
+    # 复制编码器权重
+    # main_model.pos_encoding.load_state_dict(pretrain_model.pos_encoding.state_dict())
+    # main_model.bri_enc.load_state_dict(pretrain_model.bri_enc.state_dict())
+    # main_model.color_encoder.load_state_dict(pretrain_model.color_encoder.state_dict())
+    # main_model.feature_fusion.load_state_dict(pretrain_model.feature_fusion.state_dict())
+    # main_model.sa1.load_state_dict(pretrain_model.sa1.state_dict())
+    # main_model.sa2.load_state_dict(pretrain_model.sa2.state_dict())
+    # main_model.sa3.load_state_dict(pretrain_model.sa3.state_dict())
+    # main_model.geometric1.load_state_dict(pretrain_model.geometric1.state_dict())
+    # main_model.geometric2.load_state_dict(pretrain_model.geometric2.state_dict())
+    # main_model.geometric3.load_state_dict(pretrain_model.geometric3.state_dict())
 
     # 将主模型移到设备上
+    pretrain_model = pretrain_model.to(device)
+    pretrain_model.eval()
     main_model = main_model.to(device)
     main_model.eval()
 
@@ -245,7 +534,9 @@ if __name__ == "__main__":
         xyz = xyz.to(device)
         features = features.to(device)
         output = main_model(xyz, features)
+        reconstructed_xyz, predicted_quaternion= pretrain_model(xyz, features)
         print(f"main model 输出 shape: {output.shape}")
+        print(f"pretrain model 输出 shape: {reconstructed_xyz.shape}")
         print("模型前向传播测试通过!")
     except Exception as e:
         print(f"模型运行出错: {str(e)}")

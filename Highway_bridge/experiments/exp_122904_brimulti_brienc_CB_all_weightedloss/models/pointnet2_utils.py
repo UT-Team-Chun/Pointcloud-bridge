@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 def square_distance(src, dst):
     """计算两组点之间的欧氏距离"""
     B, N, _ = src.shape
@@ -178,120 +177,26 @@ class FeaturePropagation(nn.Module):
         if S == 1:
             interpolated_points = points2.repeat(1, 1, N)
         else:
-            # 计算 xyz1 和 xyz2 之间的欧几里得距离
             dists = square_distance(xyz1, xyz2)
-            # 获取最近的 3 个点
-            dists, idx = dists.sort(dim=-1) # 排序，得到距离和索引
-            dists, idx = dists[:, :, :3], idx[:, :, :3] # 取最近的 3 个点
-
-            # 计算权重
-            dist_recip = 1.0 / (dists + 1e-8)  # 距离的倒数
-            norm = torch.sum(dist_recip, dim=2, keepdim=True)  # 归一化因子
-            weight = dist_recip / norm  # 归一化权重，形状为 [B, N, 3]
-
-            # 插值特征
-            interpolated_points = torch.sum(index_points(points2.transpose(1, 2), idx) * weight.view(B, N, 3, 1), dim=2)
-
-        # Step 2: 特征融合
-        if points1 is not None:
-            points1 = points1.transpose(1, 2) # 转置为 [B, N, D]
-            new_points = torch.cat([points1, interpolated_points], dim=-1)
-        else:
-            new_points = interpolated_points
-
-        # Step 3: 特征更新
-        new_points = new_points.transpose(1, 2) # 转置为 [B, D, N]
-        for i, conv in enumerate(self.mlp_convs):
-            bn = self.mlp_bns[i]
-            new_points = F.relu(bn(conv(new_points)))
-        
-        return new_points
-
-
-class EnhancedFeaturePropagation(nn.Module):
-    def __init__(self, in_channel, mlp):
-        super().__init__()
-        self.mlp_convs = nn.ModuleList()
-        self.mlp_bns = nn.ModuleList()
-        last_channel = in_channel
-
-        # 添加注意力机制
-        self.attention = nn.Sequential(
-            nn.Conv1d(in_channel, in_channel // 4, 1),
-            nn.BatchNorm1d(in_channel // 4),
-            nn.ReLU(),
-            nn.Conv1d(in_channel // 4, in_channel, 1),
-            nn.Sigmoid()
-        )
-
-        # 添加残差连接
-        self.skip_connection = (in_channel == mlp[-1])
-
-        for out_channel in mlp:
-            self.mlp_convs.append(nn.Conv1d(last_channel, out_channel, 1))
-            self.mlp_bns.append(nn.BatchNorm1d(out_channel))
-            last_channel = out_channel
-
-        # 添加边界感知模块
-        self.boundary_aware = nn.Sequential(
-            nn.Conv1d(3, 16, 1),
-            nn.BatchNorm1d(16),
-            nn.ReLU(),
-            nn.Conv1d(16, mlp[-1], 1)
-        )
-
-    def forward(self, xyz1, xyz2, points1, points2):
-        B, N, C = xyz1.shape
-        _, S, _ = xyz2.shape
-
-        if S == 1:
-            interpolated_points = points2.repeat(1, 1, N)
-        else:
-            dists = square_distance(xyz1, xyz2)
-            # 增加k近邻数量以提高鲁棒性
             dists, idx = dists.sort(dim=-1)
-            dists, idx = dists[:, :, :4], idx[:, :, :4]
-
-            # 改进的距离权重计算
+            dists, idx = dists[:, :, :3], idx[:, :, :3]
+            
             dist_recip = 1.0 / (dists + 1e-8)
             norm = torch.sum(dist_recip, dim=2, keepdim=True)
             weight = dist_recip / norm
-
-            interpolated_points = torch.sum(
-                index_points(points2.transpose(1, 2), idx) *
-                weight.view(B, N, 4, 1),
-                dim=2
-            )
-
-        # 特征融合
+            interpolated_points = torch.sum(index_points(points2.transpose(1, 2), idx) * weight.view(B, N, 3, 1), dim=2)
+            
         if points1 is not None:
             points1 = points1.transpose(1, 2)
             new_points = torch.cat([points1, interpolated_points], dim=-1)
         else:
             new_points = interpolated_points
-
+        
         new_points = new_points.transpose(1, 2)
-
-        # 应用注意力机制
-        attention_weights = self.attention(new_points)
-        new_points = new_points * attention_weights
-
-        # 边界感知
-        edge_features = self.boundary_aware(xyz1.transpose(1, 2))
-
-        # MLP处理
-        identity = new_points
         for i, conv in enumerate(self.mlp_convs):
             bn = self.mlp_bns[i]
             new_points = F.relu(bn(conv(new_points)))
-
-        # 残差连接
-        if self.skip_connection:
-            new_points = new_points + identity
-
-        # 融合边界特征
-        new_points = new_points + edge_features
-
+        
         return new_points
 
 
@@ -319,7 +224,6 @@ class MultiScaleSetAbstraction(nn.Module):
 
             self.conv_blocks.append(convs)
             self.bn_blocks.append(bns)
-
 
     def forward(self, xyz, points):
         """

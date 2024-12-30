@@ -72,7 +72,7 @@ def train():
 
     # 创建数据加载器
     train_dataset = BriPCDMulti(
-        data_dir='../data/CB/all-2/train/',
+        data_dir='../data/CB/all/train/',
         num_points=4096,
         block_size=2.0,
         sample_rate=0.4,
@@ -81,7 +81,7 @@ def train():
     )
 
     val_dataset = BriPCDMulti(
-        data_dir='../data/CB/all-2/val/',
+        data_dir='../data/CB/all/val/',
         num_points=4096,
         block_size=2.0,
         sample_rate=0.4,
@@ -357,16 +357,67 @@ def compute_class_weights(dataset, num_classes=None):
     weights = total / (class_counts * num_classes)
 
     # 可选：限制权重范围，避免极端值
-    weights = torch.clamp(weights, min=0.5, max=5.0)
+    weights = torch.clamp(weights, min=0.5, max=3.0)
     logging.info(f"Class weights: {weights}")
 
     return weights
 
 
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 
+class DiceLoss(nn.Module):
+    def __init__(self, smooth=1e-5):
+        """
+        初始化 Dice Loss
+        :param smooth: 避免分母为 0 的平滑项
+        """
+        super(DiceLoss, self).__init__()
+        self.smooth = smooth
 
+    def forward(self, pred, target):
+
+        # 使用 Softmax 获取类别概率分布
+        pred = F.softmax(pred, dim=1)  # [B, C, N]
+
+        # 将 target 转换为 One-Hot 编码 [B, C, N]
+        target_one_hot = F.one_hot(target, num_classes=pred.shape[1]).permute(0, 2, 1).float()  # [B, C, N]
+
+        # 计算每个类别的 Dice 系数
+        numerator = 2 * (pred * target_one_hot).sum(dim=-1)  # [B, C]
+        denominator = pred.sum(dim=-1) + target_one_hot.sum(dim=-1)  # [B, C]
+
+        # 计算每个类别的 Dice Loss
+        dice_loss = 1 - (numerator + self.smooth) / (denominator + self.smooth)  # [B, C]
+
+        # 返回所有类别的平均损失
+        return dice_loss.mean()
+
+
+
+class CombinedLoss(nn.Module):
+    def __init__(self, alpha=0.5, smooth=1e-5):
+        """
+        组合损失函数：CE Loss + Dice Loss
+        Args:
+            alpha: Dice Loss的权重，(1-alpha)为CE Loss的权重
+            smooth: 平滑项
+        """
+        super(CombinedLoss, self).__init__()
+        self.alpha = alpha
+        self.dice_loss = DiceLoss(smooth=smooth)
+
+
+    def forward(self, pred, target):
+        # 计算Dice Loss
+        dice = self.dice_loss(pred, target)
+
+        # 计算CE Loss
+        ce = F.cross_entropy(pred, target)
+
+        # 组合损失
+        return (1 - self.alpha) * ce + self.alpha * dice
 
 class AverageMeter(object):
     """计算并存储平均值和当前值"""
