@@ -5,7 +5,7 @@ from pathlib import Path
 import laspy
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
+# import seaborn as sns
 import torch
 from tqdm import tqdm
 
@@ -124,8 +124,8 @@ def main():
         'num_epochs': 500,
         'device': 'cuda' if torch.cuda.is_available() else 'cpu'
     }
-
-    exp_dir= 'experiments/exp_122920_brimulti_brienc_CB_all_weightedloss'
+    
+    exp_dir= 'experiments/exp_010619_brimulti_brienc_CB_all_weightedloss_bsize1'
     checkpoint_path = os.path.join(exp_dir, 'best_model.pth')
     all_true_labels = []
     all_predictions = []
@@ -133,14 +133,14 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f'Using device: {device}')
 
-    from experiments.exp_122920_brimulti_brienc_CB_all_weightedloss.utils.BriPCDMulti import BriPCDMulti
-    from experiments.exp_122920_brimulti_brienc_CB_all_weightedloss.models.model import EnhancedPointNet2
+    from experiments.exp_010619_brimulti_brienc_CB_all_weightedloss_bsize1.utils.BriPCDMulti import BriPCDMulti
+    from experiments.exp_010619_brimulti_brienc_CB_all_weightedloss_bsize1.models.model import EnhancedPointNet2
     from torch.utils.data import DataLoader
 
     test_dataset = BriPCDMulti(
-        data_dir='../data/CB/all/val',
+        data_dir='../data/CB/all-2/val',
         num_points=config['num_points'],
-        block_size=2.0,
+        block_size=1.0,
         sample_rate=0.4,
         logger=logger
     )
@@ -320,9 +320,9 @@ def test():
 
     # from models.enhanced_pointnet2 import EnhancedPointNet2
     # 加载模型
-    from experiments.exp_122920_brimulti_brienc_CB_all_weightedloss.models.enhanced_pointnet2 import EnhancedPointNet2
+    from experiments.exp_010619_brimulti_brienc_CB_all_weightedloss_bsize1.models.enhanced_pointnet2 import EnhancedPointNet2
     model = EnhancedPointNet2(num_classes)
-    checkpoint_path = 'experiments/exp_122920_brimulti_brienc_CB_all_weightedloss/latest_checkpoint.pth'
+    checkpoint_path = 'experiments/exp_010619_brimulti_brienc_CB_all_weightedloss_bsize1/latest_checkpoint.pth'
 
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, weights_only=True)

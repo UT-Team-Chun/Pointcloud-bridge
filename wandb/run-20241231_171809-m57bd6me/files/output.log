@@ -1,0 +1,40 @@
+2024-12-31 17:18:09,683 - INFO - Training configuration:
+2024-12-31 17:18:09,684 - INFO - transformer_config: {'trans_dim': 384, 'depth': 12, 'drop_path_rate': 0.1, 'num_heads': 6, 'encoder_dims': 384}
+2024-12-31 17:18:09,685 - INFO - num_group: 64
+2024-12-31 17:18:09,685 - INFO - group_size: 32
+2024-12-31 17:18:09,685 - INFO - num_points: 4096
+2024-12-31 17:18:09,686 - INFO - chunk_size: 4096
+2024-12-31 17:18:09,686 - INFO - overlap: 1024
+2024-12-31 17:18:09,686 - INFO - batch_size: 8
+2024-12-31 17:18:09,686 - INFO - num_workers: 0
+2024-12-31 17:18:09,686 - INFO - learning_rate: 0.001
+2024-12-31 17:18:09,687 - INFO - num_classes: 5
+2024-12-31 17:18:09,687 - INFO - num_epochs: 500
+2024-12-31 17:18:09,687 - INFO - device: cuda
+2024-12-31 17:18:09,687 - INFO - Using device: cuda
+2024-12-31 17:18:09,688 - INFO - Loading dataset from cache: data/CB/all-2/train//cache\dataset_cache_points4096_size1.0_rate0.5_transformTrue_hash4c3311b9.pt
+2024-12-31 17:18:13,057 - INFO - Successfully loaded 1978 blocks from cache
+2024-12-31 17:18:13,058 - INFO - Loading dataset from cache: data/CB/all-2/val//cache\dataset_cache_points4096_size1.0_rate0.5_transformFalse_hashcf128ce9.pt
+2024-12-31 17:18:16,527 - INFO - Successfully loaded 946 blocks from cache
+2024-12-31 17:18:16,529 - INFO - reading val data
+2024-12-31 17:18:16,529 - INFO - Train dataset size: 1978
+2024-12-31 17:18:16,530 - INFO - Val dataset size: 946
+2024-12-31 17:18:16,750 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB_precom.py", line 394, in <module>
+    train()
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB_precom.py", line 125, in train
+    shutil.copytree(source_path, destination_path)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\shutil.py", line 571, in copytree
+    with os.scandir(src) as itr:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] 指定されたパスが見つかりません。: 'models'
+Traceback (most recent call last):
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB_precom.py", line 394, in <module>
+    train()
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB_precom.py", line 125, in train
+    shutil.copytree(source_path, destination_path)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\shutil.py", line 571, in copytree
+    with os.scandir(src) as itr:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] 指定されたパスが見つかりません。: 'models'

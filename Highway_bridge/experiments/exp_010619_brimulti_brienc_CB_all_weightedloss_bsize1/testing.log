@@ -1,0 +1,10 @@
+2025-01-07 17:58:44,581 - INFO - Using device: cuda
+2025-01-07 17:58:44,588 - INFO - No cache found. Processing dataset...
+2025-01-07 17:58:44,589 - INFO - Found 3 las files:
+2025-01-07 17:58:44,589 - INFO -   - cb1.las
+2025-01-07 17:58:44,589 - INFO -   - cb5.las
+2025-01-07 17:58:44,589 - INFO -   - cb9.las
+2025-01-07 17:58:44,591 - INFO - Processing cb1.las
+2025-01-07 17:58:44,591 - INFO - Loading ../data/CB/all-2/val\cb1.las
+2025-01-07 17:58:48,815 - INFO - Loaded 25557592 points from cb1.las
+2025-01-07 17:58:49,450 - INFO - Total points: 25557592, Iterations: 2495

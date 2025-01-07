@@ -1,0 +1,32 @@
+2025-01-02 22:46:00,818 - INFO - Using device: cuda
+2025-01-02 22:46:00,823 - INFO - Loading dataset from cache: ../data/CB/all/val/cache\dataset_cache_points4096_size2.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-02 22:47:03,938 - INFO - Using device: cuda
+2025-01-02 22:47:03,941 - INFO - Loading dataset from cache: ../data/CB/all/val/cache\dataset_cache_points4096_size2.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-02 22:49:07,342 - INFO - Successfully loaded 13098 blocks from cache
+2025-01-02 22:49:08,126 - INFO - Loaded model from experiments/exp_123117_brimulti_brienc_CB_all_weightedloss_precom\best_model.pth
+2025-01-03 00:11:41,214 - INFO - Mean IoU: 26.28%
+2025-01-03 00:11:41,214 - INFO - Overall Accuracy: 59.07%
+2025-01-03 00:11:41,215 - INFO - Mean Accuracy: 37.30%
+2025-01-03 00:11:41,215 - INFO - Precision: 57.63%
+2025-01-03 00:11:41,215 - INFO - Recall: 59.07%
+2025-01-03 00:11:41,215 - INFO - F1 Score: 58.34%
+2025-01-03 00:11:41,215 - INFO - Class 0 IoU: 62.67%
+2025-01-03 00:11:41,215 - INFO - Class 1 IoU: 13.79%
+2025-01-03 00:11:41,215 - INFO - Class 2 IoU: 19.96%
+2025-01-03 00:11:41,215 - INFO - Class 3 IoU: 18.79%
+2025-01-03 00:11:41,215 - INFO - Class 4 IoU: 16.21%
+2025-01-04 00:23:50,457 - INFO - Using device: cuda
+2025-01-04 00:23:50,463 - INFO - Loading dataset from cache: ../data/CB/all-2/val/cache\dataset_cache_points4096_size2.0_rate0.4_transformFalse_hashcf128ce9.pt
+2025-01-04 00:25:43,510 - INFO - Successfully loaded 12135 blocks from cache
+2025-01-04 00:25:43,935 - INFO - Loaded model from experiments/exp_123117_brimulti_brienc_CB_all_weightedloss_precom\best_model.pth
+2025-01-04 01:40:21,863 - INFO - Mean IoU: 32.70%
+2025-01-04 01:40:21,863 - INFO - Overall Accuracy: 64.14%
+2025-01-04 01:40:21,863 - INFO - Mean Accuracy: 43.98%
+2025-01-04 01:40:21,863 - INFO - Precision: 66.19%
+2025-01-04 01:40:21,863 - INFO - Recall: 64.14%
+2025-01-04 01:40:21,863 - INFO - F1 Score: 65.15%
+2025-01-04 01:40:21,863 - INFO - Class 0 IoU: 63.00%
+2025-01-04 01:40:21,863 - INFO - Class 1 IoU: 17.58%
+2025-01-04 01:40:21,863 - INFO - Class 2 IoU: 29.30%
+2025-01-04 01:40:21,863 - INFO - Class 3 IoU: 28.84%
+2025-01-04 01:40:21,863 - INFO - Class 4 IoU: 24.79%

@@ -1,0 +1,42 @@
+{
+  "os":  "Windows-10-10.0.22631-SP0",
+  "python":  "CPython 3.11.11",
+  "startedAt":  "2024-12-31T08:18:09.192105Z",
+  "program":  "d:\\Work\\Pointcloud-WL\\Pointcloud-bridge\\Highway_bridge\\train_MulSca_BriStruNet_CB_precom.py",
+  "codePath":  "Highway_bridge\\train_MulSca_BriStruNet_CB_precom.py",
+  "git":  {
+    "remote":  "https://github.com/UT-Team-Chun/Pointcloud-bridge.git",
+    "commit":  "9ea8995d1497185893d4ef540d98d07b3617e217"
+  },
+  "email":  "cy519234505@gmail.com",
+  "root":  "D:\\Work\\Pointcloud-WL\\Pointcloud-bridge",
+  "host":  "i-con-Yu",
+  "executable":  "C:\\Users\\cy519\\anaconda3\\envs\\pcdmulti\\python.exe",
+  "codePathLocal":  "Highway_bridge\\train_MulSca_BriStruNet_CB_precom.py",
+  "cpu_count":  16,
+  "cpu_count_logical":  32,
+  "gpu":  "NVIDIA GeForce RTX 4090",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "8001545039872",
+      "used":  "1500939063296"
+    }
+  },
+  "memory":  {
+    "total":  "205712097280"
+  },
+  "cpu":  {
+    "count":  16,
+    "countLogical":  32
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.6"
+}

@@ -1,0 +1,16 @@
+{"time":"2024-12-31T17:18:09.1931428+09:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-31T17:18:09.1931428+09:00","level":"INFO","msg":"created symlink","path":"D:\\Work\\Pointcloud-WL\\Pointcloud-bridge\\wandb\\run-20241231_171809-m57bd6me\\logs\\debug-core.log"}
+{"time":"2024-12-31T17:18:09.3154774+09:00","level":"INFO","msg":"created new stream","id":"m57bd6me"}
+{"time":"2024-12-31T17:18:09.3154774+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"m57bd6me"}
+{"time":"2024-12-31T17:18:09.3154774+09:00","level":"INFO","msg":"handler: started","stream_id":"m57bd6me"}
+{"time":"2024-12-31T17:18:09.3154774+09:00","level":"INFO","msg":"sender: started","stream_id":"m57bd6me"}
+{"time":"2024-12-31T17:18:09.3154774+09:00","level":"INFO","msg":"stream: started","id":"m57bd6me"}
+{"time":"2024-12-31T17:18:09.5686234+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-31T17:18:16.7544821+09:00","level":"INFO","msg":"stream: closing","id":"m57bd6me"}
+{"time":"2024-12-31T17:18:16.7544821+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-31T17:18:16.7549859+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-31T17:18:17.4714379+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-31T17:18:17.6829792+09:00","level":"INFO","msg":"sender: closed","stream_id":"m57bd6me"}
+{"time":"2024-12-31T17:18:17.6829792+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"m57bd6me"}
+{"time":"2024-12-31T17:18:17.6829792+09:00","level":"INFO","msg":"handler: closed","stream_id":"m57bd6me"}
+{"time":"2024-12-31T17:18:17.6829792+09:00","level":"INFO","msg":"stream: closed","id":"m57bd6me"}

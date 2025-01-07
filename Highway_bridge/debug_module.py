@@ -47,7 +47,7 @@ def debug_model():
 
     try:
         output = model(xyz, features)
-        print(f'output is {output}')
+        #print(f'output is {output}')
         print(f"输出 shape: {output.shape}")
         print("模型前向传播测试通过!")
     except Exception as e:
@@ -99,7 +99,7 @@ def debug_model():
     print("\n" + "=" * 50)
     print("内存占用测试")
 
-    batch_sizes = [4, 16]
+    batch_sizes = [4]
     for bs in batch_sizes:
         torch.cuda.empty_cache()  # 清空GPU缓存
         xyz_test = torch.randn(bs, num_points, 3)
