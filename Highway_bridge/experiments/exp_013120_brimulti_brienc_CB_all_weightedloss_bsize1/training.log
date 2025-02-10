@@ -1,0 +1,28 @@
+2025-01-31 20:50:47,444 - INFO - Training configuration:
+2025-01-31 20:50:47,445 - INFO - num_group: 64
+2025-01-31 20:50:47,445 - INFO - group_size: 32
+2025-01-31 20:50:47,445 - INFO - num_points: 4096
+2025-01-31 20:50:47,445 - INFO - chunk_size: 4096
+2025-01-31 20:50:47,445 - INFO - overlap: 1024
+2025-01-31 20:50:47,445 - INFO - batch_size: 12
+2025-01-31 20:50:47,445 - INFO - num_workers: 8
+2025-01-31 20:50:47,446 - INFO - learning_rate: 0.001
+2025-01-31 20:50:47,446 - INFO - num_classes: 5
+2025-01-31 20:50:47,446 - INFO - num_epochs: 500
+2025-01-31 20:50:47,446 - INFO - device: cuda
+2025-01-31 20:50:47,446 - INFO - Using device: cuda
+2025-01-31 20:50:47,446 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hashc8356dcf.pt
+2025-01-31 20:56:13,325 - INFO - Successfully loaded 25420 blocks from cache
+2025-01-31 20:56:13,327 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-31 21:00:55,374 - INFO - Successfully loaded 6563 blocks from cache
+2025-01-31 21:00:55,375 - INFO - reading val data
+2025-01-31 21:00:55,375 - INFO - Train dataset size: 25420
+2025-01-31 21:00:55,375 - INFO - Val dataset size: 6563
+2025-01-31 21:00:57,100 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 393, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 134, in train
+    criterion = BridgeStructureLoss(
+                ^^^^^^^^^^^^^^^^^^^^
+TypeError: BridgeStructureLoss.__init__() got an unexpected keyword argument 'span_ratio'

@@ -1,0 +1,170 @@
+2025-01-30 23:38:15,588 - INFO - Training configuration:
+2025-01-30 23:38:15,588 - INFO - num_group: 64
+2025-01-30 23:38:15,588 - INFO - group_size: 32
+2025-01-30 23:38:15,588 - INFO - num_points: 4096
+2025-01-30 23:38:15,588 - INFO - chunk_size: 4096
+2025-01-30 23:38:15,588 - INFO - overlap: 1024
+2025-01-30 23:38:15,588 - INFO - batch_size: 12
+2025-01-30 23:38:15,589 - INFO - num_workers: 8
+2025-01-30 23:38:15,589 - INFO - learning_rate: 0.001
+2025-01-30 23:38:15,589 - INFO - num_classes: 5
+2025-01-30 23:38:15,589 - INFO - num_epochs: 500
+2025-01-30 23:38:15,589 - INFO - device: cuda
+2025-01-30 23:38:15,589 - INFO - Using device: cuda
+2025-01-30 23:38:15,589 - INFO - No cache found. Processing dataset...
+2025-01-30 23:38:15,590 - INFO - Found 8 las files:
+2025-01-30 23:38:15,590 - INFO -   - cb1.h5
+2025-01-30 23:38:15,590 - INFO -   - cb2-6.h5
+2025-01-30 23:38:15,590 - INFO -   - cb2.h5
+2025-01-30 23:38:15,590 - INFO -   - cb3.h5
+2025-01-30 23:38:15,590 - INFO -   - cb4.h5
+2025-01-30 23:38:15,590 - INFO -   - cb5.h5
+2025-01-30 23:38:15,590 - INFO -   - cb7.h5
+2025-01-30 23:38:15,590 - INFO -   - cb8.h5
+2025-01-30 23:38:15,592 - INFO - Processing cb1.h5
+2025-01-30 23:38:15,592 - INFO - Loading ../data/CB/all/train/cb1.h5
+2025-01-30 23:38:18,091 - INFO - Loaded 26235309 points from cb1.h5
+2025-01-30 23:38:18,790 - INFO - Total points: 26235309, Iterations: 2562
+2025-01-30 23:39:52,194 - INFO - Training configuration:
+2025-01-30 23:39:52,195 - INFO - num_group: 64
+2025-01-30 23:39:52,195 - INFO - group_size: 32
+2025-01-30 23:39:52,195 - INFO - num_points: 4096
+2025-01-30 23:39:52,195 - INFO - chunk_size: 4096
+2025-01-30 23:39:52,195 - INFO - overlap: 1024
+2025-01-30 23:39:52,195 - INFO - batch_size: 12
+2025-01-30 23:39:52,195 - INFO - num_workers: 8
+2025-01-30 23:39:52,195 - INFO - learning_rate: 0.001
+2025-01-30 23:39:52,195 - INFO - num_classes: 5
+2025-01-30 23:39:52,195 - INFO - num_epochs: 500
+2025-01-30 23:39:52,195 - INFO - device: cuda
+2025-01-30 23:39:52,195 - INFO - Using device: cuda
+2025-01-30 23:39:52,196 - INFO - No cache found. Processing dataset...
+2025-01-30 23:39:52,196 - INFO - Found 8 las files:
+2025-01-30 23:39:52,196 - INFO -   - cb1.h5
+2025-01-30 23:39:52,196 - INFO -   - cb2-6.h5
+2025-01-30 23:39:52,196 - INFO -   - cb2.h5
+2025-01-30 23:39:52,196 - INFO -   - cb3.h5
+2025-01-30 23:39:52,196 - INFO -   - cb4.h5
+2025-01-30 23:39:52,196 - INFO -   - cb5.h5
+2025-01-30 23:39:52,197 - INFO -   - cb7.h5
+2025-01-30 23:39:52,197 - INFO -   - cb8.h5
+2025-01-30 23:39:52,198 - INFO - Processing cb1.h5
+2025-01-30 23:39:52,198 - INFO - Loading ../data/CB/all/train/cb1.h5
+2025-01-30 23:39:52,198 - ERROR - Error loading cb1.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,198 - INFO - Processing cb2-6.h5
+2025-01-30 23:39:52,199 - INFO - Loading ../data/CB/all/train/cb2-6.h5
+2025-01-30 23:39:52,199 - ERROR - Error loading cb2-6.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,199 - INFO - Processing cb2.h5
+2025-01-30 23:39:52,199 - INFO - Loading ../data/CB/all/train/cb2.h5
+2025-01-30 23:39:52,199 - ERROR - Error loading cb2.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,199 - INFO - Processing cb3.h5
+2025-01-30 23:39:52,199 - INFO - Loading ../data/CB/all/train/cb3.h5
+2025-01-30 23:39:52,200 - ERROR - Error loading cb3.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,200 - INFO - Processing cb4.h5
+2025-01-30 23:39:52,200 - INFO - Loading ../data/CB/all/train/cb4.h5
+2025-01-30 23:39:52,200 - ERROR - Error loading cb4.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,200 - INFO - Processing cb5.h5
+2025-01-30 23:39:52,200 - INFO - Loading ../data/CB/all/train/cb5.h5
+2025-01-30 23:39:52,200 - ERROR - Error loading cb5.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,200 - INFO - Processing cb7.h5
+2025-01-30 23:39:52,200 - INFO - Loading ../data/CB/all/train/cb7.h5
+2025-01-30 23:39:52,201 - ERROR - Error loading cb7.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,201 - INFO - Processing cb8.h5
+2025-01-30 23:39:52,201 - INFO - Loading ../data/CB/all/train/cb8.h5
+2025-01-30 23:39:52,202 - ERROR - Error loading cb8.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,202 - INFO - Total blocks created: 0
+2025-01-30 23:39:52,202 - INFO - Saving cache to: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash70deb781.pt
+2025-01-30 23:39:52,203 - INFO - Cache saved with 0 blocks
+2025-01-30 23:39:52,203 - INFO - No cache found. Processing dataset...
+2025-01-30 23:39:52,203 - INFO - Found 2 las files:
+2025-01-30 23:39:52,203 - INFO -   - cb6.h5
+2025-01-30 23:39:52,203 - INFO -   - cb9.h5
+2025-01-30 23:39:52,204 - INFO - Processing cb6.h5
+2025-01-30 23:39:52,204 - INFO - Loading ../data/CB/all/val/cb6.h5
+2025-01-30 23:39:52,204 - ERROR - Error loading cb6.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,204 - INFO - Processing cb9.h5
+2025-01-30 23:39:52,204 - INFO - Loading ../data/CB/all/val/cb9.h5
+2025-01-30 23:39:52,204 - ERROR - Error loading cb9.h5: Invalid file signature "b'\x89HDF'"
+2025-01-30 23:39:52,205 - INFO - Total blocks created: 0
+2025-01-30 23:39:52,205 - INFO - Saving cache to: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hash65a3eaea.pt
+2025-01-30 23:39:52,205 - INFO - Cache saved with 0 blocks
+2025-01-30 23:39:52,206 - INFO - reading val data
+2025-01-30 23:39:52,206 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 387, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 83, in train
+    train_loader = DataLoader(
+                   ^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\torch\utils\data\dataloader.py", line 349, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\torch\utils\data\sampler.py", line 140, in __init__
+    raise ValueError(f"num_samples should be a positive integer value, but got num_samples={self.num_samples}")
+ValueError: num_samples should be a positive integer value, but got num_samples=0
+2025-01-30 23:40:24,171 - INFO - Training configuration:
+2025-01-30 23:40:24,171 - INFO - num_group: 64
+2025-01-30 23:40:24,171 - INFO - group_size: 32
+2025-01-30 23:40:24,171 - INFO - num_points: 4096
+2025-01-30 23:40:24,171 - INFO - chunk_size: 4096
+2025-01-30 23:40:24,171 - INFO - overlap: 1024
+2025-01-30 23:40:24,171 - INFO - batch_size: 12
+2025-01-30 23:40:24,171 - INFO - num_workers: 8
+2025-01-30 23:40:24,171 - INFO - learning_rate: 0.001
+2025-01-30 23:40:24,171 - INFO - num_classes: 5
+2025-01-30 23:40:24,171 - INFO - num_epochs: 500
+2025-01-30 23:40:24,172 - INFO - device: cuda
+2025-01-30 23:40:24,172 - INFO - Using device: cuda
+2025-01-30 23:40:24,173 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash70deb781.pt
+2025-01-30 23:40:24,173 - INFO - Successfully loaded 0 blocks from cache
+2025-01-30 23:40:24,173 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hash65a3eaea.pt
+2025-01-30 23:40:24,174 - INFO - Successfully loaded 0 blocks from cache
+2025-01-30 23:40:24,174 - INFO - reading val data
+2025-01-30 23:40:24,174 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 387, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 83, in train
+    train_loader = DataLoader(
+                   ^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\torch\utils\data\dataloader.py", line 349, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\torch\utils\data\sampler.py", line 140, in __init__
+    raise ValueError(f"num_samples should be a positive integer value, but got num_samples={self.num_samples}")
+ValueError: num_samples should be a positive integer value, but got num_samples=0
+2025-01-30 23:41:15,974 - INFO - Training configuration:
+2025-01-30 23:41:15,975 - INFO - num_group: 64
+2025-01-30 23:41:15,975 - INFO - group_size: 32
+2025-01-30 23:41:15,975 - INFO - num_points: 4096
+2025-01-30 23:41:15,975 - INFO - chunk_size: 4096
+2025-01-30 23:41:15,975 - INFO - overlap: 1024
+2025-01-30 23:41:15,975 - INFO - batch_size: 12
+2025-01-30 23:41:15,975 - INFO - num_workers: 8
+2025-01-30 23:41:15,975 - INFO - learning_rate: 0.001
+2025-01-30 23:41:15,975 - INFO - num_classes: 5
+2025-01-30 23:41:15,975 - INFO - num_epochs: 500
+2025-01-30 23:41:15,975 - INFO - device: cuda
+2025-01-30 23:41:15,975 - INFO - Using device: cuda
+2025-01-30 23:41:15,976 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hashc8356dcf.pt
+2025-01-30 23:42:13,577 - INFO - Training configuration:
+2025-01-30 23:42:13,577 - INFO - num_group: 64
+2025-01-30 23:42:13,577 - INFO - group_size: 32
+2025-01-30 23:42:13,577 - INFO - num_points: 4096
+2025-01-30 23:42:13,577 - INFO - chunk_size: 4096
+2025-01-30 23:42:13,577 - INFO - overlap: 1024
+2025-01-30 23:42:13,577 - INFO - batch_size: 12
+2025-01-30 23:42:13,578 - INFO - num_workers: 8
+2025-01-30 23:42:13,578 - INFO - learning_rate: 0.001
+2025-01-30 23:42:13,578 - INFO - num_classes: 5
+2025-01-30 23:42:13,578 - INFO - num_epochs: 500
+2025-01-30 23:42:13,578 - INFO - device: cuda
+2025-01-30 23:42:13,578 - INFO - Using device: cuda
+2025-01-30 23:42:13,578 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hashc8356dcf.pt
+2025-01-30 23:48:07,313 - INFO - Successfully loaded 25420 blocks from cache
+2025-01-30 23:48:07,314 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-30 23:53:24,742 - INFO - Successfully loaded 6563 blocks from cache
+2025-01-30 23:53:24,742 - INFO - reading val data
+2025-01-30 23:53:24,743 - INFO - Train dataset size: 25420
+2025-01-30 23:53:24,743 - INFO - Val dataset size: 6563
+2025-01-30 23:53:25,503 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001CAAC018350>

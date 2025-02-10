@@ -1,0 +1,55 @@
+2025-02-06 16:49:53,855 - INFO - Using device: cuda
+2025-02-06 16:51:15,189 - INFO - Using device: cuda
+2025-02-06 16:51:15,202 - INFO - Found 2 h5 files:
+2025-02-06 16:51:15,202 - INFO -   - cb10.h5
+2025-02-06 16:51:15,202 - INFO -   - cb2.h5
+2025-02-06 16:51:15,245 - INFO - Processing cb10.h5
+2025-02-06 16:51:15,245 - INFO - Processing cb2.h5
+2025-02-06 16:51:15,245 - INFO - Loading ../data/CB/all/test/cb10.h5
+2025-02-06 16:51:15,245 - INFO - Loading ../data/CB/all/test/cb2.h5
+2025-02-06 16:51:16,924 - INFO - Loaded 11852062 points from cb2.h5
+2025-02-06 16:51:17,443 - INFO - Total points: 11852062, Iterations: 1157
+2025-02-06 16:51:18,550 - INFO - Loaded 27767293 points from cb10.h5
+2025-02-06 16:51:19,584 - INFO - Total points: 27767293, Iterations: 2711
+2025-02-06 16:58:08,791 - INFO - Created 1675 blocks for cb2.h5
+2025-02-06 17:28:13,320 - INFO - Created 5191 blocks for cb10.h5
+2025-02-06 17:28:13,362 - INFO - Total blocks created: 6866
+2025-02-06 17:28:13,657 - INFO - Loaded model from experiments/exp_020313_brimulti_brienc_CB_sec_5class/best_model.pth
+2025-02-06 17:46:41,420 - INFO - Mean IoU: 82.61%
+2025-02-06 17:46:41,421 - INFO - Overall Accuracy: 89.92%
+2025-02-06 17:46:41,421 - INFO - Mean Accuracy: 90.78%
+2025-02-06 17:46:41,421 - INFO - Precision: 90.40%
+2025-02-06 17:46:41,421 - INFO - Recall: 89.92%
+2025-02-06 17:46:41,421 - INFO - F1 Score: 90.16%
+2025-02-06 17:46:41,421 - INFO - Class 0 IoU: 78.48%
+2025-02-06 17:46:41,421 - INFO - Class 1 IoU: 87.71%
+2025-02-06 17:46:41,421 - INFO - Class 2 IoU: 70.79%
+2025-02-06 17:46:41,421 - INFO - Class 3 IoU: 82.31%
+2025-02-06 17:46:41,421 - INFO - Class 4 IoU: 93.76%
+2025-02-06 18:27:50,061 - INFO - Using device: cuda
+2025-02-06 18:27:50,206 - INFO - Found 2 h5 files:
+2025-02-06 18:27:50,206 - INFO -   - cb6.h5
+2025-02-06 18:27:50,206 - INFO -   - cb9.h5
+2025-02-06 18:27:50,266 - INFO - Cache exists for cb9.h5, skipping preprocessing.
+2025-02-06 18:27:50,266 - INFO - Cache exists for cb6.h5, skipping preprocessing.
+2025-02-06 18:27:50,282 - INFO - Total blocks created: 6346
+2025-02-06 18:27:52,016 - INFO - Loaded model from experiments/exp_020313_brimulti_brienc_CB_sec_5class/best_model.pth
+2025-02-06 18:44:54,320 - INFO - Mean IoU: 93.26%
+2025-02-06 18:44:54,320 - INFO - Overall Accuracy: 96.55%
+2025-02-06 18:44:54,320 - INFO - Mean Accuracy: 96.24%
+2025-02-06 18:44:54,320 - INFO - Precision: 96.58%
+2025-02-06 18:44:54,320 - INFO - Recall: 96.55%
+2025-02-06 18:44:54,320 - INFO - F1 Score: 96.57%
+2025-02-06 18:44:54,320 - INFO - Class 0 IoU: 93.91%
+2025-02-06 18:44:54,320 - INFO - Class 1 IoU: 92.98%
+2025-02-06 18:44:54,320 - INFO - Class 2 IoU: 92.64%
+2025-02-06 18:44:54,320 - INFO - Class 3 IoU: 92.39%
+2025-02-06 18:44:54,320 - INFO - Class 4 IoU: 94.39%
+2025-02-08 02:02:51,273 - INFO - Using device: cuda
+2025-02-08 02:02:51,294 - INFO - Found 2 h5 files:
+2025-02-08 02:02:51,295 - INFO -   - cb6.h5
+2025-02-08 02:02:51,295 - INFO -   - cb9.h5
+2025-02-08 02:02:51,415 - INFO - Cache exists for cb6.h5, skipping preprocessing.
+2025-02-08 02:02:51,423 - INFO - Cache exists for cb9.h5, skipping preprocessing.
+2025-02-08 02:02:51,464 - INFO - Total blocks created: 6346
+2025-02-08 02:02:51,747 - INFO - Loaded model from experiments/exp_020313_brimulti_brienc_CB_sec_5class/best_model.pth

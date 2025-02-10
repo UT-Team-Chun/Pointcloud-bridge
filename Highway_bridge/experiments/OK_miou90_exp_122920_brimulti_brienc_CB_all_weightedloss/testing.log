@@ -45,3 +45,24 @@
 2024-12-30 17:20:49,210 - INFO - Class 2 IoU: 92.93%
 2024-12-30 17:20:49,210 - INFO - Class 3 IoU: 91.58%
 2024-12-30 17:20:49,210 - INFO - Class 4 IoU: 80.55%
+2025-01-09 15:50:22,842 - INFO - Using device: cuda
+2025-01-09 15:50:23,244 - INFO - No cache found. Processing dataset...
+2025-01-09 15:50:23,244 - INFO - Found 1 las files:
+2025-01-09 15:50:23,244 - INFO -   - inari_val.las
+2025-01-09 15:50:23,246 - INFO - Processing inari_val.las
+2025-01-09 15:50:23,246 - INFO - Loading ../data/YBC/val/inari_val.las
+2025-01-09 15:50:24,106 - INFO - Loaded 26105171 points from inari_val.las
+2025-01-09 15:50:31,817 - INFO - Using device: cuda
+2025-01-09 15:50:31,822 - INFO - No cache found. Processing dataset...
+2025-01-09 15:50:31,822 - INFO - Found 1 las files:
+2025-01-09 15:50:31,822 - INFO -   - inari_val.las
+2025-01-09 15:50:31,824 - INFO - Processing inari_val.las
+2025-01-09 15:50:31,824 - INFO - Loading ../data/YBC/val/inari_val.las
+2025-01-09 15:50:32,613 - INFO - Loaded 26105171 points from inari_val.las
+2025-01-09 15:50:33,613 - INFO - Total points: 26105171, Iterations: 2549
+2025-01-09 17:36:36,854 - INFO - Created 2549 blocks
+2025-01-09 17:36:36,854 - INFO - Total blocks created: 2549
+2025-01-09 17:36:36,875 - INFO - Saving cache to: ../data/YBC/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashf0244495.pt
+2025-01-09 17:36:57,931 - INFO - Cache saved with 2549 blocks
+2025-01-09 17:36:59,101 - INFO - Loaded model from experiments/OK_miou90_exp_122920_brimulti_brienc_CB_all_weightedloss\best_model.pth
+2025-01-09 17:42:55,778 - INFO - Saved predicted result to experiments\OK_miou90_exp_122920_brimulti_brienc_CB_all_weightedloss\predicted_las\predicted_inari_val.las

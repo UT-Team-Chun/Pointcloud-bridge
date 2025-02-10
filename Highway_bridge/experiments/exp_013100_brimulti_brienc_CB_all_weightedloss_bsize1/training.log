@@ -1,0 +1,29 @@
+2025-01-31 00:50:34,176 - INFO - Training configuration:
+2025-01-31 00:50:34,176 - INFO - num_group: 64
+2025-01-31 00:50:34,176 - INFO - group_size: 32
+2025-01-31 00:50:34,176 - INFO - num_points: 4096
+2025-01-31 00:50:34,176 - INFO - chunk_size: 4096
+2025-01-31 00:50:34,176 - INFO - overlap: 1024
+2025-01-31 00:50:34,176 - INFO - batch_size: 12
+2025-01-31 00:50:34,176 - INFO - num_workers: 8
+2025-01-31 00:50:34,176 - INFO - learning_rate: 0.001
+2025-01-31 00:50:34,177 - INFO - num_classes: 5
+2025-01-31 00:50:34,177 - INFO - num_epochs: 500
+2025-01-31 00:50:34,177 - INFO - device: cuda
+2025-01-31 00:50:34,177 - INFO - Using device: cuda
+2025-01-31 00:50:34,177 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hashc8356dcf.pt
+2025-01-31 00:56:09,469 - INFO - Successfully loaded 25420 blocks from cache
+2025-01-31 00:56:09,472 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-31 01:00:52,088 - INFO - Successfully loaded 6563 blocks from cache
+2025-01-31 01:00:52,089 - INFO - reading val data
+2025-01-31 01:00:52,089 - INFO - Train dataset size: 25420
+2025-01-31 01:00:52,089 - INFO - Val dataset size: 6563
+2025-01-31 01:00:53,117 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001609940F690>
+2025-01-31 01:35:52,159 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 387, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 149, in train
+    colors = batch['features'].to(device) # [B, N, C]
+             ~~~~~^^^^^^^^^^^^
+KeyError: 'features'

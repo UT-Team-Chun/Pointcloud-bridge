@@ -2,26 +2,6 @@ import torch
 
 from models.model import EnhancedPointNet2
 
-config = {
-    'transformer_config': {
-        'trans_dim': 384,
-        'depth': 12,
-        'drop_path_rate': 0.1,
-        'num_heads': 6,
-        'encoder_dims': 384,
-    },
-    'num_group': 64,  # 移到外层
-    'group_size': 32,  # 移到外层
-    'num_points': 4096,
-    'chunk_size': 4096,
-    'overlap': 1024,
-    'batch_size': 16,
-    'num_workers': 0,
-    'learning_rate': 0.001,
-    'num_classes': 5,
-    'num_epochs': 500,
-    'device': 'cuda' if torch.cuda.is_available() else 'cpu'
-}
 
 def debug_model():
     # 设置随机种子保证可复现性
@@ -29,7 +9,7 @@ def debug_model():
 
     # 创建测试数据
     batch_size = 2
-    num_points = 1024
+    num_points = 4096
 
     # 创建随机输入数据
     xyz = torch.randn(batch_size, num_points, 3)
@@ -99,7 +79,7 @@ def debug_model():
     print("\n" + "=" * 50)
     print("内存占用测试")
 
-    batch_sizes = [4]
+    batch_sizes = [4,8,10]
     for bs in batch_sizes:
         torch.cuda.empty_cache()  # 清空GPU缓存
         xyz_test = torch.randn(bs, num_points, 3)

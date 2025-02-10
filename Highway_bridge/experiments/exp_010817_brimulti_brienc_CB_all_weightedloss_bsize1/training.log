@@ -1,0 +1,49 @@
+2025-01-08 17:32:52,946 - INFO - Training configuration:
+2025-01-08 17:32:52,946 - INFO - transformer_config: {'trans_dim': 384, 'depth': 12, 'drop_path_rate': 0.1, 'num_heads': 6, 'encoder_dims': 384}
+2025-01-08 17:32:52,946 - INFO - num_group: 64
+2025-01-08 17:32:52,946 - INFO - group_size: 32
+2025-01-08 17:32:52,947 - INFO - num_points: 4096
+2025-01-08 17:32:52,947 - INFO - chunk_size: 4096
+2025-01-08 17:32:52,947 - INFO - overlap: 1024
+2025-01-08 17:32:52,947 - INFO - batch_size: 8
+2025-01-08 17:32:52,947 - INFO - num_workers: 0
+2025-01-08 17:32:52,947 - INFO - learning_rate: 0.001
+2025-01-08 17:32:52,947 - INFO - num_classes: 5
+2025-01-08 17:32:52,948 - INFO - num_epochs: 500
+2025-01-08 17:32:52,948 - INFO - device: cuda
+2025-01-08 17:32:52,948 - INFO - Using device: cuda
+2025-01-08 17:32:52,949 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash85cd6113.pt
+2025-01-08 17:39:05,784 - INFO - Successfully loaded 23384 blocks from cache
+2025-01-08 17:39:05,786 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-08 17:44:17,688 - INFO - Successfully loaded 6563 blocks from cache
+2025-01-08 17:44:17,689 - INFO - reading val data
+2025-01-08 17:44:17,689 - INFO - Train dataset size: 23384
+2025-01-08 17:44:17,689 - INFO - Val dataset size: 6563
+2025-01-08 17:44:30,968 - INFO - Class weights: tensor([0.3896, 2.3235, 0.9726, 1.4584, 3.4639])
+2025-01-08 17:44:30,970 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F1A7F86B50>
+2025-01-08 19:30:16,448 - INFO - Validation parameter calculation time: 0:00:00.013762
+2025-01-08 19:30:16,449 - INFO - 
+Epoch 1/500:
+2025-01-08 19:30:16,449 - INFO - Train Loss: 1.6019, Train Acc: 26.73%
+2025-01-08 19:30:16,449 - INFO - Val Loss: 1.6171, Val Acc: 13.67%
+2025-01-08 19:30:16,449 - INFO - Class 0 Accuracy: 17.56%
+2025-01-08 19:30:16,450 - INFO - Class 1 Accuracy: 48.31%
+2025-01-08 19:30:16,450 - INFO - Class 2 Accuracy: 0.88%
+2025-01-08 19:30:16,451 - INFO - Class 3 Accuracy: 0.00%
+2025-01-08 19:30:16,451 - INFO - Class 4 Accuracy: 34.16%
+2025-01-08 19:30:18,412 - INFO - Saved best model with accuracy: 13.67%
+2025-01-08 19:30:20,057 - INFO - Saved checkpoint at epoch 1
+2025-01-08 19:30:20,058 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F1A7F86B50>
+2025-01-08 21:15:24,556 - INFO - Validation parameter calculation time: 0:00:00.014249
+2025-01-08 21:15:24,557 - INFO - 
+Epoch 2/500:
+2025-01-08 21:15:24,557 - INFO - Train Loss: 1.4461, Train Acc: 35.72%
+2025-01-08 21:15:24,557 - INFO - Val Loss: 1.0118, Val Acc: 60.83%
+2025-01-08 21:15:24,558 - INFO - Class 0 Accuracy: 79.76%
+2025-01-08 21:15:24,558 - INFO - Class 1 Accuracy: 21.59%
+2025-01-08 21:15:24,559 - INFO - Class 2 Accuracy: 49.38%
+2025-01-08 21:15:24,559 - INFO - Class 3 Accuracy: 19.71%
+2025-01-08 21:15:24,559 - INFO - Class 4 Accuracy: 98.87%
+2025-01-08 21:15:26,129 - INFO - Saved best model with accuracy: 60.83%
+2025-01-08 21:15:28,231 - INFO - Saved checkpoint at epoch 2
+2025-01-08 21:15:28,232 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001F1A7F86B50>

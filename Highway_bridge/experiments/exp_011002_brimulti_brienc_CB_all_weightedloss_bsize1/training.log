@@ -1,0 +1,57 @@
+2025-01-10 02:11:11,479 - INFO - Training configuration:
+2025-01-10 02:11:11,479 - INFO - transformer_config: {'trans_dim': 384, 'depth': 12, 'drop_path_rate': 0.1, 'num_heads': 6, 'encoder_dims': 384}
+2025-01-10 02:11:11,479 - INFO - num_group: 64
+2025-01-10 02:11:11,479 - INFO - group_size: 32
+2025-01-10 02:11:11,479 - INFO - num_points: 4096
+2025-01-10 02:11:11,479 - INFO - chunk_size: 4096
+2025-01-10 02:11:11,479 - INFO - overlap: 1024
+2025-01-10 02:11:11,479 - INFO - batch_size: 12
+2025-01-10 02:11:11,480 - INFO - num_workers: 0
+2025-01-10 02:11:11,480 - INFO - learning_rate: 0.0001
+2025-01-10 02:11:11,480 - INFO - num_classes: 5
+2025-01-10 02:11:11,480 - INFO - num_epochs: 500
+2025-01-10 02:11:11,480 - INFO - device: cuda
+2025-01-10 02:11:11,480 - INFO - Using device: cuda
+2025-01-10 02:11:11,481 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash85cd6113.pt
+2025-01-10 02:17:37,359 - INFO - Successfully loaded 23384 blocks from cache
+2025-01-10 02:17:37,362 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-10 02:25:57,091 - INFO - Successfully loaded 6563 blocks from cache
+2025-01-10 02:25:57,091 - INFO - reading val data
+2025-01-10 02:25:57,092 - INFO - Train dataset size: 23384
+2025-01-10 02:25:57,092 - INFO - Val dataset size: 6563
+2025-01-10 02:26:10,652 - INFO - Class weights: tensor([0.3896, 2.3235, 0.9726, 1.4584, 3.4639])
+2025-01-10 02:26:10,665 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x0000025DA460D1D0>
+2025-01-10 02:27:40,193 - INFO - Training configuration:
+2025-01-10 02:27:40,194 - INFO - transformer_config: {'trans_dim': 384, 'depth': 12, 'drop_path_rate': 0.1, 'num_heads': 6, 'encoder_dims': 384}
+2025-01-10 02:27:40,194 - INFO - num_group: 64
+2025-01-10 02:27:40,194 - INFO - group_size: 32
+2025-01-10 02:27:40,194 - INFO - num_points: 4096
+2025-01-10 02:27:40,194 - INFO - chunk_size: 4096
+2025-01-10 02:27:40,194 - INFO - overlap: 1024
+2025-01-10 02:27:40,194 - INFO - batch_size: 12
+2025-01-10 02:27:40,194 - INFO - num_workers: 0
+2025-01-10 02:27:40,194 - INFO - learning_rate: 0.001
+2025-01-10 02:27:40,194 - INFO - num_classes: 5
+2025-01-10 02:27:40,194 - INFO - num_epochs: 500
+2025-01-10 02:27:40,194 - INFO - device: cuda
+2025-01-10 02:27:40,194 - INFO - Using device: cuda
+2025-01-10 02:27:40,195 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hash85cd6113.pt
+2025-01-10 02:32:33,433 - INFO - Successfully loaded 23384 blocks from cache
+2025-01-10 02:32:33,435 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-01-10 02:37:12,350 - INFO - Successfully loaded 6563 blocks from cache
+2025-01-10 02:37:12,351 - INFO - reading val data
+2025-01-10 02:37:12,351 - INFO - Train dataset size: 23384
+2025-01-10 02:37:12,351 - INFO - Val dataset size: 6563
+2025-01-10 02:37:12,730 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 394, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 123, in train
+    shutil.copytree(source_path, destination_path)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\shutil.py", line 573, in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\shutil.py", line 471, in _copytree
+    os.makedirs(dst, exist_ok=dirs_exist_ok)
+  File "<frozen os>", line 225, in makedirs
+FileExistsError: [WinError 183] 既に存在するファイルを作成することはできません。: 'experiments\\exp_011002_brimulti_brienc_CB_all_weightedloss_bsize1\\models'

@@ -5,7 +5,7 @@ from pathlib import Path
 import laspy
 import matplotlib.pyplot as plt
 import numpy as np
-# import seaborn as sns
+import seaborn as sns
 import torch
 from tqdm import tqdm
 
@@ -138,7 +138,7 @@ def main():
     from torch.utils.data import DataLoader
 
     test_dataset = BriPCDMulti(
-        data_dir='../data/CB/all-2/val',
+        data_dir='../data/CB/all/val',
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -352,8 +352,10 @@ def visualize_results(metrics, class_names=None):
     """
     可视化评估结果
     """
+
     if class_names is None:
         class_names = [f'Class {i}' for i in range(len(metrics['IoU_per_class']))]
+
 
     # 设置风格
     #plt.style.use('seaborn')

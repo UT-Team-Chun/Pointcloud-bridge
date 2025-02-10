@@ -1,0 +1,64 @@
+2025-02-01 18:09:10,498 - INFO - Training configuration:
+2025-02-01 18:09:10,498 - INFO - num_group: 64
+2025-02-01 18:09:10,498 - INFO - group_size: 32
+2025-02-01 18:09:10,498 - INFO - num_points: 4096
+2025-02-01 18:09:10,498 - INFO - chunk_size: 4096
+2025-02-01 18:09:10,498 - INFO - overlap: 1024
+2025-02-01 18:09:10,498 - INFO - batch_size: 12
+2025-02-01 18:09:10,498 - INFO - num_workers: 0
+2025-02-01 18:09:10,498 - INFO - learning_rate: 0.001
+2025-02-01 18:09:10,499 - INFO - num_classes: 5
+2025-02-01 18:09:10,499 - INFO - num_epochs: 500
+2025-02-01 18:09:10,499 - INFO - device: cuda
+2025-02-01 18:09:10,499 - INFO - Using device: cuda
+2025-02-01 18:09:10,499 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hashc8356dcf.pt
+2025-02-01 18:14:37,036 - INFO - Successfully loaded 25420 blocks from cache
+2025-02-01 18:14:37,038 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-02-01 18:19:26,563 - INFO - Successfully loaded 6563 blocks from cache
+2025-02-01 18:19:26,563 - INFO - reading val data
+2025-02-01 18:19:26,564 - INFO - Train dataset size: 25420
+2025-02-01 18:19:26,564 - INFO - Val dataset size: 6563
+2025-02-01 18:19:27,303 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 393, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 134, in train
+    criterion = BridgeStructureLoss(
+                ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\models\model.py", line 232, in __init__
+    self.class_weights_raw = class_weights
+                             ^^^^^^^^^^^^^
+NameError: name 'class_weights' is not defined
+2025-02-01 18:46:07,574 - INFO - Training configuration:
+2025-02-01 18:46:07,575 - INFO - num_group: 64
+2025-02-01 18:46:07,575 - INFO - group_size: 32
+2025-02-01 18:46:07,575 - INFO - num_points: 4096
+2025-02-01 18:46:07,575 - INFO - chunk_size: 4096
+2025-02-01 18:46:07,575 - INFO - overlap: 1024
+2025-02-01 18:46:07,575 - INFO - batch_size: 12
+2025-02-01 18:46:07,575 - INFO - num_workers: 0
+2025-02-01 18:46:07,575 - INFO - learning_rate: 0.001
+2025-02-01 18:46:07,575 - INFO - num_classes: 5
+2025-02-01 18:46:07,576 - INFO - num_epochs: 500
+2025-02-01 18:46:07,576 - INFO - device: cuda
+2025-02-01 18:46:07,576 - INFO - Using device: cuda
+2025-02-01 18:46:07,576 - INFO - Loading dataset from cache: ../data/CB/all/train//cache\dataset_cache_points4096_size1.0_rate0.4_transformTrue_hashc8356dcf.pt
+2025-02-01 18:51:35,721 - INFO - Successfully loaded 25420 blocks from cache
+2025-02-01 18:51:35,722 - INFO - Loading dataset from cache: ../data/CB/all/val//cache\dataset_cache_points4096_size1.0_rate0.4_transformFalse_hashc8b72f08.pt
+2025-02-01 18:56:27,980 - INFO - Successfully loaded 6563 blocks from cache
+2025-02-01 18:56:27,981 - INFO - reading val data
+2025-02-01 18:56:27,981 - INFO - Train dataset size: 25420
+2025-02-01 18:56:27,981 - INFO - Val dataset size: 6563
+2025-02-01 18:56:28,279 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 393, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 112, in train
+    shutil.copytree(source_path, destination_path)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\shutil.py", line 573, in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\shutil.py", line 471, in _copytree
+    os.makedirs(dst, exist_ok=dirs_exist_ok)
+  File "<frozen os>", line 225, in makedirs
+FileExistsError: [WinError 183] 既に存在するファイルを作成することはできません。: 'experiments\\exp_020118_brimulti_brienc_CB_all_weightedloss_bsize1\\models'

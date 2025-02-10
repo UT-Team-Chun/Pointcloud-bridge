@@ -1,0 +1,346 @@
+2025-02-02 22:13:59,296 - INFO - Training configuration:
+2025-02-02 22:13:59,296 - INFO - num_group: 64
+2025-02-02 22:13:59,296 - INFO - group_size: 32
+2025-02-02 22:13:59,296 - INFO - num_points: 4096
+2025-02-02 22:13:59,296 - INFO - chunk_size: 4096
+2025-02-02 22:13:59,296 - INFO - overlap: 1024
+2025-02-02 22:13:59,296 - INFO - batch_size: 12
+2025-02-02 22:13:59,296 - INFO - num_workers: 0
+2025-02-02 22:13:59,296 - INFO - learning_rate: 0.001
+2025-02-02 22:13:59,296 - INFO - num_classes: 5
+2025-02-02 22:13:59,296 - INFO - num_epochs: 500
+2025-02-02 22:13:59,296 - INFO - device: cuda
+2025-02-02 22:13:59,297 - INFO - Using device: cuda
+2025-02-02 22:13:59,297 - INFO - Found 8 h5 files:
+2025-02-02 22:13:59,297 - INFO -   - cb1.h5
+2025-02-02 22:13:59,297 - INFO -   - cb2-6.h5
+2025-02-02 22:13:59,298 - INFO -   - cb2.h5
+2025-02-02 22:13:59,298 - INFO -   - cb3.h5
+2025-02-02 22:13:59,298 - INFO -   - cb4.h5
+2025-02-02 22:13:59,298 - INFO -   - cb5.h5
+2025-02-02 22:13:59,298 - INFO -   - cb7.h5
+2025-02-02 22:13:59,298 - INFO -   - cb8.h5
+2025-02-02 22:14:06,422 - INFO - Total blocks created: 6349
+2025-02-02 22:14:06,424 - INFO - Found 2 h5 files:
+2025-02-02 22:14:06,424 - INFO -   - cb6.h5
+2025-02-02 22:14:06,424 - INFO -   - cb9.h5
+2025-02-02 22:14:13,607 - INFO - Total blocks created: 3165
+2025-02-02 22:14:13,610 - INFO - reading val data
+2025-02-02 22:14:13,611 - INFO - Train dataset size: 6349
+2025-02-02 22:14:13,611 - INFO - Val dataset size: 3165
+2025-02-02 22:14:13,969 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 22:22:35,580 - INFO - Validation parameter calculation time: 0:00:00.005053
+2025-02-02 22:22:35,580 - INFO - 
+Epoch 1/500:
+2025-02-02 22:22:35,580 - INFO - Train Loss: 1.1886, Train Acc: 51.19%
+2025-02-02 22:22:35,580 - INFO - Val Loss: 1.1782, Val Acc: 60.48%
+2025-02-02 22:22:35,582 - INFO - Class 0 Accuracy: 71.76%
+2025-02-02 22:22:35,582 - INFO - Class 1 Accuracy: 85.33%
+2025-02-02 22:22:35,583 - INFO - Class 2 Accuracy: 44.64%
+2025-02-02 22:22:35,583 - INFO - Class 3 Accuracy: 31.22%
+2025-02-02 22:22:35,583 - INFO - Class 4 Accuracy: 72.72%
+2025-02-02 22:22:35,670 - INFO - Saved best model with accuracy: 60.48%
+2025-02-02 22:22:35,882 - INFO - Saved checkpoint at epoch 1
+2025-02-02 22:22:35,883 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 22:30:55,931 - INFO - Validation parameter calculation time: 0:00:00.005293
+2025-02-02 22:30:55,931 - INFO - 
+Epoch 2/500:
+2025-02-02 22:30:55,931 - INFO - Train Loss: 1.1382, Train Acc: 55.33%
+2025-02-02 22:30:55,931 - INFO - Val Loss: 1.2851, Val Acc: 56.18%
+2025-02-02 22:30:55,932 - INFO - Class 0 Accuracy: 86.95%
+2025-02-02 22:30:55,933 - INFO - Class 1 Accuracy: 70.28%
+2025-02-02 22:30:55,933 - INFO - Class 2 Accuracy: 65.56%
+2025-02-02 22:30:55,933 - INFO - Class 3 Accuracy: 26.11%
+2025-02-02 22:30:55,934 - INFO - Class 4 Accuracy: 23.06%
+2025-02-02 22:30:56,041 - INFO - Saved checkpoint at epoch 2
+2025-02-02 22:30:56,042 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 22:39:15,362 - INFO - Validation parameter calculation time: 0:00:00.005517
+2025-02-02 22:39:15,363 - INFO - 
+Epoch 3/500:
+2025-02-02 22:39:15,363 - INFO - Train Loss: 0.9981, Train Acc: 64.75%
+2025-02-02 22:39:15,363 - INFO - Val Loss: 1.5057, Val Acc: 53.32%
+2025-02-02 22:39:15,364 - INFO - Class 0 Accuracy: 89.60%
+2025-02-02 22:39:15,364 - INFO - Class 1 Accuracy: 68.24%
+2025-02-02 22:39:15,365 - INFO - Class 2 Accuracy: 82.17%
+2025-02-02 22:39:15,366 - INFO - Class 3 Accuracy: 11.56%
+2025-02-02 22:39:15,366 - INFO - Class 4 Accuracy: 0.78%
+2025-02-02 22:39:15,466 - INFO - Saved checkpoint at epoch 3
+2025-02-02 22:39:15,467 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 22:47:35,427 - INFO - Validation parameter calculation time: 0:00:00.005744
+2025-02-02 22:47:35,427 - INFO - 
+Epoch 4/500:
+2025-02-02 22:47:35,427 - INFO - Train Loss: 0.8208, Train Acc: 75.18%
+2025-02-02 22:47:35,427 - INFO - Val Loss: 0.8918, Val Acc: 77.36%
+2025-02-02 22:47:35,428 - INFO - Class 0 Accuracy: 76.54%
+2025-02-02 22:47:35,428 - INFO - Class 1 Accuracy: 99.89%
+2025-02-02 22:47:35,428 - INFO - Class 2 Accuracy: 70.68%
+2025-02-02 22:47:35,429 - INFO - Class 3 Accuracy: 55.69%
+2025-02-02 22:47:35,429 - INFO - Class 4 Accuracy: 89.54%
+2025-02-02 22:47:35,521 - INFO - Saved best model with accuracy: 77.36%
+2025-02-02 22:47:35,610 - INFO - Saved checkpoint at epoch 4
+2025-02-02 22:47:35,611 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 22:55:55,686 - INFO - Validation parameter calculation time: 0:00:00.005510
+2025-02-02 22:55:55,687 - INFO - 
+Epoch 5/500:
+2025-02-02 22:55:55,687 - INFO - Train Loss: 0.7326, Train Acc: 79.46%
+2025-02-02 22:55:55,687 - INFO - Val Loss: 0.7579, Val Acc: 85.05%
+2025-02-02 22:55:55,687 - INFO - Class 0 Accuracy: 84.61%
+2025-02-02 22:55:55,688 - INFO - Class 1 Accuracy: 99.02%
+2025-02-02 22:55:55,688 - INFO - Class 2 Accuracy: 76.42%
+2025-02-02 22:55:55,688 - INFO - Class 3 Accuracy: 76.23%
+2025-02-02 22:55:55,688 - INFO - Class 4 Accuracy: 93.52%
+2025-02-02 22:55:55,787 - INFO - Saved best model with accuracy: 85.05%
+2025-02-02 22:55:55,977 - INFO - Saved checkpoint at epoch 5
+2025-02-02 22:55:55,978 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 23:04:16,597 - INFO - Validation parameter calculation time: 0:00:00.005629
+2025-02-02 23:04:16,597 - INFO - 
+Epoch 6/500:
+2025-02-02 23:04:16,597 - INFO - Train Loss: 0.6880, Train Acc: 82.15%
+2025-02-02 23:04:16,597 - INFO - Val Loss: 0.7394, Val Acc: 87.09%
+2025-02-02 23:04:16,597 - INFO - Class 0 Accuracy: 92.03%
+2025-02-02 23:04:16,598 - INFO - Class 1 Accuracy: 87.88%
+2025-02-02 23:04:16,599 - INFO - Class 2 Accuracy: 82.73%
+2025-02-02 23:04:16,599 - INFO - Class 3 Accuracy: 74.12%
+2025-02-02 23:04:16,599 - INFO - Class 4 Accuracy: 96.78%
+2025-02-02 23:04:16,700 - INFO - Saved best model with accuracy: 87.09%
+2025-02-02 23:04:16,885 - INFO - Saved checkpoint at epoch 6
+2025-02-02 23:04:16,886 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 23:12:48,486 - INFO - Validation parameter calculation time: 0:00:00.005547
+2025-02-02 23:12:48,487 - INFO - 
+Epoch 7/500:
+2025-02-02 23:12:48,487 - INFO - Train Loss: 0.6746, Train Acc: 82.80%
+2025-02-02 23:12:48,487 - INFO - Val Loss: 0.9228, Val Acc: 77.45%
+2025-02-02 23:12:48,488 - INFO - Class 0 Accuracy: 85.29%
+2025-02-02 23:12:48,489 - INFO - Class 1 Accuracy: 99.06%
+2025-02-02 23:12:48,489 - INFO - Class 2 Accuracy: 75.03%
+2025-02-02 23:12:48,489 - INFO - Class 3 Accuracy: 55.72%
+2025-02-02 23:12:48,490 - INFO - Class 4 Accuracy: 74.36%
+2025-02-02 23:12:48,607 - INFO - Saved checkpoint at epoch 7
+2025-02-02 23:12:48,608 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 23:21:57,339 - INFO - Validation parameter calculation time: 0:00:00.005672
+2025-02-02 23:21:57,340 - INFO - 
+Epoch 8/500:
+2025-02-02 23:21:57,340 - INFO - Train Loss: 0.6587, Train Acc: 83.91%
+2025-02-02 23:21:57,340 - INFO - Val Loss: 0.8276, Val Acc: 80.11%
+2025-02-02 23:21:57,340 - INFO - Class 0 Accuracy: 75.75%
+2025-02-02 23:21:57,341 - INFO - Class 1 Accuracy: 98.39%
+2025-02-02 23:21:57,341 - INFO - Class 2 Accuracy: 88.52%
+2025-02-02 23:21:57,342 - INFO - Class 3 Accuracy: 66.96%
+2025-02-02 23:21:57,343 - INFO - Class 4 Accuracy: 75.06%
+2025-02-02 23:21:57,483 - INFO - Saved checkpoint at epoch 8
+2025-02-02 23:21:57,485 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 23:30:42,315 - INFO - Validation parameter calculation time: 0:00:00.005047
+2025-02-02 23:30:42,315 - INFO - 
+Epoch 9/500:
+2025-02-02 23:30:42,315 - INFO - Train Loss: 0.6512, Train Acc: 84.12%
+2025-02-02 23:30:42,315 - INFO - Val Loss: 1.1501, Val Acc: 65.17%
+2025-02-02 23:30:42,316 - INFO - Class 0 Accuracy: 73.52%
+2025-02-02 23:30:42,316 - INFO - Class 1 Accuracy: 99.91%
+2025-02-02 23:30:42,317 - INFO - Class 2 Accuracy: 54.59%
+2025-02-02 23:30:42,318 - INFO - Class 3 Accuracy: 17.95%
+2025-02-02 23:30:42,319 - INFO - Class 4 Accuracy: 84.34%
+2025-02-02 23:30:42,418 - INFO - Saved checkpoint at epoch 9
+2025-02-02 23:30:42,420 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 23:39:24,979 - INFO - Validation parameter calculation time: 0:00:00.005969
+2025-02-02 23:39:24,979 - INFO - 
+Epoch 10/500:
+2025-02-02 23:39:24,980 - INFO - Train Loss: 0.6407, Train Acc: 85.35%
+2025-02-02 23:39:24,980 - INFO - Val Loss: 0.7602, Val Acc: 85.81%
+2025-02-02 23:39:24,981 - INFO - Class 0 Accuracy: 89.99%
+2025-02-02 23:39:24,982 - INFO - Class 1 Accuracy: 98.97%
+2025-02-02 23:39:24,983 - INFO - Class 2 Accuracy: 78.21%
+2025-02-02 23:39:24,983 - INFO - Class 3 Accuracy: 73.98%
+2025-02-02 23:39:24,985 - INFO - Class 4 Accuracy: 90.48%
+2025-02-02 23:39:25,100 - INFO - Saved checkpoint at epoch 10
+2025-02-02 23:39:25,102 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 23:48:04,798 - INFO - Validation parameter calculation time: 0:00:00.005567
+2025-02-02 23:48:04,799 - INFO - 
+Epoch 11/500:
+2025-02-02 23:48:04,799 - INFO - Train Loss: 0.6315, Train Acc: 85.44%
+2025-02-02 23:48:04,799 - INFO - Val Loss: 0.9776, Val Acc: 76.80%
+2025-02-02 23:48:04,799 - INFO - Class 0 Accuracy: 86.88%
+2025-02-02 23:48:04,800 - INFO - Class 1 Accuracy: 96.18%
+2025-02-02 23:48:04,801 - INFO - Class 2 Accuracy: 95.31%
+2025-02-02 23:48:04,801 - INFO - Class 3 Accuracy: 39.09%
+2025-02-02 23:48:04,801 - INFO - Class 4 Accuracy: 62.83%
+2025-02-02 23:48:04,899 - INFO - Saved checkpoint at epoch 11
+2025-02-02 23:48:04,900 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-02 23:56:41,211 - INFO - Validation parameter calculation time: 0:00:00.005538
+2025-02-02 23:56:41,211 - INFO - 
+Epoch 12/500:
+2025-02-02 23:56:41,211 - INFO - Train Loss: 0.6243, Train Acc: 86.24%
+2025-02-02 23:56:41,211 - INFO - Val Loss: 0.7706, Val Acc: 85.35%
+2025-02-02 23:56:41,212 - INFO - Class 0 Accuracy: 87.62%
+2025-02-02 23:56:41,212 - INFO - Class 1 Accuracy: 94.24%
+2025-02-02 23:56:41,213 - INFO - Class 2 Accuracy: 75.13%
+2025-02-02 23:56:41,213 - INFO - Class 3 Accuracy: 91.29%
+2025-02-02 23:56:41,213 - INFO - Class 4 Accuracy: 82.55%
+2025-02-02 23:56:41,310 - INFO - Saved checkpoint at epoch 12
+2025-02-02 23:56:41,311 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 00:05:18,273 - INFO - Validation parameter calculation time: 0:00:00.005620
+2025-02-03 00:05:18,275 - INFO - 
+Epoch 13/500:
+2025-02-03 00:05:18,275 - INFO - Train Loss: 0.5926, Train Acc: 88.33%
+2025-02-03 00:05:18,275 - INFO - Val Loss: 0.6514, Val Acc: 89.71%
+2025-02-03 00:05:18,275 - INFO - Class 0 Accuracy: 94.03%
+2025-02-03 00:05:18,276 - INFO - Class 1 Accuracy: 97.26%
+2025-02-03 00:05:18,277 - INFO - Class 2 Accuracy: 75.87%
+2025-02-03 00:05:18,277 - INFO - Class 3 Accuracy: 87.21%
+2025-02-03 00:05:18,278 - INFO - Class 4 Accuracy: 96.85%
+2025-02-03 00:05:18,435 - INFO - Saved best model with accuracy: 89.71%
+2025-02-03 00:05:18,545 - INFO - Saved checkpoint at epoch 13
+2025-02-03 00:05:18,546 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 00:13:57,446 - INFO - Validation parameter calculation time: 0:00:00.005546
+2025-02-03 00:13:57,447 - INFO - 
+Epoch 14/500:
+2025-02-03 00:13:57,447 - INFO - Train Loss: 0.5806, Train Acc: 89.56%
+2025-02-03 00:13:57,447 - INFO - Val Loss: 0.6482, Val Acc: 91.93%
+2025-02-03 00:13:57,448 - INFO - Class 0 Accuracy: 96.52%
+2025-02-03 00:13:57,448 - INFO - Class 1 Accuracy: 96.30%
+2025-02-03 00:13:57,449 - INFO - Class 2 Accuracy: 87.19%
+2025-02-03 00:13:57,449 - INFO - Class 3 Accuracy: 86.30%
+2025-02-03 00:13:57,450 - INFO - Class 4 Accuracy: 93.39%
+2025-02-03 00:13:57,553 - INFO - Saved best model with accuracy: 91.93%
+2025-02-03 00:13:57,777 - INFO - Saved checkpoint at epoch 14
+2025-02-03 00:13:57,778 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 00:22:35,587 - INFO - Validation parameter calculation time: 0:00:00.005042
+2025-02-03 00:22:35,588 - INFO - 
+Epoch 15/500:
+2025-02-03 00:22:35,588 - INFO - Train Loss: 0.5830, Train Acc: 90.04%
+2025-02-03 00:22:35,588 - INFO - Val Loss: 0.6146, Val Acc: 92.77%
+2025-02-03 00:22:35,589 - INFO - Class 0 Accuracy: 94.93%
+2025-02-03 00:22:35,589 - INFO - Class 1 Accuracy: 98.54%
+2025-02-03 00:22:35,590 - INFO - Class 2 Accuracy: 89.53%
+2025-02-03 00:22:35,590 - INFO - Class 3 Accuracy: 88.32%
+2025-02-03 00:22:35,591 - INFO - Class 4 Accuracy: 93.62%
+2025-02-03 00:22:35,706 - INFO - Saved best model with accuracy: 92.77%
+2025-02-03 00:22:35,906 - INFO - Saved checkpoint at epoch 15
+2025-02-03 00:22:35,907 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 00:31:21,679 - INFO - Validation parameter calculation time: 0:00:00.005023
+2025-02-03 00:31:21,680 - INFO - 
+Epoch 16/500:
+2025-02-03 00:31:21,680 - INFO - Train Loss: 0.5782, Train Acc: 90.06%
+2025-02-03 00:31:21,680 - INFO - Val Loss: 0.6603, Val Acc: 90.91%
+2025-02-03 00:31:21,681 - INFO - Class 0 Accuracy: 92.59%
+2025-02-03 00:31:21,681 - INFO - Class 1 Accuracy: 98.77%
+2025-02-03 00:31:21,682 - INFO - Class 2 Accuracy: 90.29%
+2025-02-03 00:31:21,682 - INFO - Class 3 Accuracy: 79.58%
+2025-02-03 00:31:21,683 - INFO - Class 4 Accuracy: 94.08%
+2025-02-03 00:31:21,783 - INFO - Saved checkpoint at epoch 16
+2025-02-03 00:31:21,784 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 00:40:00,126 - INFO - Validation parameter calculation time: 0:00:00.005510
+2025-02-03 00:40:00,127 - INFO - 
+Epoch 17/500:
+2025-02-03 00:40:00,127 - INFO - Train Loss: 0.5733, Train Acc: 90.30%
+2025-02-03 00:40:00,127 - INFO - Val Loss: 0.6202, Val Acc: 91.89%
+2025-02-03 00:40:00,127 - INFO - Class 0 Accuracy: 95.57%
+2025-02-03 00:40:00,128 - INFO - Class 1 Accuracy: 98.35%
+2025-02-03 00:40:00,128 - INFO - Class 2 Accuracy: 83.09%
+2025-02-03 00:40:00,128 - INFO - Class 3 Accuracy: 87.82%
+2025-02-03 00:40:00,128 - INFO - Class 4 Accuracy: 96.24%
+2025-02-03 00:40:00,238 - INFO - Saved checkpoint at epoch 17
+2025-02-03 00:40:00,240 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 00:48:28,014 - INFO - Validation parameter calculation time: 0:00:00.005014
+2025-02-03 00:48:28,014 - INFO - 
+Epoch 18/500:
+2025-02-03 00:48:28,014 - INFO - Train Loss: 0.5711, Train Acc: 90.69%
+2025-02-03 00:48:28,015 - INFO - Val Loss: 0.6163, Val Acc: 91.37%
+2025-02-03 00:48:28,015 - INFO - Class 0 Accuracy: 88.30%
+2025-02-03 00:48:28,015 - INFO - Class 1 Accuracy: 99.26%
+2025-02-03 00:48:28,016 - INFO - Class 2 Accuracy: 93.47%
+2025-02-03 00:48:28,016 - INFO - Class 3 Accuracy: 83.71%
+2025-02-03 00:48:28,017 - INFO - Class 4 Accuracy: 94.24%
+2025-02-03 00:48:28,110 - INFO - Saved checkpoint at epoch 18
+2025-02-03 00:48:28,111 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 00:56:50,742 - INFO - Validation parameter calculation time: 0:00:00.005511
+2025-02-03 00:56:50,743 - INFO - 
+Epoch 19/500:
+2025-02-03 00:56:50,743 - INFO - Train Loss: 0.5667, Train Acc: 90.74%
+2025-02-03 00:56:50,743 - INFO - Val Loss: 0.6487, Val Acc: 91.42%
+2025-02-03 00:56:50,743 - INFO - Class 0 Accuracy: 95.61%
+2025-02-03 00:56:50,744 - INFO - Class 1 Accuracy: 97.14%
+2025-02-03 00:56:50,744 - INFO - Class 2 Accuracy: 88.70%
+2025-02-03 00:56:50,746 - INFO - Class 3 Accuracy: 81.04%
+2025-02-03 00:56:50,746 - INFO - Class 4 Accuracy: 94.37%
+2025-02-03 00:56:50,850 - INFO - Saved checkpoint at epoch 19
+2025-02-03 00:56:50,852 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 01:05:17,487 - INFO - Validation parameter calculation time: 0:00:00.005720
+2025-02-03 01:05:17,488 - INFO - 
+Epoch 20/500:
+2025-02-03 01:05:17,488 - INFO - Train Loss: 0.5727, Train Acc: 90.80%
+2025-02-03 01:05:17,488 - INFO - Val Loss: 0.6435, Val Acc: 91.35%
+2025-02-03 01:05:17,488 - INFO - Class 0 Accuracy: 94.54%
+2025-02-03 01:05:17,489 - INFO - Class 1 Accuracy: 95.85%
+2025-02-03 01:05:17,490 - INFO - Class 2 Accuracy: 87.58%
+2025-02-03 01:05:17,490 - INFO - Class 3 Accuracy: 87.65%
+2025-02-03 01:05:17,491 - INFO - Class 4 Accuracy: 91.70%
+2025-02-03 01:05:17,588 - INFO - Saved checkpoint at epoch 20
+2025-02-03 01:05:17,589 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 01:13:49,430 - INFO - Validation parameter calculation time: 0:00:00.005509
+2025-02-03 01:13:49,431 - INFO - 
+Epoch 21/500:
+2025-02-03 01:13:49,431 - INFO - Train Loss: 0.5635, Train Acc: 91.12%
+2025-02-03 01:13:49,431 - INFO - Val Loss: 0.6308, Val Acc: 91.87%
+2025-02-03 01:13:49,431 - INFO - Class 0 Accuracy: 96.07%
+2025-02-03 01:13:49,432 - INFO - Class 1 Accuracy: 97.70%
+2025-02-03 01:13:49,433 - INFO - Class 2 Accuracy: 83.27%
+2025-02-03 01:13:49,433 - INFO - Class 3 Accuracy: 88.85%
+2025-02-03 01:13:49,433 - INFO - Class 4 Accuracy: 94.86%
+2025-02-03 01:13:49,532 - INFO - Saved checkpoint at epoch 21
+2025-02-03 01:13:49,534 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 01:22:28,315 - INFO - Validation parameter calculation time: 0:00:00.005017
+2025-02-03 01:22:28,316 - INFO - 
+Epoch 22/500:
+2025-02-03 01:22:28,316 - INFO - Train Loss: 0.5715, Train Acc: 90.90%
+2025-02-03 01:22:28,316 - INFO - Val Loss: 0.6716, Val Acc: 90.15%
+2025-02-03 01:22:28,316 - INFO - Class 0 Accuracy: 94.84%
+2025-02-03 01:22:28,316 - INFO - Class 1 Accuracy: 98.94%
+2025-02-03 01:22:28,317 - INFO - Class 2 Accuracy: 84.03%
+2025-02-03 01:22:28,317 - INFO - Class 3 Accuracy: 83.68%
+2025-02-03 01:22:28,318 - INFO - Class 4 Accuracy: 90.70%
+2025-02-03 01:22:28,413 - INFO - Saved checkpoint at epoch 22
+2025-02-03 01:22:28,414 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x000001C0493F6250>
+2025-02-03 01:30:02,958 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 1191, in __iter__
+    self.update(n - last_print_n)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 1242, in update
+    self.refresh(lock_args=self.lock_args)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 1347, in refresh
+    self.display()
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 1495, in display
+    self.sp(self.__str__() if msg is None else msg)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 459, in print_status
+    fp_write('\r' + s + (' ' * max(last_len[0] - len_s, 0)))
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 452, in fp_write
+    fp.write(str(s))
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\utils.py", line 196, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\wandb\sdk\lib\redirect.py", line 645, in write
+    self._old_write(data)
+OSError: [Errno 22] Invalid argument
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 393, in <module>
+    train()
+  File "D:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 153, in train
+    for batch in pbar:
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 1196, in __iter__
+    self.close()
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 1302, in close
+    self.display(pos=0)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 1495, in display
+    self.sp(self.__str__() if msg is None else msg)
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 459, in print_status
+    fp_write('\r' + s + (' ' * max(last_len[0] - len_s, 0)))
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\std.py", line 452, in fp_write
+    fp.write(str(s))
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\tqdm\utils.py", line 196, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pcdmulti\Lib\site-packages\wandb\sdk\lib\redirect.py", line 645, in write
+    self._old_write(data)
+OSError: [Errno 22] Invalid argument
