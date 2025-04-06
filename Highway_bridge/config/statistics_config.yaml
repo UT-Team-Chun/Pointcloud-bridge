@@ -1,0 +1,35 @@
+
+# path
+data_directory: "data/all/"
+output_directory: "data/all/statistics"
+csv_filename: "bridge_statistics.csv"
+
+# visualization settings
+visualization_dpi: 300
+figure_width: 10
+figure_height: 7
+visualization_colors:
+  - "#4477AA"
+  - "#66CCEE"
+  - "#228833"
+  - "#CCBB44"
+  - "#EE6677"
+  - "#AA3377"
+  - "#BBBBBB"
+
+# class names 
+class_names:
+  "0": "Background"
+  "1": "Pier(Abutment)"
+  "2": "Girder"
+  "3": "Deck"
+  "4": "superstructure accessories"
+
+
+# class names in English
+english_class_names:
+  "0": "Background"
+  "1": "Pier (Abutment)"
+  "2": "Girder"
+  "3": "Deck"
+  "4": "SuperAcces. (Parapet)"

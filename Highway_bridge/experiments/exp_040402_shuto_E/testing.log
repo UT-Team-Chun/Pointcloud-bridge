@@ -1,0 +1,53 @@
+2025-04-05 02:18:40,933 - INFO - Using device: cuda
+2025-04-05 02:18:40,969 - INFO - Found 5 h5 files:
+2025-04-05 02:18:40,969 - INFO -   - HB-15-1.h5
+2025-04-05 02:18:40,969 - INFO -   - HB-15-2.h5
+2025-04-05 02:18:40,969 - INFO -   - HB-20-1.h5
+2025-04-05 02:18:40,970 - INFO -   - HB-20-2.h5
+2025-04-05 02:18:40,970 - INFO -   - HB-8.h5
+2025-04-05 02:18:55,225 - INFO - Total blocks created: 7169
+2025-04-05 02:18:55,566 - INFO - Loaded model from experiments/exp_040402_shuto_E\best_model.pth
+2025-04-05 04:54:48,241 - INFO - 
+===== 全局评估结果 =====
+2025-04-05 04:54:48,242 - INFO - Mean IoU: 92.49%
+2025-04-05 04:54:48,242 - INFO - Overall Accuracy: 96.36%
+2025-04-05 04:54:48,242 - INFO - Mean Accuracy: 96.02%
+2025-04-05 04:54:48,245 - INFO - Precision: 96.37%
+2025-04-05 04:54:48,245 - INFO - Recall: 96.36%
+2025-04-05 04:54:48,245 - INFO - F1 Score: 96.37%
+2025-04-05 04:54:48,246 - INFO - Class 0 (Background) IoU: 91.37%
+2025-04-05 04:54:48,246 - INFO - Class 1 (Pier) IoU: 93.51%
+2025-04-05 04:54:48,246 - INFO - Class 2 (Girder) IoU: 88.96%
+2025-04-05 04:54:48,246 - INFO - Class 3 (Deck) IoU: 93.82%
+2025-04-05 04:54:48,246 - INFO - Class 4 (Parapet) IoU: 94.80%
+2025-04-05 04:54:48,246 - INFO - 
+文件: HB-15-1.h5
+2025-04-05 04:54:48,246 - INFO -   Mean IoU: 92.32%
+2025-04-05 04:54:48,246 - INFO -   Overall Accuracy: 96.37%
+2025-04-05 04:54:48,247 - INFO -   F1 Score: 96.41%
+2025-04-05 04:54:48,247 - INFO - 
+文件: HB-15-2.h5
+2025-04-05 04:54:48,247 - INFO -   Mean IoU: 93.33%
+2025-04-05 04:54:48,247 - INFO -   Overall Accuracy: 96.61%
+2025-04-05 04:54:48,247 - INFO -   F1 Score: 96.65%
+2025-04-05 04:54:48,247 - INFO - 
+文件: HB-20-1.h5
+2025-04-05 04:54:48,247 - INFO -   Mean IoU: 89.63%
+2025-04-05 04:54:48,248 - INFO -   Overall Accuracy: 95.11%
+2025-04-05 04:54:48,248 - INFO -   F1 Score: 95.11%
+2025-04-05 04:54:48,248 - INFO - 
+文件: HB-20-2.h5
+2025-04-05 04:54:48,248 - INFO -   Mean IoU: 92.12%
+2025-04-05 04:54:48,248 - INFO -   Overall Accuracy: 96.64%
+2025-04-05 04:54:48,249 - INFO -   F1 Score: 96.64%
+2025-04-05 04:54:48,249 - INFO - 
+文件: HB-8.h5
+2025-04-05 04:54:48,249 - INFO -   Mean IoU: 93.10%
+2025-04-05 04:54:48,249 - INFO -   Overall Accuracy: 96.48%
+2025-04-05 04:54:48,249 - INFO -   F1 Score: 96.48%
+2025-04-05 05:07:45,188 - INFO - Saved predicted result to experiments\exp_040402_shuto_E\predicted_las\predicted_HB-15-1.h5.las
+2025-04-05 05:21:58,329 - INFO - Saved predicted result to experiments\exp_040402_shuto_E\predicted_las\predicted_HB-15-2.h5.las
+2025-04-05 05:29:41,471 - INFO - Saved predicted result to experiments\exp_040402_shuto_E\predicted_las\predicted_HB-20-1.h5.las
+2025-04-05 05:38:30,537 - INFO - Saved predicted result to experiments\exp_040402_shuto_E\predicted_las\predicted_HB-20-2.h5.las
+2025-04-05 06:01:22,391 - INFO - Saved predicted result to experiments\exp_040402_shuto_E\predicted_las\predicted_HB-8.h5.las
+2025-04-05 06:01:22,391 - INFO - 所有可视化结果已保存至 experiments\exp_040402_shuto_E\visualization

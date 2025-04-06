@@ -15,7 +15,7 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from models.model import PointNet2
-from utils.BriPCDMulti import BriPCDMulti
+from utils.BriPCDMulti_new import BriPCDMulti
 from utils.logger_config import initialize_logger, get_logger
 
 # 配置参数
@@ -35,16 +35,10 @@ config = {
 def train():
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d%H%M')
-    case = 'brimulti_MultiSA_PN2'
+    case = 'CBdata_PN2'
     exp_dir = Path(f'experiments/exp_{timestamp}_{case}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
-    # wandb初始化
-    wandb.init(
-        project="bridge-segmentation",  # 你的项目名称
-        name=f"{timestamp}_{case}",     # 实验名称
-        config=config                    # 配置参数
-    )
 
     # 设置tensorboard和日志
     writer = SummaryWriter(exp_dir / 'tensorboard')
@@ -61,7 +55,7 @@ def train():
 
     # 创建数据加载器
     train_dataset = BriPCDMulti(
-        data_dir='../data/CB/section/train/',
+        data_dir='data/CB/all/train',
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -71,7 +65,7 @@ def train():
     logger.info('reading train data')
 
     val_dataset = BriPCDMulti(
-        data_dir='../data/CB/section/val/',
+        data_dir='data/CB/all/val/',
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -103,7 +97,6 @@ def train():
     # 创建模型
     num_classes = config['num_classes']
     model = PointNet2(num_classes).to(device)
-    wandb.watch(model)
 
     source_path = Path('models')
     destination_path = exp_dir / 'models'
@@ -272,22 +265,11 @@ def train():
         writer.add_scalar('Accuracy/train', train_acc.avg, epoch)
         writer.add_scalar('Accuracy/val', val_acc.avg, epoch)
 
-        # 记录到wandb
-        # wandb记录训练指标
-        wandb.log({
-            'epoch': epoch,
-            'train/loss': train_loss.avg,
-            'train/accuracy': train_acc.avg,
-            'val/loss': val_loss.avg,
-            'val/accuracy': val_acc.avg,
-            'learning_rate': current_lr,
-        })
 
         # 记录每个类别的准确率
         for i, acc in enumerate(class_acc):
             writer.add_scalar(f'Class_Accuracy/class_{i}', acc.item(), epoch)
             logger.info(f"Class {i} Accuracy: {acc.item() * 100:.2f}%")
-            wandb.log({f'class_accuracy/class_{i}': acc.item()}, step=epoch)
 
 
         # 保存最佳模型
@@ -316,8 +298,7 @@ def train():
         logger.info(f"Saved checkpoint at epoch {epoch}")
 
     writer.close()
-    # 关闭wandb
-    wandb.finish()
+
 
     logger.info("Training completed!")
 

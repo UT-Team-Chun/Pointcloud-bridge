@@ -1,0 +1,62 @@
+2025-04-01 23:15:07,040 - INFO - Using device: cuda
+2025-04-01 23:15:07,167 - INFO - Found 2 h5 files:
+2025-04-01 23:15:07,168 - INFO -   - cb6.h5
+2025-04-01 23:15:07,169 - INFO -   - cb9.h5
+2025-04-01 23:15:16,040 - INFO - Total blocks created: 9844
+2025-04-01 23:15:16,416 - INFO - Loaded model from experiments/exp_040103_brimulti_fukushima\best_model.pth
+2025-04-02 03:24:59,837 - INFO - 
+===== 全局评估结果 =====
+2025-04-02 03:24:59,838 - INFO - Mean IoU: 57.08%
+2025-04-02 03:24:59,839 - INFO - Overall Accuracy: 76.92%
+2025-04-02 03:24:59,839 - INFO - Mean Accuracy: 74.10%
+2025-04-02 03:24:59,839 - INFO - Precision: 79.69%
+2025-04-02 03:24:59,840 - INFO - Recall: 76.92%
+2025-04-02 03:24:59,840 - INFO - F1 Score: 78.28%
+2025-04-02 03:24:59,840 - INFO - Class 0 (Background) IoU: 32.01%
+2025-04-02 03:24:59,841 - INFO - Class 1 (Abumtment) IoU: 70.30%
+2025-04-02 03:24:59,841 - INFO - Class 2 (Girder) IoU: 47.13%
+2025-04-02 03:24:59,841 - INFO - Class 3 (Deck) IoU: 45.83%
+2025-04-02 03:24:59,841 - INFO - Class 4 (Parapet) IoU: 90.12%
+2025-04-02 03:24:59,841 - INFO - 
+文件: cb6.h5
+2025-04-02 03:24:59,841 - INFO -   Mean IoU: 48.50%
+2025-04-02 03:24:59,842 - INFO -   Overall Accuracy: 68.91%
+2025-04-02 03:24:59,842 - INFO -   F1 Score: 70.65%
+2025-04-02 03:24:59,842 - INFO - 
+文件: cb9.h5
+2025-04-02 03:24:59,842 - INFO -   Mean IoU: 68.17%
+2025-04-02 03:24:59,842 - INFO -   Overall Accuracy: 85.22%
+2025-04-02 03:24:59,842 - INFO -   F1 Score: 86.09%
+2025-04-02 04:13:44,267 - INFO - Saved predicted result to experiments\exp_040103_brimulti_fukushima\predicted_las\predicted_cb6.h5.las
+2025-04-02 05:05:11,468 - INFO - Saved predicted result to experiments\exp_040103_brimulti_fukushima\predicted_las\predicted_cb9.h5.las
+2025-04-02 05:05:11,468 - INFO - 所有可视化结果已保存至 experiments\exp_040103_brimulti_fukushima\visualization
+2025-04-02 12:08:47,937 - INFO - Using device: cuda
+2025-04-02 12:08:48,009 - INFO - Found 2 h5 files:
+2025-04-02 12:08:48,009 - INFO -   - bridge-2.h5
+2025-04-02 12:08:48,010 - INFO -   - bridge-7.h5
+2025-04-02 12:08:58,433 - INFO - Total blocks created: 2421
+2025-04-02 12:08:58,845 - INFO - Loaded model from experiments/exp_040103_brimulti_fukushima\best_model.pth
+2025-04-02 13:03:16,514 - INFO - 
+===== 全局评估结果 =====
+2025-04-02 13:03:16,515 - INFO - Mean IoU: 86.66%
+2025-04-02 13:03:16,515 - INFO - Overall Accuracy: 95.42%
+2025-04-02 13:03:16,515 - INFO - Mean Accuracy: 94.33%
+2025-04-02 13:03:16,516 - INFO - Precision: 96.11%
+2025-04-02 13:03:16,516 - INFO - Recall: 95.42%
+2025-04-02 13:03:16,517 - INFO - F1 Score: 95.76%
+2025-04-02 13:03:16,517 - INFO - Class 0 (Background) IoU: 61.87%
+2025-04-02 13:03:16,517 - INFO - Class 1 (Abumtment) IoU: 96.61%
+2025-04-02 13:03:16,517 - INFO - Class 2 (Girder) IoU: 85.08%
+2025-04-02 13:03:16,517 - INFO - Class 3 (Deck) IoU: 90.70%
+2025-04-02 13:03:16,517 - INFO - Class 4 (Parapet) IoU: 99.05%
+2025-04-02 13:03:16,517 - INFO - 
+文件: bridge-2.h5
+2025-04-02 13:03:16,518 - INFO -   Mean IoU: 59.36%
+2025-04-02 13:03:16,518 - INFO -   Overall Accuracy: 91.64%
+2025-04-02 13:03:16,518 - INFO -   F1 Score: 92.79%
+2025-04-02 13:03:16,518 - INFO - 
+文件: bridge-7.h5
+2025-04-02 13:03:16,518 - INFO -   Mean IoU: 93.13%
+2025-04-02 13:03:16,518 - INFO -   Overall Accuracy: 97.88%
+2025-04-02 13:03:16,518 - INFO -   F1 Score: 97.93%
+2025-04-02 13:14:38,981 - INFO - Saved predicted result to experiments\exp_040103_brimulti_fukushima\predicted_las\predicted_bridge-2.h5.las

@@ -1,0 +1,151 @@
+2025-02-10 00:37:25,976 - INFO - Using device: cuda
+2025-02-10 00:37:25,991 - INFO - Found 2 h5 files:
+2025-02-10 00:37:25,991 - INFO -   - cb6.h5
+2025-02-10 00:37:25,991 - INFO -   - cb9.h5
+2025-02-10 00:37:26,050 - INFO - Cache exists for cb6.h5, skipping preprocessing.
+2025-02-10 00:37:26,051 - INFO - Cache exists for cb9.h5, skipping preprocessing.
+2025-02-10 00:37:26,074 - INFO - Total blocks created: 3281
+2025-02-10 00:37:26,352 - INFO - Loaded model from experiments/OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class/best_model.pth
+2025-02-10 00:47:34,650 - INFO - Mean IoU: 96.58%
+2025-02-10 00:47:34,650 - INFO - Overall Accuracy: 98.39%
+2025-02-10 00:47:34,650 - INFO - Mean Accuracy: 98.31%
+2025-02-10 00:47:34,650 - INFO - Precision: 98.40%
+2025-02-10 00:47:34,650 - INFO - Recall: 98.39%
+2025-02-10 00:47:34,650 - INFO - F1 Score: 98.40%
+2025-02-10 00:47:34,650 - INFO - Class 0 IoU: 94.99%
+2025-02-10 00:47:34,650 - INFO - Class 1 IoU: 98.84%
+2025-02-10 00:47:34,650 - INFO - Class 2 IoU: 97.28%
+2025-02-10 00:47:34,650 - INFO - Class 3 IoU: 95.16%
+2025-02-10 00:47:34,650 - INFO - Class 4 IoU: 96.65%
+2025-03-30 18:30:30,223 - INFO - Using device: cuda
+2025-03-30 18:30:40,728 - INFO - Dataset initialized with 2 files and 6563 blocks
+2025-03-30 18:30:41,743 - INFO - Loaded model from experiments/OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\best_model.pth
+2025-03-30 18:34:24,614 - INFO - Using device: cuda
+2025-03-30 18:34:34,202 - INFO - Dataset initialized with 2 files and 9844 blocks
+2025-03-30 18:34:34,493 - INFO - Loaded model from experiments/OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\best_model.pth
+2025-03-30 18:38:00,545 - INFO - Using device: cuda
+2025-03-30 18:38:00,643 - INFO - Found 2 h5 files:
+2025-03-30 18:38:00,643 - INFO -   - cb6.h5
+2025-03-30 18:38:00,643 - INFO -   - cb9.h5
+2025-03-30 19:12:47,246 - INFO - Using device: cuda
+2025-03-30 19:12:47,294 - INFO - Found 2 h5 files:
+2025-03-30 19:12:47,294 - INFO -   - cb6.h5
+2025-03-30 19:12:47,295 - INFO -   - cb9.h5
+2025-03-30 19:12:55,617 - INFO - Total blocks created: 6342
+2025-03-30 19:12:55,879 - INFO - Loaded model from experiments/OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\best_model.pth
+2025-03-30 21:14:25,659 - INFO - 
+===== 全局评估结果 =====
+2025-03-30 21:14:25,659 - INFO - Mean IoU: 64.13%
+2025-03-30 21:14:25,659 - INFO - Overall Accuracy: 75.92%
+2025-03-30 21:14:25,659 - INFO - Mean Accuracy: 74.72%
+2025-03-30 21:14:25,659 - INFO - Precision: 85.29%
+2025-03-30 21:14:25,660 - INFO - Recall: 75.92%
+2025-03-30 21:14:25,660 - INFO - F1 Score: 80.33%
+2025-03-30 21:14:25,660 - INFO - Class 0 (Background) IoU: 53.21%
+2025-03-30 21:14:25,661 - INFO - Class 1 (Pier) IoU: 73.30%
+2025-03-30 21:14:25,661 - INFO - Class 2 (Girder) IoU: 46.18%
+2025-03-30 21:14:25,661 - INFO - Class 3 (Deck) IoU: 56.14%
+2025-03-30 21:14:25,661 - INFO - Class 4 (Parapet) IoU: 91.83%
+2025-03-30 21:14:25,661 - INFO - 
+文件: cb6.h5
+2025-03-30 21:14:25,661 - INFO -   Mean IoU: 67.18%
+2025-03-30 21:14:25,661 - INFO -   Overall Accuracy: 77.75%
+2025-03-30 21:14:25,661 - INFO -   F1 Score: 81.83%
+2025-03-30 21:14:25,661 - INFO - 
+文件: cb9.h5
+2025-03-30 21:14:25,661 - INFO -   Mean IoU: 61.47%
+2025-03-30 21:14:25,662 - INFO -   Overall Accuracy: 74.02%
+2025-03-30 21:14:25,662 - INFO -   F1 Score: 78.78%
+2025-03-30 21:26:46,412 - INFO - Using device: cuda
+2025-03-30 21:26:46,461 - INFO - Found 2 h5 files:
+2025-03-30 21:26:46,461 - INFO -   - cb6.h5
+2025-03-30 21:26:46,461 - INFO -   - cb9.h5
+2025-03-30 21:26:54,838 - INFO - Total blocks created: 6342
+2025-03-30 21:26:55,093 - INFO - Loaded model from experiments/OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\best_model.pth
+2025-03-30 23:30:32,081 - INFO - 
+===== 全局评估结果 =====
+2025-03-30 23:30:32,082 - INFO - Mean IoU: 64.15%
+2025-03-30 23:30:32,082 - INFO - Overall Accuracy: 75.93%
+2025-03-30 23:30:32,082 - INFO - Mean Accuracy: 74.72%
+2025-03-30 23:30:32,082 - INFO - Precision: 85.31%
+2025-03-30 23:30:32,082 - INFO - Recall: 75.93%
+2025-03-30 23:30:32,082 - INFO - F1 Score: 80.35%
+2025-03-30 23:30:32,083 - INFO - Class 0 (Background) IoU: 53.21%
+2025-03-30 23:30:32,083 - INFO - Class 1 (Pier) IoU: 73.36%
+2025-03-30 23:30:32,083 - INFO - Class 2 (Girder) IoU: 46.18%
+2025-03-30 23:30:32,083 - INFO - Class 3 (Deck) IoU: 56.14%
+2025-03-30 23:30:32,083 - INFO - Class 4 (Parapet) IoU: 91.84%
+2025-03-30 23:30:32,083 - INFO - 
+文件: cb6.h5
+2025-03-30 23:30:32,083 - INFO -   Mean IoU: 67.17%
+2025-03-30 23:30:32,083 - INFO -   Overall Accuracy: 77.75%
+2025-03-30 23:30:32,083 - INFO -   F1 Score: 81.82%
+2025-03-30 23:30:32,083 - INFO - 
+文件: cb9.h5
+2025-03-30 23:30:32,083 - INFO -   Mean IoU: 61.51%
+2025-03-30 23:30:32,083 - INFO -   Overall Accuracy: 74.04%
+2025-03-30 23:30:32,083 - INFO -   F1 Score: 78.82%
+2025-03-30 23:45:01,324 - INFO - Using device: cuda
+2025-03-30 23:45:01,374 - INFO - Found 2 h5 files:
+2025-03-30 23:45:01,375 - INFO -   - cb6.h5
+2025-03-30 23:45:01,375 - INFO -   - cb9.h5
+2025-03-31 01:43:16,367 - INFO - Total blocks created: 9844
+2025-03-31 01:43:16,644 - INFO - Loaded model from experiments/OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\best_model.pth
+2025-03-31 04:53:35,699 - INFO - 
+===== 全局评估结果 =====
+2025-03-31 04:53:35,701 - INFO - Mean IoU: 96.59%
+2025-03-31 04:53:35,701 - INFO - Overall Accuracy: 98.39%
+2025-03-31 04:53:35,701 - INFO - Mean Accuracy: 98.31%
+2025-03-31 04:53:35,701 - INFO - Precision: 98.41%
+2025-03-31 04:53:35,701 - INFO - Recall: 98.39%
+2025-03-31 04:53:35,701 - INFO - F1 Score: 98.40%
+2025-03-31 04:53:35,701 - INFO - Class 0 (Background) IoU: 94.99%
+2025-03-31 04:53:35,701 - INFO - Class 1 (Pier) IoU: 98.84%
+2025-03-31 04:53:35,701 - INFO - Class 2 (Girder) IoU: 97.27%
+2025-03-31 04:53:35,702 - INFO - Class 3 (Deck) IoU: 95.19%
+2025-03-31 04:53:35,702 - INFO - Class 4 (Parapet) IoU: 96.66%
+2025-03-31 04:53:35,702 - INFO - 
+文件: cb6.h5
+2025-03-31 04:53:35,702 - INFO -   Mean IoU: 97.15%
+2025-03-31 04:53:35,702 - INFO -   Overall Accuracy: 98.63%
+2025-03-31 04:53:35,702 - INFO -   F1 Score: 98.64%
+2025-03-31 04:53:35,702 - INFO - 
+文件: cb9.h5
+2025-03-31 04:53:35,702 - INFO -   Mean IoU: 96.02%
+2025-03-31 04:53:35,702 - INFO -   Overall Accuracy: 98.15%
+2025-03-31 04:53:35,702 - INFO -   F1 Score: 98.16%
+2025-03-31 05:31:33,821 - INFO - Saved predicted result to experiments\OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\predicted_las\predicted_cb6.h5.las
+2025-03-31 06:09:32,931 - INFO - Saved predicted result to experiments\OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\predicted_las\predicted_cb9.h5.las
+2025-03-31 06:09:32,932 - INFO - 所有可视化结果已保存至 experiments\OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\visualization
+2025-03-31 13:52:19,644 - INFO - Using device: cuda
+2025-03-31 13:52:19,692 - INFO - Found 2 h5 files:
+2025-03-31 13:52:19,693 - INFO -   - cb6.h5
+2025-03-31 13:52:19,693 - INFO -   - cb9.h5
+2025-03-31 13:52:30,101 - INFO - Total blocks created: 9844
+2025-03-31 13:52:30,344 - INFO - Loaded model from experiments/OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\best_model.pth
+2025-03-31 17:02:07,495 - INFO - 
+===== 全局评估结果 =====
+2025-03-31 17:02:07,496 - INFO - Mean IoU: 96.58%
+2025-03-31 17:02:07,496 - INFO - Overall Accuracy: 98.39%
+2025-03-31 17:02:07,496 - INFO - Mean Accuracy: 98.31%
+2025-03-31 17:02:07,496 - INFO - Precision: 98.40%
+2025-03-31 17:02:07,496 - INFO - Recall: 98.39%
+2025-03-31 17:02:07,496 - INFO - F1 Score: 98.40%
+2025-03-31 17:02:07,496 - INFO - Class 0 (Background) IoU: 94.96%
+2025-03-31 17:02:07,496 - INFO - Class 1 (Pier) IoU: 98.84%
+2025-03-31 17:02:07,496 - INFO - Class 2 (Girder) IoU: 97.26%
+2025-03-31 17:02:07,496 - INFO - Class 3 (Deck) IoU: 95.18%
+2025-03-31 17:02:07,496 - INFO - Class 4 (Parapet) IoU: 96.65%
+2025-03-31 17:02:07,496 - INFO - 
+文件: cb6.h5
+2025-03-31 17:02:07,496 - INFO -   Mean IoU: 97.14%
+2025-03-31 17:02:07,496 - INFO -   Overall Accuracy: 98.62%
+2025-03-31 17:02:07,496 - INFO -   F1 Score: 98.63%
+2025-03-31 17:02:07,496 - INFO - 
+文件: cb9.h5
+2025-03-31 17:02:07,496 - INFO -   Mean IoU: 96.00%
+2025-03-31 17:02:07,498 - INFO -   Overall Accuracy: 98.14%
+2025-03-31 17:02:07,498 - INFO -   F1 Score: 98.15%
+2025-03-31 17:41:25,016 - INFO - Saved predicted result to experiments\OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\predicted_las\predicted_cb6.h5.las
+2025-03-31 18:21:19,834 - INFO - Saved predicted result to experiments\OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\predicted_las\predicted_cb9.h5.las
+2025-03-31 18:21:19,834 - INFO - 所有可视化结果已保存至 experiments\OK_miou96_5_exp_020818_brimulti_brienc_CB_sec_5class\visualization

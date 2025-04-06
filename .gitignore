@@ -12,3 +12,6 @@ SkyNet_SOL_newidea/data/
 Highway_bridge/cache/
 Highway_bridge/utils/cache/
 Highway_bridge/wandb/
+*.h5.pdf
+*.h5
+*.h5.png

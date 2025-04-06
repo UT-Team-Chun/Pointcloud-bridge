@@ -1,0 +1,64 @@
+2025-04-02 14:06:47,889 - INFO - Training configuration:
+2025-04-02 14:06:47,889 - INFO - num_points: 4096
+2025-04-02 14:06:47,890 - INFO - chunk_size: 4096
+2025-04-02 14:06:47,890 - INFO - overlap: 1024
+2025-04-02 14:06:47,890 - INFO - batch_size: 16
+2025-04-02 14:06:47,890 - INFO - num_workers: 6
+2025-04-02 14:06:47,890 - INFO - learning_rate: 0.001
+2025-04-02 14:06:47,892 - INFO - num_classes: 5
+2025-04-02 14:06:47,892 - INFO - num_epochs: 200
+2025-04-02 14:06:47,892 - INFO - device: cuda
+2025-04-02 14:06:47,892 - INFO - Using device: cuda
+2025-04-02 14:06:47,893 - INFO - Found 6 h5 files:
+2025-04-02 14:06:47,893 - INFO -   - bridge-1.h5
+2025-04-02 14:06:47,894 - INFO -   - bridge-3.h5
+2025-04-02 14:06:47,894 - INFO -   - bridge-4.h5
+2025-04-02 14:06:47,894 - INFO -   - bridge-5.h5
+2025-04-02 14:06:47,895 - INFO -   - bridge-7.h5
+2025-04-02 14:06:47,895 - INFO -   - bridge-8.h5
+2025-04-02 14:36:15,827 - ERROR - Training failed with exception:
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\multiprocessing\pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\multiprocessing\pool.py", line 48, in mapstar
+    return list(map(*args))
+           ^^^^^^^^^^^^^^^^
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\utils\BriPCDMulti_new.py", line 113, in _preprocess_file
+    points, colors, labels = self._load_hdf5_file(filename)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\utils\BriPCDMulti_new.py", line 89, in _load_hdf5_file
+    colors = np.array(f['colors'])
+                      ~^^^^^^^^^^
+  File "h5py\\_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py\\_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\site-packages\h5py\_hl\group.py", line 357, in __getitem__
+    oid = h5o.open(self.id, self._e(name), lapl=self._lapl)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py\\_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py\\_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py\\h5o.pyx", line 257, in h5py.h5o.open
+KeyError: "Unable to synchronously open object (object 'colors' doesn't exist)"
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 415, in <module>
+    train()
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_BriStruNet_CB.py", line 72, in train
+    train_dataset = BriPCDMulti(
+                    ^^^^^^^^^^^^
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\utils\BriPCDMulti_new.py", line 51, in __init__
+    self._preprocess_files(cache_id)
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\utils\BriPCDMulti_new.py", line 148, in _preprocess_files
+    results = pool.map(self._preprocess_file, all_args)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\multiprocessing\pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cy519\anaconda3\envs\pytorch\Lib\multiprocessing\pool.py", line 774, in get
+    raise self._value
+KeyError: "Unable to synchronously open object (object 'colors' doesn't exist)"
