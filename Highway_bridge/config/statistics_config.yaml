@@ -1,7 +1,7 @@
 
 # path
-data_directory: "data/all/"
-output_directory: "data/all/statistics"
+data_directory: "data/fukushima/onepart/voxel_2/"
+output_directory: "data/fukushima/onepart/voxel_2/statistics"
 csv_filename: "bridge_statistics.csv"
 
 # visualization settings

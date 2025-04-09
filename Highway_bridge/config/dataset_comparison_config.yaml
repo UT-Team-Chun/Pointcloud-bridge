@@ -1,0 +1,15 @@
+
+# path
+data_directory: "data/statistical/"
+output_directory: "data/statistical/dataset_comparison"
+visualization_dpi: 300
+figure_width: 12
+figure_height: 8
+visualization_colors:
+  - "#4477AA"
+  - "#66CCEE"
+  - "#228833"
+  - "#CCBB44"
+  - "#EE6677"
+  - "#AA3377"
+  - "#BBBBBB"

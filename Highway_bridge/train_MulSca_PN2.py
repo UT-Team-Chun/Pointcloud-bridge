@@ -27,7 +27,7 @@ config = {
     'num_workers': 0,
     'learning_rate': 0.001,
     'num_classes': 5,
-    'num_epochs': 500,
+    'num_epochs': 100,
     'device': 'cuda' if torch.cuda.is_available() else 'cpu'
 }
 #{noise:0, abutment:1, girder:2, slab:3, parapet:4}
@@ -55,7 +55,7 @@ def train():
 
     # 创建数据加载器
     train_dataset = BriPCDMulti(
-        data_dir='data/CB/all/train',
+        data_dir='data/all/train',
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -65,7 +65,7 @@ def train():
     logger.info('reading train data')
 
     val_dataset = BriPCDMulti(
-        data_dir='data/CB/all/val/',
+        data_dir='data/all/val/',
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -104,7 +104,6 @@ def train():
     shutil.copytree(source_path, destination_path)
     shutil.copytree(utils_path, exp_dir / 'utils')
     shutil.copy2('train_MulSca_PN2.py', exp_dir/'train_MulSca_PN2.py')
-    #model = PointNet2(num_classes).to(device)
 
     # 损失函数和优化器
     criterion = nn.CrossEntropyLoss()

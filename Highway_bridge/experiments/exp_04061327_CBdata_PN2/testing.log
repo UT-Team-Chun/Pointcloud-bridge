@@ -1,0 +1,37 @@
+2025-04-07 12:35:53,912 - INFO - Using device: cuda
+2025-04-07 12:35:53,951 - INFO - Found 2 h5 files:
+2025-04-07 12:35:53,951 - INFO -   - cb6.h5
+2025-04-07 12:35:53,952 - INFO -   - cb9.h5
+2025-04-07 12:36:02,663 - INFO - Total blocks created: 6563
+2025-04-07 12:37:28,713 - INFO - Using device: cuda
+2025-04-07 12:37:28,745 - INFO - Found 2 h5 files:
+2025-04-07 12:37:28,745 - INFO -   - cb6.h5
+2025-04-07 12:37:28,745 - INFO -   - cb9.h5
+2025-04-07 12:37:37,753 - INFO - Total blocks created: 6563
+2025-04-07 12:37:37,996 - INFO - Loaded model from experiments/exp_04061327_CBdata_PN2\best_model.pth
+2025-04-07 14:43:13,298 - INFO - 
+===== 全局评估结果 =====
+2025-04-07 14:43:13,298 - INFO - Mean IoU: 95.65%
+2025-04-07 14:43:13,298 - INFO - Overall Accuracy: 97.69%
+2025-04-07 14:43:13,298 - INFO - Mean Accuracy: 97.70%
+2025-04-07 14:43:13,298 - INFO - Precision: 97.70%
+2025-04-07 14:43:13,300 - INFO - Recall: 97.69%
+2025-04-07 14:43:13,300 - INFO - F1 Score: 97.70%
+2025-04-07 14:43:13,300 - INFO - Class 0 (Background) IoU: 96.11%
+2025-04-07 14:43:13,300 - INFO - Class 1 (Pier) IoU: 98.82%
+2025-04-07 14:43:13,300 - INFO - Class 2 (Girder) IoU: 94.61%
+2025-04-07 14:43:13,300 - INFO - Class 3 (Deck) IoU: 93.51%
+2025-04-07 14:43:13,300 - INFO - Class 4 (Parapet) IoU: 95.17%
+2025-04-07 14:43:13,300 - INFO - 
+文件: cb6.h5
+2025-04-07 14:43:13,300 - INFO -   Mean IoU: 95.90%
+2025-04-07 14:43:13,300 - INFO -   Overall Accuracy: 97.83%
+2025-04-07 14:43:13,300 - INFO -   F1 Score: 97.83%
+2025-04-07 14:43:13,300 - INFO - 
+文件: cb9.h5
+2025-04-07 14:43:13,300 - INFO -   Mean IoU: 95.39%
+2025-04-07 14:43:13,300 - INFO -   Overall Accuracy: 97.55%
+2025-04-07 14:43:13,300 - INFO -   F1 Score: 97.56%
+2025-04-07 15:09:54,863 - INFO - Saved predicted result to experiments\exp_04061327_CBdata_PN2\predicted_las\predicted_cb6.h5.las
+2025-04-07 15:36:19,363 - INFO - Saved predicted result to experiments\exp_04061327_CBdata_PN2\predicted_las\predicted_cb9.h5.las
+2025-04-07 15:36:19,363 - INFO - 所有可视化结果已保存至 experiments\exp_04061327_CBdata_PN2\visualization

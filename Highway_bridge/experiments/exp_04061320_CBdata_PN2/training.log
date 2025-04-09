@@ -1,0 +1,21 @@
+2025-04-06 13:20:49,763 - INFO - Training configuration:
+2025-04-06 13:20:49,764 - INFO - num_points: 4096
+2025-04-06 13:20:49,764 - INFO - chunk_size: 4096
+2025-04-06 13:20:49,764 - INFO - overlap: 1024
+2025-04-06 13:20:49,764 - INFO - batch_size: 16
+2025-04-06 13:20:49,764 - INFO - num_workers: 0
+2025-04-06 13:20:49,764 - INFO - learning_rate: 0.001
+2025-04-06 13:20:49,764 - INFO - num_classes: 5
+2025-04-06 13:20:49,764 - INFO - num_epochs: 500
+2025-04-06 13:20:49,764 - INFO - device: cuda
+2025-04-06 13:20:49,764 - INFO - Using device: cuda
+2025-04-06 13:20:49,765 - ERROR - Training failed with exception:
+Traceback (most recent call last):
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_PN2.py", line 358, in <module>
+    train()
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\train_MulSca_PN2.py", line 57, in train
+    train_dataset = BriPCDMulti(
+                    ^^^^^^^^^^^^
+  File "d:\Work\Pointcloud-WL\Pointcloud-bridge\Highway_bridge\utils\BriPCDMulti_new.py", line 44, in __init__
+    raise ValueError(f"No .h5 files found in {data_dir}")
+ValueError: No .h5 files found in data/CB/all/train

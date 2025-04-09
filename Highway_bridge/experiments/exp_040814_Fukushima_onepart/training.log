@@ -1,0 +1,22 @@
+2025-04-08 14:30:50,344 - INFO - Training configuration:
+2025-04-08 14:30:50,344 - INFO - num_points: 4096
+2025-04-08 14:30:50,344 - INFO - chunk_size: 4096
+2025-04-08 14:30:50,344 - INFO - overlap: 1024
+2025-04-08 14:30:50,344 - INFO - batch_size: 16
+2025-04-08 14:30:50,345 - INFO - num_workers: 6
+2025-04-08 14:30:50,345 - INFO - learning_rate: 0.001
+2025-04-08 14:30:50,345 - INFO - num_classes: 5
+2025-04-08 14:30:50,345 - INFO - num_epochs: 200
+2025-04-08 14:30:50,345 - INFO - device: cuda
+2025-04-08 14:30:50,345 - INFO - Using device: cuda
+2025-04-08 14:30:50,346 - INFO - Found 6 h5 files:
+2025-04-08 14:30:50,346 - INFO -   - bridge-1.h5
+2025-04-08 14:30:50,346 - INFO -   - bridge-2.h5
+2025-04-08 14:30:50,346 - INFO -   - bridge-4.h5
+2025-04-08 14:30:50,346 - INFO -   - bridge-6.h5
+2025-04-08 14:30:50,346 - INFO -   - bridge-8.h5
+2025-04-08 14:30:50,346 - INFO -   - bridge-9.h5
+2025-04-08 15:11:01,788 - INFO - Total blocks created: 8379
+2025-04-08 15:11:01,791 - INFO - Found 2 h5 files:
+2025-04-08 15:11:01,791 - INFO -   - bridge-3.h5
+2025-04-08 15:11:01,791 - INFO -   - bridge-7.h5

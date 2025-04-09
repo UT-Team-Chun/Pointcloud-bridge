@@ -246,8 +246,8 @@ def process_directory(input_dir, output_dir):
 if __name__ == "__main__":
     
     
-    input_folder = 'data/shuto-E/raw_8c'
-    output_folder = 'data/shuto-E/down_8c_voxel005'
+    input_folder = 'data/fukushima/onepart/voxel_2/raw'
+    output_folder = 'data/fukushima/onepart/voxel_2/train'
     voxel_size = 0.02
 
     # 分析点云密度
@@ -258,8 +258,8 @@ if __name__ == "__main__":
     voxel_downsample_las(input_folder, output_folder, voxel_size)
 
     # 执行标签转换
-    print("\n===== 标签转换 =====")
-    input_dir = output_folder
-    output_dir = 'data/shuto-E/down_5c'
+    #print("\n===== 标签转换 =====")
+    #input_dir = output_folder
+    #output_dir = 'data/shuto-E/down_5c'
 
-    process_directory(input_dir, output_dir)
+    #process_directory(input_dir, output_dir)
