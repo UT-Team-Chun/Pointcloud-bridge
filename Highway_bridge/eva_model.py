@@ -297,7 +297,7 @@ def create_visualizations(df, output_dir='visualization_results'):
                  df_radar.iloc[i]['training_norm']]
         values += values[:1]  # 闭合雷达图
         ax.plot(angles, values, linewidth=1.5, linestyle='solid', label=model, color=colors[i % len(colors)])
-        ax.fill(angles, values, color=colors[i % len(colors)], alpha=0.25)
+        ax.fill(angles, values, color=colors[i % len(colors)], alpha=0.3)
     
     ax.set_rlabel_position(0)
     ax.set_rticks([0.25, 0.5, 0.75])
@@ -320,11 +320,11 @@ def main():
     print(f"Using device: {device}")
     
     # 调整数据集和模型参数，避免内存和批次大小错误问题
-    batch_size = 2  # 保持较小的批次大小
+    batch_size = 4  # 保持较小的批次大小
     num_points = 1024  # 减少点数量，避免内存问题
     num_classes = 5
     
-    dataset = RandomPointCloudDataset(num_samples=10, num_points=num_points, num_classes=num_classes)
+    dataset = RandomPointCloudDataset(num_samples=20, num_points=num_points, num_classes=num_classes)
     dataloader = DataLoader(
         dataset,
         batch_size=batch_size,
