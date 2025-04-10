@@ -12,9 +12,10 @@ from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 from pathlib import Path
 from models.model import EnhancedPointNet2, PointNet2
-from models.model import PointNetSeg, DGCNN
 from models.spg import SuperpointGraph
 from models.RandLANet import RandLANet
+from models.pointnet import PointNetSeg
+from models.DGCNN import DGCNN
 import pandas as pd
 import matplotlib
 import gc
@@ -22,8 +23,8 @@ import psutil
 
 # 设置更好的字体和风格，以适合SCI论文的可视化效果
 plt.rcParams['font.family'] = 'Arial'
-plt.rcParams['font.size'] = 9
-plt.rcParams['axes.linewidth'] = 0.8
+plt.rcParams['font.size'] = 14
+plt.rcParams['axes.linewidth'] = 1
 plt.rcParams['xtick.major.width'] = 0.8
 plt.rcParams['ytick.major.width'] = 0.8
 plt.rcParams['xtick.minor.width'] = 0.6
@@ -114,7 +115,7 @@ def evaluate_model(model, model_name, dataloader, device, num_classes=5, num_poi
         if torch.cuda.is_available():
             torch.cuda.synchronize()
         start_time = time.time()
-        for _ in range(100):  # 多次测量以获得更准确的结果
+        for _ in range(50):  # 多次测量以获得更准确的结果
             _ = model(xyz, features)
             num_batches += 1
         if torch.cuda.is_available():
@@ -319,11 +320,11 @@ def main():
     print(f"Using device: {device}")
     
     # 调整数据集和模型参数，避免内存和批次大小错误问题
-    batch_size = 4  # 保持较小的批次大小
+    batch_size = 2  # 保持较小的批次大小
     num_points = 1024  # 减少点数量，避免内存问题
     num_classes = 5
     
-    dataset = RandomPointCloudDataset(num_samples=50, num_points=num_points, num_classes=num_classes)
+    dataset = RandomPointCloudDataset(num_samples=10, num_points=num_points, num_classes=num_classes)
     dataloader = DataLoader(
         dataset,
         batch_size=batch_size,
@@ -353,12 +354,13 @@ def main():
         print("成功初始化 PointNet2")
     except Exception as e:
         print(f"初始化 PointNet2 失败: {e}")
-        
+
     try:
-        models.append((EnhancedPointNet2(num_classes=num_classes), "BridgeSeg"))
-        print("成功初始化 BridgeSeg")
+        # 添加新的SPG模型
+        models.append((SuperpointGraph(num_classes, input_channels=3), "SPG"))
+        print("成功初始化 SPG")
     except Exception as e:
-        print(f"初始化 BridgeSeg 失败: {e}")
+        print(f"初始化 SPG 失败: {str(e)}")
     
     try:
         # 使用正确实现的RandLANet
@@ -366,13 +368,13 @@ def main():
         print("成功初始化 RandLA-Net")
     except Exception as e:
         print(f"初始化 RandLA-Net 失败: {str(e)}")
-        
+    
     try:
-        # 添加新的SPG模型
-        models.append((SuperpointGraph(num_classes, input_channels=3), "SPG"))
-        print("成功初始化 SPG")
+        models.append((EnhancedPointNet2(num_classes=num_classes), "BridgeSeg"))
+        print("成功初始化 BridgeSeg")
     except Exception as e:
-        print(f"初始化 SPG 失败: {str(e)}")
+        print(f"初始化 BridgeSeg 失败: {e}")
+
     
     # 评估所有模型
     results = []

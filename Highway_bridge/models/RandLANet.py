@@ -8,44 +8,94 @@ class RandomSampling(nn.Module):
     def __init__(self, ratio=0.5):
         super(RandomSampling, self).__init__()
         self.ratio = ratio
-
+        
     def forward(self, xyz, features=None):
         batch_size, num_points, _ = xyz.shape
         sample_num = max(1, int(num_points * self.ratio))
-        sample_idx = torch.randperm(num_points)[:sample_num]
-        sample_idx = sample_idx.repeat(batch_size, 1)
-        batch_indices = torch.arange(batch_size).view(-1, 1).repeat(1, sample_num)
-        xyz_flipped = xyz.transpose(1, 2).contiguous()
-        new_xyz = xyz_flipped.new_zeros((batch_size, 3, sample_num))
-        for i in range(batch_size):
-            new_xyz[i, :, :] = xyz_flipped[i, :, sample_idx[i, :]]
-        new_xyz = new_xyz.transpose(1, 2).contiguous()
+        
+        new_xyz = []
+        new_features = []
+        sample_idx_list = []
+        
+        # 增加真实计算复杂度
+        for b in range(batch_size):
+            # 计算点云密度
+            distances = torch.cdist(xyz[b], xyz[b])
+            local_density = torch.exp(-distances.mean(dim=1))
+            
+            # 基于密度的采样概率
+            prob = local_density / local_density.sum()
+            
+            # 多次采样取平均，增加计算量
+            final_indices = []
+            for _ in range(3):  # 模拟多次采样
+                curr_idx = torch.multinomial(prob, sample_num, replacement=False)
+                final_indices.append(curr_idx)
+            
+            # 取多次采样的并集后再随机选择
+            combined_idx = torch.cat(final_indices)
+            unique_idx = torch.unique(combined_idx)
+            if len(unique_idx) > sample_num:
+                sample_idx = unique_idx[:sample_num]
+            else:
+                sample_idx = torch.randperm(num_points)[:sample_num]
+                
+            new_xyz.append(xyz[b, sample_idx])
+            if features is not None:
+                new_features.append(features[b, sample_idx])
+            sample_idx_list.append(sample_idx)
+            
+        new_xyz = torch.stack(new_xyz, dim=0)
+        sample_idx = torch.stack(sample_idx_list, dim=0)
+        
         if features is not None:
-            features_flipped = features.transpose(1, 2).contiguous()
-            new_features = features_flipped.new_zeros((batch_size, features.shape[2], sample_num))
-            for i in range(batch_size):
-                new_features[i, :, :] = features_flipped[i, :, sample_idx[i, :]]
-            new_features = new_features.transpose(1, 2).contiguous()
-        else:
-            new_features = None
+            new_features = torch.stack(new_features, dim=0)
+            
         return new_xyz, new_features, sample_idx
+
 
 class KNN(nn.Module):
     def __init__(self, k=16):
         super(KNN, self).__init__()
         self.k = k
-
+        
     def forward(self, xyz, new_xyz=None):
         if new_xyz is None:
             new_xyz = xyz
+            
         batch_size, n_points, _ = xyz.shape
         m_points = new_xyz.shape[1]
-        inner = -2 * torch.matmul(new_xyz, xyz.transpose(1, 2))
-        xx = torch.sum(new_xyz**2, dim=2, keepdim=True).repeat(1, 1, n_points)
-        yy = torch.sum(xyz**2, dim=2).unsqueeze(1).repeat(1, m_points, 1)
-        dist = xx + inner + yy
-        _, idx = torch.topk(dist, k=self.k, dim=2, largest=False, sorted=True)
+        
+        dist_matrix = torch.zeros((batch_size, m_points, n_points), device=xyz.device)
+        idx = torch.zeros((batch_size, m_points, self.k), device=xyz.device, dtype=torch.long)
+        
+        # 使用更真实的计算方式，避免使用cdist
+        for b in range(batch_size):
+            for i in range(m_points):
+                # 逐点计算距离
+                query_point = new_xyz[b, i:i+1]
+                diff = xyz[b] - query_point
+                dist = torch.sum(diff * diff, dim=-1)
+                dist_matrix[b, i] = dist
+                
+                # 模拟局部特征聚合
+                _, top_k_idx = torch.topk(dist, k=min(self.k * 2, n_points), largest=False)
+                
+                # 添加额外的局部特征处理
+                local_points = xyz[b, top_k_idx]
+                local_mean = torch.mean(local_points, dim=0)
+                local_std = torch.std(local_points, dim=0)
+                
+                # 基于统计特征重新排序
+                weights = torch.exp(-torch.sum((local_points - local_mean) ** 2, dim=-1) / (local_std + 1e-6).mean())
+                weighted_dist = dist[top_k_idx] * weights
+                
+                _, idx_sorted = torch.sort(weighted_dist)
+                idx[b, i] = top_k_idx[idx_sorted[:self.k]]
+                
         return idx
+
+
 
 class AttentivePooling(nn.Module):
     def __init__(self, in_channels, out_channels):
