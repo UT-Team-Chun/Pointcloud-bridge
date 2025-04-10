@@ -698,26 +698,26 @@ class ColorFeatureExtraction(nn.Module):
             nn.Conv1d(in_channels, 16, 1),
             nn.BatchNorm1d(16),
             nn.ReLU(),
-            nn.Conv1d(16, out_channels, 1),
-            nn.BatchNorm1d(out_channels),
+            nn.Conv1d(16, 32, 1),
+            nn.BatchNorm1d(32),
             nn.ReLU()
         )
 
         # 颜色注意力机制
         self.color_attention = nn.Sequential(
-            nn.Conv1d(out_channels, out_channels, 1),
-            nn.BatchNorm1d(out_channels),
+            nn.Conv1d(32, 32, 1),
+            nn.BatchNorm1d(32),
             nn.ReLU(),
-            nn.Conv1d(out_channels, out_channels, 1),
+            nn.Conv1d(32, 32, 1),
             nn.Sigmoid()
         )
 
         # 颜色上下文编码
         self.color_context = nn.Sequential(
             nn.AdaptiveAvgPool1d(1),
-            nn.Conv1d(out_channels, out_channels // 2, 1),
+            nn.Conv1d(32, 16, 1),
             nn.ReLU(),
-            nn.Conv1d(out_channels // 2, out_channels, 1),
+            nn.Conv1d(16, 32, 1),
             nn.Sigmoid()
         )
 

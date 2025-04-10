@@ -58,13 +58,13 @@ class PointNet2(nn.Module):
 class EnhancedPointNet2(nn.Module):
     def __init__(self, num_classes=5):
         super(EnhancedPointNet2, self).__init__()
-        input_ch = 3
-        #self.pos_encoding = EnhancedPositionalEncoding(input_ch, 4, 64,)
+        input_ch = 29
+        self.pos_encoding = EnhancedPositionalEncoding(input_ch, 4, 64,)
         self.bri_enc = BridgeStructureEncoding(input_ch, 32, 4)
 
         # 颜色特征处理模块
-        self.color_encoder = ColorFeatureExtraction(3, 6)
-        self.feature_fusion = CompositeFeatureFusion(input_ch, 6)
+        self.color_encoder = ColorFeatureExtraction(3, 32)
+        self.feature_fusion = CompositeFeatureFusion(input_ch, 32)
 
         in_chanel = input_ch + 3 # 3(xyz) + 3(RGB)
 
@@ -126,7 +126,7 @@ class EnhancedPointNet2(nn.Module):
 
         # Encoder with multi-scale feature extraction
         l1_xyz, l1_features = self.sa1(xyz, fused_features)   #[B,70,N] -> [B, 128, N]
-        #l1_features = self.geometric1(l1_features, l1_xyz)
+        l1_features = self.geometric1(l1_features, l1_xyz)
 
         l2_xyz, l2_features = self.sa2(l1_xyz, l1_features)
         l2_features = self.geometric2(l2_features, l2_xyz)
@@ -307,27 +307,20 @@ class PointNetSeg(nn.Module):
         self.conv2 = nn.Conv1d(64, 128, 1)
         self.conv3 = nn.Conv1d(128, 256, 1)
         self.conv4 = nn.Conv1d(256, 512, 1)
-        self.conv5 = nn.Conv1d(512, 2048, 1)  # 添加回这一层
+        #self.conv5 = nn.Conv1d(512, 2048, 1)
         
         self.bn1 = nn.BatchNorm1d(64)
         self.bn2 = nn.BatchNorm1d(128)
         self.bn3 = nn.BatchNorm1d(256)
         self.bn4 = nn.BatchNorm1d(512)
-        self.bn5 = nn.BatchNorm1d(2048)  # 添加回这一层
+        #self.bn5 = nn.BatchNorm1d(2048)
         
-        self.fc1 = nn.Linear(2048, 512)  # 修正输入维度
-        self.fc2 = nn.Linear(512, 256)
-        self.fc3 = nn.Linear(256, num_classes)  # 修正输入维度
+        self.fc1 = nn.Linear(512, 256)
+        self.fc2 = nn.Linear(256, 128)
+        self.fc3 = nn.Linear(64, num_classes)
         self.dropout = nn.Dropout(p=0.3)
-        self.bn6 = nn.BatchNorm1d(512)
-        self.bn7 = nn.BatchNorm1d(256)
-
-        self.mlp_64 = nn.Sequential(
-            nn.Conv1d(64, 64, 1),  # 修改输入通道数为 in_channels + 3
-            nn.BatchNorm1d(64),
-            nn.ReLU(),
-            nn.Conv1d(64, 64, 1)
-            )
+        self.bn6 = nn.BatchNorm1d(256)
+        self.bn7 = nn.BatchNorm1d(128)
 
     def forward(self, xyz, features=None):
         B, N, _ = xyz.shape
@@ -346,16 +339,14 @@ class PointNetSeg(nn.Module):
         
         # MLP处理
         x = F.relu(self.bn1(self.conv1(point_cloud_transformed)))
-        x = self.mlp_64(x)  # 添加MLP处理
-        x = self.mlp_64(x)  # 添加MLP处理
         x = F.relu(self.bn2(self.conv2(x)))
         x = F.relu(self.bn3(self.conv3(x)))
         x = F.relu(self.bn4(self.conv4(x)))
-        x = F.relu(self.bn5(self.conv5(x)))  # 添加回这一层
+        #x = F.relu(self.bn5(self.conv5(x)))
         
         # 全局特征
         global_feature = torch.max(x, 2, keepdim=True)[0]
-        global_feature = global_feature.view(-1, 2048)  # 修正维度
+        global_feature = global_feature.view(-1, 512)
         
         # 分类输出
         x = F.relu(self.bn6(self.fc1(global_feature)))
@@ -370,7 +361,7 @@ class PointNetSeg(nn.Module):
 
 # DGCNN模型实现
 class DGCNN(nn.Module):
-    def __init__(self, num_classes=5, k=64):
+    def __init__(self, num_classes=5, k=20):
         super(DGCNN, self).__init__()
         self.k = k
         

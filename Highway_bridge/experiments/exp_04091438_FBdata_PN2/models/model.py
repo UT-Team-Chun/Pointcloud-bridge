@@ -2,20 +2,23 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
 from torch.utils.data import Dataset, DataLoader
 
 from .attention_modules import GeometricFeatureExtraction, EnhancedPositionalEncoding, BridgeStructureEncoding, \
     ColorFeatureExtraction, CompositeFeatureFusion
 from .pointnet2_utils import FeaturePropagation, SetAbstraction, MultiScaleSetAbstraction, EnhancedFeaturePropagation
 
+
+# from knn_cuda import KNN
+
+
 class PointNet2(nn.Module):
     def __init__(self, num_classes=8):
         super().__init__()
 
         # Encoder
-        self.sa1 = SetAbstraction(1024, 0.1, 32, 6, [64, 64, 128]) #
-        self.sa2 = SetAbstraction(256, 0.2, 32, 131, [128, 128, 256]) #128+3=131
+        self.sa1 =SetAbstraction(1024, 0.1, 32, 6, [64, 64, 128]) #
+        self.sa2 = SetAbstraction(256, 0.2, 32,131 , [128, 128, 256]) #128+3=131
         self.sa3 = SetAbstraction(64, 0.4, 32, 259, [256, 256, 512]) #
 
         # Decoder
@@ -56,31 +59,43 @@ class PointNet2(nn.Module):
         return out
 
 class EnhancedPointNet2(nn.Module):
-    def __init__(self, num_classes=5):
-        super(EnhancedPointNet2, self).__init__()
-        input_ch = 3
-        #self.pos_encoding = EnhancedPositionalEncoding(input_ch, 4, 64,)
+    def __init__(self, num_classes=8):
+        super().__init__()
+        input_ch=29
+        self.pos_encoding = EnhancedPositionalEncoding(input_ch,4,64,)
         self.bri_enc = BridgeStructureEncoding(input_ch, 32, 4)
 
         # 颜色特征处理模块
-        self.color_encoder = ColorFeatureExtraction(3, 6)
-        self.feature_fusion = CompositeFeatureFusion(input_ch, 6)
+        self.color_encoder = ColorFeatureExtraction(3, 32)
+        self.feature_fusion = CompositeFeatureFusion(input_ch, 32)
 
         in_chanel = input_ch + 3 # 3(xyz) + 3(RGB)
 
         # Encoder
         # 1st layer: input = 3(xyz) + 3(RGB) + 64(pos_encoding) = 70
-        self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2], [16, 32], in_chanel, [64, 64, 128])
+        self.sa1 = MultiScaleSetAbstraction(1024, [0.1, 0.2],[16, 32], in_chanel, [64, 64, 128])
         # 2nd layer: input = 128*2 (Multi-scale connection)
-        self.sa2 = MultiScaleSetAbstraction(512, [0.2, 0.4], [16, 32], 259, [128, 128, 256])
-        self.sa3 = MultiScaleSetAbstraction(128, [0.4, 0.8], [16, 32], 515, [256, 256, 512])
+        self.sa2 = MultiScaleSetAbstraction(512,[0.2, 0.4],[16, 32], 259,[128, 128, 256])
+        self.sa3 = MultiScaleSetAbstraction(128,[0.4, 0.8],[16, 32], 515,[256, 256, 512])
+        #self.sa4 = MultiScaleSetAbstraction(128,[0.8, 1.6],[16, 32], 1027,[512, 512, 1024])
+
+        # attention module
+        #self.attention1 = EnhancedAttentionModule(128*2) #128 * 2
+        #self.attention2 = EnhancedAttentionModule(256*2)
+        #self.attention3 = EnhancedAttentionModule(512*2)
 
         # Geometric feature extraction
         self.geometric1 = GeometricFeatureExtraction(128 * 2)
         self.geometric2 = GeometricFeatureExtraction(256 * 2)
         self.geometric3 = GeometricFeatureExtraction(512 * 2)
 
+        # Boundary aware modules
+        #self.boundary1 = BoundaryAwareModule(128*2)  # 256 channels * 2
+        #self.boundary2 = BoundaryAwareModule(256*2)  # 512 channels * 2
+        #self.boundary3 = BoundaryAwareModule(512*2)  # 1024 channels * 2
+
         # Decoder
+        #self.fp4 = FeaturePropagation(3072, [1024, 512]) # multi: 1024*2 + 512*2 ,3072; 512 + 512*2 ,1536
         self.fp3 = EnhancedFeaturePropagation(1536, [1024, 256])  # multi: 512*2 + 256*2 ,1536
         self.fp2 = EnhancedFeaturePropagation(512, [256, 256])  # multi:  256*2 ,512
         self.fp1 = EnhancedFeaturePropagation(256, [256, 128]) # multi:  128*2 ,256
@@ -97,21 +112,15 @@ class EnhancedPointNet2(nn.Module):
             nn.Dropout(0.5),
             nn.Conv1d(128, num_classes, 1)
         )
-        self.num_classes = num_classes
-        if not hasattr(self, 'cls_head') or self.cls_head is None:
-            self.cls_head = nn.Sequential(
-                nn.Linear(1024, 512),
-                nn.BatchNorm1d(512),
-                nn.ReLU(inplace=True),
-                nn.Dropout(0.5),
-                nn.Linear(512, 256),
-                nn.BatchNorm1d(256),
-                nn.ReLU(inplace=True),
-                nn.Dropout(0.5),
-                nn.Linear(256, num_classes)
-            )
+        #
+        # # Final layers
+        # self.conv1 = nn.Conv1d(128, 128, 1)
+        # self.bn1 = nn.BatchNorm1d(128)
+        # self.drop1 = nn.Dropout(0.5)
+        # self.conv2 = nn.Conv1d(128, num_classes, 1)
 
-    def forward(self, xyz, features=None):
+    def forward(self, xyz, colors):
+
         """
         xyz: [B, N, 3]
         points: [B, N, 32] (RGB)
@@ -120,31 +129,61 @@ class EnhancedPointNet2(nn.Module):
         # Add positional encoding
         pos_enc = self.bri_enc(xyz) # [B, 64, N]
         # Change the order of dimensions
-        features = features.transpose(1, 2)  # [B, 3, N]
-        color_features = self.color_encoder(features, xyz)  # [B, 12, N]
+        colors = colors.transpose(1, 2)  # [B, 3, N]
+        color_features = self.color_encoder(colors, xyz)  # [B, 12, N]
         fused_features = self.feature_fusion(pos_enc, color_features)  # [B, input_ch, N]
+        #features = torch.cat([pos_enc, colors], dim=1)  # Merge Features: [B, 67, N]
 
         # Encoder with multi-scale feature extraction
-        l1_xyz, l1_features = self.sa1(xyz, fused_features)   #[B,70,N] -> [B, 128, N]
-        #l1_features = self.geometric1(l1_features, l1_xyz)
+        l1_xyz, l1_features= self.sa1(xyz, fused_features)   #[B,70,N] -> [B, 128, N]
+        # l1_points shape: [B, 256, N] (128*2 channels)
+        #l1_points = self.attention1(l1_points)
+        l1_features = self.geometric1(l1_features, l1_xyz)
+        #l1_points = self.boundary1(l1_points, l1_xyz)
 
         l2_xyz, l2_features = self.sa2(l1_xyz, l1_features)
+        # l2_points shape: [B, 512, N] (256*2 channels)
+        #l2_points = self.attention2(l2_points)
         l2_features = self.geometric2(l2_features, l2_xyz)
+        #l2_points = self.boundary2(l2_points, l2_xyz)
 
         l3_xyz, l3_features = self.sa3(l2_xyz, l2_features)
+        # l3_points shape: [B, 1024, N] (512*2 channels)
+        #l3_points = self.attention3(l3_points)
         l3_features = self.geometric3(l3_features, l3_xyz)
+        #l3_points = self.boundary3(l3_points, l3_xyz)
+
+        #l4_xyz, l4_points = self.sa4(l3_xyz, l3_points)
 
         # Decoder
+        #l3_points = self.fp4(l3_xyz, l4_xyz, l3_points, l4_points)
         l2_features = self.fp3(l2_xyz, l3_xyz, l2_features, l3_features)
         l1_features = self.fp2(l1_xyz, l2_xyz, l1_features, l2_features)
         l0_features = self.fp1(xyz, l1_xyz, None, l1_features)
 
-        fused_features = self.fusion([l2_features, l1_features, l0_features])
+        fused_features=self.fusion([l2_features, l1_features, l0_features])
+
+        # # 多尺度特征聚合
+        # l2_upsampled = F.interpolate(l2_features, size=l0_features.shape[2])
+        # l1_upsampled = F.interpolate(l1_features, size=l0_features.shape[2])
+        #
+        # multi_scale_features = torch.cat([
+        #     l0_features,
+        #     l1_upsampled,
+        #     l2_upsampled
+        # ], dim=1)
 
         # 最终分类
         x = self.final_fusion(fused_features)
 
+        # # FC layers
+        # feat = F.relu(self.bn1(self.conv1(l0_features)))
+        # feat = self.drop1(feat)
+        # x = self.conv2(feat)
+
+
         return x
+
 
 class MultiScaleFeatureFusion(nn.Module):
     def __init__(self, in_channels_list, out_channels):
@@ -204,7 +243,6 @@ class BridgeStructureLoss(nn.Module):
         weights = self.base_weights_buffer.repeat(B, 1).to(device)
 
         # ============ 存在性检查 ============
-
         exist_mask = {
             cid: (labels == cid).float().sum(dim=1) > 0
             for cid in [1, 2, 3, 4]
@@ -216,7 +254,6 @@ class BridgeStructureLoss(nn.Module):
             rel_pos[cid] = self._get_relative_position(points, mask) if mask.any() else torch.zeros(B, device=device)
 
         # ============ 修复层级约束逻辑 ============
-
         for cid in [1, 2, 3, 4]:
             info = self.hierarchy.get(cid, {})
 
@@ -246,7 +283,6 @@ class BridgeStructureLoss(nn.Module):
                     weights[:, upper_cid] += self.alpha * violation * 0.3
 
         # ============ 类别权重动态调整 ============
-
         other_pred = (preds == 0).float().mean(dim=1)
         weights[:, 0] += self.alpha * (1 - other_pred)
 
@@ -262,227 +298,6 @@ class BridgeStructureLoss(nn.Module):
             label_smoothing=0.2
         )
 
-# PointNet基础模块
-class STN3d(nn.Module):
-    def __init__(self):
-        super(STN3d, self).__init__()
-        self.conv1 = nn.Conv1d(3, 64, 1)
-        self.conv2 = nn.Conv1d(64, 128, 1)
-        self.conv3 = nn.Conv1d(128, 1024, 1)
-        self.fc1 = nn.Linear(1024, 512)
-        self.fc2 = nn.Linear(512, 256)
-        self.fc3 = nn.Linear(256, 9)
-        self.relu = nn.ReLU()
-
-        self.bn1 = nn.BatchNorm1d(64)
-        self.bn2 = nn.BatchNorm1d(128)
-        self.bn3 = nn.BatchNorm1d(1024)
-        self.bn4 = nn.BatchNorm1d(512)
-        self.bn5 = nn.BatchNorm1d(256)
-
-    def forward(self, x):
-        batch_size = x.size()[0]
-        x = F.relu(self.bn1(self.conv1(x)))
-        x = F.relu(self.bn2(self.conv2(x)))
-        x = F.relu(self.bn3(self.conv3(x)))
-        x = torch.max(x, 2, keepdim=True)[0]
-        x = x.view(-1, 1024)
-
-        x = F.relu(self.bn4(self.fc1(x)))
-        x = F.relu(self.bn5(self.fc2(x)))
-        x = self.fc3(x)
-
-        iden = torch.eye(3, dtype=x.dtype, device=x.device).view(1, 9).repeat(batch_size, 1)
-        x = x + iden
-        x = x.view(-1, 3, 3)
-        return x
-
-# PointNet语义分割模型
-class PointNetSeg(nn.Module):
-    def __init__(self, num_classes=5, feature_transform=True):
-        super(PointNetSeg, self).__init__()
-        self.stn = STN3d()
-        self.feature_transform = feature_transform
-        self.conv1 = nn.Conv1d(3, 64, 1)
-        self.conv2 = nn.Conv1d(64, 128, 1)
-        self.conv3 = nn.Conv1d(128, 256, 1)
-        self.conv4 = nn.Conv1d(256, 512, 1)
-        self.conv5 = nn.Conv1d(512, 2048, 1)  # 添加回这一层
-        
-        self.bn1 = nn.BatchNorm1d(64)
-        self.bn2 = nn.BatchNorm1d(128)
-        self.bn3 = nn.BatchNorm1d(256)
-        self.bn4 = nn.BatchNorm1d(512)
-        self.bn5 = nn.BatchNorm1d(2048)  # 添加回这一层
-        
-        self.fc1 = nn.Linear(2048, 512)  # 修正输入维度
-        self.fc2 = nn.Linear(512, 256)
-        self.fc3 = nn.Linear(256, num_classes)  # 修正输入维度
-        self.dropout = nn.Dropout(p=0.3)
-        self.bn6 = nn.BatchNorm1d(512)
-        self.bn7 = nn.BatchNorm1d(256)
-
-        self.mlp_64 = nn.Sequential(
-            nn.Conv1d(64, 64, 1),  # 修改输入通道数为 in_channels + 3
-            nn.BatchNorm1d(64),
-            nn.ReLU(),
-            nn.Conv1d(64, 64, 1)
-            )
-
-    def forward(self, xyz, features=None):
-        B, N, _ = xyz.shape
-        
-        # 如果提供了额外特征，则与坐标拼接
-        if features is not None:
-            point_cloud = torch.cat([xyz, features], dim=2)
-        else:
-            point_cloud = xyz
-            
-        point_cloud = point_cloud.transpose(2, 1)
-        
-        # 应用空间变换
-        trans = self.stn(point_cloud[:, :3, :])
-        point_cloud_transformed = torch.bmm(point_cloud[:, :3, :].transpose(2, 1), trans).transpose(2, 1)
-        
-        # MLP处理
-        x = F.relu(self.bn1(self.conv1(point_cloud_transformed)))
-        x = self.mlp_64(x)  # 添加MLP处理
-        x = self.mlp_64(x)  # 添加MLP处理
-        x = F.relu(self.bn2(self.conv2(x)))
-        x = F.relu(self.bn3(self.conv3(x)))
-        x = F.relu(self.bn4(self.conv4(x)))
-        x = F.relu(self.bn5(self.conv5(x)))  # 添加回这一层
-        
-        # 全局特征
-        global_feature = torch.max(x, 2, keepdim=True)[0]
-        global_feature = global_feature.view(-1, 2048)  # 修正维度
-        
-        # 分类输出
-        x = F.relu(self.bn6(self.fc1(global_feature)))
-        x = F.relu(self.bn7(self.fc2(x)))
-        x = self.dropout(x)
-        x = self.fc3(x)
-        
-        # 将输出扩展为[B, N, C]形式，以与其他模型保持一致
-        x = x.unsqueeze(1).repeat(1, N, 1)
-        
-        return x
-
-# DGCNN模型实现
-class DGCNN(nn.Module):
-    def __init__(self, num_classes=5, k=64):
-        super(DGCNN, self).__init__()
-        self.k = k
-        
-        self.bn1 = nn.BatchNorm2d(64)
-        self.bn2 = nn.BatchNorm2d(64)
-        self.bn3 = nn.BatchNorm2d(64)
-        self.bn4 = nn.BatchNorm2d(128)
-        self.bn5 = nn.BatchNorm1d(1024)
-
-        self.conv1 = nn.Sequential(nn.Conv2d(6, 64, kernel_size=1, bias=False),
-                                   self.bn1,
-                                   nn.LeakyReLU(negative_slope=0.2))
-        self.conv2 = nn.Sequential(nn.Conv2d(64*2, 64, kernel_size=1, bias=False),
-                                   self.bn2,
-                                   nn.LeakyReLU(negative_slope=0.2))
-        self.conv3 = nn.Sequential(nn.Conv2d(64*2, 64, kernel_size=1, bias=False),
-                                   self.bn3,
-                                   nn.LeakyReLU(negative_slope=0.2))
-        self.conv4 = nn.Sequential(nn.Conv2d(64*2, 128, kernel_size=1, bias=False),
-                                   self.bn4,
-                                   nn.LeakyReLU(negative_slope=0.2))
-        self.conv5 = nn.Sequential(nn.Conv1d(320, 1024, kernel_size=1, bias=False),
-                                   self.bn5,
-                                   nn.LeakyReLU(negative_slope=0.2))
-        
-        self.linear1 = nn.Linear(1024*2, 512, bias=False)
-        self.bn6 = nn.BatchNorm1d(512)
-        self.dp1 = nn.Dropout(p=0.5)
-        self.linear2 = nn.Linear(512, 256)
-        self.bn7 = nn.BatchNorm1d(256)
-        self.dp2 = nn.Dropout(p=0.5)
-        self.linear3 = nn.Linear(256, num_classes)
-
-    def knn(self, x, k):
-        inner = -2 * torch.matmul(x.transpose(2, 1), x)
-        xx = torch.sum(x**2, dim=1, keepdim=True)
-        pairwise_distance = -xx - inner - xx.transpose(2, 1)
-        
-        idx = pairwise_distance.topk(k=k, dim=-1)[1]
-        return idx
-
-    def get_graph_feature(self, x, k=20, idx=None):
-        batch_size, num_dims, num_points = x.size()
-        
-        if idx is None:
-            idx = self.knn(x, k)
-        
-        idx_base = torch.arange(0, batch_size, device=x.device).view(-1, 1, 1) * num_points
-        idx = idx + idx_base
-        idx = idx.view(-1)
-        
-        x = x.transpose(2, 1).contiguous()
-        feature = x.view(batch_size * num_points, -1)[idx, :]
-        feature = feature.view(batch_size, num_points, k, num_dims)
-        x = x.view(batch_size, num_points, 1, num_dims).repeat(1, 1, k, 1)
-        
-        feature = torch.cat((feature - x, x), dim=3).permute(0, 3, 1, 2).contiguous()
-        
-        return feature
-
-    def forward(self, xyz, features=None):
-        B, N, C = xyz.shape
-        
-        # 如果提供了特征，则与坐标拼接
-        if features is not None:
-            xyz = torch.cat([xyz, features], dim=2)
-            
-        x = xyz.transpose(2, 1)
-        
-        batch_size = x.size(0)
-        x = x[:, :3, :]  # 只使用坐标信息
-        
-        # EdgeConv模块
-        x1 = self.get_graph_feature(x, k=self.k)
-        x1 = self.conv1(x1)
-        x1 = x1.max(dim=-1, keepdim=False)[0]
-        
-        x2 = self.get_graph_feature(x1, k=self.k)
-        x2 = self.conv2(x2)
-        x2 = x2.max(dim=-1, keepdim=False)[0]
-        
-        x3 = self.get_graph_feature(x2, k=self.k)
-        x3 = self.conv3(x3)
-        x3 = x3.max(dim=-1, keepdim=False)[0]
-        
-        x4 = self.get_graph_feature(x3, k=self.k)
-        x4 = self.conv4(x4)
-        x4 = x4.max(dim=-1, keepdim=False)[0]
-        
-        x = torch.cat((x1, x2, x3, x4), dim=1)
-        
-        x = self.conv5(x)
-        
-        # 全局特征
-        x1 = F.adaptive_max_pool1d(x, 1).view(batch_size, -1)
-        x2 = F.adaptive_avg_pool1d(x, 1).view(batch_size, -1)
-        x = torch.cat((x1, x2), 1)
-        
-        # MLP分类器
-        x = F.leaky_relu(self.bn6(self.linear1(x)), negative_slope=0.2)
-        x = self.dp1(x)
-        x = F.leaky_relu(self.bn7(self.linear2(x)), negative_slope=0.2)
-        x = self.dp2(x)
-        x = self.linear3(x)
-        
-        # 将输出扩展为[B, N, C]形式
-        x = x.unsqueeze(1).repeat(1, N, 1)
-        
-        return x
-
-
-
 # 创建一个简单的数据集类
 class RandomPointCloudDataset(Dataset):
     def __init__(self, num_samples=1000, num_points=1024):
@@ -493,20 +308,29 @@ class RandomPointCloudDataset(Dataset):
         return self.num_samples
 
     def __getitem__(self, idx):
-        xyz = torch.randn(self.num_points, 3)
-        colors = torch.rand(self.num_points, 3)
+        # 生成随机点云数据
+        xyz = torch.randn(self.num_points, 3)  # [N, 3]
+        colors = torch.rand(self.num_points, 3)  # [N, 3]
+
+        # 确保数据类型和形状正确
         xyz = xyz.float()
         colors = colors.float()
+
         return {
-            'xyz': xyz,
-            'colors': colors
+            'xyz': xyz,  # [N, 3]
+            'colors': colors  # [N, 3]
         }
 
 
 if __name__ == "__main__":
+    # 设置随机种子保证可复现性
     torch.manual_seed(42)
+
+    # 创建测试数据
     batch_size = 2
     num_points = 1024
+
+    # 创建数据集和数据加载器
     dataset = RandomPointCloudDataset(num_samples=100, num_points=num_points)
     train_loader = DataLoader(
         dataset,
@@ -514,22 +338,47 @@ if __name__ == "__main__":
         shuffle=True,
         num_workers=0
     )
+
+    # 创建随机输入数据
     xyz = torch.randn(batch_size, num_points, 3)
     features = torch.randn(batch_size, num_points, 3)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Using device: {device}")
+
+    # 1. 创建预训练模型
     pretrain_model = PointCloudPretraining()
     pretrain_model = pretrain_model.to(device)
+
+    # 2. 进行预训练 (设置较小的epoch数用于测试)
     pretrain_model = pretrain(pretrain_model, train_loader, epochs=2, device=device)
-    main_model = EnhancedPointNet2()
+
+    # 3. 将预训练权重迁移到主模型
+    main_model = EnhancedPointNet2() #EnhancedPointNet2
+    # 复制编码器权重
+    # main_model.pos_encoding.load_state_dict(pretrain_model.pos_encoding.state_dict())
+    # main_model.bri_enc.load_state_dict(pretrain_model.bri_enc.state_dict())
+    # main_model.color_encoder.load_state_dict(pretrain_model.color_encoder.state_dict())
+    # main_model.feature_fusion.load_state_dict(pretrain_model.feature_fusion.state_dict())
+    # main_model.sa1.load_state_dict(pretrain_model.sa1.state_dict())
+    # main_model.sa2.load_state_dict(pretrain_model.sa2.state_dict())
+    # main_model.sa3.load_state_dict(pretrain_model.sa3.state_dict())
+    # main_model.geometric1.load_state_dict(pretrain_model.geometric1.state_dict())
+    # main_model.geometric2.load_state_dict(pretrain_model.geometric2.state_dict())
+    # main_model.geometric3.load_state_dict(pretrain_model.geometric3.state_dict())
+
+    # 将主模型移到设备上
     pretrain_model = pretrain_model.to(device)
     pretrain_model.eval()
     main_model = main_model.to(device)
     main_model.eval()
+
+    # 1. 基础功能测试
     print("=" * 50)
     print("基础功能测试")
     print(f"输入 xyz shape: {xyz.shape}")
     print(f"输入 features shape: {features.shape}")
+
     try:
         xyz = xyz.to(device)
         features = features.to(device)
@@ -540,22 +389,31 @@ if __name__ == "__main__":
         print("模型前向传播测试通过!")
     except Exception as e:
         print(f"模型运行出错: {str(e)}")
+
+    # 2. 模型信息统计
     print("\n" + "=" * 50)
     print("模型信息统计")
+
     total_params = sum(p.numel() for p in main_model.parameters())
     trainable_params = sum(p.numel() for p in main_model.parameters() if p.requires_grad)
+
     print(f"总参数量: {total_params:,}")
     print(f"可训练参数量: {trainable_params:,}")
+
+    # 7. 测试不同batch size的内存占用
     print("\n" + "=" * 50)
     print("内存占用测试")
+
     batch_sizes = [4, 16]
     for bs in batch_sizes:
         if torch.cuda.is_available():
-            torch.cuda.empty_cache()
+            torch.cuda.empty_cache()  # 清空GPU缓存
             xyz_test = torch.randn(bs, num_points, 3).to(device)
             features_test = torch.randn(bs, num_points, 3).to(device)
+
             torch.cuda.reset_peak_memory_stats()
             output = main_model(xyz_test, features_test)
-            memory = torch.cuda.max_memory_allocated() / 1024 / 1024
+            memory = torch.cuda.max_memory_allocated() / 1024 / 1024  # 转换为MB
             print(f"Batch size {bs}: 峰值显存占用 {memory:.2f} MB")
+
     print("\n测试完成!")
