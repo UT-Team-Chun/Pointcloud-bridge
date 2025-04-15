@@ -1,0 +1,11 @@
+File,Class,IoU
+bridge-3.h5,Background,88.03557753562927
+bridge-3.h5,Abutment,90.40066003799438
+bridge-3.h5,Girder,92.89405941963196
+bridge-3.h5,Deck,97.90130853652954
+bridge-3.h5,Parapet,98.75488877296448
+bridge-7.h5,Background,89.3211305141449
+bridge-7.h5,Abutment,94.18405294418335
+bridge-7.h5,Girder,92.93158650398254
+bridge-7.h5,Deck,96.64223194122314
+bridge-7.h5,Parapet,99.21910166740417

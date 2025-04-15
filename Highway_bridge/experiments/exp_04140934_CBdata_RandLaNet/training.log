@@ -1,0 +1,29 @@
+2025-04-14 09:34:18,415 - INFO - Training configuration:
+2025-04-14 09:34:18,415 - INFO - num_points: 4096
+2025-04-14 09:34:18,415 - INFO - chunk_size: 4096
+2025-04-14 09:34:18,415 - INFO - overlap: 1024
+2025-04-14 09:34:18,416 - INFO - batch_size: 16
+2025-04-14 09:34:18,416 - INFO - num_workers: 6
+2025-04-14 09:34:18,416 - INFO - learning_rate: 0.001
+2025-04-14 09:34:18,416 - INFO - num_classes: 5
+2025-04-14 09:34:18,416 - INFO - num_epochs: 100
+2025-04-14 09:34:18,416 - INFO - device: cuda
+2025-04-14 09:34:18,416 - INFO - Using device: cuda
+2025-04-14 09:34:18,416 - INFO - Found 7 h5 files:
+2025-04-14 09:34:18,416 - INFO -   - cb1.h5
+2025-04-14 09:34:18,417 - INFO -   - cb2.h5
+2025-04-14 09:34:18,417 - INFO -   - cb3.h5
+2025-04-14 09:34:18,417 - INFO -   - cb4.h5
+2025-04-14 09:34:18,417 - INFO -   - cb5.h5
+2025-04-14 09:34:18,417 - INFO -   - cb7.h5
+2025-04-14 09:34:18,417 - INFO -   - cb8.h5
+2025-04-14 09:34:25,917 - INFO - Total blocks created: 13145
+2025-04-14 09:34:25,918 - INFO - reading train data
+2025-04-14 09:34:25,919 - INFO - Found 2 h5 files:
+2025-04-14 09:34:25,919 - INFO -   - cb6.h5
+2025-04-14 09:34:25,919 - INFO -   - cb9.h5
+2025-04-14 09:34:33,880 - INFO - Total blocks created: 6563
+2025-04-14 09:34:33,882 - INFO - reading val data
+2025-04-14 09:34:33,882 - INFO - Train dataset size: 13145
+2025-04-14 09:34:33,882 - INFO - Val dataset size: 6563
+2025-04-14 09:34:34,394 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x00000144AB51EE90>
