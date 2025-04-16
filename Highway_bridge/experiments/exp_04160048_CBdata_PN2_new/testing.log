@@ -1,0 +1,45 @@
+2025-04-16 12:25:22,928 - INFO - Using device: cuda
+2025-04-16 12:25:23,222 - INFO - Found 2 h5 files:
+2025-04-16 12:25:23,222 - INFO -   - cb6.h5
+2025-04-16 12:25:23,222 - INFO -   - cb9.h5
+2025-04-16 12:25:33,092 - INFO - Total blocks created: 6563
+2025-04-16 12:45:47,537 - INFO - Using device: cuda
+2025-04-16 12:45:47,571 - INFO - Found 2 h5 files:
+2025-04-16 12:45:47,571 - INFO -   - cb6.h5
+2025-04-16 12:45:47,571 - INFO -   - cb9.h5
+2025-04-16 12:45:56,775 - INFO - Total blocks created: 6563
+2025-04-16 12:47:19,276 - INFO - Using device: cuda
+2025-04-16 12:47:19,309 - INFO - Found 2 h5 files:
+2025-04-16 12:47:19,309 - INFO -   - cb6.h5
+2025-04-16 12:47:19,310 - INFO -   - cb9.h5
+2025-04-16 12:47:28,847 - INFO - Total blocks created: 6563
+2025-04-16 12:47:29,010 - INFO - Loaded model from experiments/exp_04160048_CBdata_PN2_new\best_model.pth
+2025-04-16 12:50:14,765 - INFO - Using device: cuda
+2025-04-16 12:50:14,803 - INFO - Found 2 h5 files:
+2025-04-16 12:50:14,803 - INFO -   - cb6.h5
+2025-04-16 12:50:14,803 - INFO -   - cb9.h5
+2025-04-16 12:50:23,490 - INFO - Total blocks created: 6563
+2025-04-16 12:50:23,600 - INFO - Loaded model from experiments/exp_04160048_CBdata_PN2_new\best_model.pth
+2025-04-16 14:50:42,063 - INFO - 
+===== 全局评估结果 =====
+2025-04-16 14:50:42,063 - INFO - Mean IoU: 95.58%
+2025-04-16 14:50:42,063 - INFO - Overall Accuracy: 97.72%
+2025-04-16 14:50:42,063 - INFO - Mean Accuracy: 97.68%
+2025-04-16 14:50:42,063 - INFO - Precision: 97.73%
+2025-04-16 14:50:42,063 - INFO - Recall: 97.72%
+2025-04-16 14:50:42,063 - INFO - F1 Score: 97.73%
+2025-04-16 14:50:42,063 - INFO - Class 0 (Background) IoU: 95.59%
+2025-04-16 14:50:42,063 - INFO - Class 1 (Pier) IoU: 98.69%
+2025-04-16 14:50:42,063 - INFO - Class 2 (Girder) IoU: 94.70%
+2025-04-16 14:50:42,064 - INFO - Class 3 (Deck) IoU: 93.60%
+2025-04-16 14:50:42,064 - INFO - Class 4 (Parapet) IoU: 95.35%
+2025-04-16 14:50:42,064 - INFO - 
+文件: cb6.h5
+2025-04-16 14:50:42,064 - INFO -   Mean IoU: 95.92%
+2025-04-16 14:50:42,064 - INFO -   Overall Accuracy: 97.82%
+2025-04-16 14:50:42,064 - INFO -   F1 Score: 97.83%
+2025-04-16 14:50:42,064 - INFO - 
+文件: cb9.h5
+2025-04-16 14:50:42,064 - INFO -   Mean IoU: 95.24%
+2025-04-16 14:50:42,064 - INFO -   Overall Accuracy: 97.62%
+2025-04-16 14:50:42,064 - INFO -   F1 Score: 97.62%

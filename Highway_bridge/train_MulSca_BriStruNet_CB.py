@@ -21,31 +21,36 @@ from utils.logger_config import initialize_logger, get_logger
 os.environ['OPENBLAS_NUM_THREADS'] = '1'
 os.environ['OMP_NUM_THREADS'] = '1'
 
-# 配置参数
-config = {
-    'num_points': 4096,
-    'chunk_size': 4096,
-    'overlap': 1024,
-    'batch_size': 16,
-    'num_workers': 6,
-    'learning_rate': 0.001,
-    'num_classes': 5,
-    'num_epochs': 200,
-    'device': 'cuda' if torch.cuda.is_available() else 'cpu'
-}
+
 #{noise:0, abutment:1, girder:2, slab:3, parapet:4}
 
-def train():
+def train(config=None):
+    if config is None:
+        config = {
+            'num_points': 4096,
+            'chunk_size': 4096,
+            'overlap': 1024,
+            'batch_size': 16,
+            'num_workers': 6,
+            'learning_rate': 0.001,
+            'num_classes': 5,
+            'num_epochs': 200,
+            'device': 'cuda' if torch.cuda.is_available() else 'cpu',
+            'case' : 'bridgeSeg_CB_new_1',
+            'train_dir': 'data/all/train',
+            'val_dir': 'data/all/val',
+        }
+
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d%H')
-    case = 'Fukushima_onepart'
+    case = config['case']
     exp_dir = Path(f'experiments/exp_{timestamp}_{case}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
 
     # 构建到data文件夹的路径
-    train_dir = 'data/fukushima/onepart/train'
-    val_dir ='data/fukushima/onepart/val/'
+    train_dir = config['train_dir']
+    val_dir = config['val_dir']
 
     print(train_dir)
     # # wandb初始化

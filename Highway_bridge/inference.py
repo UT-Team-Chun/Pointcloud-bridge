@@ -145,21 +145,22 @@ def main():
         'device': 'cuda' if torch.cuda.is_available() else 'cpu'
     }
     
-    exp_dir= 'experiments/exp_040815_Fukushima_onepart'
+    exp_dir= 'experiments/exp_04160048_CBdata_PN2_new'
     checkpoint_path = os.path.join(exp_dir, 'best_model.pth')
     logger = setup_logging(exp_dir)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f'Using device: {device}')
 
     # 定义类名称
-    class_names = ['Background', 'Abutment', 'Girder', 'Deck', 'Parapet']
+    class_names = ['Background', 'Pier', 'Girder', 'Deck', 'Parapet']
 
-    from experiments.exp_040815_Fukushima_onepart.utils.BriPCDMulti_new import BriPCDMulti
-    from experiments.exp_040815_Fukushima_onepart.models.model import EnhancedPointNet2, PointNet2
+    from experiments.exp_04160048_CBdata_PN2_new.utils.BriPCDMulti_new import BriPCDMulti
+    from experiments.exp_04160048_CBdata_PN2_new.models.model import EnhancedPointNet2
+    from experiments.exp_04160048_CBdata_PN2_new.models.pointnet2 import PointNet2
     from torch.utils.data import DataLoader
 
     test_dataset = BriPCDMulti(
-        data_dir='data/fukushima/onepart/val',
+        data_dir='data/all/val',
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -175,8 +176,8 @@ def main():
     )
     
     # 加载模型
-    model = EnhancedPointNet2(config['num_classes']).to(device)
-    #model = PointNet2(config['num_classes']).to(device)
+    #model = EnhancedPointNet2(config['num_classes']).to(device)
+    model = PointNet2(config['num_classes']).to(device)
 
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, weights_only=True)

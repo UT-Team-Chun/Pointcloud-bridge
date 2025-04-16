@@ -1,3 +1,0 @@
-2024-12-08 00:18:19,594 - Model - INFO - PARAMETER ...
-2024-12-08 00:18:19,594 - Model - INFO - Namespace(batch_size=4, gpu='0', num_point=4096, log_dir='test-cy-CB', visual=True, num_votes=5)
-2024-12-08 00:19:07,124 - Model - INFO - The number of test file is: 34
