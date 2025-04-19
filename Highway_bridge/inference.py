@@ -41,95 +41,6 @@ def setup_logging(log_dir):
     )
     return logging.getLogger(__name__)
 
-def create_new_las_file(points, colors, labels, output_path):
-    """创建新的las文件，只包含xyz, rgb和classification"""
-    # 创建LAS文件
-    las = laspy.create(file_version="1.3", point_format=3)
-
-    # 写入点数据
-    las.x = points[:, 0]
-    las.y = points[:, 1]
-    las.z = points[:, 2]
-
-    # 设置头部信息
-    #las.header.offsets = [np.min(las.x), np.min(las.y), np.min(las.z)]
-    #las.header.scales = [0.001, 0.001, 0.001]
-    
-    # 设置RGB值 (需要从0-1范围转换到0-65535范围)
-    las.red = (colors[:, 0] * 65535).astype(np.uint16)
-    las.green = (colors[:, 1] * 65535).astype(np.uint16)
-    las.blue = (colors[:, 2] * 65535).astype(np.uint16)
-    
-    # 设置分类标签
-    las.classification = labels.astype(np.uint8)
-    
-    # 写入文件
-    las.write(output_path)
-
-
-# 定义评价指标计算函数
-def calculate_metrics(confusion_matrix):
-    """
-    从混淆矩阵计算所有指标
-    """
-    cm = confusion_matrix.cpu().numpy()
-
-    # 计算每个类别的IoU
-    intersection = np.diag(cm)
-    union = np.sum(cm, axis=1) + np.sum(cm, axis=0) - np.diag(cm)
-    iou_per_class = intersection / (union + 1e-6)
-    miou = np.nanmean(iou_per_class)
-
-    # 计算OA (Overall Accuracy)
-    oa = np.sum(np.diag(cm)) / np.sum(cm)
-
-    # 计算每个类别的准确率
-    acc_per_class = np.diag(cm) / (np.sum(cm, axis=1) + 1e-6)
-    macc = np.nanmean(acc_per_class)  # Mean Accuracy
-
-    # 计算每个类的precision和recall
-    precision_per_class = np.diag(cm) / (np.sum(cm, axis=0) + 1e-6)
-    recall_per_class = np.diag(cm) / (np.sum(cm, axis=1) + 1e-6)
-
-    # 计算加权平均的precision和recall
-    weights = np.sum(cm, axis=1) / np.sum(cm)
-    precision = np.sum(precision_per_class * weights)
-    recall = np.sum(recall_per_class * weights)
-
-    # 计算F1 score
-    f1 = 2 * (precision * recall) / (precision + recall + 1e-6)
-
-    return {
-        'mIoU': miou,
-        'IoU_per_class': iou_per_class,
-        'OA': oa,
-        'mAcc': macc,
-        'Acc_per_class': acc_per_class,
-        'Precision': precision,
-        'Recall': recall,
-        'F1_score': f1,
-        'Confusion_Matrix': cm
-    }
-
-
-
-class AverageMeter(object):
-    """计算并存储平均值和当前值"""
-
-    def __init__(self):
-        self.reset()
-
-    def reset(self):
-        self.val = 0
-        self.avg = 0
-        self.sum = 0
-        self.count = 0
-
-    def update(self, val, n=1):
-        self.val = val
-        self.sum += val * n
-        self.count += n
-        self.avg = self.sum / self.count
 
 def main():
     # 配置参数
@@ -142,10 +53,12 @@ def main():
         'learning_rate': 0.001,
         'num_classes': 5,
         'num_epochs': 500,
-        'device': 'cuda' if torch.cuda.is_available() else 'cpu'
+        'device': 'cuda' if torch.cuda.is_available() else 'cpu',
+        'exp_dir' : 'experiments/exp_04181446_PN_CB_simpdataset_sec1',
+        'val_dir': 'data/CB/section/val',
     }
     
-    exp_dir= 'experiments/exp_04160048_CBdata_PN2_new'
+    exp_dir= config['exp_dir']
     checkpoint_path = os.path.join(exp_dir, 'best_model.pth')
     logger = setup_logging(exp_dir)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -154,16 +67,19 @@ def main():
     # 定义类名称
     class_names = ['Background', 'Pier', 'Girder', 'Deck', 'Parapet']
 
-    from experiments.exp_04160048_CBdata_PN2_new.utils.BriPCDMulti_new import BriPCDMulti
-    from experiments.exp_04160048_CBdata_PN2_new.models.model import EnhancedPointNet2
-    from experiments.exp_04160048_CBdata_PN2_new.models.pointnet2 import PointNet2
+    from experiments.exp_04181446_PN_CB_simpdataset_sec1.utils.BriPCDMulti_new import BriPCDMulti
+    from experiments.exp_04181446_PN_CB_simpdataset_sec1.models.model import EnhancedPointNet2
+    from experiments.exp_04181446_PN_CB_simpdataset_sec1.models.pointnet2 import PointNet2
+    from models.pointnet import PointNetSeg
     from torch.utils.data import DataLoader
+    from utils.simpdataset import SimplePointCloudDataset
 
-    test_dataset = BriPCDMulti(
-        data_dir='data/all/val',
+    test_dataset = SimplePointCloudDataset(
+        data_dir=config['val_dir'],
         num_points=config['num_points'],
-        block_size=1.0,
-        sample_rate=0.4,
+        steps_per_file=10, # 每个文件每个epoch采样50次
+        #block_size=1.0,
+        #sample_rate=0.4,
         logger=logger
     )
 
@@ -177,7 +93,7 @@ def main():
     
     # 加载模型
     #model = EnhancedPointNet2(config['num_classes']).to(device)
-    model = PointNet2(config['num_classes']).to(device)
+    model = PointNetSeg(config['num_classes']).to(device)
 
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, weights_only=True)
@@ -835,6 +751,96 @@ def create_file_comparison_chart(file_metrics, viz_dir, class_names):
     plt.savefig(os.path.join(viz_dir, 'class_iou_comparison.png'), dpi=300, bbox_inches='tight')
     plt.savefig(os.path.join(viz_dir, 'class_iou_comparison.pdf'), format='pdf', bbox_inches='tight')
     plt.close()
+
+def create_new_las_file(points, colors, labels, output_path):
+    """创建新的las文件，只包含xyz, rgb和classification"""
+    # 创建LAS文件
+    las = laspy.create(file_version="1.3", point_format=3)
+
+    # 写入点数据
+    las.x = points[:, 0]
+    las.y = points[:, 1]
+    las.z = points[:, 2]
+
+    # 设置头部信息
+    #las.header.offsets = [np.min(las.x), np.min(las.y), np.min(las.z)]
+    #las.header.scales = [0.001, 0.001, 0.001]
+    
+    # 设置RGB值 (需要从0-1范围转换到0-65535范围)
+    las.red = (colors[:, 0] * 65535).astype(np.uint16)
+    las.green = (colors[:, 1] * 65535).astype(np.uint16)
+    las.blue = (colors[:, 2] * 65535).astype(np.uint16)
+    
+    # 设置分类标签
+    las.classification = labels.astype(np.uint8)
+    
+    # 写入文件
+    las.write(output_path)
+
+
+# 定义评价指标计算函数
+def calculate_metrics(confusion_matrix):
+    """
+    从混淆矩阵计算所有指标
+    """
+    cm = confusion_matrix.cpu().numpy()
+
+    # 计算每个类别的IoU
+    intersection = np.diag(cm)
+    union = np.sum(cm, axis=1) + np.sum(cm, axis=0) - np.diag(cm)
+    iou_per_class = intersection / (union + 1e-6)
+    miou = np.nanmean(iou_per_class)
+
+    # 计算OA (Overall Accuracy)
+    oa = np.sum(np.diag(cm)) / np.sum(cm)
+
+    # 计算每个类别的准确率
+    acc_per_class = np.diag(cm) / (np.sum(cm, axis=1) + 1e-6)
+    macc = np.nanmean(acc_per_class)  # Mean Accuracy
+
+    # 计算每个类的precision和recall
+    precision_per_class = np.diag(cm) / (np.sum(cm, axis=0) + 1e-6)
+    recall_per_class = np.diag(cm) / (np.sum(cm, axis=1) + 1e-6)
+
+    # 计算加权平均的precision和recall
+    weights = np.sum(cm, axis=1) / np.sum(cm)
+    precision = np.sum(precision_per_class * weights)
+    recall = np.sum(recall_per_class * weights)
+
+    # 计算F1 score
+    f1 = 2 * (precision * recall) / (precision + recall + 1e-6)
+
+    return {
+        'mIoU': miou,
+        'IoU_per_class': iou_per_class,
+        'OA': oa,
+        'mAcc': macc,
+        'Acc_per_class': acc_per_class,
+        'Precision': precision,
+        'Recall': recall,
+        'F1_score': f1,
+        'Confusion_Matrix': cm
+    }
+
+
+
+class AverageMeter(object):
+    """计算并存储平均值和当前值"""
+
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.val = 0
+        self.avg = 0
+        self.sum = 0
+        self.count = 0
+
+    def update(self, val, n=1):
+        self.val = val
+        self.sum += val * n
+        self.count += n
+        self.avg = self.sum / self.count
 
 def test():
     # 设置随机种子保证可复现性

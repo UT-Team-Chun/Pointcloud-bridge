@@ -1,0 +1,67 @@
+2025-04-18 16:16:59,664 - INFO - Starting model evaluation script.
+2025-04-18 16:16:59,682 - INFO - Using device: cuda
+2025-04-18 16:16:59,682 - INFO - Data configuration: {'val_dir': 'data/all/val', 'num_points': 4096, 'block_size': 1.0, 'sample_rate': 0.4, 'use_color': True, 'use_normals': False}
+2025-04-18 16:16:59,683 - INFO - Batch size: 4, Num workers: 0
+2025-04-18 16:16:59,683 - ERROR - Error creating dataset or dataloader: get_logger() takes 0 positional arguments but 1 was given
+2025-04-18 16:18:05,453 - INFO - Starting model evaluation script.
+2025-04-18 16:18:05,473 - INFO - Using device: cuda
+2025-04-18 16:18:05,473 - INFO - Data configuration: {'val_dir': 'data/all/val', 'num_points': 4096, 'block_size': 1.0, 'sample_rate': 0.4, 'use_color': True, 'use_normals': False}
+2025-04-18 16:18:05,474 - INFO - Batch size: 4, Num workers: 0
+2025-04-18 16:18:05,474 - ERROR - Error creating dataset or dataloader: BriPCDMulti.__init__() got an unexpected keyword argument 'use_color'
+2025-04-18 16:19:40,692 - INFO - Starting model evaluation script.
+2025-04-18 16:19:40,707 - INFO - Using device: cuda
+2025-04-18 16:19:40,707 - INFO - Data configuration: {'val_dir': 'data/all/val', 'num_points': 4096, 'block_size': 1.0, 'sample_rate': 0.4}
+2025-04-18 16:19:40,707 - INFO - Batch size: 4, Num workers: 0
+2025-04-18 16:19:40,709 - INFO - Found 2 h5 files:
+2025-04-18 16:19:40,709 - INFO -   - cb6.h5
+2025-04-18 16:19:40,709 - INFO -   - cb9.h5
+2025-04-18 16:19:49,924 - INFO - Total blocks created: 6563
+2025-04-18 16:19:49,927 - INFO - Successfully loaded evaluation dataset from data/all/val. Size: 6563
+2025-04-18 16:19:50,105 - INFO - Determined model input channels (d_in): 6
+2025-04-18 16:19:50,128 - INFO - 成功初始化 PointNet
+2025-04-18 16:19:50,138 - INFO - 成功初始化 DGCNN
+2025-04-18 16:19:50,144 - INFO - 成功初始化 PointNet2
+2025-04-18 16:19:50,154 - INFO - 成功初始化 RandLA-Net
+2025-04-18 16:19:50,203 - INFO - 成功初始化 BridgeSeg
+2025-04-18 16:19:50,203 - INFO - ============================================================
+2025-04-18 16:19:50,203 - INFO - Starting comprehensive model evaluation
+2025-04-18 16:19:50,203 - INFO - ============================================================
+2025-04-18 16:19:50,205 - INFO - Evaluating PointNet...
+2025-04-18 16:19:51,754 - INFO - Completed evaluation of PointNet
+2025-04-18 16:19:51,754 - INFO - Parameters: 3,536,526
+2025-04-18 16:19:51,755 - INFO - Inference time: 2.80 ms
+2025-04-18 16:19:51,755 - INFO - GPU memory usage: 751.19 MB
+2025-04-18 16:19:51,755 - INFO - Training time per epoch: 53.22 s
+2025-04-18 16:19:51,755 - INFO - Points per second: 5,852,032
+2025-04-18 16:19:51,756 - INFO - Evaluating DGCNN...
+2025-04-18 20:33:00,829 - INFO - Completed evaluation of DGCNN
+2025-04-18 20:33:00,829 - INFO - Parameters: 1,546,245
+2025-04-18 20:33:00,830 - INFO - Inference time: 5618.80 ms
+2025-04-18 20:33:00,830 - INFO - GPU memory usage: 17807.97 MB
+2025-04-18 20:33:00,830 - INFO - Training time per epoch: 2433162.16 s
+2025-04-18 20:33:00,830 - INFO - Points per second: 2,916
+2025-04-18 20:33:00,831 - INFO - Evaluating PointNet2...
+2025-04-18 20:33:31,805 - INFO - Completed evaluation of PointNet2
+2025-04-18 20:33:31,805 - INFO - Parameters: 810,501
+2025-04-18 20:33:31,805 - INFO - Inference time: 460.78 ms
+2025-04-18 20:33:31,806 - INFO - GPU memory usage: 827.38 MB
+2025-04-18 20:33:31,806 - INFO - Training time per epoch: 602.32 s
+2025-04-18 20:33:31,806 - INFO - Points per second: 35,557
+2025-04-18 20:33:31,806 - INFO - Evaluating RandLA-Net...
+2025-04-18 20:33:32,379 - ERROR - Evaluation failed for RandLA-Net: GPU warmup failed: mat1 and mat2 shapes cannot be multiplied (16384x3 and 6x8)
+2025-04-18 20:33:32,380 - INFO - Evaluating BridgeSeg...
+2025-04-18 20:34:01,332 - INFO - Completed evaluation of BridgeSeg
+2025-04-18 20:34:01,333 - INFO - Parameters: 7,937,853
+2025-04-18 20:34:01,333 - INFO - Inference time: 376.95 ms
+2025-04-18 20:34:01,333 - INFO - GPU memory usage: 1810.12 MB
+2025-04-18 20:34:01,333 - INFO - Training time per epoch: 814.03 s
+2025-04-18 20:34:01,333 - INFO - Points per second: 43,465
+2025-04-18 20:34:02,115 - INFO - ============================================================
+2025-04-18 20:34:02,115 - INFO - Model Performance Comparison Summary:
+2025-04-18 20:34:02,116 - INFO - ============================================================
+2025-04-18 20:34:02,119 - INFO - model_name  parameters  model_size_mb  gpu_memory_usage_mb  cpu_memory_usage_mb  inference_time_ms  flops_g  training_time_per_epoch_s  points_per_second
+  PointNet     3536526      13.538277           751.191406           787.277344           2.799711        0               5.322013e+01       5.852032e+06
+     DGCNN     1546245       5.914623         17807.972168          2156.292969        5618.804417        0               2.433162e+06       2.915923e+03
+ PointNet2      810501       3.116360           827.384766          1491.492188         460.784626        0               6.023205e+02       3.555674e+04
+ BridgeSeg     7937853      30.353695          1810.124023          1489.816406         376.950793        0               8.140298e+02       4.346456e+04
+2025-04-18 20:34:02,120 - INFO - Evaluation complete! Results saved to CSV and visualizations generated.

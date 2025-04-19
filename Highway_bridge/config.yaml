@@ -1,12 +1,13 @@
 num_points: 4096
 chunk_size: 4096
 overlap: 1024
-batch_size: 16
+batch_size: 8
 num_workers: 6
 learning_rate: 0.001
 num_classes: 5
-num_epochs: 200
+num_epochs: 100
 device: 'cuda'
-case: 'bridgeSeg_CB_new_1'
+case: 'PTV3_CB_all'
 train_dir: 'data/all/train'
 val_dir: 'data/all/val'
+exp_dir_root: 'experiments'

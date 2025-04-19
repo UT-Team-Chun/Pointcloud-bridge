@@ -1,0 +1,186 @@
+2025-04-19 02:16:23,187 - INFO - Using device: cuda
+2025-04-19 02:16:23,221 - INFO - Initialized SimplePointCloudDataset with 28 files. Steps per file: 10.
+2025-04-19 02:16:23,221 - INFO - Total samples per epoch: 280
+2025-04-19 02:16:23,371 - INFO - Loaded model from experiments/exp_04181446_PN_CB_simpdataset_sec1\best_model.pth
+2025-04-19 02:22:02,440 - INFO - 
+===== 全局评估结果 =====
+2025-04-19 02:22:02,440 - INFO - Mean IoU: 84.47%
+2025-04-19 02:22:02,440 - INFO - Overall Accuracy: 95.26%
+2025-04-19 02:22:02,440 - INFO - Mean Accuracy: 91.63%
+2025-04-19 02:22:02,440 - INFO - Precision: 95.47%
+2025-04-19 02:22:02,440 - INFO - Recall: 95.26%
+2025-04-19 02:22:02,440 - INFO - F1 Score: 95.36%
+2025-04-19 02:22:02,440 - INFO - Class 0 (Background) IoU: 94.69%
+2025-04-19 02:22:02,440 - INFO - Class 1 (Pier) IoU: 89.83%
+2025-04-19 02:22:02,440 - INFO - Class 2 (Girder) IoU: 93.19%
+2025-04-19 02:22:02,441 - INFO - Class 3 (Deck) IoU: 83.17%
+2025-04-19 02:22:02,441 - INFO - Class 4 (Parapet) IoU: 61.44%
+2025-04-19 02:22:02,441 - INFO - 
+文件: cb6-1.h5
+2025-04-19 02:22:02,441 - INFO -   Mean IoU: 66.55%
+2025-04-19 02:22:02,441 - INFO -   Overall Accuracy: 94.28%
+2025-04-19 02:22:02,441 - INFO -   F1 Score: 94.29%
+2025-04-19 02:22:02,441 - INFO - 
+文件: cb6-10.h5
+2025-04-19 02:22:02,441 - INFO -   Mean IoU: 75.30%
+2025-04-19 02:22:02,441 - INFO -   Overall Accuracy: 98.54%
+2025-04-19 02:22:02,441 - INFO -   F1 Score: 98.55%
+2025-04-19 02:22:02,441 - INFO - 
+文件: cb6-11.h5
+2025-04-19 02:22:02,441 - INFO -   Mean IoU: 94.26%
+2025-04-19 02:22:02,441 - INFO -   Overall Accuracy: 97.32%
+2025-04-19 02:22:02,441 - INFO -   F1 Score: 97.33%
+2025-04-19 02:22:02,441 - INFO - 
+文件: cb6-12.h5
+2025-04-19 02:22:02,441 - INFO -   Mean IoU: 71.44%
+2025-04-19 02:22:02,441 - INFO -   Overall Accuracy: 98.31%
+2025-04-19 02:22:02,441 - INFO -   F1 Score: 98.36%
+2025-04-19 02:22:02,442 - INFO - 
+文件: cb6-13.h5
+2025-04-19 02:22:02,442 - INFO -   Mean IoU: 76.97%
+2025-04-19 02:22:02,442 - INFO -   Overall Accuracy: 93.86%
+2025-04-19 02:22:02,442 - INFO -   F1 Score: 93.87%
+2025-04-19 02:22:02,442 - INFO - 
+文件: cb6-2.h5
+2025-04-19 02:22:02,442 - INFO -   Mean IoU: 86.81%
+2025-04-19 02:22:02,442 - INFO -   Overall Accuracy: 96.73%
+2025-04-19 02:22:02,442 - INFO -   F1 Score: 96.73%
+2025-04-19 02:22:02,442 - INFO - 
+文件: cb6-3.h5
+2025-04-19 02:22:02,442 - INFO -   Mean IoU: 92.53%
+2025-04-19 02:22:02,442 - INFO -   Overall Accuracy: 98.70%
+2025-04-19 02:22:02,442 - INFO -   F1 Score: 98.70%
+2025-04-19 02:22:02,442 - INFO - 
+文件: cb6-4.h5
+2025-04-19 02:22:02,442 - INFO -   Mean IoU: 89.46%
+2025-04-19 02:22:02,442 - INFO -   Overall Accuracy: 97.76%
+2025-04-19 02:22:02,442 - INFO -   F1 Score: 97.77%
+2025-04-19 02:22:02,442 - INFO - 
+文件: cb6-5.h5
+2025-04-19 02:22:02,442 - INFO -   Mean IoU: 91.22%
+2025-04-19 02:22:02,442 - INFO -   Overall Accuracy: 98.17%
+2025-04-19 02:22:02,442 - INFO -   F1 Score: 98.18%
+2025-04-19 02:22:02,442 - INFO - 
+文件: cb6-6.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 84.82%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 98.26%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 98.28%
+2025-04-19 02:22:02,443 - INFO - 
+文件: cb6-7.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 91.89%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 98.48%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 98.48%
+2025-04-19 02:22:02,443 - INFO - 
+文件: cb6-8.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 85.56%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 97.28%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 97.41%
+2025-04-19 02:22:02,443 - INFO - 
+文件: cb6-9.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 59.75%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 90.47%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 90.44%
+2025-04-19 02:22:02,443 - INFO - 
+文件: cb9-1.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 56.01%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 90.56%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 90.81%
+2025-04-19 02:22:02,443 - INFO - 
+文件: cb9-10.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 89.62%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 97.38%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 97.46%
+2025-04-19 02:22:02,443 - INFO - 
+文件: cb9-11.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 89.85%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 96.96%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 97.00%
+2025-04-19 02:22:02,443 - INFO - 
+文件: cb9-12.h5
+2025-04-19 02:22:02,443 - INFO -   Mean IoU: 75.44%
+2025-04-19 02:22:02,443 - INFO -   Overall Accuracy: 92.29%
+2025-04-19 02:22:02,443 - INFO -   F1 Score: 93.32%
+2025-04-19 02:22:02,445 - INFO - 
+文件: cb9-13.h5
+2025-04-19 02:22:02,445 - INFO -   Mean IoU: 64.15%
+2025-04-19 02:22:02,445 - INFO -   Overall Accuracy: 92.90%
+2025-04-19 02:22:02,445 - INFO -   F1 Score: 93.55%
+2025-04-19 02:22:02,445 - INFO - 
+文件: cb9-14.h5
+2025-04-19 02:22:02,445 - INFO -   Mean IoU: 77.21%
+2025-04-19 02:22:02,445 - INFO -   Overall Accuracy: 91.60%
+2025-04-19 02:22:02,445 - INFO -   F1 Score: 92.01%
+2025-04-19 02:22:02,445 - INFO - 
+文件: cb9-15.h5
+2025-04-19 02:22:02,445 - INFO -   Mean IoU: 62.68%
+2025-04-19 02:22:02,445 - INFO -   Overall Accuracy: 80.22%
+2025-04-19 02:22:02,445 - INFO -   F1 Score: 82.38%
+2025-04-19 02:22:02,445 - INFO - 
+文件: cb9-2.h5
+2025-04-19 02:22:02,445 - INFO -   Mean IoU: 74.81%
+2025-04-19 02:22:02,446 - INFO -   Overall Accuracy: 92.31%
+2025-04-19 02:22:02,446 - INFO -   F1 Score: 93.02%
+2025-04-19 02:22:02,446 - INFO - 
+文件: cb9-3.h5
+2025-04-19 02:22:02,447 - INFO -   Mean IoU: 82.56%
+2025-04-19 02:22:02,447 - INFO -   Overall Accuracy: 96.29%
+2025-04-19 02:22:02,447 - INFO -   F1 Score: 96.88%
+2025-04-19 02:22:02,447 - INFO - 
+文件: cb9-4.h5
+2025-04-19 02:22:02,447 - INFO -   Mean IoU: 84.90%
+2025-04-19 02:22:02,447 - INFO -   Overall Accuracy: 96.14%
+2025-04-19 02:22:02,447 - INFO -   F1 Score: 96.27%
+2025-04-19 02:22:02,447 - INFO - 
+文件: cb9-5.h5
+2025-04-19 02:22:02,447 - INFO -   Mean IoU: 87.53%
+2025-04-19 02:22:02,447 - INFO -   Overall Accuracy: 97.51%
+2025-04-19 02:22:02,447 - INFO -   F1 Score: 97.56%
+2025-04-19 02:22:02,447 - INFO - 
+文件: cb9-6.h5
+2025-04-19 02:22:02,447 - INFO -   Mean IoU: 84.12%
+2025-04-19 02:22:02,447 - INFO -   Overall Accuracy: 95.41%
+2025-04-19 02:22:02,448 - INFO -   F1 Score: 95.52%
+2025-04-19 02:22:02,448 - INFO - 
+文件: cb9-7.h5
+2025-04-19 02:22:02,448 - INFO -   Mean IoU: 87.00%
+2025-04-19 02:22:02,448 - INFO -   Overall Accuracy: 97.28%
+2025-04-19 02:22:02,448 - INFO -   F1 Score: 97.31%
+2025-04-19 02:22:02,448 - INFO - 
+文件: cb9-8.h5
+2025-04-19 02:22:02,448 - INFO -   Mean IoU: 87.41%
+2025-04-19 02:22:02,448 - INFO -   Overall Accuracy: 96.90%
+2025-04-19 02:22:02,448 - INFO -   F1 Score: 97.00%
+2025-04-19 02:22:02,448 - INFO - 
+文件: cb9-9.h5
+2025-04-19 02:22:02,448 - INFO -   Mean IoU: 66.31%
+2025-04-19 02:22:02,448 - INFO -   Overall Accuracy: 95.31%
+2025-04-19 02:22:02,448 - INFO -   F1 Score: 95.41%
+2025-04-19 02:22:15,904 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-1.h5.las
+2025-04-19 02:22:25,180 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-10.h5.las
+2025-04-19 02:22:34,606 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-11.h5.las
+2025-04-19 02:22:44,024 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-12.h5.las
+2025-04-19 02:22:54,007 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-13.h5.las
+2025-04-19 02:23:03,740 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-2.h5.las
+2025-04-19 02:23:13,292 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-3.h5.las
+2025-04-19 02:23:23,350 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-4.h5.las
+2025-04-19 02:23:32,648 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-5.h5.las
+2025-04-19 02:23:42,349 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-6.h5.las
+2025-04-19 02:23:51,666 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-7.h5.las
+2025-04-19 02:24:02,167 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-8.h5.las
+2025-04-19 02:24:12,050 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb6-9.h5.las
+2025-04-19 02:24:21,966 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-1.h5.las
+2025-04-19 02:24:32,387 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-10.h5.las
+2025-04-19 02:24:41,940 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-11.h5.las
+2025-04-19 02:24:51,417 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-12.h5.las
+2025-04-19 02:25:01,227 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-13.h5.las
+2025-04-19 02:25:18,352 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-14.h5.las
+2025-04-19 02:25:30,944 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-15.h5.las
+2025-04-19 02:25:41,597 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-2.h5.las
+2025-04-19 02:25:51,393 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-3.h5.las
+2025-04-19 02:26:01,315 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-4.h5.las
+2025-04-19 02:26:11,162 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-5.h5.las
+2025-04-19 02:26:21,101 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-6.h5.las
+2025-04-19 02:26:31,336 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-7.h5.las
+2025-04-19 02:26:49,032 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-8.h5.las
+2025-04-19 02:26:59,242 - INFO - Saved predicted result to experiments\exp_04181446_PN_CB_simpdataset_sec1\predicted_las\predicted_cb9-9.h5.las
+2025-04-19 02:26:59,242 - INFO - 所有可视化结果已保存至 experiments\exp_04181446_PN_CB_simpdataset_sec1\visualization

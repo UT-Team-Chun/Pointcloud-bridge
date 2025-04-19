@@ -1,0 +1,34 @@
+2025-04-19 12:38:13,053 - INFO - Training configuration:
+2025-04-19 12:38:13,053 - INFO - num_points: 4096
+2025-04-19 12:38:13,053 - INFO - chunk_size: 4096
+2025-04-19 12:38:13,053 - INFO - overlap: 1024
+2025-04-19 12:38:13,053 - INFO - batch_size: 8
+2025-04-19 12:38:13,053 - INFO - num_workers: 6
+2025-04-19 12:38:13,053 - INFO - learning_rate: 0.001
+2025-04-19 12:38:13,053 - INFO - num_classes: 5
+2025-04-19 12:38:13,054 - INFO - num_epochs: 100
+2025-04-19 12:38:13,054 - INFO - device: cuda
+2025-04-19 12:38:13,054 - INFO - case: PTV3_CB_all
+2025-04-19 12:38:13,054 - INFO - train_dir: data/all/train
+2025-04-19 12:38:13,054 - INFO - val_dir: data/all/val
+2025-04-19 12:38:13,055 - INFO - exp_dir_root: experiments
+2025-04-19 12:38:13,055 - INFO - Using device: cuda
+2025-04-19 12:38:13,056 - INFO - Found 7 h5 files:
+2025-04-19 12:38:13,056 - INFO -   - cb1.h5
+2025-04-19 12:38:13,056 - INFO -   - cb2.h5
+2025-04-19 12:38:13,056 - INFO -   - cb3.h5
+2025-04-19 12:38:13,056 - INFO -   - cb4.h5
+2025-04-19 12:38:13,056 - INFO -   - cb5.h5
+2025-04-19 12:38:13,056 - INFO -   - cb7.h5
+2025-04-19 12:38:13,056 - INFO -   - cb8.h5
+2025-04-19 12:38:19,438 - INFO - Total blocks created: 13145
+2025-04-19 12:38:19,446 - INFO - Found 2 h5 files:
+2025-04-19 12:38:19,446 - INFO -   - cb6.h5
+2025-04-19 12:38:19,446 - INFO -   - cb9.h5
+2025-04-19 12:38:25,794 - INFO - Total blocks created: 6563
+2025-04-19 12:38:25,799 - INFO - reading val data
+2025-04-19 12:38:25,801 - INFO - Train dataset size: 13145
+2025-04-19 12:38:25,801 - INFO - Val dataset size: 6563
+2025-04-19 12:38:25,974 - INFO - 成功初始化 PointTransformerV3
+2025-04-19 12:38:42,904 - INFO - Class weights: tensor([3.0000, 1.0002, 1.0002, 1.0002, 0.5709])
+2025-04-19 12:38:42,906 - INFO - Total samples is: <torch.utils.data.dataloader.DataLoader object at 0x0000019F2B70C810>

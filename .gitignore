@@ -15,3 +15,7 @@ Highway_bridge/wandb/
 *.h5.pdf
 *.h5
 *.h5.png
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class

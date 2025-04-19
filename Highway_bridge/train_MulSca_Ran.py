@@ -19,26 +19,35 @@ from models.pointnet import PointNetSeg
 from models.RandLANet import RandLANet
 from utils.BriPCDMulti_new import BriPCDMulti
 from utils.logger_config import initialize_logger, get_logger
+import yaml
+import os
 
-# 配置参数
-config = {
-    'num_points': 4096,
-    'chunk_size': 4096,
-    'overlap': 1024,
-    'batch_size': 16,
-    'num_workers': 6,
-    'learning_rate': 0.001,
-    'num_classes': 5,
-    'num_epochs': 100,
-    'device': 'cuda' if torch.cuda.is_available() else 'cpu'
-}
 #{noise:0, abutment:1, girder:2, slab:3, parapet:4}
 
-def train():
+def train(config=None):
+    if config is None:
+        config = {
+            'num_points': 4096,
+            'chunk_size': 4096,
+            'overlap': 1024,
+            'batch_size': 16,
+            'num_workers': 6,
+            'learning_rate': 0.001,
+            'num_classes': 5,
+            'num_epochs': 100,
+            'device': 'cuda' if torch.cuda.is_available() else 'cpu',
+            'exp_dir_root' : 'experiments',
+            'case' : 'CBdata_RandLaNet',
+            'train_dir': 'data/all/train',
+            'val_dir': 'data/all/val',
+
+        }
+
     # 创建实验目录
     timestamp = datetime.datetime.now().strftime('%m%d%H%M')
-    case = 'CBdata_RandLaNet'
-    exp_dir = Path(f'experiments/exp_{timestamp}_{case}')
+    exp_dir_root = config['exp_dir_root']
+    case = config['case']
+    exp_dir = Path(f'{exp_dir_root}/exp_{timestamp}_{case}')
     exp_dir.mkdir(parents=True, exist_ok=True)
 
 
@@ -57,7 +66,7 @@ def train():
 
     # 创建数据加载器
     train_dataset = BriPCDMulti(
-        data_dir='data/all/train',
+        data_dir=config['train_dir'],
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -67,7 +76,7 @@ def train():
     logger.info('reading train data')
 
     val_dataset = BriPCDMulti(
-        data_dir='data/all/val/',
+        data_dir=config['val_dir'],
         num_points=config['num_points'],
         block_size=1.0,
         sample_rate=0.4,
@@ -364,7 +373,9 @@ class AverageMeter(object):
 
 if __name__ == '__main__':
     try:
-        train()
+        with open('config.yaml', 'r') as f:
+            config = yaml.safe_load(f)
+        train(config)
     except Exception as e:
         logging.exception("Training failed with exception:")
         raise
