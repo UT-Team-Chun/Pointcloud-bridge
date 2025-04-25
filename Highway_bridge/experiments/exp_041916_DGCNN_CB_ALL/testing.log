@@ -1,0 +1,35 @@
+2025-04-19 16:31:54,611 - INFO - Using device: cuda
+2025-04-19 16:31:54,643 - INFO - Found 2 h5 files:
+2025-04-19 16:31:54,643 - INFO -   - cb6.h5
+2025-04-19 16:31:54,644 - INFO -   - cb9.h5
+2025-04-19 16:32:05,538 - INFO - Total blocks created: 6563
+2025-04-19 16:32:05,716 - INFO - Loaded model from experiments/exp_041916_DGCNN_CB_ALL\best_model.pth
+2025-04-19 16:34:39,683 - INFO - Using device: cuda
+2025-04-19 16:34:39,717 - INFO - Found 2 h5 files:
+2025-04-19 16:34:39,717 - INFO -   - cb6.h5
+2025-04-19 16:34:39,719 - INFO -   - cb9.h5
+2025-04-19 16:34:50,504 - INFO - Total blocks created: 6563
+2025-04-19 16:34:50,624 - INFO - Loaded model from experiments/exp_041916_DGCNN_CB_ALL\best_model.pth
+2025-04-19 17:31:50,185 - INFO - 
+===== 全局评估结果 =====
+2025-04-19 17:31:50,185 - INFO - Mean IoU: 96.28%
+2025-04-19 17:31:50,186 - INFO - Overall Accuracy: 98.24%
+2025-04-19 17:31:50,186 - INFO - Mean Accuracy: 97.99%
+2025-04-19 17:31:50,186 - INFO - Precision: 98.25%
+2025-04-19 17:31:50,186 - INFO - Recall: 98.24%
+2025-04-19 17:31:50,186 - INFO - F1 Score: 98.25%
+2025-04-19 17:31:50,186 - INFO - Class 0 (Background) IoU: 94.77%
+2025-04-19 17:31:50,186 - INFO - Class 1 (Pier) IoU: 98.20%
+2025-04-19 17:31:50,186 - INFO - Class 2 (Girder) IoU: 96.37%
+2025-04-19 17:31:50,186 - INFO - Class 3 (Deck) IoU: 95.51%
+2025-04-19 17:31:50,186 - INFO - Class 4 (Parapet) IoU: 96.55%
+2025-04-19 17:31:50,186 - INFO - 
+文件: cb6.h5
+2025-04-19 17:31:50,186 - INFO -   Mean IoU: 97.15%
+2025-04-19 17:31:50,187 - INFO -   Overall Accuracy: 98.53%
+2025-04-19 17:31:50,187 - INFO -   F1 Score: 98.54%
+2025-04-19 17:31:50,187 - INFO - 
+文件: cb9.h5
+2025-04-19 17:31:50,187 - INFO -   Mean IoU: 95.09%
+2025-04-19 17:31:50,187 - INFO -   Overall Accuracy: 97.67%
+2025-04-19 17:31:50,187 - INFO -   F1 Score: 97.69%

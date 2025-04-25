@@ -54,7 +54,7 @@ def main():
         'num_classes': 5,
         'num_epochs': 500,
         'device': 'cuda' if torch.cuda.is_available() else 'cpu',
-        'exp_dir' : 'experiments/exp_04181446_PN_CB_simpdataset_sec1',
+        'exp_dir' : 'experiments/exp_041923_DGCNN_DS1_sec_0',
         'val_dir': 'data/CB/section/val',
     }
     
@@ -63,21 +63,22 @@ def main():
     logger = setup_logging(exp_dir)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f'Using device: {device}')
+    model_name = 'DGCNN'
 
     # 定义类名称
     class_names = ['Background', 'Pier', 'Girder', 'Deck', 'Parapet']
 
-    from experiments.exp_04181446_PN_CB_simpdataset_sec1.utils.BriPCDMulti_new import BriPCDMulti
-    from experiments.exp_04181446_PN_CB_simpdataset_sec1.models.model import EnhancedPointNet2
-    from experiments.exp_04181446_PN_CB_simpdataset_sec1.models.pointnet2 import PointNet2
-    from models.pointnet import PointNetSeg
+    from experiments.exp_041923_DGCNN_DS1_sec_0.utils.BriPCDMulti_new import BriPCDMulti
+    from experiments.exp_041923_DGCNN_DS1_sec_0.models.model import EnhancedPointNet2
+    from experiments.exp_041923_DGCNN_DS1_sec_0.models.pointnet2 import PointNet2
+    from models.DGCNN import DGCNN
     from torch.utils.data import DataLoader
     from utils.simpdataset import SimplePointCloudDataset
 
     test_dataset = SimplePointCloudDataset(
         data_dir=config['val_dir'],
         num_points=config['num_points'],
-        steps_per_file=10, # 每个文件每个epoch采样50次
+        steps_per_file=20, # 每个文件每个epoch采样50次
         #block_size=1.0,
         #sample_rate=0.4,
         logger=logger
@@ -93,7 +94,7 @@ def main():
     
     # 加载模型
     #model = EnhancedPointNet2(config['num_classes']).to(device)
-    model = PointNetSeg(config['num_classes']).to(device)
+    model=DGCNN(config['num_classes'], k=8).to(device)
 
     if os.path.exists(checkpoint_path):
         checkpoint = torch.load(checkpoint_path, weights_only=True)
@@ -140,9 +141,31 @@ def main():
 
             outputs = model(points, colors)
 
+            if outputs.dim() == 3 and outputs.shape[0] == labels.shape[0]:
+                # Case 1: [B, N, C] - 标准语义分割输出
+                if outputs.shape[1] == labels.shape[1]:
+                    B, N, C = outputs.shape
+                    outputs_for_loss = outputs.reshape(-1, C)
+                    labels_for_loss = labels.reshape(-1)
+                # Case 2: [B, C, N] - 有些模型会输出这种格式
+                elif outputs.shape[2] == labels.shape[1]:
+                    B, C, N = outputs.shape
+                    outputs_for_loss = outputs.permute(0, 2, 1).reshape(-1, C) # 转换为 [B*N, C]
+                    labels_for_loss = labels.reshape(-1)
+                else:
+                    print(f"Warning: Output shape {outputs.shape} mismatch with label shape {labels.shape} for {model_name}. Skipping loss calculation for this batch.")
+                    continue # 跳过这个批次
+            else:
+                print(f"Warning: Unexpected output dimension ({outputs.dim()}) or batch size mismatch for {model_name}. Skipping loss calculation.")
+                continue # 跳过这个批次
+            
+            outputs = outputs_for_loss
+            labels = labels_for_loss
+
             # 计算准确率
             pred = outputs.max(1)[1]
             acc_1 = pred.eq(labels).float().mean()
+
 
             # 更新统计
             val_acc.update(acc_1.item())

@@ -15,6 +15,7 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from models.PointTransformerV3 import PointTransformerV3
+from utils.simpdataset import SimplePointCloudDataset
 from utils.BriPCDMulti_new import BriPCDMulti
 from utils.logger_config import initialize_logger, get_logger
 
@@ -34,11 +35,11 @@ def train(config=None):
             'num_workers': 6,
             'learning_rate': 0.001,
             'num_classes': 5,
-            'num_epochs': 200,
+            'num_epochs': 50,
             'device': 'cuda' if torch.cuda.is_available() else 'cpu',
-            'case' : 'bridgeSeg_CB_new_1',
-            'train_dir': 'data/all/train',
-            'val_dir': 'data/all/val',
+            'case' : 'PTV3_CB_sec_1',
+            'train_dir': 'data/CB/section/train',
+            'val_dir': 'data/CB/section/val',
         }
 
     # 创建实验目录
@@ -74,20 +75,22 @@ def train(config=None):
     logger.info(f'Using device: {device}')
 
     # 创建数据加载器
-    train_dataset = BriPCDMulti(
+    train_dataset = SimplePointCloudDataset(
         data_dir=train_dir,
         num_points=4096,
-        block_size=1.0,
-        sample_rate=0.4,
+        steps_per_file=50, #for simpledataset
+        #block_size=1.0,
+        #sample_rate=0.4,
         logger=get_logger(),
         transform=True
     )
 
-    val_dataset = BriPCDMulti(
+    val_dataset = SimplePointCloudDataset(
         data_dir=val_dir,
         num_points=4096,
-        block_size=1.0,
-        sample_rate=0.4,
+        steps_per_file=10,
+        #block_size=1.0,
+        #sample_rate=0.4,
         logger=get_logger()
     )
 
@@ -120,7 +123,7 @@ def train(config=None):
     in_channels = 6  # 输入特征通道数 (color + normal)
     model=PointTransformerV3(num_classes, d_in=in_channels,embed_dim=192, 
                                     depth=6,  # 深度
-                                    num_heads=4, # 多头注意力机制
+                                    num_heads=2, # 多头注意力机制
                                     use_flash=False # 启用Flash Attention加速
                                     ).to(device)
     logger.info("成功初始化 PointTransformerV3")
@@ -240,6 +243,28 @@ def train(config=None):
 
                 #outputs = model(batch)
                 outputs = model(points, colors)
+
+                if outputs.dim() == 3 and outputs.shape[0] == labels.shape[0]:
+                # Case 1: [B, N, C] - 标准语义分割输出
+                    if outputs.shape[1] == labels.shape[1]:
+                        B, N, C = outputs.shape
+                        outputs_for_loss = outputs.reshape(-1, C)
+                        labels_for_loss = labels.reshape(-1)
+                    # Case 2: [B, C, N] - 有些模型会输出这种格式
+                    elif outputs.shape[2] == labels.shape[1]:
+                        B, C, N = outputs.shape
+                        outputs_for_loss = outputs.permute(0, 2, 1).reshape(-1, C) # 转换为 [B*N, C]
+                        labels_for_loss = labels.reshape(-1)
+                    else:
+                        print(f"Warning: Output shape {outputs.shape} mismatch with label shape {labels.shape} for {model_name}. Skipping loss calculation for this batch.")
+                        continue # 跳过这个批次
+                else:
+                    print(f"Warning: Unexpected output dimension ({outputs.dim()}) or batch size mismatch for {model_name}. Skipping loss calculation.")
+                    continue # 跳过这个批次
+                
+                outputs = outputs_for_loss
+                labels = labels_for_loss
+                
                 loss = criterion(outputs, labels)
                 #loss = criterion(outputs, labels, points=points)
                 # 计算准确率
@@ -438,9 +463,7 @@ class AverageMeter(object):
 
 if __name__ == '__main__':
     try:
-        with open('config.yaml', 'r') as f:
-            config = yaml.safe_load(f)
-        train(config)
+        train()
     except Exception as e:
         logging.exception("Training failed with exception:")
         raise

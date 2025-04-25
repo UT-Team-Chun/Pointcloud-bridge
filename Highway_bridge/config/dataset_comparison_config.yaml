@@ -3,7 +3,7 @@
 data_directory: "data/statistical/"
 output_directory: "data/statistical/dataset_comparison"
 visualization_dpi: 300
-figure_width: 12
+figure_width: 14
 figure_height: 8
 visualization_colors:
   - "#4477AA"

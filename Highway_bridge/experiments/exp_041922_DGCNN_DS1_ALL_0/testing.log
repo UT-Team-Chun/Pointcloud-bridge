@@ -1,0 +1,29 @@
+2025-04-19 22:50:17,353 - INFO - Using device: cuda
+2025-04-19 22:50:17,417 - INFO - Found 2 h5 files:
+2025-04-19 22:50:17,417 - INFO -   - cb6.h5
+2025-04-19 22:50:17,417 - INFO -   - cb9.h5
+2025-04-19 22:50:24,968 - INFO - Total blocks created: 6563
+2025-04-19 22:50:25,070 - INFO - Loaded model from experiments/exp_041922_DGCNN_DS1_ALL_0\best_model.pth
+2025-04-19 23:48:04,734 - INFO - 
+===== 全局评估结果 =====
+2025-04-19 23:48:04,734 - INFO - Mean IoU: 95.27%
+2025-04-19 23:48:04,734 - INFO - Overall Accuracy: 97.95%
+2025-04-19 23:48:04,734 - INFO - Mean Accuracy: 97.73%
+2025-04-19 23:48:04,734 - INFO - Precision: 97.98%
+2025-04-19 23:48:04,734 - INFO - Recall: 97.95%
+2025-04-19 23:48:04,734 - INFO - F1 Score: 97.97%
+2025-04-19 23:48:04,734 - INFO - Class 0 (Background) IoU: 91.68%
+2025-04-19 23:48:04,734 - INFO - Class 1 (Pier) IoU: 98.33%
+2025-04-19 23:48:04,734 - INFO - Class 2 (Girder) IoU: 94.91%
+2025-04-19 23:48:04,734 - INFO - Class 3 (Deck) IoU: 94.90%
+2025-04-19 23:48:04,734 - INFO - Class 4 (Parapet) IoU: 96.54%
+2025-04-19 23:48:04,734 - INFO - 
+文件: cb6.h5
+2025-04-19 23:48:04,734 - INFO -   Mean IoU: 95.75%
+2025-04-19 23:48:04,734 - INFO -   Overall Accuracy: 97.91%
+2025-04-19 23:48:04,734 - INFO -   F1 Score: 97.92%
+2025-04-19 23:48:04,734 - INFO - 
+文件: cb9.h5
+2025-04-19 23:48:04,734 - INFO -   Mean IoU: 94.13%
+2025-04-19 23:48:04,734 - INFO -   Overall Accuracy: 97.58%
+2025-04-19 23:48:04,734 - INFO -   F1 Score: 97.61%
