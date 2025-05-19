@@ -35,7 +35,7 @@ def convert_las_to_hdf5(las_filename, hdf5_filename):
 
 # 将所有 LAS 文件转换为 HDF5 文件
 if __name__ == '__main__':
-    las_dir = 'data/CB/section/val'
+    las_dir = 'data/YBC/train'
     hdf5_dir = las_dir
 
     for las_filename in os.listdir(las_dir):

@@ -1,0 +1,9 @@
+,Background,U_Flg,Web,B_Flg,Vert_Stiff,Vert_Stiff_other,Horz_Stiff,Horz_Stiff_other
+Background,77.0,0.0,1.0,0.0,1.0,0.0,0.0,2.0
+U_Flg,1.0,207.0,2.0,0.0,0.0,0.0,0.0,0.0
+Web,0.0,10.0,974.0,4.0,8.0,0.0,0.0,0.0
+B_Flg,0.0,0.0,0.0,310.0,3.0,0.0,0.0,0.0
+Vert_Stiff,1.0,0.0,7.0,0.0,39.0,0.0,0.0,1.0
+Vert_Stiff_other,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Horz_Stiff,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Horz_Stiff_other,0.0,0.0,1.0,0.0,1.0,0.0,0.0,20.0

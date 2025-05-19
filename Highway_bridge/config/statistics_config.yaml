@@ -1,7 +1,7 @@
 
 # path
-data_directory: "data/fukushima/onepart/voxel_2/"
-output_directory: "data/fukushima/onepart/voxel_2/statistics"
+data_directory: "data/YBC"
+output_directory: "data/YBC/val/statistics"
 csv_filename: "bridge_statistics.csv"
 
 # visualization settings
@@ -17,19 +17,31 @@ visualization_colors:
   - "#AA3377"
   - "#BBBBBB"
 
-# class names 
+# # class names 
+# class_names:
+#   "0": "Background"
+#   "1": "Pier(Abutment)"
+#   "2": "Girder"
+#   "3": "Deck"
+#   "4": "superstructure accessories"
+
 class_names:
   "0": "Background"
-  "1": "Pier(Abutment)"
-  "2": "Girder"
-  "3": "Deck"
-  "4": "superstructure accessories"
-
+  "1": 'U_Flg'
+  "2": 'Web'
+  "3": 'B_Flg'
+  "4": 'Vert_Stiff'
+  "5": 'Vert_Stiff_other'
+  "6": 'Horz_Stiff'
+  "7": 'Horz_Stiff_other'
 
 # class names in English
 english_class_names:
   "0": "Background"
-  "1": "Pier (Abutment)"
-  "2": "Girder"
-  "3": "Deck"
-  "4": "SuperAcces. (Parapet)"
+  "1": 'U_Flg'
+  "2": 'Web'
+  "3": 'B_Flg'
+  "4": 'Vert_Stiff'
+  "5": 'Vert_Stiff_other'
+  "6": 'Horz_Stiff'
+  "7": 'Horz_Stiff_other'

@@ -81,14 +81,39 @@ def voxel_downsample_las(input_folder, output_folder=None, voxel_size=0.02, anal
                 _, indices = tree.query(downsampled_points, k=1)
                 downsampled_classifications = classifications[indices]
                 
-                # 创建新的las文件 - 修改这部分以解决header.copy()的问题
-                las_out = laspy.create(point_format=las_in.header.point_format, file_version=las_in.header.version)
+                # 创建新的header，复制原始header的关键参数
+                from copy import deepcopy
+                new_header = deepcopy(las_in.header)
+                
+                # 检测需要更新的边界
+                new_x_min, new_y_min, new_z_min = np.min(downsampled_points, axis=0)
+                new_x_max, new_y_max, new_z_max = np.max(downsampled_points, axis=0)
+                
+                # 更新header的边界值
+                new_header.x_min = min(new_header.x_min, new_x_min)
+                new_header.y_min = min(new_header.y_min, new_y_min)
+                new_header.z_min = min(new_header.z_min, new_z_min)
+                new_header.x_max = max(new_header.x_max, new_x_max)
+                new_header.y_max = max(new_header.y_max, new_y_max)
+                new_header.z_max = max(new_header.z_max, new_z_max)
+                
+                # 使用点格式ID和文件版本直接创建LasData
+                point_format_id = las_in.point_format.id
+                file_version = las_in.header.version
+                las_out = laspy.LasData(point_format=point_format_id, file_version=file_version)
+                
+                # 重要：创建正确大小的点记录
+                las_out.create_points(len(downsampled_points))
                 
                 # 设置点坐标和标签
                 las_out.x = downsampled_points[:, 0]
                 las_out.y = downsampled_points[:, 1]
                 las_out.z = downsampled_points[:, 2]
                 las_out.classification = downsampled_classifications
+                
+                # 设置缩放和偏移值与原始文件相同
+                las_out.header.scales = las_in.header.scales
+                las_out.header.offsets = las_in.header.offsets
                 
                 # 复制其他通道(如果存在)
                 if hasattr(las_in, 'intensity') and len(las_in.intensity) > 0:
@@ -153,6 +178,11 @@ def analyze_point_density(input_folder):
             max_bound = np.max(points, axis=0)
             volume = np.prod(max_bound - min_bound)
             
+            # 检查体积是否合理，防止极端值
+            if volume <= 0 or volume > 1e9:  # 1立方公里限制
+                print(f"警告: {os.path.basename(las_file)} 体积计算异常: {volume} 立方米")
+                continue
+                
             # 计算点密度 (点数/立方米)
             if volume > 0:
                 density = len(points) / volume
@@ -174,12 +204,23 @@ def analyze_point_density(input_folder):
         print(f"  最大密度: {max_density:.2f} 点/立方米")
         print(f"  密度标准差: {std_density:.2f}")
         
-        # 基于平均密度推荐体素大小
-        recommended_voxel = 1.0 / np.cbrt(avg_density / 5)  # 目标降低到约1/5密度
-        print(f"\n推荐体素大小: {recommended_voxel:.3f} 米")
-        print(f"  - 精细降采样 (保留更多细节): {recommended_voxel/2:.3f} 米")
-        print(f"  - 中等降采样: {recommended_voxel:.3f} 米")
-        print(f"  - 粗糙降采样 (更高效率): {recommended_voxel*2:.3f} 米")
+        # 基于平均密度推荐体素大小，确保推荐值在合理范围内
+        try:
+            recommended_voxel = 1.0 / np.cbrt(avg_density / 5)  # 目标降低到约1/5密度
+            
+            # 限制推荐体素大小在合理范围内(1mm到50cm)
+            recommended_voxel = max(0.001, min(0.5, recommended_voxel))
+            
+            print(f"\n推荐体素大小: {recommended_voxel:.3f} 米")
+            print(f"  - 精细降采样 (保留更多细节): {recommended_voxel/2:.3f} 米")
+            print(f"  - 中等降采样: {recommended_voxel:.3f} 米")
+            print(f"  - 粗糙降采样 (更高效率): {min(1.0, recommended_voxel*2):.3f} 米")
+        except Exception as e:
+            print(f"计算推荐体素大小时出错: {str(e)}")
+            print("使用默认推荐体素大小: 0.02 米")
+            print("  - 精细降采样: 0.01 米")
+            print("  - 中等降采样: 0.02 米")
+            print("  - 粗糙降采样: 0.04 米")
 
 def convert_labels(input_file, output_file):
     """
@@ -246,9 +287,9 @@ def process_directory(input_dir, output_dir):
 if __name__ == "__main__":
     
     
-    input_folder = 'data/fukushima/onepart/voxel_2/raw'
-    output_folder = 'data/fukushima/onepart/voxel_2/train'
-    voxel_size = 0.02
+    input_folder = 'data/YBC/raw'
+    output_folder = 'data/YBC/voxel_001'
+    voxel_size = 0.01  # 体素大小
 
     # 分析点云密度
     print("\n===== 点云密度分析 =====")

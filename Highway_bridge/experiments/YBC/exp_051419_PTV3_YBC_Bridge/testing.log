@@ -1,0 +1,27 @@
+2025-05-15 00:31:31,863 - INFO - Using device: cuda
+2025-05-15 00:31:32,326 - INFO - Found 1 h5 files:
+2025-05-15 00:31:32,326 - INFO -   - suehiro_A2_02G2.h5
+2025-05-15 00:31:39,221 - INFO - Total blocks created: 1670
+2025-05-15 00:31:39,430 - INFO - 成功初始化 PointTransformerV3
+2025-05-15 00:31:39,522 - INFO - Loaded model from experiments/YBC/exp_051419_PTV3_YBC_Bridge\best_model.pth
+2025-05-15 00:44:44,895 - INFO - 
+===== 全局评估结果 =====
+2025-05-15 00:44:44,895 - INFO - Mean IoU: 61.91%
+2025-05-15 00:44:44,895 - INFO - Overall Accuracy: 97.36%
+2025-05-15 00:44:44,895 - INFO - Mean Accuracy: 68.28%
+2025-05-15 00:44:44,895 - INFO - Precision: 97.50%
+2025-05-15 00:44:44,895 - INFO - Recall: 97.36%
+2025-05-15 00:44:44,896 - INFO - F1 Score: 97.43%
+2025-05-15 00:44:44,896 - INFO - Class 0 (Background) IoU: 86.97%
+2025-05-15 00:44:44,896 - INFO - Class 1 (U_Flg) IoU: 96.24%
+2025-05-15 00:44:44,896 - INFO - Class 2 (Web) IoU: 97.12%
+2025-05-15 00:44:44,896 - INFO - Class 3 (B_Flg) IoU: 98.74%
+2025-05-15 00:44:44,896 - INFO - Class 4 (Vert_Stiff) IoU: 59.60%
+2025-05-15 00:44:44,897 - INFO - Class 5 (Vert_Stiff_other) IoU: 0.00%
+2025-05-15 00:44:44,897 - INFO - Class 6 (Horz_Stiff) IoU: 0.00%
+2025-05-15 00:44:44,897 - INFO - Class 7 (Horz_Stiff_other) IoU: 56.63%
+2025-05-15 00:44:44,897 - INFO - 
+文件: suehiro_A2_02G2.h5
+2025-05-15 00:44:44,897 - INFO -   Mean IoU: 65.66%
+2025-05-15 00:44:44,897 - INFO -   Overall Accuracy: 97.43%
+2025-05-15 00:44:44,897 - INFO -   F1 Score: 97.46%

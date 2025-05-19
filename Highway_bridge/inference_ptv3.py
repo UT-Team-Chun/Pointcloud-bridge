@@ -48,7 +48,7 @@ def main():
         'num_points': 4096,
         'chunk_size': 4096,
         'overlap': 1024,
-        'batch_size': 16,
+        'batch_size': 8,
         'num_workers': 6,
         'learning_rate': 0.001,
         'num_classes': 8,
@@ -76,8 +76,9 @@ def main():
     from models.DGCNN import DGCNN
     from torch.utils.data import DataLoader
     from utils.simpdataset import SimplePointCloudDataset
+    from utils.BriPCD_gen import BriPCDMulti
 
-    test_dataset = SimplePointCloudDataset(
+    test_dataset = BriPCDMulti(
         data_dir=config['val_dir'],
         num_points=config['num_points'],
         #steps_per_file=20, # 每个文件每个epoch采样50次
