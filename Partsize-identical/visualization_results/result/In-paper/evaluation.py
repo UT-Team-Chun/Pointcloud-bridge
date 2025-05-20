@@ -13,12 +13,12 @@ def set_scientific_style():
     matplotlib.rcParams.update({
         # 字体设置
         'font.family': 'Arial',  # 使用 Arial 字体
-        'font.size': 16,
-        'axes.titlesize': 18,
-        'axes.labelsize': 18,
-        'xtick.labelsize': 18,
-        'ytick.labelsize': 18,
-        'legend.fontsize': 18,
+        'font.size': 24,
+        'axes.titlesize': 26,
+        'axes.labelsize': 26,
+        'xtick.labelsize': 24,
+        'ytick.labelsize': 24,
+        'legend.fontsize': 22,
 
         # 线条设置
         'axes.linewidth': 1.25,  # 坐标轴线宽
@@ -250,7 +250,7 @@ def plot_bland_altman(df1, df2, dimension='length', save_path=None):
                   framealpha=0.9,
                   fancybox=False,
                   borderaxespad=0.5,
-                  fontsize=14)
+                  fontsize=16)
 
         # 设置适当的y轴范围
         y_range = max(abs(diff.max()), abs(diff.min()))
@@ -423,7 +423,7 @@ def plot_component_relative_errors(df1, df2, dimension='length', save_path=None)
             ax.text(rect.get_x() + rect.get_width() / 2., height,
                     f'{val:.1f}%',
                     ha='center', va='bottom',
-                    fontsize=14, fontweight='bold')
+                    fontsize=18)
 
     autolabel(rects1, errors_df1)
     autolabel(rects2, errors_df2)
@@ -431,10 +431,10 @@ def plot_component_relative_errors(df1, df2, dimension='length', save_path=None)
     # 添加平均值标注
     ax.text(ax.get_xlim()[1], mean1, f'Mean: {mean1:.1f}%',
             ha='right', va='bottom', color='#5bb3a7',
-            fontsize=14, fontweight='bold')
+            fontsize=20, fontweight='bold')
     ax.text(ax.get_xlim()[1], mean2, f'Mean: {mean2:.1f}%',
             ha='right', va='bottom', color='#9281c9',
-            fontsize=14, fontweight='bold')
+            fontsize=20, fontweight='bold')
 
     ax.set_ylabel('Relative Error (%)')
     ax.set_title(f'Relative Errors by Component ({dimension})', pad=10)
@@ -449,8 +449,8 @@ def plot_component_relative_errors(df1, df2, dimension='length', save_path=None)
         spine.set_linewidth(1.25)
         spine.set_color('black')
 
-    ax.legend(loc='upper right', bbox_to_anchor=(0.98, 0.98),
-              frameon=True, edgecolor='black', framealpha=1.0,
+    ax.legend(loc='upper right', bbox_to_anchor=(0.8, 0.99),
+              frameon=True, edgecolor='black', framealpha=0.7,
               fancybox=False, borderaxespad=0.5)
 
     plt.tight_layout()
@@ -537,13 +537,13 @@ def plot_case_errors(df1, df2, dimension='length', save_path=None):
 
     # 添加图例
     ax.plot([], [], color='black', marker='s', markerfacecolor='lightblue',
-            label='Dataset 1', linestyle='', markersize=10, markeredgewidth=0.75)
+            label='Dataset 1', linestyle='', markersize=12, markeredgewidth=0.75)
     ax.plot([], [], color='black', marker='s', markerfacecolor='lightgreen',
-            label='Dataset 2', linestyle='', markersize=10, markeredgewidth=0.75)
+            label='Dataset 2', linestyle='', markersize=12, markeredgewidth=0.75)
 
-    ax.legend(loc='upper left', bbox_to_anchor=(0.02, 0.98),
-              frameon=True, edgecolor='black', framealpha=1.0,
-              fancybox=False, borderaxespad=0.5)
+    ax.legend(loc='upper left', bbox_to_anchor=(0.0, 1),
+              frameon=True, edgecolor='black', framealpha=0.6,
+              fancybox=True, borderaxespad=0.8)
 
     # 添加分隔线
     ax.axvline(x=len(cases_df1) + 0.5, color='gray', linestyle='--', alpha=0.5)
